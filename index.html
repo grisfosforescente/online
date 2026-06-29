@@ -13,20 +13,18 @@
     <!-- FontAwesome para Iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Configuración del tema personalizado en Tailwind (Estilo Brutalista Claro) -->
+    <!-- Configuración del tema Tailwind (Estilo Brutalista Claro) -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        baseWhite: '#ffffff',
-                        baseBlack: '#000000',
-                        brandGreen: '#ccff00',
-                        brandPink: '#ff007f',
-                        brandYellow: '#FFD700',
-                        panelGray: '#fafafa', // Gris más suave para hacer el diseño menos tosco
-                        borderGray: '#e5e7eb', // Bordes sutiles
-                        textMuted: '#6b7280'
+                        brandGreen: '#ccff00',   // Verde/Gris Fosforescente puro
+                        brandPink: '#ff007f',    // Rosa Neón para acentos
+                        baseBlack: '#000000',    // Negro puro para plecas y textos
+                        baseWhite: '#ffffff',    // Blanco puro de fondo
+                        borderGray: '#e5e7eb',   // Gris claro para bordes internos
+                        textMuted: '#6b7280'     // Gris para textos secundarios
                     },
                     fontFamily: {
                         sans: ['Space Grotesk', 'sans-serif'],
@@ -38,7 +36,6 @@
     </script>
 
     <style>
-        /* Sombras brutalistas pero un poco más controladas */
         .shadow-brutal {
             box-shadow: 6px 6px 0px 0px #000000;
         }
@@ -46,455 +43,507 @@
             box-shadow: 3px 3px 0px 0px #000000;
         }
         .shadow-brutal-hover:hover {
-            box-shadow: 6px 6px 0px 0px #000000;
+            box-shadow: 8px 8px 0px 0px #000000;
             transform: translate(-2px, -2px);
         }
-        
-        /* Custom scrollbar limpio */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #fafafa; }
-        ::-webkit-scrollbar-thumb { background: #000000; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #ff007f; }
-
-        html { scroll-behavior: smooth; }
-
-        @keyframes marquee {
-            0% { transform: translateX(0%); }
-            100% { transform: translateX(-50%); }
+        ::-webkit-scrollbar {
+            width: 8px;
         }
-        .animate-marquee {
-            display: inline-block;
-            white-space: nowrap;
-            animation: marquee 20s linear infinite;
+        ::-webkit-scrollbar-track {
+            background: #ffffff;
+            border-left: 2px solid #000000;
         }
-
+        ::-webkit-scrollbar-thumb {
+            background: #000000;
+        }
         .blueprint-grid {
-            background-color: #ffffff;
+            background-color: #d9d9d9;
             background-image: 
                 linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
             background-size: 20px 20px;
             background-position: center;
         }
-        
-        input[type=range] {
-            accent-color: #000000;
+        .marquee {
+            white-space: nowrap;
+            overflow: hidden;
+            display: inline-block;
+            animation: marquee 20s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
         }
     </style>
 </head>
-<body class="bg-panelGray text-baseBlack font-sans min-h-screen overflow-x-hidden antialiased">
+<body class="bg-baseWhite text-baseBlack font-sans min-h-screen overflow-x-hidden antialiased selection:bg-brandGreen selection:text-baseBlack">
 
-    <!-- HEADER / NAVEGACIÓN -->
-    <header class="bg-baseBlack px-6 py-4 sticky top-0 z-40">
-        <div class="max-w-7xl mx-auto flex items-center justify-between">
-            <!-- Menú de Navegación Izquierdo -->
-            <nav class="flex items-center gap-6 sm:gap-8 text-white font-bold text-xs sm:text-sm tracking-wider uppercase">
-                <a href="#inicio" class="hover:text-brandGreen transition-colors">INICIO</a>
-                <a href="https://wa.me/message/LOS67PCNOUMBM1" target="_blank" rel="noopener noreferrer" class="hover:text-brandGreen transition-colors flex items-center gap-2">
-                    <i class="fa-brands fa-whatsapp text-lg"></i>
-                    <span class="hidden sm:inline">COTIZA CON UN AGENTE</span>
-                    <span class="sm:hidden">AGENTE</span>
-                </a>
-            </nav>
-
-            <!-- Menú de Navegación Derecho -->
+    <!-- HEADER NEGRO -->
+    <header class="bg-baseBlack px-6 py-4 sticky top-0 z-50 border-b-4 border-baseBlack shadow-md">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            
+            <div class="flex items-center gap-6">
+                <!-- Enlaces de Navegación -->
+                <nav class="flex items-center gap-6 text-baseWhite font-bold text-sm tracking-wide">
+                    <a href="#home" class="hover:text-brandGreen transition-colors">INICIO</a>
+                    <a href="https://wa.me/message/LOS67PCNOUMBM1" target="_blank" class="hover:text-brandPink transition-colors flex items-center gap-1.5">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                        <span class="hidden md:inline">COTIZA CON UN AGENTE</span>
+                        <span class="md:hidden">AGENTE</span>
+                    </a>
+                </nav>
+            </div>
+            
             <div class="flex items-center gap-6">
                 <!-- Botón de Carrito -->
-                <button onclick="toggleCartDrawer()" class="flex items-center gap-2 text-white hover:text-brandGreen transition-colors relative font-bold text-sm tracking-wider uppercase">
-                    <i class="fa-solid fa-cart-shopping"></i>
+                <button onclick="toggleCartDrawer()" class="relative flex items-center gap-2 text-baseWhite hover:text-brandGreen transition-colors font-bold text-sm tracking-wide">
+                    <i class="fa-solid fa-cart-shopping text-lg"></i>
                     <span>CARRITO</span>
-                    <!-- Badge de notificaciones -->
-                    <span id="cart-badge" class="hidden absolute -top-3 -right-4 bg-brandPink text-white text-[10px] w-5 h-5 flex items-center justify-center rounded-full">0</span>
+                    <span id="cart-badge" class="hidden absolute -top-2 -right-3 bg-brandPink text-baseWhite text-[10px] font-black px-1.5 py-0.5 rounded-full shadow-md">0</span>
                 </button>
 
-                <!-- Botón Especial Sticker Studio -->
-                <div class="relative ml-4">
-                    <!-- Badge "NUEVO" circular -->
-                    <div class="absolute -top-3 -right-3 bg-[#4a4a4a] text-white text-[9px] font-bold w-10 h-10 rounded-full flex items-center justify-center shadow-lg border-2 border-baseBlack z-10 uppercase tracking-widest">
-                        NUEVO
-                    </div>
-                    <!-- Botón Principal -->
-                    <a href="#editor" class="block bg-brandGreen border-2 border-baseBlack rounded-full text-baseBlack px-6 py-2.5 font-bold hover:bg-opacity-80 transition-colors text-base relative z-0 shadow-brutal-sm uppercase">
-                        Cotiza On Line
-                    </a>
-                </div>
+                <!-- Botón Principal "Cotizar Online" (Estilo Sticker Studio original) -->
+                <a href="#cotizador" class="relative bg-baseBlack text-brandGreen border-2 border-brandGreen px-6 py-2 font-bold text-sm hover:bg-brandGreen hover:text-baseBlack transition-colors">
+                    Cotiza On Line
+                    <span class="absolute -top-3 -right-3 bg-gray-600 text-white text-[9px] font-bold px-2 py-1 rounded-full border-2 border-baseBlack">NUEVO</span>
+                </a>
             </div>
         </div>
     </header>
 
-    <!-- LANDING PAGE: HERO SECTION -->
-    <section id="inicio" class="w-full bg-baseWhite border-b-4 border-baseBlack overflow-hidden relative">
-        <div class="absolute inset-0 blueprint-grid opacity-50 pointer-events-none"></div>
-        
-        <div class="max-w-7xl mx-auto px-4 py-16 md:py-24 lg:py-32 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
-            <!-- Texto Principal -->
-            <div class="space-y-8">
-                <div class="inline-block bg-brandPink text-white font-mono font-bold text-xs px-3 py-1 shadow-brutal-sm border-2 border-baseBlack uppercase">
-                    Taller de stickers y etiquetas adhesivas
+    <!-- LANDING PAGE HERO -->
+    <main id="home">
+        <section class="border-b-[6px] border-baseBlack bg-baseWhite pt-16 pb-20 px-6 relative overflow-hidden">
+            <div class="max-w-6xl mx-auto text-center relative z-10">
+                <div class="inline-block bg-brandGreen text-baseBlack font-black px-4 py-1 mb-6 border-2 border-baseBlack shadow-brutal-sm transform -rotate-2">
+                    NUEVA EXPERIENCIA DE COMPRA
                 </div>
-                <h1 class="text-5xl md:text-6xl lg:text-7xl font-black uppercase leading-[1.1] tracking-tight text-baseBlack">
-                    Stickers que <br>
-                    <span class="text-transparent bg-clip-text bg-baseBlack" style="-webkit-text-stroke: 2px #000; color: #ccff00; text-shadow: 4px 4px 0 #000;">Rompen</span> <br>
-                    la forma.
+                <h1 class="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-[0.9] mb-6">
+                    Taller de <span class="text-transparent" style="-webkit-text-stroke: 2px #000;">Stickers y<br>Etiquetas Adhesivas</span>
                 </h1>
-                <p class="text-base md:text-lg font-mono font-bold text-textMuted max-w-xl leading-relaxed">
-                    Sube tu diseño, elige tu troquel y nosotros nos encargamos del resto. Vinil de alta resistencia, acabados holográficos y cortes de precisión milimétrica. <br><br>
-                    <span class="text-baseBlack bg-brandGreen px-2 py-0.5 rounded-sm">Envíos desde $130 MXN.</span><br>
-                    <span class="text-sm">Pide tu cálculo de envío a tu vendedor.</span>
+                <p class="text-lg md:text-xl font-medium text-textMuted max-w-2xl mx-auto mb-10">
+                    Sube tu diseño, visualiza los cortes de contorno en tiempo real y obtén tu plano técnico. 
+                    <br><strong class="text-baseBlack bg-brandGreen px-1 mt-2 inline-block">Envíos desde $130 MXN</strong>. Pide tu cálculo de envío a tu vendedor.
                 </p>
-                <div class="flex flex-col sm:flex-row gap-4 pt-4">
-                    <a href="#editor" class="bg-brandGreen border-2 border-baseBlack rounded-full text-baseBlack font-black font-mono text-lg px-8 py-4 text-center shadow-brutal-hover transition-all hover:bg-opacity-80">
-                        COTIZA ON LINE
-                    </a>
-                    <a href="#caracteristicas" class="bg-baseWhite border-2 border-baseBlack rounded-full text-baseBlack font-black font-mono text-lg px-8 py-4 text-center shadow-brutal-hover transition-all hover:bg-panelGray">
-                        VER MATERIALES
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 font-bold">
+                    <a href="#cotizador" class="w-full sm:w-auto bg-brandGreen text-baseBlack border-[3px] border-baseBlack px-8 py-4 text-lg rounded-full shadow-brutal shadow-brutal-hover transition-all">
+                        Cotiza On Line
                     </a>
                 </div>
             </div>
-
-            <!-- Gráfico / Ilustración Hero -->
-            <div class="relative flex justify-center lg:justify-end">
-                <div class="w-full max-w-md aspect-square bg-brandGreen border-4 border-baseBlack shadow-brutal p-8 transform rotate-3 hover:rotate-0 transition-transform duration-500 flex flex-col justify-center items-center text-center rounded-2xl">
-                    <i class="fa-solid fa-layer-group text-8xl text-baseBlack mb-6"></i>
-                    <h3 class="font-black text-2xl uppercase border-b-4 border-baseBlack pb-2 inline-block">Die-Cut Perfecto</h3>
-                    <p class="font-mono font-bold text-sm mt-4">Cortamos exactamente por la silueta de tus vectores, sin importar la complejidad.</p>
-                </div>
-                
-                <div class="absolute -bottom-8 -left-8 bg-brandPink border-2 border-baseBlack shadow-brutal text-white font-mono font-bold p-4 rounded-xl transform -rotate-6 animate-bounce">
-                    ¡CALIDAD INDUSTRIAL! ⚙️
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CINTA DE TEXTO INFINITO (TICKER) -->
-    <div class="w-full bg-baseBlack border-b-4 border-baseBlack overflow-hidden py-3 relative z-20">
-        <div class="animate-marquee inline-block text-brandGreen font-mono font-black text-2xl tracking-widest uppercase">
-            &nbsp;/// IMPRESIÓN DIGITAL /// CORTE MILIMÉTRICO /// VINIL PREMIUM /// HOLOGRÁFICO /// LAMINADO UV /// GRISFOSFORESCENTE.COM.MX /// CALIDAD BRUTAL 
-            /// IMPRESIÓN DIGITAL /// CORTE MILIMÉTRICO /// VINIL PREMIUM /// HOLOGRÁFICO /// LAMINADO UV /// GRISFOSFORESCENTE.COM.MX /// CALIDAD BRUTAL 
-        </div>
-    </div>
-
-    <!-- SECCIÓN DE CARACTERÍSTICAS -->
-    <section id="caracteristicas" class="w-full bg-baseWhite border-b-4 border-baseBlack py-16 md:py-24 relative z-10">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-black uppercase tracking-tight text-baseBlack">Armamento de Taller</h2>
-                <p class="font-mono font-bold text-textMuted mt-4 uppercase tracking-widest">Lo que usamos para que tus stickers duren.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Card 1 -->
-                <div class="bg-panelGray border-2 border-baseBlack p-8 rounded-2xl shadow-brutal hover:-translate-y-2 transition-transform duration-300">
-                    <div class="w-16 h-16 bg-baseBlack text-brandGreen flex items-center justify-center text-2xl rounded-full mb-6 shadow-md">
-                        <i class="fa-solid fa-droplet"></i>
-                    </div>
-                    <h3 class="font-black text-xl uppercase mb-3">Vinil Premium</h3>
-                    <p class="font-mono text-sm font-bold text-textMuted">Impresión inyectada sobre vinilo blanco brillante o mate de alta adherencia. Resistente al agua y al sol.</p>
-                </div>
-                <!-- Card 2 -->
-                <div class="bg-baseWhite border-4 border-brandGreen p-8 rounded-2xl shadow-brutal hover:-translate-y-2 transition-transform duration-300 relative overflow-hidden">
-                    <div class="absolute -right-6 -top-6 bg-brandPink text-white font-mono font-bold text-[10px] px-8 py-1 transform rotate-45 border-2 border-baseBlack z-10">
-                        TOP VENTAS
-                    </div>
-                    <div class="w-16 h-16 bg-brandGreen text-baseBlack flex items-center justify-center text-2xl rounded-full mb-6 border-2 border-baseBlack shadow-md">
-                        <i class="fa-solid fa-gem"></i>
-                    </div>
-                    <h3 class="font-black text-xl uppercase mb-3">Holográfico</h3>
-                    <p class="font-mono text-sm font-bold text-textMuted">Dale un efecto arcoíris reactivo a la luz a tus diseños. Ideal para marcas streetwear, bandas e ilustradores.</p>
-                </div>
-                <!-- Card 3 -->
-                <div class="bg-panelGray border-2 border-baseBlack p-8 rounded-2xl shadow-brutal hover:-translate-y-2 transition-transform duration-300">
-                    <div class="w-16 h-16 bg-brandPink text-white flex items-center justify-center text-2xl rounded-full mb-6 shadow-md">
-                        <i class="fa-solid fa-shield-halved"></i>
-                    </div>
-                    <h3 class="font-black text-xl uppercase mb-3">Laminado Extra</h3>
-                    <p class="font-mono text-sm font-bold text-textMuted">Capa plástica protectora extra. Convierte tus stickers en escudos a prueba de rayones, fricción y decoloración UV.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- COMPONENTE PRINCIPAL (STICKER STUDIO) -->
-    <main id="editor" class="max-w-7xl mx-auto px-4 py-16 md:py-24 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mt-4 scroll-mt-24">
-        
-        <!-- COLUMNA IZQUIERDA: Herramientas y Ajustes (Menos tosca, más limpia) -->
-        <section class="lg:col-span-5 bg-baseWhite p-8 rounded-3xl border-2 border-baseBlack shadow-brutal space-y-8 max-h-[calc(100vh-140px)] overflow-y-auto">
             
-            <!-- ① PANEL: SUBIR DISEÑO -->
-            <div class="space-y-4">
-                <div class="flex items-center gap-3 text-baseBlack">
-                    <span class="bg-gray-100 text-baseBlack w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold border border-gray-200">1</span>
-                    <h3 class="text-sm font-bold uppercase tracking-wide">Cargar Archivo Base</h3>
-                </div>
-                
-                <!-- Área de Drag & Drop -->
-                <div id="drop-zone" class="border-2 border-dashed border-gray-300 hover:border-brandGreen hover:bg-gray-50 bg-baseWhite rounded-2xl p-8 text-center cursor-pointer transition-all group">
-                    <input type="file" id="file-input" accept="image/png, image/jpeg, image/svg+xml" class="hidden">
-                    <div class="w-12 h-12 mx-auto bg-gray-100 rounded-full flex items-center justify-center mb-3 group-hover:bg-brandGreen/20 transition-colors">
-                        <i class="fa-solid fa-cloud-arrow-up text-xl text-gray-500 group-hover:text-baseBlack"></i>
-                    </div>
-                    <p class="text-sm font-bold text-baseBlack">Haz clic o arrastra tu imagen</p>
-                    <p class="text-xs text-textMuted mt-1 font-mono">PNG / SVG / JPG (Recomendado: Transparente)</p>
-                </div>
-            </div>
-
-            <!-- ② PANEL: SELECCIÓN DE CORTE -->
-            <div class="space-y-4 border-t border-borderGray pt-6">
-                <div class="flex items-center gap-3 text-baseBlack">
-                    <span class="bg-gray-100 text-baseBlack w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold border border-gray-200">2</span>
-                    <h3 class="text-sm font-bold uppercase tracking-wide">Corte del sticker</h3>
-                </div>
-                
-                <div class="grid grid-cols-3 gap-3">
-                    <button id="shape-personalized" onclick="setShape('personalized')" class="flex flex-col items-center justify-center p-3 rounded-xl border-2 border-baseBlack bg-brandGreen text-baseBlack font-bold transition-all shadow-sm">
-                        <i class="fa-solid fa-wave-square text-lg mb-2"></i>
-                        <span class="text-xs font-bold">Silueta</span>
-                    </button>
-                    <button id="shape-circular" onclick="setShape('circular')" class="flex flex-col items-center justify-center p-3 rounded-xl border border-gray-200 bg-baseWhite text-textMuted hover:border-baseBlack hover:text-baseBlack transition-all">
-                        <i class="fa-regular fa-circle text-lg mb-2"></i>
-                        <span class="text-xs font-bold">Circular</span>
-                    </button>
-                    <button id="shape-squared" onclick="setShape('squared')" class="flex flex-col items-center justify-center p-3 rounded-xl border border-gray-200 bg-baseWhite text-textMuted hover:border-baseBlack hover:text-baseBlack transition-all">
-                        <i class="fa-regular fa-square text-lg mb-2"></i>
-                        <span class="text-xs font-bold">Cuadrado</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- ③ PANEL: CONTROL DE MARGEN / BORDE -->
-            <div class="space-y-5 border-t border-borderGray pt-6">
-                <div class="flex items-center gap-3 text-baseBlack">
-                    <span class="bg-gray-100 text-baseBlack w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold border border-gray-200">3</span>
-                    <h3 class="text-sm font-bold uppercase tracking-wide">Borde</h3>
-                </div>
-
-                <div class="space-y-2">
-                    <div class="flex justify-between text-xs text-baseBlack font-bold">
-                        <span>Grosor del borde</span>
-                        <span id="border-size-label" class="bg-gray-100 px-2 py-0.5 rounded text-textMuted">12px (1.2 mm)</span>
-                    </div>
-                    <div class="flex items-center gap-3 pt-1">
-                        <input type="range" id="border-size-slider" min="0" max="35" value="12" class="w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer">
-                    </div>
-                    <p class="text-[10px] text-textMuted font-mono">Se recomienda para proteger el diseño.</p>
-                </div>
-
-                <div class="flex items-center justify-between pt-2">
-                    <span class="text-xs font-bold text-baseBlack uppercase">Color del borde</span>
-                    <div class="flex items-center gap-2 bg-gray-50 px-2 py-1 rounded-lg border border-gray-200">
-                        <input type="color" id="border-color-picker" value="#ffffff" class="w-6 h-6 border border-gray-300 rounded cursor-pointer p-0">
-                        <input type="text" id="border-color-hex" value="#FFFFFF" class="bg-transparent text-xs text-baseBlack font-mono font-bold w-16 outline-none uppercase text-center">
-                    </div>
-                </div>
-            </div>
-
-            <!-- ④ PANEL: DIMENSIONES REALES -->
-            <div class="space-y-4 border-t border-borderGray pt-6">
-                <div class="flex items-center gap-3 text-baseBlack">
-                    <span class="bg-gray-100 text-baseBlack w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold border border-gray-200">4</span>
-                    <h3 class="text-sm font-bold uppercase tracking-wide">Ancho del sticker</h3>
-                </div>
-                
-                <div id="size-button-group" class="grid grid-cols-4 gap-2 pt-1">
-                    <button onclick="setSize(3)" class="py-2 text-xs font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all">3 cm</button>
-                    <button onclick="setSize(4)" class="py-2 text-xs font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all">4 cm</button>
-                    <button onclick="setSize(5)" class="py-2 text-xs font-bold rounded-lg border-2 border-baseBlack bg-baseBlack text-brandGreen transition-all">5 cm</button>
-                    <button onclick="setSize(6)" class="py-2 text-xs font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all">6 cm</button>
-                    <button onclick="setSize(7)" class="py-2 text-xs font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all">7 cm</button>
-                    <button onclick="setSize(8)" class="py-2 text-xs font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all">8 cm</button>
-                    <button onclick="setSize(10)" class="py-2 text-xs font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all">10 cm</button>
-                    <button onclick="triggerCustomSize()" class="py-2 text-xs font-bold rounded-lg border border-gray-200 bg-gray-50 hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all flex items-center justify-center gap-1">
-                        <span id="custom-size-text">✏️ Otro</span>
-                    </button>
-                </div>
-
-                <div id="custom-size-input-container" class="mt-3 hidden transition-all duration-300">
-                    <div class="flex items-center gap-2 bg-gray-50 border border-gray-200 rounded-lg p-1.5 focus-within:border-baseBlack">
-                        <span class="text-[10px] font-bold uppercase text-textMuted pl-2">Cm:</span>
-                        <input type="number" id="custom-size-input" min="1" max="100" step="0.5" placeholder="Ej: 7.5" class="bg-transparent text-sm text-baseBlack outline-none w-full font-bold">
-                        <button onclick="applyCustomSize()" class="bg-baseBlack text-baseWhite text-xs font-bold px-4 py-2 rounded hover:bg-brandGreen hover:text-baseBlack transition-colors shrink-0">
-                            Aplicar
-                        </button>
-                    </div>
-                </div>
-                
-                <p class="text-[10px] text-textMuted font-mono">El alto se calcula automático.</p>
-            </div>
-
-            <!-- ⑤ PANEL NUEVO: MATERIAL BASE -->
-            <div class="space-y-4 border-t border-borderGray pt-6">
-                <div class="flex items-center gap-3 text-baseBlack">
-                    <span class="bg-gray-100 text-baseBlack w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold border border-gray-200">5</span>
-                    <h3 class="text-sm font-bold uppercase tracking-wide">Sustrato / Material</h3>
-                </div>
-                
-                <div class="grid grid-cols-2 gap-3 mt-2">
-                    <button id="mat-standard" onclick="setMaterial('standard')" class="flex flex-col items-center justify-center p-3 rounded-xl border-2 border-baseBlack bg-baseBlack text-brandGreen font-bold transition-all shadow-sm">
-                        <span class="text-xs font-bold">Vinil Blanco</span>
-                        <span class="text-[10px] font-mono text-gray-400 mt-1">Base $140</span>
-                    </button>
-                    <button id="mat-holo" onclick="setMaterial('holo')" class="flex flex-col items-center justify-center p-3 rounded-xl border border-gray-200 bg-baseWhite text-textMuted hover:border-baseBlack hover:text-baseBlack transition-all">
-                        <span class="text-xs font-bold">Holográfico</span>
-                        <span class="text-[10px] font-mono text-gray-400 mt-1">Base $240</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- ⑥ PANEL: ACABADOS -->
-            <div class="space-y-4 border-t border-borderGray pt-6">
-                <div class="flex items-center gap-3 text-baseBlack">
-                    <span class="bg-gray-100 text-baseBlack w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold border border-gray-200">6</span>
-                    <h3 class="text-sm font-bold uppercase tracking-wide">Acabados Especiales</h3>
-                </div>
-                
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2">
-                    <label class="flex items-center justify-between cursor-pointer p-3 rounded-xl border border-gray-200 bg-baseWhite hover:border-baseBlack transition-colors group">
-                        <div class="flex items-center gap-2">
-                            <input type="checkbox" id="check-laminado" onchange="toggleLaminado(this.checked)" class="w-4 h-4 accent-black">
-                            <span class="text-xs font-bold text-baseBlack">Laminado</span>
-                        </div>
-                        <span class="text-[10px] font-mono text-textMuted bg-gray-100 px-1.5 py-0.5 rounded">+$70</span>
-                    </label>
-                    <label class="flex items-center justify-between cursor-pointer p-3 rounded-xl border border-gray-200 bg-baseWhite hover:border-baseBlack transition-colors group">
-                        <div class="flex items-center gap-2">
-                            <input type="checkbox" id="check-corte" onchange="toggleCorteFisico(this.checked)" class="w-4 h-4 accent-black">
-                            <span class="text-xs font-bold text-baseBlack">Corte Completo</span>
-                        </div>
-                        <span class="text-[10px] font-mono text-textMuted bg-gray-100 px-1.5 py-0.5 rounded">+$60</span>
-                    </label>
-                </div>
-            </div>
-
-            <!-- ⑦ PANEL: VOLUMEN DE TIRADA -->
-            <div class="space-y-5 border-t border-borderGray pt-6">
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center gap-3 text-baseBlack">
-                        <span class="bg-gray-100 text-baseBlack w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold border border-gray-200">7</span>
-                        <h3 class="text-sm font-bold uppercase tracking-wide">Cantidad</h3>
-                    </div>
-                </div>
-                
-                <div class="flex items-center gap-4">
-                    <input type="range" id="qty-slider" min="10" max="999" value="10" class="w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer">
-                    <div class="flex items-center gap-1 bg-gray-50 border border-gray-200 rounded-lg px-2 py-1.5 shrink-0">
-                        <input type="number" id="qty-input" min="10" max="999" value="10" class="bg-transparent text-sm text-baseBlack outline-none w-12 font-bold text-center">
-                        <span class="text-[10px] text-textMuted font-bold">PZ</span>
-                    </div>
-                </div>
-                
-                <div id="rendimiento-info" class="text-[11px] text-baseBlack bg-brandGreen/20 p-3 rounded-lg border border-brandGreen/40 leading-relaxed font-medium">
-                    Carga un diseño para calcular el rendimiento.
-                </div>
-            </div>
+            <!-- Decoración Técnica de Fondo -->
+            <div class="absolute top-10 left-10 w-24 h-24 border-t-4 border-l-4 border-baseBlack opacity-20 hidden md:block"></div>
+            <div class="absolute bottom-10 right-10 w-24 h-24 border-b-4 border-r-4 border-baseBlack opacity-20 hidden md:block"></div>
         </section>
 
-        <!-- COLUMNA DERECHA: Mesa de Trabajo Principal -->
-        <section class="lg:col-span-7 space-y-6">
-            
-            <div class="flex items-center justify-between px-2">
-                <span class="font-bold text-xs uppercase text-baseBlack tracking-wider flex items-center gap-2">
-                    <i class="fa-solid fa-expand text-textMuted"></i>
-                    Área de Visualización
-                </span>
-                <span class="text-[10px] font-mono text-textMuted font-bold uppercase px-2 py-1 bg-white border border-gray-200 rounded">ESCALA 1:1</span>
+        <!-- CINTA ANIMADA (MARQUEE) -->
+        <div class="bg-baseBlack text-brandGreen font-mono font-bold text-sm py-3 border-b-4 border-baseBlack overflow-hidden whitespace-nowrap flex items-center">
+            <div class="marquee">
+                <span class="mx-4">/// IMPRESIÓN DE ALTA CALIDAD</span>
+                <span class="mx-4"><i class="fa-solid fa-bolt"></i></span>
+                <span class="mx-4">CORTES DE CONTORNO PRECISOS</span>
+                <span class="mx-4"><i class="fa-solid fa-bolt"></i></span>
+                <span class="mx-4">MATERIALES RESISTENTES AL AGUA</span>
+                <span class="mx-4"><i class="fa-solid fa-bolt"></i></span>
+                <span class="mx-4">ENVÍOS DESDE $130 MXN</span>
+                <span class="mx-4"><i class="fa-solid fa-bolt"></i></span>
+                <span class="mx-4">/// IMPRESIÓN DE ALTA CALIDAD</span>
+                <span class="mx-4"><i class="fa-solid fa-bolt"></i></span>
+                <span class="mx-4">CORTES DE CONTORNO PRECISOS</span>
+                <span class="mx-4"><i class="fa-solid fa-bolt"></i></span>
+                <span class="mx-4">MATERIALES RESISTENTES AL AGUA</span>
+                <span class="mx-4"><i class="fa-solid fa-bolt"></i></span>
+                <span class="mx-4">ENVÍOS DESDE $130 MXN</span>
             </div>
+        </div>
 
-            <!-- Mesa de Trabajo Brutalista Clara -->
-            <div class="relative bg-baseWhite border-2 border-baseBlack rounded-3xl p-8 shadow-brutal flex flex-col justify-center items-center overflow-hidden min-h-[480px]">
-                
-                <!-- Contenedor del Lienzo -->
-                <div id="canvas-wrapper" class="w-full max-w-[380px] aspect-square relative flex items-center justify-center blueprint-grid border border-gray-200 rounded-xl mt-2 p-4 bg-baseWhite shadow-inner">
-                    <!-- CANVAS DE DIBUJO REAL DEL STICKER -->
-                    <canvas id="sticker-canvas" class="z-10 relative max-w-full max-h-full drop-shadow-[0_10px_20px_rgba(0,0,0,0.3)] cursor-crosshair transition-transform" style="width: 300px; height: 300px;"></canvas>
+        <!-- MÓDULO DE MATERIALES -->
+        <section class="py-20 px-6 bg-gray-50 border-b-[6px] border-baseBlack">
+            <div class="max-w-7xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-black uppercase text-center mb-12">Nuestros Sustratos</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Card 1 -->
+                    <div class="bg-baseWhite border-[3px] border-baseBlack p-6 shadow-brutal transition-transform hover:-translate-y-1">
+                        <div class="w-12 h-12 bg-brandGreen border-2 border-baseBlack flex items-center justify-center mb-4 rounded-full">
+                            <i class="fa-solid fa-file-invoice text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold uppercase mb-2">Vinil Base</h3>
+                        <p class="text-sm text-textMuted font-medium mb-4">Blanco brillante o mate. Alta adherencia y resistencia para uso en exteriores e interiores.</p>
+                        <div class="text-xl font-black text-brandPink">$140 <span class="text-xs text-baseBlack">/ planilla base</span></div>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="bg-baseWhite border-[3px] border-baseBlack p-6 shadow-brutal transition-transform hover:-translate-y-1">
+                        <div class="w-12 h-12 bg-baseBlack text-brandGreen border-2 border-baseBlack flex items-center justify-center mb-4 rounded-full">
+                            <i class="fa-solid fa-gem text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold uppercase mb-2">Holográfico</h3>
+                        <p class="text-sm text-textMuted font-medium mb-4">Efecto arcoíris premium que cambia con la luz. Ideal para dar un toque exclusivo a tu marca.</p>
+                        <div class="text-xl font-black text-brandPink">$240 <span class="text-xs text-baseBlack">/ planilla base</span></div>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="bg-baseWhite border-[3px] border-baseBlack p-6 shadow-brutal transition-transform hover:-translate-y-1">
+                        <div class="w-12 h-12 bg-brandPink text-baseWhite border-2 border-baseBlack flex items-center justify-center mb-4 rounded-full">
+                            <i class="fa-solid fa-layer-group text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold uppercase mb-2">Acabados Extra</h3>
+                        <p class="text-sm text-textMuted font-medium mb-4">Añade protección extra con Laminado y cortes precisos pieza por pieza (Corte Completo/Die-cut).</p>
+                        <div class="flex flex-col gap-1">
+                            <div class="text-sm font-black">+ $70 <span class="text-xs font-normal">Laminado</span></div>
+                            <div class="text-sm font-black">+ $60 <span class="text-xs font-normal">Corte Completo</span></div>
+                        </div>
+                    </div>
                 </div>
-
-                <!-- Datos Técnicos del Trazo -->
-                <div class="mt-8 flex flex-col items-center text-center font-mono">
-                    <span class="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 border border-gray-200 rounded-full text-baseBlack text-xs font-bold uppercase tracking-wide">
-                        Tamaño final aproximado: <span id="sticker-final-dimensions-label" class="text-brandPink">5.0 × 5.0 cm</span>
-                    </span>
-                </div>
-            </div>
-
-            <!-- Botones de Acción Brutalistas -->
-            <div class="grid grid-cols-1 gap-4">
-                <button onclick="agregarAlCarrito()" class="w-full bg-baseBlack hover:bg-brandGreen hover:text-baseBlack text-white rounded-2xl border-2 border-baseBlack shadow-brutal font-bold text-sm py-5 px-6 flex items-center justify-center gap-2 transition-all">
-                    <i class="fa-solid fa-plus"></i> AGREGAR A LA ORDEN DE CORTE
-                </button>
-            </div>
-
-            <div class="border border-gray-200 rounded-xl bg-baseWhite p-4 font-medium text-[11px] text-textMuted flex gap-3 items-start">
-                <i class="fa-solid fa-circle-info text-brandPink text-base mt-0.5"></i>
-                <p>
-                    Las dimensiones visuales son un aproximado. Los trazos son validados por nuestro equipo técnico de grisfosforescente.com.mx antes de ser mandados al cabezal del plotter para asegurar la máxima calidad.
-                </p>
             </div>
         </section>
     </main>
 
-    <!-- FOOTER -->
-    <footer class="bg-baseWhite text-baseBlack border-t-2 border-baseBlack py-12 mt-12">
-        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
-            <div class="space-y-2">
-                <h3 class="font-black text-xl tracking-widest uppercase">GRISFOSFORESCENTE</h3>
-                <p class="font-mono text-xs text-textMuted">Taller de impresión y Pre-prensa.</p>
+    <!-- ESTUDIO / COTIZADOR -->
+    <div id="cotizador" class="bg-baseWhite py-10">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            <!-- COLUMNA IZQUIERDA: Herramientas y Ajustes (lg:col-span-5) -->
+            <section class="lg:col-span-5 bg-baseWhite p-8 border-[3px] border-baseBlack shadow-brutal space-y-8 relative z-10">
+                
+                <!-- Encabezado del Panel -->
+                <div class="border-b-4 border-baseBlack pb-4 mb-2">
+                    <h2 class="text-2xl font-black uppercase tracking-tight flex items-center gap-2">
+                        <i class="fa-solid fa-sliders text-brandPink"></i>
+                        Configurador
+                    </h2>
+                </div>
+                
+                <!-- ① PANEL: SUBIR DISEÑO -->
+                <div class="space-y-3">
+                    <div class="flex items-center justify-between text-baseBlack">
+                        <span class="flex items-center gap-3">
+                            <span class="bg-baseBlack text-brandGreen w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold">1</span>
+                            <h3 class="text-sm font-bold uppercase tracking-wide">Archivo Base</h3>
+                        </span>
+                        <span class="text-[10px] text-textMuted font-bold">PNG / SVG / JPG</span>
+                    </div>
+                    
+                    <div id="drop-zone" class="border-2 border-dashed border-gray-300 hover:border-baseBlack bg-gray-50 hover:bg-gray-100 p-8 text-center cursor-pointer transition-all group rounded-xl">
+                        <input type="file" id="file-input" accept="image/png, image/jpeg, image/svg+xml" class="hidden">
+                        <i class="fa-solid fa-cloud-arrow-up text-3xl text-gray-400 group-hover:text-brandPink mb-3 transition-colors"></i>
+                        <p class="text-sm font-bold uppercase text-baseBlack">Sube tu diseño aquí</p>
+                        <p class="text-[10px] text-textMuted font-mono mt-1">Fondo transparente recomendado</p>
+                    </div>
+                </div>
+
+                <!-- ② PANEL: SELECCIÓN DE CORTE -->
+                <div class="space-y-4 border-t border-borderGray pt-6">
+                    <div class="flex items-center gap-3 text-baseBlack">
+                        <span class="bg-gray-100 text-baseBlack w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold border border-gray-200">2</span>
+                        <h3 class="text-sm font-bold uppercase tracking-wide">Corte del sticker</h3>
+                    </div>
+                    
+                    <div class="grid grid-cols-3 gap-3">
+                        <button id="shape-personalized" onclick="setShape('personalized')" class="flex flex-col items-center justify-center py-4 px-2 rounded-xl border-2 border-baseBlack bg-baseBlack text-brandGreen transition-all shadow-sm">
+                            <i class="fa-solid fa-wave-square text-lg mb-2"></i>
+                            <span class="text-[10px] font-bold uppercase tracking-wide">Silueta</span>
+                        </button>
+                        <button id="shape-circular" onclick="setShape('circular')" class="flex flex-col items-center justify-center py-4 px-2 rounded-xl border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all shadow-sm">
+                            <i class="fa-regular fa-circle text-lg mb-2"></i>
+                            <span class="text-[10px] font-bold uppercase tracking-wide">Circular</span>
+                        </button>
+                        <button id="shape-squared" onclick="setShape('squared')" class="flex flex-col items-center justify-center py-4 px-2 rounded-xl border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all shadow-sm">
+                            <i class="fa-regular fa-square text-lg mb-2"></i>
+                            <span class="text-[10px] font-bold uppercase tracking-wide">Cuadrado</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ③ PANEL: CONTROL DE MARGEN / BORDE -->
+                <div class="space-y-5 border-t border-borderGray pt-6">
+                    <div class="flex items-center gap-3 text-baseBlack">
+                        <span class="bg-gray-100 text-baseBlack w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold border border-gray-200">3</span>
+                        <h3 class="text-sm font-bold uppercase tracking-wide">Borde</h3>
+                    </div>
+
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-xs text-baseBlack font-bold">
+                            <span>Grosor del borde</span>
+                            <span id="border-size-label" class="bg-gray-100 px-2 py-0.5 rounded text-textMuted">12px (1.2 mm)</span>
+                        </div>
+                        <div class="flex items-center gap-3 pt-1">
+                            <input type="range" id="border-size-slider" min="0" max="35" value="12" class="w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                        </div>
+                        <p class="text-[10px] text-textMuted font-mono">Se recomienda para proteger el diseño.</p>
+                    </div>
+
+                    <div class="flex items-center justify-between pt-2">
+                        <span class="text-xs font-bold text-baseBlack uppercase">Color del borde</span>
+                        <div class="flex items-center gap-2 bg-gray-50 px-2 py-1 rounded-lg border border-gray-200">
+                            <input type="color" id="border-color-picker" value="#ffffff" class="w-6 h-6 border border-gray-300 rounded cursor-pointer p-0">
+                            <input type="text" id="border-color-hex" value="#FFFFFF" class="bg-transparent text-xs text-baseBlack font-mono font-bold w-16 outline-none uppercase text-center">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ④ PANEL: DIMENSIONES REALES -->
+                <div class="space-y-4 border-t border-borderGray pt-6">
+                    <div class="flex items-center gap-3 text-baseBlack">
+                        <span class="bg-gray-100 text-baseBlack w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold border border-gray-200">4</span>
+                        <h3 class="text-sm font-bold uppercase tracking-wide">Ancho del sticker</h3>
+                    </div>
+                    
+                    <div id="size-button-group" class="grid grid-cols-4 gap-2 pt-1">
+                        <button onclick="setSize(3)" class="py-2 text-xs font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all">3 cm</button>
+                        <button onclick="setSize(4)" class="py-2 text-xs font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all">4 cm</button>
+                        <button onclick="setSize(5)" class="py-2 text-xs font-bold rounded-lg border-2 border-baseBlack bg-baseBlack text-brandGreen transition-all">5 cm</button>
+                        <button onclick="setSize(6)" class="py-2 text-xs font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all">6 cm</button>
+                        <button onclick="setSize(8)" class="py-2 text-xs font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all">8 cm</button>
+                        <button onclick="setSize(10)" class="py-2 text-xs font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all">10 cm</button>
+                        <button id="btn-custom-auto" onclick="triggerCustomSize('auto')" class="py-2 text-xs font-bold rounded-lg border border-gray-200 bg-gray-50 hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all flex items-center justify-center gap-1">
+                            <span id="custom-auto-text">✏️ Ancho</span>
+                        </button>
+                        <button id="btn-custom-free" onclick="triggerCustomSize('free')" class="py-2 text-xs font-bold rounded-lg border border-gray-200 bg-gray-50 hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all flex items-center justify-center gap-1">
+                            <span id="custom-free-text">📐 Libre</span>
+                        </button>
+                    </div>
+
+                    <!-- Ancho manual (Auto alto) -->
+                    <div id="custom-auto-input-container" class="mt-3 hidden transition-all duration-300">
+                        <div class="flex items-center gap-2 bg-gray-50 border border-gray-200 rounded-lg p-1.5 focus-within:border-baseBlack">
+                            <span class="text-[10px] font-bold uppercase text-textMuted pl-2">Ancho:</span>
+                            <input type="number" id="custom-auto-input" min="1" max="100" step="0.5" placeholder="Ej: 7.5" class="bg-transparent text-sm text-baseBlack outline-none w-full font-bold">
+                            <span class="text-[10px] font-bold uppercase text-textMuted pr-2">cm</span>
+                            <button onclick="applyCustomSize()" class="bg-baseBlack text-baseWhite text-xs font-bold px-4 py-2 rounded hover:bg-brandGreen hover:text-baseBlack transition-colors shrink-0">
+                                Aplicar
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Todo personalizado -->
+                    <div id="custom-free-input-container" class="mt-3 hidden transition-all duration-300">
+                        <div class="flex items-center gap-1 bg-gray-50 border border-gray-200 rounded-lg p-1.5 focus-within:border-baseBlack">
+                            <span class="text-[10px] font-bold uppercase text-textMuted pl-2">W:</span>
+                            <input type="number" id="custom-w-input" min="1" max="100" step="0.5" placeholder="Ancho" class="bg-transparent text-sm text-baseBlack outline-none w-full font-bold text-center">
+                            <span class="text-[10px] font-bold uppercase text-textMuted border-l border-gray-300 pl-2">H:</span>
+                            <input type="number" id="custom-h-input" min="1" max="100" step="0.5" placeholder="Alto" class="bg-transparent text-sm text-baseBlack outline-none w-full font-bold text-center">
+                            <span class="text-[10px] font-bold uppercase text-textMuted pr-2">cm</span>
+                            <button onclick="applyFreeSize()" class="bg-baseBlack text-baseWhite text-xs font-bold px-3 py-2 rounded hover:bg-brandGreen hover:text-baseBlack transition-colors shrink-0">
+                                Fijar
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <p id="dimension-helper-text" class="text-[10px] text-textMuted font-mono">El alto se calcula automático para mantener la proporción.</p>
+                </div>
+
+                <!-- ⑤ PANEL NUEVO: MATERIAL BASE -->
+                <div class="space-y-4 border-t border-borderGray pt-6">
+                    <div class="flex items-center gap-3 text-baseBlack">
+                        <span class="bg-gray-100 text-baseBlack w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold border border-gray-200">5</span>
+                        <h3 class="text-sm font-bold uppercase tracking-wide">Sustrato / Material Base</h3>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-3 pt-1">
+                        <button id="mat-standard" onclick="setMaterial('standard')" class="py-3 px-2 text-xs font-bold rounded-lg border-2 border-baseBlack bg-baseBlack text-baseWhite transition-all flex flex-col items-center justify-center gap-1">
+                            <span>Vinil Blanco</span>
+                            <span class="text-[10px] text-gray-400 font-normal">Base $140/pl</span>
+                        </button>
+                        <button id="mat-holo" onclick="setMaterial('holo')" class="py-3 px-2 text-xs font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all flex flex-col items-center justify-center gap-1">
+                            <span>Holográfico</span>
+                            <span class="text-[10px] font-normal">Base $240/pl</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ⑥ PANEL: ACABADOS -->
+                <div class="space-y-4 border-t border-borderGray pt-6">
+                    <div class="flex items-center gap-3 text-baseBlack">
+                        <span class="bg-gray-100 text-baseBlack w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold border border-gray-200">6</span>
+                        <h3 class="text-sm font-bold uppercase tracking-wide">Acabados (Opcional)</h3>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-3 pt-1">
+                        <label class="flex items-center gap-3 cursor-pointer p-3 rounded-lg border border-gray-200 bg-gray-50 hover:border-baseBlack transition-colors">
+                            <input type="checkbox" id="check-laminado" onchange="toggleLaminado(this.checked)" class="accent-baseBlack w-4 h-4">
+                            <div class="flex flex-col">
+                                <span class="text-xs font-bold text-baseBlack">Laminado</span>
+                                <span class="text-[10px] text-textMuted">+$70 / pl</span>
+                            </div>
+                        </label>
+                        <label class="flex items-center gap-3 cursor-pointer p-3 rounded-lg border border-gray-200 bg-gray-50 hover:border-baseBlack transition-colors">
+                            <input type="checkbox" id="check-corte" onchange="toggleCorteFisico(this.checked)" class="accent-baseBlack w-4 h-4">
+                            <div class="flex flex-col">
+                                <span class="text-xs font-bold text-baseBlack leading-tight">Corte Completo</span>
+                                <span class="text-[10px] text-textMuted">+$60 / pl</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- ⑦ PANEL: VOLUMEN DE TIRADA -->
+                <div class="space-y-4 border-t border-borderGray pt-6">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-3 text-baseBlack">
+                            <span class="bg-gray-100 text-baseBlack w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold border border-gray-200">7</span>
+                            <h3 class="text-sm font-bold uppercase tracking-wide">Tiraje / Volumen</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center gap-4 bg-gray-50 p-4 rounded-xl border border-gray-200">
+                        <input type="range" id="qty-slider" min="10" max="999" value="10" class="w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-baseBlack">
+                        <div class="flex items-center gap-1 bg-baseWhite border border-gray-300 px-3 py-2 rounded-lg shrink-0 focus-within:border-baseBlack">
+                            <input type="number" id="qty-input" min="10" max="999" value="10" class="bg-transparent text-sm text-baseBlack outline-none w-12 font-bold text-center">
+                            <span class="text-[10px] text-textMuted font-bold uppercase">PZ</span>
+                        </div>
+                    </div>
+                    
+                    <div id="rendimiento-info" class="text-xs text-baseBlack bg-brandGreen/20 p-4 rounded-xl border border-brandGreen/40 leading-relaxed font-medium">
+                        Carga un diseño para calcular el rendimiento y el costo unitario basado en la planilla útil (42x45 cm).
+                    </div>
+                </div>
+            </section>
+
+            <!-- COLUMNA DERECHA: Mesa de Trabajo Principal (lg:col-span-7) -->
+            <section class="lg:col-span-7 space-y-6 lg:sticky lg:top-[100px]">
+                
+                <div class="flex items-center justify-between px-2">
+                    <span class="font-bold text-xs uppercase text-baseBlack tracking-wider flex items-center gap-2">
+                        <span class="w-2.5 h-2.5 bg-brandPink rounded-full"></span>
+                        Calibración de Corte
+                    </span>
+                    <span class="text-[10px] font-mono font-bold text-textMuted uppercase bg-gray-100 px-2 py-1 rounded">ESCALA: 1:1 PRE-PRENSA</span>
+                </div>
+
+                <!-- Mesa de Trabajo Brutalista Clara -->
+                <div class="relative bg-baseWhite border-[3px] border-baseBlack p-6 shadow-brutal flex flex-col justify-center items-center overflow-hidden min-h-[480px]">
+                    
+                    <!-- RULER HORIZONTAL -->
+                    <div class="absolute top-0 left-0 right-0 h-6 bg-gray-50 border-b border-borderGray flex justify-between items-center px-4 font-mono text-[9px] text-textMuted font-bold">
+                        <span>0</span>
+                        <span>10</span>
+                        <span>20</span>
+                        <span>30</span>
+                        <span>40</span>
+                        <span>50</span>
+                        <span>60</span>
+                        <span>70</span>
+                        <span>80</span>
+                        <span>90 mm</span>
+                    </div>
+
+                    <!-- RULER VERTICAL -->
+                    <div class="absolute top-6 left-0 bottom-0 w-6 bg-gray-50 border-r border-borderGray flex flex-col justify-between items-center py-4 font-mono text-[9px] text-textMuted font-bold">
+                        <span>0</span>
+                        <span>10</span>
+                        <span>20</span>
+                        <span>30</span>
+                        <span>40</span>
+                        <span>50</span>
+                        <span>60</span>
+                        <span>70</span>
+                        <span>80</span>
+                    </div>
+
+                    <!-- Contenedor del Lienzo -->
+                    <div id="canvas-wrapper" class="w-full max-w-[380px] aspect-square relative flex items-center justify-center blueprint-grid bg-[#d9d9d9] border-2 border-baseBlack mt-4 p-4 shadow-inner">
+                        <!-- Líneas de corte de registro en las esquinas -->
+                        <div class="absolute top-2 left-2 w-3 h-3 border-t-2 border-l-2 border-baseBlack opacity-30"></div>
+                        <div class="absolute top-2 right-2 w-3 h-3 border-t-2 border-r-2 border-baseBlack opacity-30"></div>
+                        <div class="absolute bottom-2 left-2 w-3 h-3 border-b-2 border-l-2 border-baseBlack opacity-30"></div>
+                        <div class="absolute bottom-2 right-2 w-3 h-3 border-b-2 border-r-2 border-baseBlack opacity-30"></div>
+
+                        <!-- CANVAS DE DIBUJO REAL DEL STICKER -->
+                        <canvas id="sticker-canvas" class="z-10 relative max-w-full max-h-full drop-shadow-xl cursor-crosshair transition-transform" style="width: 300px; height: 300px;"></canvas>
+                    </div>
+
+                    <!-- Datos Técnicos del Trazo en pantalla -->
+                    <div class="mt-6 flex flex-col items-center text-center">
+                        <span class="inline-flex items-center gap-1.5 px-4 py-1.5 bg-gray-100 border border-gray-200 rounded-full text-baseBlack text-xs font-bold uppercase tracking-wide shadow-sm">
+                            DIMENSIÓN DE CORTE: <strong id="sticker-final-dimensions-label" class="text-brandPink">5.0 × 5.0 cm</strong>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Botones de Acción -->
+                <div class="grid grid-cols-1 gap-4 pt-2">
+                    <!-- Botón Añadir al Carrito con estilo verde redondeado como solicitaste -->
+                    <button onclick="agregarAlCarrito()" class="w-full bg-brandGreen hover:bg-brandGreen/90 text-baseBlack font-bold text-sm py-4 px-8 rounded-full border-2 border-baseBlack shadow-brutal shadow-brutal-hover flex items-center justify-center gap-2 transition-all">
+                        <i class="fa-solid fa-circle-plus text-lg"></i> AGREGAR A LA ORDEN DE CORTE
+                    </button>
+                </div>
+
+                <div class="bg-gray-50 border border-gray-200 p-4 rounded-xl text-center">
+                    <p class="text-[11px] text-textMuted font-medium leading-relaxed">
+                        <span class="text-brandPink font-bold">// NOTA DE PREPRENSA:</span> Las dimensiones se calculan a escala real a partir de los vectores detectados. Los trazos son validados por grisfosforescente.com.mx antes de ser mandados al cabezal.
+                    </p>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- FOOTER SÓLIDO -->
+    <footer class="bg-baseBlack text-baseWhite py-12 px-6 border-t-8 border-brandGreen mt-12">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div>
+                <h3 class="font-mono font-bold text-2xl tracking-tighter">GRISFOSFORESCENTE</h3>
+                <p class="text-xs text-gray-400 mt-1">Taller de impresión y acabados especiales.</p>
             </div>
-            <div class="flex gap-4 md:justify-center">
-                <a href="#" class="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center hover:bg-brandGreen hover:border-baseBlack transition-colors text-baseBlack">
-                    <i class="fa-brands fa-instagram text-lg"></i>
-                </a>
-                <a href="#" class="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center hover:bg-brandPink hover:border-baseBlack transition-colors text-baseBlack hover:text-white">
-                    <i class="fa-brands fa-tiktok text-lg"></i>
-                </a>
-            </div>
-            <div class="md:text-right font-mono text-[10px] text-textMuted uppercase font-bold space-y-1">
-                <p>© 2026 GRISFOSFORESCENTE.COM.MX</p>
-                <p>Todos los derechos reservados.</p>
+            <div class="flex gap-4">
+                <a href="#" class="w-10 h-10 bg-baseWhite text-baseBlack rounded-full flex items-center justify-center hover:bg-brandPink hover:text-baseWhite transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="w-10 h-10 bg-baseWhite text-baseBlack rounded-full flex items-center justify-center hover:bg-brandPink hover:text-baseWhite transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" class="w-10 h-10 bg-baseWhite text-baseBlack rounded-full flex items-center justify-center hover:bg-brandPink hover:text-baseWhite transition-colors"><i class="fa-brands fa-tiktok"></i></a>
             </div>
         </div>
     </footer>
 
     <!-- PANEL DESLIZANTE DEL CARRITO (CART DRAWER) -->
-    <div id="cart-drawer" class="fixed inset-y-0 right-0 w-full max-w-md bg-baseWhite border-l-2 border-baseBlack z-50 shadow-2xl flex flex-col translate-x-full transition-transform duration-300 ease-in-out">
-        <!-- Encabezado -->
-        <div class="p-6 border-b border-gray-200 flex justify-between items-center bg-gray-50">
+    <div id="cart-drawer" class="fixed inset-y-0 right-0 w-full max-w-md bg-gray-50 border-l-[3px] border-baseBlack z-50 shadow-2xl flex flex-col translate-x-full transition-transform duration-300 ease-in-out">
+        <!-- Encabezado del Carrito -->
+        <div class="p-6 border-b-[3px] border-baseBlack flex justify-between items-center bg-baseWhite">
             <div class="flex items-center gap-3">
-                <i class="fa-solid fa-basket-shopping text-baseBlack text-lg"></i>
-                <h3 class="font-bold text-base text-baseBlack uppercase tracking-wider">Tu Orden</h3>
+                <div class="w-10 h-10 bg-brandGreen border-2 border-baseBlack flex items-center justify-center rounded-full">
+                    <i class="fa-solid fa-basket-shopping text-baseBlack text-sm"></i>
+                </div>
+                <h3 class="font-bold text-lg text-baseBlack uppercase tracking-tight">TU ORDEN</h3>
             </div>
-            <button onclick="toggleCartDrawer()" class="text-textMuted hover:text-baseBlack bg-white w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center transition-colors shadow-sm">
-                <i class="fa-solid fa-xmark"></i>
+            <button onclick="toggleCartDrawer()" class="text-textMuted hover:text-baseBlack bg-gray-100 hover:bg-gray-200 w-10 h-10 rounded-full border border-borderGray flex items-center justify-center transition-colors">
+                <i class="fa-solid fa-xmark text-lg"></i>
             </button>
         </div>
         
-        <!-- Lista de Stickers -->
-        <div id="cart-items-container" class="flex-1 overflow-y-auto p-6 space-y-4 bg-baseWhite">
-            <!-- Cargado dinámicamente -->
+        <!-- Lista de Stickers en el Carrito -->
+        <div id="cart-items-container" class="flex-1 overflow-y-auto p-6 space-y-4">
+            <!-- Cargado dinámicamente desde JS -->
+            <div class="flex flex-col items-center justify-center text-center py-24 space-y-4">
+                <div class="w-16 h-16 border-2 border-dashed border-gray-300 bg-baseWhite rounded-2xl flex items-center justify-center text-gray-400">
+                    <i class="fa-solid fa-folder-open text-2xl"></i>
+                </div>
+                <div>
+                    <p class="text-sm font-bold text-baseBlack">ORDEN VACÍA</p>
+                    <p class="text-xs text-textMuted mt-1">Configura tus dimensiones y haz clic en "Agregar a la Orden".</p>
+                </div>
+            </div>
         </div>
         
-        <!-- Resumen -->
-        <div class="p-6 border-t border-gray-200 bg-gray-50 space-y-4">
-            <div class="flex justify-between items-center text-xs font-bold text-baseBlack">
-                <span class="uppercase text-textMuted">Total de piezas:</span>
-                <span id="cart-total-qty" class="bg-white border border-gray-200 px-2 py-1 rounded">0 uds</span>
+        <!-- Resumen de Costos y Acciones -->
+        <div class="p-6 border-t-[3px] border-baseBlack bg-baseWhite space-y-4">
+            <div class="flex justify-between items-center text-sm">
+                <span class="text-textMuted font-bold">Total diseños:</span>
+                <span id="cart-total-qty" class="text-baseBlack font-black bg-gray-100 px-2 py-1 rounded">0 uds</span>
             </div>
-            <div class="flex justify-between items-center text-sm font-bold text-baseBlack border-b border-gray-200 pb-4">
-                <span class="uppercase">Total Estimado:</span>
-                <span id="cart-total-price" class="text-xl text-brandPink">$0.00 MXN</span>
+            <div class="flex justify-between items-center text-sm border-b-2 border-gray-100 pb-4">
+                <span class="text-textMuted font-bold">Costo de Sustratos:</span>
+                <span id="cart-total-price" class="text-brandPink font-black text-xl">$0.00 MXN</span>
             </div>
             <div class="grid grid-cols-2 gap-3 pt-2">
-                <button onclick="vaciarCarrito()" class="py-3 text-[11px] font-bold border border-gray-300 rounded-xl bg-white hover:bg-gray-100 text-textMuted hover:text-baseBlack transition-colors">
-                    VACIAR ORDEN
+                <button onclick="vaciarCarrito()" class="py-3 text-xs font-bold rounded-xl border-2 border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-colors">
+                    ELIMINAR TODO
                 </button>
-                <button onclick="procesarCompra()" class="py-3 text-[11px] font-bold rounded-xl bg-brandGreen hover:bg-baseBlack hover:text-brandGreen text-baseBlack border-2 border-baseBlack transition-all flex items-center justify-center gap-1.5 shadow-sm">
-                    <i class="fa-solid fa-file-arrow-down text-sm"></i> DESCARGAR TICKET
+                <button onclick="procesarCompra()" class="py-3 text-xs font-bold rounded-xl bg-brandGreen border-2 border-baseBlack text-baseBlack hover:bg-baseBlack hover:text-brandGreen shadow-brutal-sm transition-all flex items-center justify-center gap-1.5">
+                    <i class="fa-solid fa-file-arrow-down text-sm"></i> TICKET
                 </button>
             </div>
         </div>
     </div>
     
-    <div id="cart-backdrop" class="fixed inset-0 bg-baseBlack/40 backdrop-blur-sm z-40 hidden opacity-0 transition-opacity duration-300" onclick="toggleCartDrawer()"></div>
+    <!-- Fondo oscuro desenfocado de protección para el Drawer -->
+    <div id="cart-backdrop" class="fixed inset-0 bg-baseBlack/60 backdrop-blur-sm z-40 hidden opacity-0 transition-opacity duration-300" onclick="toggleCartDrawer()"></div>
 
     <div id="toast-container" class="fixed bottom-6 right-6 z-50 pointer-events-none space-y-2"></div>
 
@@ -502,18 +551,21 @@
         const APP_STATE = {
             image: null,           
             imageLoaded: false,    
-            fileName: 'pulso_oraculo_pixel.png', 
+            fileName: 'aliens_pattern.png', 
             shape: 'personalized', 
             borderSize: 12,        
             borderColor: '#ffffff',
-            selectedSize: 5,       
+            selectedSize: 5,
+            customMode: 'auto', 
+            selectedHeight: null, 
             quantity: 10,  
-            material: 'standard', // Mantenemos internamente standard para el cálculo base de 140
+            material: 'standard', 
             laminado: false,
             corteFisico: false,
             cart: []               
         };
 
+        // Elementos del DOM
         const stickerCanvas = document.getElementById('sticker-canvas');
         const ctx = stickerCanvas.getContext('2d');
         const fileInput = document.getElementById('file-input');
@@ -523,40 +575,58 @@
         const borderColorHex = document.getElementById('border-color-hex');
         const finalDimensionsLabel = document.getElementById('sticker-final-dimensions-label');
 
-        // SVG de la calavera de muestra
+        // SVG del patrón de cabezas de alien verdes basado en la Imagen 2
         const SAMPLES = {
-            skull: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="400" height="400">
-                <rect width="100" height="100" fill="#000000"/>
-                <rect x="0" y="0" width="100" height="100" fill="url(#cyber-grid)" />
+            alienPattern: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="400" height="400">
+                <rect width="100" height="100" fill="#111111"/>
+                
                 <defs>
-                    <pattern id="cyber-grid" width="10" height="10" patternUnits="userSpaceOnUse">
-                        <path d="M 10 0 L 0 0 0 10" fill="none" stroke="#ff007f" stroke-width="0.5" opacity="0.4"/>
-                    </pattern>
+                    <g id="alien-head">
+                        <!-- Contorno oscuro/borde -->
+                        <path d="M50 85 C35 85, 20 70, 20 45 C20 15, 35 5, 50 5 C65 5, 80 15, 80 45 C80 70, 65 85, 50 85 Z" fill="#222222"/>
+                        <!-- Cara verde -->
+                        <path d="M50 82 C37 82, 23 68, 23 45 C23 18, 37 8, 50 8 C63 8, 77 18, 77 45 C77 68, 63 82, 50 82 Z" fill="#00cc00"/>
+                        <!-- Ojo izquierdo negro -->
+                        <path d="M30 45 C30 35, 38 42, 45 48 C45 55, 35 60, 30 45 Z" fill="#1a1a1a"/>
+                        <!-- Ojo derecho negro -->
+                        <path d="M70 45 C70 35, 62 42, 55 48 C55 55, 65 60, 70 45 Z" fill="#1a1a1a"/>
+                        <!-- Boca sutil -->
+                        <path d="M47 70 Q50 72 53 70" fill="none" stroke="#008000" stroke-width="1.5" stroke-linecap="round"/>
+                    </g>
                 </defs>
-                <text x="50" y="16" fill="#ccff00" font-family="monospace" font-size="9" font-weight="900" text-anchor="middle" letter-spacing="1">IGO NO</text>
-                <path d="M30 35 L70 35 L80 55 L80 85 L70 95 L30 95 L20 85 L20 55 Z" fill="#222222"/>
-                <path d="M32 37 L68 37 L76 53 L76 83 L68 91 L32 91 L24 83 L24 53 Z" fill="#111111"/>
-                <rect x="34" y="44" width="32" height="36" rx="4" fill="#ffffff"/>
-                <rect x="38" y="78" width="24" height="10" fill="#dddddd"/>
-                <rect x="42" y="78" width="2" height="6" fill="#000000"/>
-                <rect x="46" y="78" width="2" height="6" fill="#000000"/>
-                <rect x="50" y="78" width="2" height="6" fill="#000000"/>
-                <rect x="54" y="78" width="2" height="6" fill="#000000"/>
-                <rect x="58" y="78" width="2" height="6" fill="#000000"/>
-                <rect x="38" y="52" width="10" height="12" rx="1" fill="#000000"/>
-                <rect x="52" y="52" width="10" height="12" rx="1" fill="#000000"/>
-                <rect x="41" y="56" width="4" height="4" fill="#ff007f"/>
-                <rect x="42" y="57" width="2" height="2" fill="#ccff00"/>
-                <rect x="55" y="56" width="4" height="4" fill="#ff007f"/>
-                <rect x="56" y="57" width="2" height="2" fill="#ccff00"/>
-                <polygon points="50,66 47,72 53,72" fill="#000000"/>
-                <rect x="25" y="80" width="50" height="12" rx="2" fill="#ccff00" opacity="0.9"/>
-                <text x="50" y="89" fill="#000000" font-family="sans-serif" font-size="8" font-weight="bold" text-anchor="middle">PULSO</text>
+
+                <!-- Fila 1 -->
+                <use href="#alien-head" x="-15" y="-15" transform="scale(0.3)" />
+                <use href="#alien-head" x="85" y="-15" transform="scale(0.3)" />
+                <use href="#alien-head" x="185" y="-15" transform="scale(0.3)" />
+                <use href="#alien-head" x="285" y="-15" transform="scale(0.3)" />
+
+                <!-- Fila 2 (intercalada) -->
+                <use href="#alien-head" x="35" y="65" transform="scale(0.3)" />
+                <use href="#alien-head" x="135" y="65" transform="scale(0.3)" />
+                <use href="#alien-head" x="235" y="65" transform="scale(0.3)" />
+
+                <!-- Fila 3 -->
+                <use href="#alien-head" x="-15" y="145" transform="scale(0.3)" />
+                <use href="#alien-head" x="85" y="145" transform="scale(0.3)" />
+                <use href="#alien-head" x="185" y="145" transform="scale(0.3)" />
+                <use href="#alien-head" x="285" y="145" transform="scale(0.3)" />
+
+                <!-- Fila 4 (intercalada) -->
+                <use href="#alien-head" x="35" y="225" transform="scale(0.3)" />
+                <use href="#alien-head" x="135" y="225" transform="scale(0.3)" />
+                <use href="#alien-head" x="235" y="225" transform="scale(0.3)" />
+
+                <!-- Fila 5 -->
+                <use href="#alien-head" x="-15" y="305" transform="scale(0.3)" />
+                <use href="#alien-head" x="85" y="305" transform="scale(0.3)" />
+                <use href="#alien-head" x="185" y="305" transform="scale(0.3)" />
+                <use href="#alien-head" x="285" y="305" transform="scale(0.3)" />
             </svg>`
         };
 
         window.onload = function() {
-            loadSample('skull');
+            loadSample('alienPattern');
             setupDragAndDrop();
             setupInputs();
             updateSelectedSizeUI();
@@ -565,7 +635,9 @@
             requestAnimationFrame(animateLoop);
         };
 
-        window.addEventListener('resize', () => { renderSticker(); });
+        window.addEventListener('resize', () => {
+            renderSticker();
+        });
 
         function loadSample(key) {
             const svgString = SAMPLES[key];
@@ -574,28 +646,37 @@
             img.onload = function() {
                 APP_STATE.image = img;
                 APP_STATE.imageLoaded = true;
-                APP_STATE.fileName = `pulso_oraculo_pixel.png`;
+                APP_STATE.fileName = `aliens_pattern_design.png`;
                 renderSticker();
             };
         }
 
         function setupDragAndDrop() {
             const dropZone = document.getElementById('drop-zone');
+            
             dropZone.addEventListener('click', () => fileInput.click());
+            
             dropZone.addEventListener('dragover', (e) => {
                 e.preventDefault();
-                dropZone.classList.add('border-brandGreen', 'bg-gray-50');
+                dropZone.classList.add('border-brandPink', 'bg-brandPink/5');
             });
+            
             dropZone.addEventListener('dragleave', () => {
-                dropZone.classList.remove('border-brandGreen', 'bg-gray-50');
+                dropZone.classList.remove('border-brandPink', 'bg-brandPink/5');
             });
+            
             dropZone.addEventListener('drop', (e) => {
                 e.preventDefault();
-                dropZone.classList.remove('border-brandGreen', 'bg-gray-50');
-                if (e.dataTransfer.files.length > 0) processFile(e.dataTransfer.files[0]);
+                dropZone.classList.remove('border-brandPink', 'bg-brandPink/5');
+                if (e.dataTransfer.files.length > 0) {
+                    processFile(e.dataTransfer.files[0]);
+                }
             });
+            
             fileInput.addEventListener('change', (e) => {
-                if (e.target.files.length > 0) processFile(e.target.files[0]);
+                if (e.target.files.length > 0) {
+                    processFile(e.target.files[0]);
+                }
             });
         }
 
@@ -604,6 +685,7 @@
                 showToast('Tipo de archivo no válido. Se admiten PNG, SVG y JPG.', 'error');
                 return;
             }
+            
             const reader = new FileReader();
             reader.onload = function(event) {
                 const img = new Image();
@@ -620,6 +702,7 @@
         }
 
         function setupInputs() {
+            // Sincronizar slider del borde
             borderSizeSlider.addEventListener('input', (e) => {
                 APP_STATE.borderSize = parseInt(e.target.value);
                 const mmEquivalent = (APP_STATE.borderSize * 0.1).toFixed(1);
@@ -627,6 +710,7 @@
                 renderSticker();
             });
 
+            // Sincronizar Color Picker y Hex de texto
             borderColorPicker.addEventListener('input', (e) => {
                 const color = e.target.value;
                 APP_STATE.borderColor = color;
@@ -648,10 +732,17 @@
                 }
             });
 
-            document.getElementById('custom-size-input').addEventListener('keyup', (e) => {
+            document.getElementById('custom-auto-input').addEventListener('keyup', (e) => {
                 if (e.key === 'Enter') applyCustomSize();
             });
+            document.getElementById('custom-w-input').addEventListener('keyup', (e) => {
+                if (e.key === 'Enter') applyFreeSize();
+            });
+            document.getElementById('custom-h-input').addEventListener('keyup', (e) => {
+                if (e.key === 'Enter') applyFreeSize();
+            });
 
+            // LÓGICA DE BARRA DESLIZANTE DE CANTIDAD (10 a 999)
             const qtySlider = document.getElementById('qty-slider');
             const qtyInput = document.getElementById('qty-input');
 
@@ -674,112 +765,181 @@
 
         function setShape(shapeType) {
             APP_STATE.shape = shapeType;
+            
             const btnPers = document.getElementById('shape-personalized');
             const btnCirc = document.getElementById('shape-circular');
             const btnSq = document.getElementById('shape-squared');
             
             [btnPers, btnCirc, btnSq].forEach(btn => {
-                btn.className = "flex flex-col items-center justify-center p-3 rounded-xl border border-gray-200 bg-baseWhite text-textMuted hover:border-baseBlack hover:text-baseBlack transition-all";
+                btn.className = "flex flex-col items-center justify-center py-4 px-2 rounded-xl border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all shadow-sm";
             });
 
             const activeBtn = document.getElementById(`shape-${shapeType}`);
-            activeBtn.className = "flex flex-col items-center justify-center p-3 rounded-xl border-2 border-baseBlack bg-brandGreen text-baseBlack font-bold transition-all shadow-sm";
+            activeBtn.className = "flex flex-col items-center justify-center py-4 px-2 rounded-xl border-2 border-baseBlack bg-baseBlack text-brandGreen transition-all shadow-sm";
 
             showToast(`Corte establecido en: ${shapeType === 'personalized' ? 'Corte de Silueta' : shapeType === 'circular' ? 'Circular' : 'Cuadrado'}`);
             renderSticker();
         }
 
-        function setSize(cm) {
-            APP_STATE.selectedSize = cm;
-            document.getElementById('custom-size-input-container').classList.add('hidden');
-            updateSelectedSizeUI();
-            updateDimensionsLabel();
+        // --- MANEJO CENTRALIZADO DE ALTURA ---
+        function getHeightCm() {
+            if (!APP_STATE.imageLoaded) return APP_STATE.selectedSize.toFixed(1);
+            if (APP_STATE.customMode === 'free' && APP_STATE.selectedHeight) {
+                return APP_STATE.selectedHeight.toFixed(1);
+            }
+            const aspect = APP_STATE.image.height / APP_STATE.image.width;
+            return (APP_STATE.selectedSize * aspect).toFixed(1);
         }
 
-        function triggerCustomSize() {
-            const container = document.getElementById('custom-size-input-container');
-            const input = document.getElementById('custom-size-input');
-            container.classList.toggle('hidden');
-            if (!container.classList.contains('hidden')) {
-                input.value = APP_STATE.selectedSize;
-                input.focus();
+        function setSize(cm) {
+            APP_STATE.selectedSize = cm;
+            APP_STATE.customMode = 'auto';
+            document.getElementById('custom-auto-input-container').classList.add('hidden');
+            document.getElementById('custom-free-input-container').classList.add('hidden');
+            updateSelectedSizeUI();
+            updateDimensionsLabel();
+            renderSticker();
+        }
+
+        function triggerCustomSize(mode) {
+            const autoContainer = document.getElementById('custom-auto-input-container');
+            const freeContainer = document.getElementById('custom-free-input-container');
+            
+            if (mode === 'auto') {
+                freeContainer.classList.add('hidden');
+                autoContainer.classList.toggle('hidden');
+                if (!autoContainer.classList.contains('hidden')) {
+                    document.getElementById('custom-auto-input').value = APP_STATE.selectedSize;
+                    document.getElementById('custom-auto-input').focus();
+                }
+            } else {
+                autoContainer.classList.add('hidden');
+                freeContainer.classList.toggle('hidden');
+                if (!freeContainer.classList.contains('hidden')) {
+                    document.getElementById('custom-w-input').value = APP_STATE.selectedSize;
+                    document.getElementById('custom-h-input').value = getHeightCm();
+                    document.getElementById('custom-w-input').focus();
+                }
             }
         }
 
         function applyCustomSize() {
-            const input = document.getElementById('custom-size-input');
+            const input = document.getElementById('custom-auto-input');
             const val = parseFloat(input.value);
             if (val && !isNaN(val) && val > 0 && val <= 100) {
                 APP_STATE.selectedSize = val;
-                document.getElementById('custom-size-text').innerText = `✏️ ${val} cm`;
-                updateSelectedSizeUI(true);
+                APP_STATE.customMode = 'auto';
+                document.getElementById('custom-auto-text').innerText = `✏️ ${val} cm`;
+                document.getElementById('custom-free-text').innerText = `📐 Libre`;
+                updateSelectedSizeUI('auto');
                 updateDimensionsLabel();
-                document.getElementById('custom-size-input-container').classList.add('hidden');
-                showToast(`Dimensión calibrada a ${val} cm`);
+                renderSticker();
+                document.getElementById('custom-auto-input-container').classList.add('hidden');
+                showToast(`Ancho calibrado a ${val} cm`);
             } else {
-                showToast('Medida fuera de rango', 'error');
+                showToast('Medida fuera de rango (Max: 100cm)', 'error');
             }
         }
 
-        function updateSelectedSizeUI(isCustom = false) {
+        function applyFreeSize() {
+            const wInput = document.getElementById('custom-w-input');
+            const hInput = document.getElementById('custom-h-input');
+            const wVal = parseFloat(wInput.value);
+            const hVal = parseFloat(hInput.value);
+            
+            if (wVal && hVal && !isNaN(wVal) && !isNaN(hVal) && wVal > 0 && hVal > 0 && wVal <= 100 && hVal <= 100) {
+                APP_STATE.selectedSize = wVal;
+                APP_STATE.selectedHeight = hVal;
+                APP_STATE.customMode = 'free';
+                document.getElementById('custom-auto-text').innerText = `✏️ Ancho`;
+                document.getElementById('custom-free-text').innerText = `📐 ${wVal}x${hVal}`;
+                updateSelectedSizeUI('free');
+                updateDimensionsLabel();
+                renderSticker(); 
+                document.getElementById('custom-free-input-container').classList.add('hidden');
+                showToast(`Dimensiones libres fijadas: ${wVal}x${hVal} cm`);
+            } else {
+                showToast('Medidas inválidas (Max: 100cm)', 'error');
+            }
+        }
+
+        function updateSelectedSizeUI(customMode = null) {
             const sizeGroup = document.getElementById('size-button-group');
             const buttons = sizeGroup.getElementsByTagName('button');
             
-            for (let btn of buttons) {
-                btn.className = "py-2 text-xs font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all";
-            }
-            if (isCustom) {
-                buttons[buttons.length - 1].className = "py-2 text-xs font-bold rounded-lg border-2 border-baseBlack bg-baseBlack text-brandGreen transition-all flex items-center justify-center gap-1";
-            } else {
-                document.getElementById('custom-size-text').innerText = `✏️ Otro`;
-                for (let btn of buttons) {
-                    if (btn.innerText.trim() === `${APP_STATE.selectedSize} cm`) {
-                        btn.className = "py-2 text-xs font-bold rounded-lg border-2 border-baseBlack bg-baseBlack text-brandGreen transition-all";
-                    }
+            // Limpiamos los primeros 6 botones de dimensiones estandar
+            for (let i = 0; i < buttons.length - 2; i++) {
+                buttons[i].className = "py-2 text-xs font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all";
+                if (!customMode && buttons[i].innerText.trim() === `${APP_STATE.selectedSize} cm`) {
+                    buttons[i].className = "py-2 text-xs font-bold rounded-lg border-2 border-baseBlack bg-baseBlack text-brandGreen transition-all";
                 }
+            }
+
+            const btnAuto = document.getElementById('btn-custom-auto');
+            const btnFree = document.getElementById('btn-custom-free');
+
+            btnAuto.className = "py-2 text-xs font-bold rounded-lg border border-gray-200 bg-gray-50 hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all flex items-center justify-center gap-1";
+            btnFree.className = "py-2 text-xs font-bold rounded-lg border border-gray-200 bg-gray-50 hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all flex items-center justify-center gap-1";
+
+            if (customMode === 'auto') {
+                btnAuto.className = "py-2 text-xs font-bold rounded-lg border-2 border-baseBlack bg-baseBlack text-brandGreen transition-all flex items-center justify-center gap-1";
+            } else if (customMode === 'free') {
+                btnFree.className = "py-2 text-xs font-bold rounded-lg border-2 border-baseBlack bg-baseBlack text-brandGreen transition-all flex items-center justify-center gap-1";
+            }
+
+            const helperText = document.getElementById('dimension-helper-text');
+            if (customMode === 'free' || APP_STATE.customMode === 'free') {
+                helperText.innerText = "Dimensiones libres habilitadas. La imagen se ajusta al área especificada.";
+            } else {
+                helperText.innerText = "El alto se calcula automático para mantener la proporción original.";
             }
         }
 
         function updateDimensionsLabel() {
             if (!APP_STATE.imageLoaded) return;
-            const aspect = APP_STATE.image.height / APP_STATE.image.width;
-            const heightCm = (APP_STATE.selectedSize * aspect).toFixed(1);
+            const heightCm = getHeightCm();
             finalDimensionsLabel.innerHTML = `${APP_STATE.selectedSize} × ${heightCm} cm`;
             updateRendimientoUI();
         }
 
-        // --- SISTEMA DE MATERIAL ---
+        // --- SISTEMA DE MATERIAL Y ACABADOS ---
         function setMaterial(mat) {
             APP_STATE.material = mat;
+            document.getElementById('mat-standard').className = "py-3 px-2 text-xs font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all flex flex-col items-center justify-center gap-1";
+            document.getElementById('mat-standard').innerHTML = `<span>Vinil Blanco</span><span class="text-[10px] font-normal">Base $140/pl</span>`;
             
-            const btnStandard = document.getElementById('mat-standard');
-            const btnHolo = document.getElementById('mat-holo');
+            document.getElementById('mat-holo').className = "py-3 px-2 text-xs font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all flex flex-col items-center justify-center gap-1";
+            document.getElementById('mat-holo').innerHTML = `<span>Holográfico</span><span class="text-[10px] font-normal">Base $240/pl</span>`;
             
-            [btnStandard, btnHolo].forEach(btn => {
-                btn.className = "flex flex-col items-center justify-center p-3 rounded-xl border border-gray-200 bg-baseWhite text-textMuted hover:border-baseBlack hover:text-baseBlack transition-all";
-            });
-
             const activeBtn = document.getElementById(`mat-${mat}`);
-            activeBtn.className = "flex flex-col items-center justify-center p-3 rounded-xl border-2 border-baseBlack bg-baseBlack text-brandGreen font-bold transition-all shadow-sm";
-
+            activeBtn.className = "py-3 px-2 text-xs font-bold rounded-lg border-2 border-baseBlack bg-baseBlack text-baseWhite transition-all flex flex-col items-center justify-center gap-1";
+            if(mat === 'standard') {
+                activeBtn.innerHTML = `<span>Vinil Blanco</span><span class="text-[10px] text-gray-400 font-normal">Base $140/pl</span>`;
+            } else {
+                activeBtn.innerHTML = `<span>Holográfico</span><span class="text-[10px] text-gray-400 font-normal">Base $240/pl</span>`;
+            }
             updateRendimientoUI();
-            showToast(`Material actualizado: ${mat === 'standard' ? 'Vinil Blanco' : 'Holográfico'}`);
         }
 
         function toggleLaminado(val) { APP_STATE.laminado = val; updateRendimientoUI(); }
         function toggleCorteFisico(val) { APP_STATE.corteFisico = val; updateRendimientoUI(); }
 
+        // --- ALGORITMO TÉCNICO DE ÁREA ÚTIL DE PLANILLA ---
         function calcularRendimiento(anchoCm, altoCm) {
+            // Área útil real de impresión en una planilla de 50x50 es de 42x45 cm
             const cols1 = Math.floor(42 / anchoCm);
             const rows1 = Math.floor(45 / altoCm);
             const total1 = cols1 * rows1;
+
             const cols2 = Math.floor(42 / altoCm);
             const rows2 = Math.floor(45 / anchoCm);
             const total2 = cols2 * rows2;
+
             const max = Math.max(total1, total2);
             return max > 0 ? max : 1;
         }
 
+        // --- CÁLCULO PROPORCIONAL DE PRECIOS EXACTOS POR PIEZA ---
         function calcularPrecio(size, heightCm, qty, material, laminado, corteFisico) {
             const pzPorPlanilla = calcularRendimiento(size, heightCm);
             let costoPorPlanilla = 140; // Base: Vinil Blanco 140
@@ -788,7 +948,9 @@
             if (laminado) costoPorPlanilla += 70;
             if (corteFisico) costoPorPlanilla += 60;
             
+            // Calculamos el costo de UNA sola pieza basado en el rendimiento de la planilla útil
             const unitPrice = costoPorPlanilla / pzPorPlanilla;
+            // Multiplicamos por la cantidad EXACTA que pide el cliente (proporcional)
             const totalPrice = unitPrice * qty;
             
             return {
@@ -800,8 +962,7 @@
 
         function updateRendimientoUI() {
             if (!APP_STATE.imageLoaded) return;
-            const aspect = APP_STATE.image.height / APP_STATE.image.width;
-            const heightCm = (APP_STATE.selectedSize * aspect).toFixed(1);
+            const heightCm = getHeightCm();
             const prices = calcularPrecio(APP_STATE.selectedSize, heightCm, APP_STATE.quantity, APP_STATE.material, APP_STATE.laminado, APP_STATE.corteFisico);
             
             document.getElementById('rendimiento-info').innerHTML = 
@@ -810,6 +971,7 @@
                  Total por ${APP_STATE.quantity} pz: <strong class="text-baseBlack">$${prices.total} MXN</strong>`;
         }
 
+        // Helper para dibujar rectángulos con bordes redondeados
         function drawRoundedRect(ctx, x, y, width, height, radius) {
             ctx.moveTo(x + radius, y);
             ctx.lineTo(x + width - radius, y);
@@ -823,34 +985,54 @@
             ctx.closePath();
         }
 
+        // FUNCIÓN PRINCIPAL DE RENDERIZADO
         function renderSticker(customCanvas = stickerCanvas, scaleFactor = 1) {
             if (!APP_STATE.imageLoaded) return;
+
             const canvas = customCanvas;
             const targetCtx = canvas.getContext('2d');
+            
             const baseSize = 400 * scaleFactor;
             canvas.width = baseSize;
             canvas.height = baseSize;
+            
             targetCtx.clearRect(0, 0, canvas.width, canvas.height);
 
             const img = APP_STATE.image;
+            
             const maxBorderPx = APP_STATE.borderSize * scaleFactor;
             const maxImageDim = baseSize - (maxBorderPx * 2) - 40;
-            const scale = Math.min(maxImageDim / img.width, maxImageDim / img.height);
-            const w = img.width * scale;
-            const h = img.height * scale;
+            
+            // Forzamos las proporciones visuales si el usuario elige TODO PERSONALIZADO
+            const wCm = APP_STATE.selectedSize;
+            const hCm = parseFloat(getHeightCm());
+            const drawAspect = hCm / wCm;
+
+            let w, h;
+            if (drawAspect > 1) {
+                h = maxImageDim;
+                w = maxImageDim / drawAspect;
+            } else {
+                w = maxImageDim;
+                h = maxImageDim * drawAspect;
+            }
+            
             const x = (baseSize - w) / 2;
             const y = (baseSize - h) / 2;
 
             if (APP_STATE.shape === 'circular') {
                 targetCtx.save();
+                
                 const centerX = baseSize / 2;
                 const centerY = baseSize / 2;
                 const radius = Math.min(w, h) / 2; 
                 const borderRadius = radius + maxBorderPx; 
+                
                 targetCtx.beginPath();
                 targetCtx.arc(centerX, centerY, borderRadius, 0, Math.PI * 2);
                 targetCtx.fillStyle = APP_STATE.borderColor;
                 targetCtx.fill();
+                
                 targetCtx.strokeStyle = 'rgba(0,0,0,0.1)';
                 targetCtx.lineWidth = 1;
                 targetCtx.stroke();
@@ -858,10 +1040,13 @@
                 targetCtx.beginPath();
                 targetCtx.arc(centerX, centerY, radius, 0, Math.PI * 2);
                 targetCtx.clip();
+                
                 targetCtx.drawImage(img, x, y, w, h);
                 targetCtx.restore();
+
             } else if (APP_STATE.shape === 'squared') {
                 targetCtx.save();
+                
                 const borderOffset = maxBorderPx;
                 const rx = x - borderOffset;
                 const ry = y - borderOffset;
@@ -873,6 +1058,7 @@
                 drawRoundedRect(targetCtx, rx, ry, rw, rh, cornerRadius);
                 targetCtx.fillStyle = APP_STATE.borderColor;
                 targetCtx.fill();
+                
                 targetCtx.strokeStyle = 'rgba(0,0,0,0.1)';
                 targetCtx.lineWidth = 1;
                 targetCtx.stroke();
@@ -880,19 +1066,24 @@
                 targetCtx.beginPath();
                 drawRoundedRect(targetCtx, x, y, w, h, Math.max(2, cornerRadius - borderOffset));
                 targetCtx.clip();
+                
                 targetCtx.drawImage(img, x, y, w, h);
                 targetCtx.restore();
+
             } else {
+                // --- ALGORITMO CORTE PERSONALIZADO (Die-Cut) DE SILUETA ---
                 const offscreen = document.createElement('canvas');
                 offscreen.width = baseSize;
                 offscreen.height = baseSize;
                 const oCtx = offscreen.getContext('2d');
+                
                 oCtx.drawImage(img, x, y, w, h);
                 
                 const maskCanvas = document.createElement('canvas');
                 maskCanvas.width = baseSize;
                 maskCanvas.height = baseSize;
                 const mCtx = maskCanvas.getContext('2d');
+                
                 mCtx.drawImage(offscreen, 0, 0);
                 mCtx.globalCompositeOperation = 'source-in';
                 mCtx.fillStyle = APP_STATE.borderColor;
@@ -901,6 +1092,7 @@
                 targetCtx.save();
                 const steps = 32; 
                 const radius = APP_STATE.borderSize * scaleFactor;
+                
                 if (radius > 0) {
                     for (let i = 0; i < steps; i++) {
                         const angle = (i / steps) * Math.PI * 2;
@@ -912,26 +1104,37 @@
                     targetCtx.drawImage(maskCanvas, 0, 0);
                 }
                 targetCtx.restore();
+
                 targetCtx.drawImage(img, x, y, w, h);
             }
+            
             updateDimensionsLabel();
         }
 
+        // --- SISTEMA DEL CARRITO DE COMPRAS MULTI-STIKER ---
+
+        // Abre o cierra el Drawer lateral del carrito
         function toggleCartDrawer() {
             const drawer = document.getElementById('cart-drawer');
             const backdrop = document.getElementById('cart-backdrop');
+            
             if (drawer.classList.contains('translate-x-full')) {
                 drawer.classList.remove('translate-x-full');
                 backdrop.classList.remove('hidden');
-                setTimeout(() => { backdrop.classList.add('opacity-100'); }, 10);
+                setTimeout(() => {
+                    backdrop.classList.add('opacity-100');
+                }, 10);
                 renderCart();
             } else {
                 drawer.classList.add('translate-x-full');
                 backdrop.classList.remove('opacity-100');
-                setTimeout(() => { backdrop.classList.add('hidden'); }, 300);
+                setTimeout(() => {
+                    backdrop.classList.add('hidden');
+                }, 300);
             }
         }
 
+        // Agrega el diseño configurado al carrito como un sticker independiente
         function agregarAlCarrito() {
             if (!APP_STATE.imageLoaded) {
                 showToast("Debes cargar una imagen antes de agregar a la orden.", "error");
@@ -939,8 +1142,7 @@
             }
 
             const thumbnail = stickerCanvas.toDataURL('image/png');
-            const aspect = APP_STATE.image.height / APP_STATE.image.width;
-            const heightCm = (APP_STATE.selectedSize * aspect).toFixed(1);
+            const heightCm = getHeightCm();
             const prices = calcularPrecio(APP_STATE.selectedSize, heightCm, APP_STATE.quantity, APP_STATE.material, APP_STATE.laminado, APP_STATE.corteFisico);
             
             let corteTexto = "Silueta";
@@ -957,7 +1159,7 @@
                 borderSize: APP_STATE.borderSize,
                 borderColor: APP_STATE.borderColor,
                 quantity: APP_STATE.quantity,
-                material: APP_STATE.material,
+                materialLabel: APP_STATE.material === 'standard' ? 'Vinil Blanco' : 'Holográfico',
                 laminado: APP_STATE.laminado,
                 corteFisico: APP_STATE.corteFisico,
                 unitPrice: parseFloat(prices.unitPrice),
@@ -968,7 +1170,6 @@
             renderCart();
             
             const badge = document.getElementById('cart-badge');
-            badge.classList.remove('hidden');
             badge.classList.remove('animate-bounce');
             void badge.offsetWidth; 
             badge.classList.add('animate-bounce');
@@ -976,6 +1177,7 @@
             showToast(`Línea agregada: ${APP_STATE.quantity} pz a $${prices.unitPrice} c/u`, "success");
         }
 
+        // Renderiza los elementos guardados en la interfaz lateral
         function renderCart() {
             const container = document.getElementById('cart-items-container');
             const badge = document.getElementById('cart-badge');
@@ -984,13 +1186,13 @@
 
             if (APP_STATE.cart.length === 0) {
                 container.innerHTML = `
-                    <div class="flex flex-col items-center justify-center text-center py-24 space-y-4 font-mono">
-                        <div class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center text-textMuted">
-                            <i class="fa-solid fa-folder-plus text-lg"></i>
+                    <div class="flex flex-col items-center justify-center text-center py-24 space-y-4">
+                        <div class="w-16 h-16 border-2 border-dashed border-gray-300 bg-baseWhite rounded-2xl flex items-center justify-center text-gray-400">
+                            <i class="fa-solid fa-folder-open text-2xl"></i>
                         </div>
                         <div>
-                            <p class="text-xs font-bold text-baseBlack uppercase">Orden Vacía</p>
-                            <p class="text-[10px] text-textMuted mt-1">Configura y agrega diseños a tu orden.</p>
+                            <p class="text-sm font-bold text-baseBlack">ORDEN VACÍA</p>
+                            <p class="text-xs text-textMuted mt-1">Configura tus dimensiones y haz clic en "Agregar a la Orden".</p>
                         </div>
                     </div>
                 `;
@@ -1012,8 +1214,8 @@
                 totalPrice += item.totalPrice;
 
                 html += `
-                    <div class="bg-white border border-gray-200 p-4 flex gap-4 items-center relative shadow-sm rounded-xl hover:border-baseBlack transition-all">
-                        <div class="w-16 h-16 shrink-0 border border-gray-200 blueprint-grid relative overflow-hidden flex items-center justify-center rounded-lg">
+                    <div class="bg-baseWhite border border-gray-200 p-4 flex gap-4 items-center relative shadow-sm rounded-xl hover:border-baseBlack transition-all">
+                        <div class="w-16 h-16 shrink-0 border border-gray-200 blueprint-grid bg-[#d9d9d9] relative overflow-hidden flex items-center justify-center rounded-lg">
                             <img src="${item.thumbnail}" class="max-w-full max-h-full object-contain p-1" alt="Preview">
                         </div>
                         
@@ -1023,7 +1225,7 @@
                             </div>
                             <p class="text-[10px] text-baseBlack mt-1">DIM: <span class="font-bold">${item.size} × ${item.heightCm} cm</span> | <span class="uppercase">${item.shapeLabel}</span></p>
                             <p class="text-[10px] text-textMuted mt-0.5 uppercase font-bold">
-                                ${item.material === 'holo' ? 'Holográfico' : 'Vinil Blanco'} ${item.laminado ? '+ LAM' : ''} ${item.corteFisico ? '+ CORTE COMP' : ''}
+                                ${item.materialLabel} ${item.laminado ? '+ LAM' : ''} ${item.corteFisico ? '+ CORTE COMP' : ''}
                             </p>
                             <div class="flex justify-between items-center mt-2 pt-2 border-t border-gray-100">
                                 <span class="text-[10px] text-baseBlack font-bold">${item.quantity} pz <span class="text-textMuted font-normal">($${item.unitPrice.toFixed(2)} c/u)</span></span>
@@ -1043,12 +1245,14 @@
             totalPriceEl.innerText = `$${totalPrice.toLocaleString('es-MX', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} MXN`;
         }
 
+        // Remueve un sticker individual del carrito
         function eliminarDelCarrito(id) {
             APP_STATE.cart = APP_STATE.cart.filter(item => item.id !== id);
             renderCart();
             showToast("Línea removida de la orden");
         }
 
+        // Vacía completamente la orden
         function vaciarCarrito() {
             if (APP_STATE.cart.length === 0) return;
             APP_STATE.cart = [];
@@ -1125,8 +1329,16 @@
                 ctx.strokeRect(40, currentY, width - 80, itemHeight - 20);
 
                 // Caja para miniatura
-                ctx.fillStyle = "#ffffff";
+                ctx.fillStyle = "#d9d9d9";
                 ctx.fillRect(60, currentY + 20, 100, 100);
+                
+                // Dibujar retícula en la miniatura del ticket
+                ctx.strokeStyle = "rgba(0, 0, 0, 0.05)";
+                ctx.lineWidth = 1;
+                for (let x = 60; x < 160; x += 10) { ctx.beginPath(); ctx.moveTo(x, currentY + 20); ctx.lineTo(x, currentY + 120); ctx.stroke(); }
+                for (let y = currentY + 20; y < currentY + 120; y += 10) { ctx.beginPath(); ctx.moveTo(60, y); ctx.lineTo(160, y); ctx.stroke(); }
+
+                ctx.strokeStyle = "#000000";
                 ctx.lineWidth = 2;
                 ctx.strokeRect(60, currentY + 20, 100, 100);
                 
@@ -1148,50 +1360,38 @@
                 ctx.font = "bold 16px monospace";
                 ctx.fillText(`[LÍNEA 0${index + 1}] ${item.fileName.substring(0, 30)}`, 180, currentY + 40);
 
+                ctx.fillStyle = "#6b7280";
                 ctx.font = "14px monospace";
                 ctx.fillText(`DIMENSIONES: ${item.size} × ${item.heightCm} cm | TROQUEL: ${item.shapeLabel}`, 180, currentY + 65);
                 
-                const materialBaseStr = item.material === 'holo' ? 'HOLOGRÁFICO' : 'VINIL BLANCO';
-                const acabados = `${materialBaseStr} ${item.laminado ? '+ LAMINADO' : ''} ${item.corteFisico ? '+ CORTE COMPLETO' : ''}`;
+                const acabados = `${item.materialLabel} ${item.laminado ? '+ LAMINADO' : ''} ${item.corteFisico ? '+ CORTE COMPLETO' : ''}`;
                 ctx.fillText(`SUSTRATO: ${acabados.toUpperCase()}`, 180, currentY + 85);
 
-                ctx.fillStyle = "#666666";
+                ctx.fillStyle = "#000000";
                 ctx.fillText(`VOLUMEN: ${item.quantity} pz ($${item.unitPrice.toFixed(2)} c/u)`, 180, currentY + 110);
 
                 // Precio del ítem
-                ctx.fillStyle = "#000000";
+                ctx.fillStyle = "#ff007f";
                 ctx.font = "bold 20px monospace";
                 const costText = `$${item.totalPrice.toFixed(2)}`;
                 const costWidth = ctx.measureText(costText).width;
-                
-                // Pleca rosa para precio
-                ctx.fillStyle = "#ff007f";
-                ctx.fillRect(width - 70 - costWidth, currentY + 90, costWidth + 20, 30);
-                ctx.fillStyle = "#ffffff";
-                ctx.fillText(costText, width - 60 - costWidth, currentY + 112);
+                ctx.fillText(costText, width - 60 - costWidth, currentY + 110);
 
                 currentY += itemHeight;
             }
 
             // Pie del ticket
             ctx.strokeStyle = "#000000";
-            ctx.lineWidth = 4;
             ctx.beginPath(); ctx.moveTo(40, currentY + 20); ctx.lineTo(width - 40, currentY + 20); ctx.stroke();
 
             ctx.fillStyle = "#000000";
             ctx.font = "bold 24px monospace";
             ctx.fillText("TOTAL A PROCESAR:", 40, currentY + 70);
 
-            // Bloque verde fosforescente
+            ctx.fillStyle = "#ff007f";
             const totalText = `$${totalCost.toFixed(2)} MXN`;
             const totalWidth = ctx.measureText(totalText).width;
-            ctx.fillStyle = "#ccff00";
-            ctx.fillRect(width - 60 - totalWidth, currentY + 40, totalWidth + 20, 40);
-            ctx.strokeStyle = "#000000";
-            ctx.strokeRect(width - 60 - totalWidth, currentY + 40, totalWidth + 20, 40);
-            
-            ctx.fillStyle = "#000000";
-            ctx.fillText(totalText, width - 50 - totalWidth, currentY + 70);
+            ctx.fillText(totalText, width - 40 - totalWidth, currentY + 70);
 
             // Exportar e iniciar descarga
             const link = document.createElement('a');
@@ -1211,18 +1411,18 @@
             const container = document.getElementById('toast-container');
             const toast = document.createElement('div');
             
-            toast.className = `flex items-center gap-2 px-4 py-3 border-2 border-baseBlack shadow-brutal-sm rounded-lg text-xs font-bold transform translate-y-2 opacity-0 transition-all duration-300 pointer-events-auto max-w-sm `;
+            toast.className = `flex items-center gap-3 px-5 py-4 border-2 shadow-brutal-sm text-sm font-bold transform translate-y-2 opacity-0 transition-all duration-300 pointer-events-auto max-w-sm rounded-xl `;
             
             if (type === 'error') {
-                toast.className += 'bg-brandPink text-white';
+                toast.className += 'bg-red-50 border-red-500 text-red-600';
             } else if (type === 'success') {
-                toast.className += 'bg-brandGreen text-baseBlack';
+                toast.className += 'bg-baseWhite border-baseBlack text-baseBlack';
             } else {
-                toast.className += 'bg-white text-baseBlack';
+                toast.className += 'bg-baseWhite border-baseBlack text-baseBlack';
             }
 
-            const icon = type === 'error' ? 'circle-exclamation' : type === 'success' ? 'circle-check' : 'circle-info';
-            toast.innerHTML = `<i class="fa-solid fa-${icon} text-base"></i> <span>${message.toUpperCase()}</span>`;
+            const icon = type === 'error' ? 'circle-exclamation' : type === 'success' ? 'circle-check text-brandGreen' : 'circle-info text-brandPink';
+            toast.innerHTML = `<i class="fa-solid fa-${icon} text-lg"></i> <span>${message.toUpperCase()}</span>`;
             
             container.appendChild(toast);
             
