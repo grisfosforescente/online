@@ -88,8 +88,13 @@
     <header class="bg-baseBlack px-6 py-4 sticky top-0 z-40">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
             <!-- Menú de Navegación Izquierdo -->
-            <nav class="flex items-center gap-8 text-white font-bold text-sm tracking-wider uppercase">
+            <nav class="flex items-center gap-6 sm:gap-8 text-white font-bold text-xs sm:text-sm tracking-wider uppercase">
                 <a href="#inicio" class="hover:text-brandGreen transition-colors">INICIO</a>
+                <a href="https://wa.me/message/LOS67PCNOUMBM1" target="_blank" rel="noopener noreferrer" class="hover:text-brandGreen transition-colors flex items-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span class="hidden sm:inline">COTIZA CON UN AGENTE</span>
+                    <span class="sm:hidden">AGENTE</span>
+                </a>
             </nav>
 
             <!-- Menú de Navegación Derecho -->
@@ -317,10 +322,29 @@
                 <p class="text-[10px] text-textMuted font-mono">El alto se calcula automático.</p>
             </div>
 
-            <!-- ⑤ PANEL: ACABADOS -->
+            <!-- ⑤ PANEL NUEVO: MATERIAL BASE -->
             <div class="space-y-4 border-t border-borderGray pt-6">
                 <div class="flex items-center gap-3 text-baseBlack">
                     <span class="bg-gray-100 text-baseBlack w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold border border-gray-200">5</span>
+                    <h3 class="text-sm font-bold uppercase tracking-wide">Sustrato / Material</h3>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-3 mt-2">
+                    <button id="mat-standard" onclick="setMaterial('standard')" class="flex flex-col items-center justify-center p-3 rounded-xl border-2 border-baseBlack bg-baseBlack text-brandGreen font-bold transition-all shadow-sm">
+                        <span class="text-xs font-bold">Vinil Blanco</span>
+                        <span class="text-[10px] font-mono text-gray-400 mt-1">Base $140</span>
+                    </button>
+                    <button id="mat-holo" onclick="setMaterial('holo')" class="flex flex-col items-center justify-center p-3 rounded-xl border border-gray-200 bg-baseWhite text-textMuted hover:border-baseBlack hover:text-baseBlack transition-all">
+                        <span class="text-xs font-bold">Holográfico</span>
+                        <span class="text-[10px] font-mono text-gray-400 mt-1">Base $240</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- ⑥ PANEL: ACABADOS -->
+            <div class="space-y-4 border-t border-borderGray pt-6">
+                <div class="flex items-center gap-3 text-baseBlack">
+                    <span class="bg-gray-100 text-baseBlack w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold border border-gray-200">6</span>
                     <h3 class="text-sm font-bold uppercase tracking-wide">Acabados Especiales</h3>
                 </div>
                 
@@ -342,11 +366,11 @@
                 </div>
             </div>
 
-            <!-- ⑥ PANEL: VOLUMEN DE TIRADA -->
+            <!-- ⑦ PANEL: VOLUMEN DE TIRADA -->
             <div class="space-y-5 border-t border-borderGray pt-6">
                 <div class="flex items-center justify-between">
                     <div class="flex items-center gap-3 text-baseBlack">
-                        <span class="bg-gray-100 text-baseBlack w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold border border-gray-200">6</span>
+                        <span class="bg-gray-100 text-baseBlack w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold border border-gray-200">7</span>
                         <h3 class="text-sm font-bold uppercase tracking-wide">Cantidad</h3>
                     </div>
                 </div>
@@ -724,6 +748,24 @@
             updateRendimientoUI();
         }
 
+        // --- SISTEMA DE MATERIAL ---
+        function setMaterial(mat) {
+            APP_STATE.material = mat;
+            
+            const btnStandard = document.getElementById('mat-standard');
+            const btnHolo = document.getElementById('mat-holo');
+            
+            [btnStandard, btnHolo].forEach(btn => {
+                btn.className = "flex flex-col items-center justify-center p-3 rounded-xl border border-gray-200 bg-baseWhite text-textMuted hover:border-baseBlack hover:text-baseBlack transition-all";
+            });
+
+            const activeBtn = document.getElementById(`mat-${mat}`);
+            activeBtn.className = "flex flex-col items-center justify-center p-3 rounded-xl border-2 border-baseBlack bg-baseBlack text-brandGreen font-bold transition-all shadow-sm";
+
+            updateRendimientoUI();
+            showToast(`Material actualizado: ${mat === 'standard' ? 'Vinil Blanco' : 'Holográfico'}`);
+        }
+
         function toggleLaminado(val) { APP_STATE.laminado = val; updateRendimientoUI(); }
         function toggleCorteFisico(val) { APP_STATE.corteFisico = val; updateRendimientoUI(); }
 
@@ -742,6 +784,7 @@
             const pzPorPlanilla = calcularRendimiento(size, heightCm);
             let costoPorPlanilla = 140; // Base: Vinil Blanco 140
             
+            if (material === 'holo') costoPorPlanilla = 240;
             if (laminado) costoPorPlanilla += 70;
             if (corteFisico) costoPorPlanilla += 60;
             
@@ -914,6 +957,7 @@
                 borderSize: APP_STATE.borderSize,
                 borderColor: APP_STATE.borderColor,
                 quantity: APP_STATE.quantity,
+                material: APP_STATE.material,
                 laminado: APP_STATE.laminado,
                 corteFisico: APP_STATE.corteFisico,
                 unitPrice: parseFloat(prices.unitPrice),
@@ -979,7 +1023,7 @@
                             </div>
                             <p class="text-[10px] text-baseBlack mt-1">DIM: <span class="font-bold">${item.size} × ${item.heightCm} cm</span> | <span class="uppercase">${item.shapeLabel}</span></p>
                             <p class="text-[10px] text-textMuted mt-0.5 uppercase font-bold">
-                                Vinil Blanco ${item.laminado ? '+ LAM' : ''} ${item.corteFisico ? '+ CORTE COMP' : ''}
+                                ${item.material === 'holo' ? 'Holográfico' : 'Vinil Blanco'} ${item.laminado ? '+ LAM' : ''} ${item.corteFisico ? '+ CORTE COMP' : ''}
                             </p>
                             <div class="flex justify-between items-center mt-2 pt-2 border-t border-gray-100">
                                 <span class="text-[10px] text-baseBlack font-bold">${item.quantity} pz <span class="text-textMuted font-normal">($${item.unitPrice.toFixed(2)} c/u)</span></span>
@@ -1107,7 +1151,8 @@
                 ctx.font = "14px monospace";
                 ctx.fillText(`DIMENSIONES: ${item.size} × ${item.heightCm} cm | TROQUEL: ${item.shapeLabel}`, 180, currentY + 65);
                 
-                const acabados = `Vinil Blanco ${item.laminado ? '+ LAMINADO' : ''} ${item.corteFisico ? '+ CORTE COMPLETO' : ''}`;
+                const materialBaseStr = item.material === 'holo' ? 'HOLOGRÁFICO' : 'VINIL BLANCO';
+                const acabados = `${materialBaseStr} ${item.laminado ? '+ LAMINADO' : ''} ${item.corteFisico ? '+ CORTE COMPLETO' : ''}`;
                 ctx.fillText(`SUSTRATO: ${acabados.toUpperCase()}`, 180, currentY + 85);
 
                 ctx.fillStyle = "#666666";
