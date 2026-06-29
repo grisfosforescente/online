@@ -23,6 +23,7 @@
                         baseBlack: '#000000',     // Plecas y textos
                         brandGreen: '#ccff00',    // Acento verde fosforescente
                         brandPink: '#ff007f',     // Acento rosa neón
+                        brandYellow: '#FFD700',   // Acento amarillo del botón
                         panelGray: '#f4f4f5',     // Fondos secundarios
                         textMuted: '#6b7280'      // Textos de soporte
                     },
@@ -54,6 +55,20 @@
         ::-webkit-scrollbar-thumb { background: #000000; }
         ::-webkit-scrollbar-thumb:hover { background: #ff007f; }
 
+        /* Comportamiento de scroll suave para anclas */
+        html { scroll-behavior: smooth; }
+
+        /* Animación para el banner de texto infinito */
+        @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marquee 20s linear infinite;
+        }
+
         /* Cuadrícula de corte de fondo del canvas (Light Mode) */
         .blueprint-grid {
             background-color: #ffffff;
@@ -72,38 +87,138 @@
 </head>
 <body class="bg-baseWhite text-baseBlack font-sans min-h-screen overflow-x-hidden antialiased">
 
-    <!-- HEADER INDUSTRIAL CLARO -->
-    <header class="border-b-4 border-baseBlack bg-baseBlack px-6 py-4 sticky top-0 z-40">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-            <div class="flex items-center gap-4">
-                <div class="bg-brandGreen text-baseBlack font-mono font-bold px-3 py-1.5 text-sm tracking-tighter shadow-brutal-sm">
-                    GRISFOSFORESCENTE
-                </div>
-                <div>
-                    <h1 class="font-mono font-bold text-xl tracking-tight text-baseWhite flex items-center gap-2">
-                        CORE v3.0 <span class="text-xs text-baseBlack bg-brandPink px-2 py-0.5 font-mono shadow-brutal-sm uppercase">Taller de Preprensa</span>
-                    </h1>
-                </div>
-            </div>
+    <!-- HEADER / NAVEGACIÓN -->
+    <header class="bg-baseBlack px-6 py-4 sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
             
-            <div class="flex items-center gap-4">
-                <!-- BOTÓN DEL CARRITO BRUTALISTA -->
-                <button onclick="toggleCartDrawer()" class="relative flex items-center gap-2 bg-baseWhite hover:bg-brandGreen px-4 py-2 text-sm font-mono font-bold border-2 border-baseBlack transition-all shadow-brutal-sm group">
-                    <i class="fa-solid fa-folder-open text-baseBlack"></i>
-                    <span class="text-xs text-baseBlack uppercase">Mi Orden</span>
-                    <span id="cart-badge" class="hidden ml-1 bg-brandPink text-baseWhite text-[10px] px-2 py-0.5 border border-baseBlack">0</span>
+            <!-- Logo (Espacio vacío para alineación si no hay logo visible en tu recorte) -->
+            <div class="flex-shrink-0">
+                <!-- Puedes insertar tu logo aquí si lo deseas -->
+                 <a href="/" class="text-white font-bold tracking-widest uppercase opacity-0">GF</a>
+            </div>
+
+            <!-- Menú de Navegación -->
+            <nav class="flex items-center gap-8 text-white font-bold text-sm tracking-wider uppercase">
+                <a href="#inicio" class="hover:text-brandYellow transition-colors">INICIO</a>
+
+                <!-- Botón de Carrito (Conecta con la función toggleCartDrawer) -->
+                <button onclick="toggleCartDrawer()" class="flex items-center gap-2 hover:text-brandYellow transition-colors relative">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span>CARRITO</span>
+                    <!-- Badge de notificaciones del carrito (Oculto por defecto) -->
+                    <span id="cart-badge" class="hidden absolute -top-2 -right-4 bg-brandPink text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full">0</span>
                 </button>
 
-                <div class="hidden md:flex items-center gap-2 bg-baseBlack border border-baseWhite px-3 py-1 text-[11px] text-brandGreen font-mono font-bold">
-                    <span class="w-2 h-2 bg-brandPink rounded-full animate-ping"></span>
-                    PLOTTER LINKED
+                <!-- Botón Especial Sticker Studio -->
+                <div class="relative ml-4">
+                    <!-- Badge "NUEVO" circular -->
+                    <div class="absolute -top-3 -right-3 bg-[#4a4a4a] text-white text-[9px] font-bold w-10 h-10 rounded-full flex items-center justify-center shadow-lg border-2 border-baseBlack z-10 uppercase tracking-widest">
+                        NUEVO
+                    </div>
+                    <!-- Botón Principal -->
+                    <a href="#editor" class="block border-2 border-brandYellow text-brandYellow px-6 py-2.5 font-bold hover:bg-brandYellow hover:text-baseBlack transition-colors text-base relative z-0">
+                        Cotizar Online
+                    </a>
                 </div>
-            </div>
+            </nav>
         </div>
     </header>
 
-    <!-- COMPONENTE PRINCIPAL -->
-    <main id="editor" class="max-w-7xl mx-auto px-4 py-6 md:py-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+    <!-- LANDING PAGE: HERO SECTION -->
+    <section id="inicio" class="w-full bg-baseWhite border-b-4 border-baseBlack overflow-hidden relative">
+        <!-- Patrón de fondo opcional sutil -->
+        <div class="absolute inset-0 blueprint-grid opacity-50 pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 py-16 md:py-24 lg:py-32 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
+            <!-- Texto Principal -->
+            <div class="space-y-8">
+                <div class="inline-block bg-brandPink text-white font-mono font-bold text-xs px-3 py-1 shadow-brutal-sm border-2 border-baseBlack uppercase">
+                    Taller de Impresión y Pre-prensa
+                </div>
+                <h1 class="text-5xl md:text-6xl lg:text-7xl font-black uppercase leading-[1.1] tracking-tight text-baseBlack">
+                    Stickers que <br>
+                    <span class="text-transparent bg-clip-text bg-baseBlack" style="-webkit-text-stroke: 2px #000; color: #ccff00; text-shadow: 4px 4px 0 #000;">Rompen</span> <br>
+                    la forma.
+                </h1>
+                <p class="text-base md:text-lg font-mono font-bold text-textMuted max-w-xl leading-relaxed">
+                    Sube tu diseño, elige tu troquel y nosotros nos encargamos del resto. Vinil de alta resistencia, acabados holográficos y cortes de precisión milimétrica.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                    <a href="#editor" class="bg-brandGreen border-4 border-baseBlack text-baseBlack font-black font-mono text-lg px-8 py-4 text-center shadow-brutal-hover transition-all hover:bg-baseBlack hover:text-brandGreen">
+                        COTIZAR AHORA
+                    </a>
+                    <a href="#caracteristicas" class="bg-baseWhite border-4 border-baseBlack text-baseBlack font-black font-mono text-lg px-8 py-4 text-center shadow-brutal-hover transition-all hover:bg-panelGray">
+                        VER MATERIALES
+                    </a>
+                </div>
+            </div>
+
+            <!-- Gráfico / Ilustración Hero -->
+            <div class="relative flex justify-center lg:justify-end">
+                <div class="w-full max-w-md aspect-square bg-brandGreen border-4 border-baseBlack shadow-brutal p-8 transform rotate-3 hover:rotate-0 transition-transform duration-500 flex flex-col justify-center items-center text-center">
+                    <i class="fa-solid fa-layer-group text-8xl text-baseBlack mb-6"></i>
+                    <h3 class="font-black text-2xl uppercase border-b-4 border-baseBlack pb-2 inline-block">Die-Cut Perfecto</h3>
+                    <p class="font-mono font-bold text-sm mt-4">Cortamos exactamente por la silueta de tus vectores, sin importar la complejidad.</p>
+                </div>
+                
+                <!-- Decoración Flotante -->
+                <div class="absolute -bottom-8 -left-8 bg-brandPink border-4 border-baseBlack shadow-brutal text-white font-mono font-bold p-4 transform -rotate-6 animate-bounce">
+                    ¡ENVÍOS A TODO MX! 🚀
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CINTA DE TEXTO INFINITO (TICKER) -->
+    <div class="w-full bg-baseBlack border-b-4 border-baseBlack overflow-hidden py-3 relative z-20">
+        <div class="animate-marquee inline-block text-brandGreen font-mono font-black text-2xl tracking-widest uppercase">
+            &nbsp;/// IMPRESIÓN DIGITAL /// CORTE MILIMÉTRICO /// VINIL PREMIUM /// HOLOGRÁFICO /// LAMINADO UV /// GRISFOSFORESCENTE.COM.MX /// CALIDAD BRUTAL 
+            /// IMPRESIÓN DIGITAL /// CORTE MILIMÉTRICO /// VINIL PREMIUM /// HOLOGRÁFICO /// LAMINADO UV /// GRISFOSFORESCENTE.COM.MX /// CALIDAD BRUTAL 
+        </div>
+    </div>
+
+    <!-- SECCIÓN DE CARACTERÍSTICAS -->
+    <section id="caracteristicas" class="w-full bg-panelGray border-b-4 border-baseBlack py-16 md:py-24 relative z-10">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-black uppercase tracking-tight text-baseBlack">Armamento de Taller</h2>
+                <p class="font-mono font-bold text-textMuted mt-4 uppercase tracking-widest">Lo que usamos para que tus stickers duren.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-baseWhite border-4 border-baseBlack p-8 shadow-brutal hover:-translate-y-2 transition-transform duration-300">
+                    <div class="w-16 h-16 bg-baseBlack text-brandGreen flex items-center justify-center text-2xl border-2 border-baseBlack mb-6 shadow-brutal-sm">
+                        <i class="fa-solid fa-droplet"></i>
+                    </div>
+                    <h3 class="font-black text-xl uppercase mb-3">Vinil Premium</h3>
+                    <p class="font-mono text-sm font-bold text-textMuted">Impresión inyectada sobre vinilo blanco brillante o mate de alta adherencia. Resistente al agua y al sol.</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="bg-baseWhite border-4 border-baseBlack p-8 shadow-brutal hover:-translate-y-2 transition-transform duration-300 relative overflow-hidden">
+                    <div class="absolute -right-6 -top-6 bg-brandPink text-white font-mono font-bold text-[10px] px-8 py-1 transform rotate-45 border-2 border-baseBlack shadow-brutal-sm z-10">
+                        TOP VENTAS
+                    </div>
+                    <div class="w-16 h-16 bg-brandGreen text-baseBlack flex items-center justify-center text-2xl border-2 border-baseBlack mb-6 shadow-brutal-sm">
+                        <i class="fa-solid fa-gem"></i>
+                    </div>
+                    <h3 class="font-black text-xl uppercase mb-3">Holográfico</h3>
+                    <p class="font-mono text-sm font-bold text-textMuted">Dale un efecto arcoíris reactivo a la luz a tus diseños. Ideal para marcas streetwear, bandas e ilustradores.</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="bg-baseWhite border-4 border-baseBlack p-8 shadow-brutal hover:-translate-y-2 transition-transform duration-300">
+                    <div class="w-16 h-16 bg-brandYellow text-baseBlack flex items-center justify-center text-2xl border-2 border-baseBlack mb-6 shadow-brutal-sm">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h3 class="font-black text-xl uppercase mb-3">Laminado Extra</h3>
+                    <p class="font-mono text-sm font-bold text-textMuted">Capa plástica protectora extra. Convierte tus stickers en escudos a prueba de rayones, fricción y decoloración UV.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMPONENTE PRINCIPAL (STICKER STUDIO) -->
+    <main id="editor" class="max-w-7xl mx-auto px-4 py-16 md:py-24 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mt-4 scroll-mt-24">
         
         <!-- COLUMNA IZQUIERDA: Herramientas y Ajustes (lg:col-span-5) -->
         <section class="lg:col-span-5 bg-baseWhite p-6 border-4 border-baseBlack shadow-brutal space-y-6 max-h-[calc(100vh-140px)] overflow-y-auto">
@@ -330,6 +445,31 @@
             </div>
         </section>
     </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-baseBlack text-baseWhite border-t-4 border-baseBlack py-12 mt-12">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+            <div class="space-y-2">
+                <h3 class="font-black text-2xl tracking-widest uppercase">GRISFOSFORESCENTE</h3>
+                <p class="font-mono text-xs text-gray-400">Taller de impresión y Pre-prensa.</p>
+            </div>
+            <div class="flex gap-4 md:justify-center">
+                <a href="#" class="w-10 h-10 border-2 border-baseWhite flex items-center justify-center hover:bg-brandGreen hover:border-brandGreen hover:text-baseBlack transition-colors">
+                    <i class="fa-brands fa-instagram text-xl"></i>
+                </a>
+                <a href="#" class="w-10 h-10 border-2 border-baseWhite flex items-center justify-center hover:bg-brandPink hover:border-brandPink transition-colors">
+                    <i class="fa-brands fa-tiktok text-xl"></i>
+                </a>
+                <a href="#" class="w-10 h-10 border-2 border-baseWhite flex items-center justify-center hover:bg-brandYellow hover:border-brandYellow hover:text-baseBlack transition-colors">
+                    <i class="fa-brands fa-whatsapp text-xl"></i>
+                </a>
+            </div>
+            <div class="md:text-right font-mono text-[10px] text-gray-500 uppercase font-bold space-y-1">
+                <p>© 2026 GRISFOSFORESCENTE.COM.MX</p>
+                <p>Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
 
     <!-- PANEL DESLIZANTE DEL CARRITO (CART DRAWER) -->
     <div id="cart-drawer" class="fixed inset-y-0 right-0 w-full max-w-md bg-baseWhite border-l-4 border-baseBlack z-50 shadow-2xl flex flex-col translate-x-full transition-transform duration-300 ease-in-out font-mono">
@@ -672,7 +812,7 @@
             const prices = calcularPrecio(APP_STATE.selectedSize, heightCm, APP_STATE.quantity, APP_STATE.material, APP_STATE.laminado, APP_STATE.corteFisico);
             
             document.getElementById('rendimiento-info').innerHTML = 
-                `Rendimiento: <span class="bg-baseBlack text-baseWhite px-1">${prices.pzPorPlanilla} pz</span> por planilla útil.<br>
+                `Caben <span class="text-brandPink font-bold px-1">${prices.pzPorPlanilla} pz</span> por planilla útil.<br>
                  Costo unitario: <strong class="text-baseBlack border-b border-baseBlack">$${prices.unitPrice} MXN</strong><br>
                  Total de línea: <strong class="text-baseBlack text-sm border-b-2 border-brandPink">$${prices.total} MXN</strong>`;
         }
