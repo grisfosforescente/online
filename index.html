@@ -196,28 +196,30 @@
     <div id="view-sticker" class="block">
         <!-- LANDING PAGE HERO -->
         <main id="home">
-            <section class="border-b-[6px] border-baseBlack bg-baseWhite pt-16 pb-20 px-6 relative overflow-hidden">
-                <div class="max-w-6xl mx-auto text-center relative z-10">
-                    <div class="inline-block bg-brandGreen text-baseBlack font-black px-4 py-1 mb-6 border-2 border-baseBlack shadow-brutal-sm transform -rotate-2">
+            <!-- SECCIÓN MÁS COMPACTA (pt-10 pb-12) -->
+            <section class="border-b-[6px] border-baseBlack bg-baseWhite pt-10 pb-12 px-6 relative overflow-hidden">
+                <div class="max-w-5xl mx-auto text-center relative z-10">
+                    <div class="inline-block bg-brandGreen text-baseBlack font-black px-3 py-1 mb-4 text-xs md:text-sm border-2 border-baseBlack shadow-brutal-sm transform -rotate-1">
                         NUEVA EXPERIENCIA DE COMPRA
                     </div>
-                    <h1 class="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-[0.9] mb-6">
-                        Taller de <span class="text-transparent" style="-webkit-text-stroke: 2px #000;">Stickers y<br>Etiquetas Adhesivas</span>
+                    <!-- Textos ligeramente reducidos -->
+                    <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-[0.95] mb-4">
+                        Taller de <span class="text-transparent" style="-webkit-text-stroke: 2px #000;">Stickers y Etiquetas</span>
                     </h1>
-                    <p class="text-lg md:text-xl font-medium text-textMuted max-w-2xl mx-auto mb-10">
-                        Sube tu diseño, visualiza los cortes de contorno en tiempo real y obtén tu plano técnico. 
-                        <br><strong class="text-baseBlack bg-brandGreen px-1 mt-2 inline-block">Envíos desde $130 MXN</strong>. Pide el cálculo de envío a tu vendedor.
+                    <p class="text-base md:text-lg font-medium text-textMuted max-w-2xl mx-auto mb-6">
+                        Sube tu diseño, visualiza los cortes en tiempo real y obtén tu plano técnico. 
+                        <strong class="text-baseBlack bg-brandGreen px-1 inline-block mt-1">Envíos desde $130 MXN</strong>.
                     </p>
                     <div class="flex flex-col sm:flex-row items-center justify-center gap-4 font-bold">
-                        <a href="#cotizador" class="w-full sm:w-auto bg-brandGreen text-baseBlack border-[3px] border-baseBlack px-8 py-4 text-lg rounded-full shadow-brutal shadow-brutal-hover transition-all">
+                        <a href="#cotizador" class="w-full sm:w-auto bg-brandGreen text-baseBlack border-[3px] border-baseBlack px-8 py-3 text-base rounded-full shadow-brutal shadow-brutal-hover transition-all">
                             Cotiza On Line
                         </a>
                     </div>
                 </div>
                 
                 <!-- Decoración Técnica de Fondo -->
-                <div class="absolute top-10 left-10 w-24 h-24 border-t-4 border-l-4 border-baseBlack opacity-20 hidden md:block"></div>
-                <div class="absolute bottom-10 right-10 w-24 h-24 border-b-4 border-r-4 border-baseBlack opacity-20 hidden md:block"></div>
+                <div class="absolute top-6 left-6 w-16 h-16 border-t-4 border-l-4 border-baseBlack opacity-20 hidden md:block"></div>
+                <div class="absolute bottom-6 right-6 w-16 h-16 border-b-4 border-r-4 border-baseBlack opacity-20 hidden md:block"></div>
             </section>
 
             <!-- CINTA ANIMADA (MARQUEE) -->
@@ -1038,6 +1040,80 @@
             </div>
         </main>
     </div>
+
+    <!-- MODAL DE PROMOCIONES GLOBAL -->
+    <div id="promo-modal" class="fixed inset-0 bg-baseBlack/80 backdrop-blur-sm z-[60] flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+        <div id="promo-modal-content" class="bg-baseWhite border-[4px] border-baseBlack max-w-4xl w-full p-6 md:p-8 relative flex flex-col shadow-brutal scale-95 transition-transform duration-300 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center pb-4 border-b-[3px] border-baseBlack mb-6">
+                <h3 class="font-black text-2xl uppercase tracking-tighter flex items-center gap-3">
+                    <i class="fa-solid fa-tag text-brandPink"></i> Promociones Activas
+                </h3>
+                <button onclick="closePromosModal()" class="text-baseBlack hover:text-brandPink bg-gray-100 hover:bg-gray-200 border-2 border-baseBlack w-10 h-10 rounded-full flex items-center justify-center transition-colors shadow-brutal-sm">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="border-[3px] border-baseBlack shadow-brutal-sm overflow-hidden bg-gray-100 flex items-center justify-center relative aspect-[3/4] hover:shadow-brutal transition-all">
+                    <img src="promo1.png" alt="Promoción 1" class="w-full h-full object-cover" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'533\'><rect width=\'400\' height=\'533\' fill=\'%23f3f4f6\'/><text x=\'50%\' y=\'50%\' font-family=\'monospace\' font-size=\'24\' font-weight=\'bold\' text-anchor=\'middle\' alignment-baseline=\'middle\' fill=\'%239ca3af\'>PROMO1.PNG</text></svg>'">
+                </div>
+                <div class="border-[3px] border-baseBlack shadow-brutal-sm overflow-hidden bg-gray-100 flex items-center justify-center relative aspect-[3/4] hover:shadow-brutal transition-all">
+                    <img src="promo2.png" alt="Promoción 2" class="w-full h-full object-cover" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'533\'><rect width=\'400\' height=\'533\' fill=\'%23f3f4f6\'/><text x=\'50%\' y=\'50%\' font-family=\'monospace\' font-size=\'24\' font-weight=\'bold\' text-anchor=\'middle\' alignment-baseline=\'middle\' fill=\'%239ca3af\'>PROMO2.PNG</text></svg>'">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PANEL DESLIZANTE DEL CARRITO GLOBAL (Sticker Studio) -->
+    <div id="cart-drawer" class="fixed inset-y-0 right-0 w-full max-w-md bg-gray-50 border-l-[3px] border-baseBlack z-50 shadow-2xl flex flex-col translate-x-full transition-transform duration-300 ease-in-out">
+        <div class="p-6 border-b-[3px] border-baseBlack flex justify-between items-center bg-baseWhite">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-brandGreen border-2 border-baseBlack flex items-center justify-center rounded-full">
+                    <i class="fa-solid fa-basket-shopping text-baseBlack text-sm"></i>
+                </div>
+                <h3 class="font-bold text-lg text-baseBlack uppercase tracking-tight">TU ORDEN</h3>
+            </div>
+            <button onclick="toggleCartDrawer()" class="text-textMuted hover:text-baseBlack bg-gray-100 hover:bg-gray-200 w-10 h-10 rounded-full border border-borderGray flex items-center justify-center transition-colors">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+        </div>
+        
+        <div id="cart-items-container" class="flex-1 overflow-y-auto p-6 space-y-4">
+            <div class="flex flex-col items-center justify-center text-center py-24 space-y-4">
+                <div class="w-16 h-16 border-2 border-dashed border-gray-300 bg-baseWhite rounded-2xl flex items-center justify-center text-gray-400">
+                    <i class="fa-solid fa-folder-open text-2xl"></i>
+                </div>
+                <div>
+                    <p class="text-sm font-bold text-baseBlack">ORDEN VACÍA</p>
+                    <p class="text-xs text-textMuted mt-1">Configura tus dimensiones y haz clic en "Agregar a la Orden".</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="p-6 border-t-[3px] border-baseBlack bg-baseWhite space-y-4">
+            <div class="flex justify-between items-center text-sm">
+                <span class="text-textMuted font-bold">Total diseños:</span>
+                <span id="cart-total-qty" class="text-baseBlack font-black bg-gray-100 px-2 py-1 rounded">0 uds</span>
+            </div>
+            <div class="flex justify-between items-center text-sm border-b-2 border-gray-100 pb-4">
+                <span class="text-textMuted font-bold">Costo de Sustratos:</span>
+                <span id="cart-total-price" class="text-brandPink font-black text-xl">$0.00 MXN</span>
+            </div>
+            <div class="grid grid-cols-2 gap-3 pt-2">
+                <button onclick="vaciarCarrito()" class="py-3 text-xs font-bold rounded-xl border-2 border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-colors">
+                    ELIMINAR TODO
+                </button>
+                <button onclick="procesarCompra()" class="py-3 text-xs font-bold rounded-xl bg-brandGreen border-2 border-baseBlack text-baseBlack hover:bg-baseBlack hover:text-brandGreen shadow-brutal-sm transition-all flex items-center justify-center gap-1.5">
+                    <i class="fa-solid fa-file-arrow-down text-sm"></i> TICKET
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Fondo oscuro desenfocado de protección para el Drawer y Modales -->
+    <div id="cart-backdrop" class="fixed inset-0 bg-baseBlack/60 backdrop-blur-sm z-40 hidden opacity-0 transition-opacity duration-300" onclick="toggleCartDrawer()"></div>
+
+    <!-- TOAST STICKER STUDIO -->
+    <div id="toast-container" class="fixed bottom-6 right-6 z-50 pointer-events-none space-y-2"></div>
 
     <!-- SCRIPT STICKER STUDIO Y RUTEO SPA -->
     <script>
