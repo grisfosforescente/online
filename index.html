@@ -84,8 +84,10 @@
             
             <div class="flex items-center gap-6">
                 <!-- Enlaces de Navegación -->
-                <nav class="flex items-center gap-6 text-baseWhite font-bold text-sm tracking-wide">
+                <nav class="flex items-center gap-4 md:gap-6 text-baseWhite font-bold text-[11px] md:text-sm tracking-wide">
                     <a href="#home" class="hover:text-brandGreen transition-colors">INICIO</a>
+                    <button onclick="openPromosModal()" class="hover:text-brandPink transition-colors uppercase">PROMOCIONES</button>
+                    <a href="https://grisfosforescente.github.io/escolares2026/" target="_blank" class="hover:text-brandGreen transition-colors uppercase text-center">ESCOLARES 2026</a>
                     <a href="https://wa.me/message/LOS67PCNOUMBM1" target="_blank" class="hover:text-brandPink transition-colors flex items-center gap-1.5">
                         <i class="fa-brands fa-whatsapp text-lg"></i>
                         <span class="hidden md:inline">COTIZA CON UN AGENTE</span>
@@ -94,16 +96,16 @@
                 </nav>
             </div>
             
-            <div class="flex items-center gap-6">
+            <div class="flex items-center gap-4 md:gap-6">
                 <!-- Botón de Carrito -->
                 <button onclick="toggleCartDrawer()" class="relative flex items-center gap-2 text-baseWhite hover:text-brandGreen transition-colors font-bold text-sm tracking-wide">
                     <i class="fa-solid fa-cart-shopping text-lg"></i>
-                    <span>CARRITO</span>
+                    <span class="hidden md:inline">CARRITO</span>
                     <span id="cart-badge" class="hidden absolute -top-2 -right-3 bg-brandPink text-baseWhite text-[10px] font-black px-1.5 py-0.5 rounded-full shadow-md">0</span>
                 </button>
 
                 <!-- Botón Principal "Cotizar Online" (Estilo Sticker Studio original) -->
-                <a href="#cotizador" class="relative bg-baseBlack text-brandGreen border-2 border-brandGreen px-6 py-2 font-bold text-sm hover:bg-brandGreen hover:text-baseBlack transition-colors">
+                <a href="#cotizador" class="relative bg-baseBlack text-brandGreen border-2 border-brandGreen px-4 md:px-6 py-2 font-bold text-xs md:text-sm hover:bg-brandGreen hover:text-baseBlack transition-colors text-center">
                     Cotiza On Line
                     <span class="absolute -top-3 -right-3 bg-gray-600 text-white text-[9px] font-bold px-2 py-1 rounded-full border-2 border-baseBlack">NUEVO</span>
                 </a>
@@ -181,7 +183,7 @@
                         <p class="text-sm text-textMuted font-medium mb-4">Fondo invisible para que tu diseño resalte. Ideal para cristales, empaques y envases.</p>
                         <div class="text-xl font-black text-brandPink">$160 <span class="text-xs text-baseBlack">/ planilla base</span></div>
                     </div>
-                    <!-- Card 2 -->
+                    <!-- Card 3 -->
                     <div class="bg-baseWhite border-[3px] border-baseBlack p-6 shadow-brutal transition-transform hover:-translate-y-1">
                         <div class="w-12 h-12 bg-baseBlack text-brandGreen border-2 border-baseBlack flex items-center justify-center mb-4 rounded-full">
                             <i class="fa-solid fa-gem text-xl"></i>
@@ -190,7 +192,7 @@
                         <p class="text-sm text-textMuted font-medium mb-4">Efecto arcoíris premium que cambia con la luz. Ideal para dar un toque exclusivo a tu marca.</p>
                         <div class="text-xl font-black text-brandPink">$240 <span class="text-xs text-baseBlack">/ planilla base</span></div>
                     </div>
-                    <!-- Card 3 -->
+                    <!-- Card 4 -->
                     <div class="bg-baseWhite border-[3px] border-baseBlack p-6 shadow-brutal transition-transform hover:-translate-y-1">
                         <div class="w-12 h-12 bg-brandPink text-baseWhite border-2 border-baseBlack flex items-center justify-center mb-4 rounded-full">
                             <i class="fa-solid fa-layer-group text-xl"></i>
@@ -467,7 +469,7 @@
 
                 <!-- Botones de Acción -->
                 <div class="grid grid-cols-1 gap-4 pt-2">
-                    <!-- Botón Añadir al Carrito con estilo verde redondeado como solicitaste -->
+                    <!-- Botón Añadir al Carrito con estilo verde redondeado -->
                     <button onclick="agregarAlCarrito()" class="w-full bg-brandGreen hover:bg-brandGreen/90 text-baseBlack font-bold text-sm py-4 px-8 rounded-full border-2 border-baseBlack shadow-brutal shadow-brutal-hover flex items-center justify-center gap-2 transition-all">
                         <i class="fa-solid fa-circle-plus text-lg"></i> AGREGAR A LA ORDEN DE CORTE
                     </button>
@@ -496,6 +498,28 @@
             </div>
         </div>
     </footer>
+
+    <!-- MODAL DE PROMOCIONES -->
+    <div id="promo-modal" class="fixed inset-0 bg-baseBlack/80 backdrop-blur-sm z-[60] flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+        <div id="promo-modal-content" class="bg-baseWhite border-[4px] border-baseBlack max-w-4xl w-full p-6 md:p-8 relative flex flex-col shadow-brutal scale-95 transition-transform duration-300 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center pb-4 border-b-[3px] border-baseBlack mb-6">
+                <h3 class="font-black text-2xl uppercase tracking-tighter flex items-center gap-3">
+                    <i class="fa-solid fa-tag text-brandPink"></i> Promociones Activas
+                </h3>
+                <button onclick="closePromosModal()" class="text-baseBlack hover:text-brandPink bg-gray-100 hover:bg-gray-200 border-2 border-baseBlack w-10 h-10 rounded-full flex items-center justify-center transition-colors shadow-brutal-sm">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="border-[3px] border-baseBlack shadow-brutal-sm overflow-hidden bg-gray-100 flex items-center justify-center relative aspect-[3/4] hover:shadow-brutal transition-all">
+                    <img src="promo1.png" alt="Promoción 1" class="w-full h-full object-cover" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'533\'><rect width=\'400\' height=\'533\' fill=\'%23f3f4f6\'/><text x=\'50%\' y=\'50%\' font-family=\'monospace\' font-size=\'24\' font-weight=\'bold\' text-anchor=\'middle\' alignment-baseline=\'middle\' fill=\'%239ca3af\'>PROMO1.PNG</text></svg>'">
+                </div>
+                <div class="border-[3px] border-baseBlack shadow-brutal-sm overflow-hidden bg-gray-100 flex items-center justify-center relative aspect-[3/4] hover:shadow-brutal transition-all">
+                    <img src="promo2.png" alt="Promoción 2" class="w-full h-full object-cover" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'533\'><rect width=\'400\' height=\'533\' fill=\'%23f3f4f6\'/><text x=\'50%\' y=\'50%\' font-family=\'monospace\' font-size=\'24\' font-weight=\'bold\' text-anchor=\'middle\' alignment-baseline=\'middle\' fill=\'%239ca3af\'>PROMO2.PNG</text></svg>'">
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- PANEL DESLIZANTE DEL CARRITO (CART DRAWER) -->
     <div id="cart-drawer" class="fixed inset-y-0 right-0 w-full max-w-md bg-gray-50 border-l-[3px] border-baseBlack z-50 shadow-2xl flex flex-col translate-x-full transition-transform duration-300 ease-in-out">
@@ -547,7 +571,7 @@
         </div>
     </div>
     
-    <!-- Fondo oscuro desenfocado de protección para el Drawer -->
+    <!-- Fondo oscuro desenfocado de protección para el Drawer y Modales -->
     <div id="cart-backdrop" class="fixed inset-0 bg-baseBlack/60 backdrop-blur-sm z-40 hidden opacity-0 transition-opacity duration-300" onclick="toggleCartDrawer()"></div>
 
     <div id="toast-container" class="fixed bottom-6 right-6 z-50 pointer-events-none space-y-2"></div>
@@ -588,13 +612,13 @@
                         <!-- Contorno oscuro/borde -->
                         <path d="M50 85 C35 85, 20 70, 20 45 C20 15, 35 5, 50 5 C65 5, 80 15, 80 45 C80 70, 65 85, 50 85 Z" fill="#222222"/>
                         <!-- Cara verde -->
-                        <path d="M50 82 C37 82, 23 68, 23 45 C23 18, 37 8, 50 8 C63 8, 77 18, 77 45 C77 68, 63 82, 50 82 Z" fill="#00cc00"/>
+                        <path d="M50 82 C37 82, 23 68, 23 45 C23 18, 37 8, 50 8 C63 8, 77 18, 77 45 C77 68, 63 82, 50 82 Z" fill="#4ade80"/>
                         <!-- Ojo izquierdo negro -->
                         <path d="M30 45 C30 35, 38 42, 45 48 C45 55, 35 60, 30 45 Z" fill="#1a1a1a"/>
                         <!-- Ojo derecho negro -->
                         <path d="M70 45 C70 35, 62 42, 55 48 C55 55, 65 60, 70 45 Z" fill="#1a1a1a"/>
                         <!-- Boca sutil -->
-                        <path d="M47 70 Q50 72 53 70" fill="none" stroke="#008000" stroke-width="1.5" stroke-linecap="round"/>
+                        <path d="M47 70 Q50 72 53 70" fill="none" stroke="#22c55e" stroke-width="1.5" stroke-linecap="round"/>
                     </g>
                 </defs>
 
@@ -1433,6 +1457,27 @@
         let angleOffset = 0;
         function animateLoop() {
             requestAnimationFrame(animateLoop);
+        }
+
+        // --- SISTEMA DE MODAL DE PROMOCIONES ---
+        function openPromosModal() {
+            const modal = document.getElementById('promo-modal');
+            const content = document.getElementById('promo-modal-content');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                content.classList.remove('scale-95');
+            }, 10);
+        }
+
+        function closePromosModal() {
+            const modal = document.getElementById('promo-modal');
+            const content = document.getElementById('promo-modal-content');
+            modal.classList.add('opacity-0');
+            content.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
         }
     </script>
 </body>
