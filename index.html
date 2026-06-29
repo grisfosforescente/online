@@ -206,31 +206,50 @@
                 </div>
             </div>
 
-            <!-- ⑤ PANEL: VOLUMEN DE TIRADA -->
-            <div class="space-y-3 border-t border-consoleBorder pt-5">
+            <!-- ⑤ PANEL NUEVO: MATERIAL Y ACABADOS -->
+            <div class="space-y-4 border-t border-consoleBorder pt-5">
                 <div class="flex items-center gap-2 text-xs font-mono tracking-wider text-gray-400 uppercase">
                     <span class="bg-zinc-800 text-phosphor w-5 h-5 flex items-center justify-center font-bold">05</span>
-                    Cantidad Requerida
+                    Sustrato y Acabados (Por Planilla)
                 </div>
                 
-                <div id="qty-button-group" class="grid grid-cols-3 gap-2">
-                    <button id="qty-10" onclick="setQuantity(10)" class="py-2 text-xs font-mono border-2 border-phosphor bg-phosphor/10 text-phosphor font-bold transition-all">10 uds</button>
-                    <button id="qty-50" onclick="setQuantity(50)" class="py-2 text-xs font-mono border border-consoleBorder hover:border-zinc-500 bg-matteBlack/20 text-zinc-300 transition-all">50 uds</button>
-                    <button id="qty-custom" onclick="triggerCustomQuantity()" class="py-2 text-xs font-mono border border-consoleBorder hover:border-zinc-500 bg-matteBlack/20 text-zinc-300 transition-all flex items-center justify-center gap-1">
-                        <span id="custom-qty-text">✏️ Otro</span>
-                    </button>
+                <div class="grid grid-cols-2 gap-2">
+                    <button id="mat-standard" onclick="setMaterial('standard')" class="py-2 px-2 text-[10px] font-mono border-2 border-phosphor bg-phosphor/10 text-phosphor font-bold transition-all">Blanco ($140/pl)</button>
+                    <button id="mat-holo" onclick="setMaterial('holo')" class="py-2 px-2 text-[10px] font-mono border border-consoleBorder hover:border-zinc-500 bg-matteBlack/20 text-zinc-300 transition-all">Holográfico ($240/pl)</button>
                 </div>
+                
+                <div class="grid grid-cols-2 gap-2 mt-1">
+                    <label class="flex items-center gap-2 cursor-pointer p-2 border border-consoleBorder hover:border-zinc-500 bg-matteBlack/20 transition-colors">
+                        <input type="checkbox" id="check-laminado" onchange="toggleLaminado(this.checked)" class="accent-phosphor w-3 h-3">
+                        <span class="text-[10px] font-mono text-zinc-300">Laminado (+$70)</span>
+                    </label>
+                    <label class="flex items-center gap-2 cursor-pointer p-2 border border-consoleBorder hover:border-zinc-500 bg-matteBlack/20 transition-colors">
+                        <input type="checkbox" id="check-corte" onchange="toggleCorteFisico(this.checked)" class="accent-phosphor w-3 h-3">
+                        <span class="text-[10px] font-mono text-zinc-300 leading-tight">Corte Final (+$60)</span>
+                    </label>
+                </div>
+            </div>
 
-                <!-- Entrada Manual de Cantidad Inline -->
-                <div id="custom-qty-input-container" class="mt-3 hidden transition-all duration-300">
-                    <div class="flex items-center gap-2 bg-matteBlack border border-consoleBorder p-1.5">
-                        <span class="text-[10px] font-mono uppercase text-zinc-500 pl-2">Cantidad:</span>
-                        <input type="number" id="custom-qty-input" min="1" step="1" placeholder="Ej: 100" class="bg-transparent text-xs font-mono text-white outline-none w-full font-bold">
-                        <span class="text-xs text-zinc-400 font-mono pr-2">uds</span>
-                        <button onclick="applyCustomQuantity()" class="bg-phosphor hover:bg-phosphor/80 text-matteBlack text-xs font-mono font-bold px-4 py-2 transition-colors shrink-0">
-                            Fijar
-                        </button>
+            <!-- ⑥ PANEL ACTUALIZADO: VOLUMEN DE TIRADA -->
+            <div class="space-y-4 border-t border-consoleBorder pt-5">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-2 text-xs font-mono tracking-wider text-gray-400 uppercase">
+                        <span class="bg-zinc-800 text-phosphor w-5 h-5 flex items-center justify-center font-bold">06</span>
+                        Tiraje / Volumen
                     </div>
+                    <span class="text-[9px] font-mono text-zinc-500">10 a 999 PZ</span>
+                </div>
+                
+                <div class="flex items-center gap-4">
+                    <input type="range" id="qty-slider" min="10" max="999" value="10" class="w-full h-1 bg-matteBlack appearance-none cursor-pointer accent-phosphor">
+                    <div class="flex items-center gap-1 bg-matteBlack border border-consoleBorder px-2 py-1.5 shrink-0">
+                        <input type="number" id="qty-input" min="10" max="999" value="10" class="bg-transparent text-xs text-white outline-none w-12 font-mono font-bold text-center">
+                        <span class="text-[9px] text-zinc-500 font-mono">PZ</span>
+                    </div>
+                </div>
+                
+                <div id="rendimiento-info" class="text-[10px] text-zinc-400 font-mono bg-consoleBg/50 p-2.5 border border-consoleBorder/50 leading-relaxed">
+                    Carga un diseño para calcular el rendimiento de piezas por planilla útil (42x45 cm).
                 </div>
             </div>
 
@@ -302,11 +321,7 @@
             </div>
 
             <!-- Botones de Acción Brutalistas -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <!-- Botón Ficha Técnica -->
-                <button onclick="openExportModal()" class="w-full bg-matteBlack hover:bg-zinc-900 border-2 border-consoleBorder text-gray-200 hover:text-white font-mono font-bold text-xs py-4 px-6 flex items-center justify-center gap-2 transition-all hover:border-phosphor/40">
-                    <i class="fa-solid fa-file-invoice text-phosphor"></i> EXPORTAR FICHA TÉCNICA
-                </button>
+            <div class="grid grid-cols-1 gap-4">
                 <!-- Botón Añadir al Carrito -->
                 <button onclick="agregarAlCarrito()" class="w-full bg-phosphor hover:bg-phosphor/90 text-matteBlack font-mono font-bold text-xs py-4 px-6 flex items-center justify-center gap-2 transition-all">
                     <i class="fa-solid fa-circle-plus"></i> AGREGAR A LA ORDEN DE CORTE
@@ -318,100 +333,6 @@
             </div>
         </section>
     </main>
-
-    <!-- MODAL DE EXPORTACIÓN (Ficha técnica del ítem actual) -->
-    <div id="export-modal" class="fixed inset-0 bg-matteBlack/95 z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
-        <div class="bg-consoleBg border-2 border-consoleBorder max-w-4xl w-full p-6 md:p-8 space-y-6 relative flex flex-col shadow-2xl scale-95 transition-transform duration-300" id="export-modal-content">
-            
-            <!-- Encabezado del Modal -->
-            <div class="flex justify-between items-center pb-4 border-b border-consoleBorder">
-                <div class="font-mono">
-                    <h3 class="font-bold text-base text-white uppercase tracking-wider">Planos de Corte / Ficha Técnica</h3>
-                    <p class="text-[11px] text-zinc-500 uppercase">Verificación de coordenadas del vector de sustrato</p>
-                </div>
-                <button onclick="closeExportModal()" class="text-zinc-500 hover:text-white bg-matteBlack w-8 h-8 border border-consoleBorder flex items-center justify-center transition-colors">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-            </div>
-
-            <!-- CONTENEDOR DE LA FICHA -->
-            <div id="spec-card-to-export" class="bg-matteBlack p-6 md:p-8 border border-consoleBorder flex flex-col md:flex-row gap-8 items-stretch relative">
-                
-                <!-- Columna Izquierda: Vista Previa Real con retícula -->
-                <div class="flex-1 flex flex-col justify-center items-center relative min-h-[280px] bg-consoleBg border border-consoleBorder/50 p-4 blueprint-grid">
-                    <canvas id="modal-sticker-canvas" width="400" height="400" class="max-w-full max-h-[300px] drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)]"></canvas>
-                </div>
-
-                <!-- Línea Divisoria Vertical minimalista -->
-                <div class="hidden md:block w-px bg-consoleBorder"></div>
-
-                <!-- Columna Derecha: Tarjeta de Especificaciones de Diseño del Sticker -->
-                <div class="w-full md:w-[320px] flex flex-col justify-between space-y-6 font-mono">
-                    <div>
-                        <h4 class="font-bold text-xl text-phosphor tracking-tight">VECTORES DE CORTE</h4>
-                        <p class="text-[10px] text-zinc-500">GRISFOSFORESCENTE.COM.MX</p>
-                        
-                        <!-- Lista de Especificaciones -->
-                        <div class="mt-4 space-y-3">
-                            <!-- CORTE -->
-                            <div class="bg-consoleBg/80 p-2.5 border border-consoleBorder">
-                                <span class="text-[9px] font-bold text-zinc-500 tracking-wider uppercase">TIPO DE TROQUEL</span>
-                                <div id="spec-cut-value" class="text-white font-bold text-xs mt-0.5 uppercase">Personalizado (Die-cut)</div>
-                            </div>
-                            
-                            <!-- DIMENSIONES -->
-                            <div class="bg-consoleBg/80 p-2.5 border border-consoleBorder">
-                                <span class="text-[9px] font-bold text-zinc-500 tracking-wider uppercase">DIMENSIÓN FINAL</span>
-                                <div id="spec-dimensions-value" class="text-white font-bold text-xs mt-0.5">10 × 10 cm</div>
-                            </div>
-
-                            <!-- BORDE -->
-                            <div class="bg-consoleBg/80 p-2.5 border border-consoleBorder">
-                                <span class="text-[9px] font-bold text-zinc-500 tracking-wider uppercase">MARGEN DE VECTORES</span>
-                                <div id="spec-border-value" class="text-white font-bold text-xs mt-0.5">1.2 mm</div>
-                            </div>
-
-                            <!-- CANTIDAD -->
-                            <div class="bg-consoleBg/80 p-2.5 border border-consoleBorder">
-                                <span class="text-[9px] font-bold text-zinc-500 tracking-wider uppercase">VOLUMEN DE IMPRESIÓN</span>
-                                <div id="spec-qty-value" class="text-white font-bold text-xs mt-0.5">10 unidades</div>
-                            </div>
-
-                            <!-- COLOR DEL BORDE -->
-                            <div class="bg-consoleBg/80 p-2.5 border border-consoleBorder flex items-center justify-between">
-                                <div>
-                                    <span class="text-[9px] font-bold text-zinc-500 tracking-wider uppercase">COLOR DEL SUSTRATO</span>
-                                    <div id="spec-border-color-text" class="text-white font-mono font-bold text-xs mt-0.5 uppercase">#FFFFFF</div>
-                                </div>
-                                <div id="spec-border-color-block" class="w-6 h-6 border border-consoleBorder" style="background-color: #ffffff;"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Watermark / Footer de la tarjeta -->
-                    <div class="flex justify-between items-end text-left pt-2 border-t border-consoleBorder/40">
-                        <div class="text-[9px] text-zinc-500 space-y-0.5">
-                            <div id="spec-filename-watermark" class="truncate max-w-[200px] font-bold text-zinc-400">sticker_diseno_transparent.png</div>
-                            <div id="spec-date-watermark">28 jun 2026 • 11:51</div>
-                        </div>
-                        <div class="text-phosphor font-mono font-bold text-sm tracking-tighter">
-                            GRISFOSFORESCENTE
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Botones de Acción de Exportación -->
-            <div class="flex flex-col sm:flex-row justify-end gap-3 pt-4 border-t border-consoleBorder font-mono">
-                <button onclick="closeExportModal()" class="px-5 py-3 bg-matteBlack text-xs font-semibold hover:bg-zinc-900 border border-consoleBorder transition-all">
-                    CANCELAR
-                </button>
-                <button onclick="downloadFicha()" class="px-6 py-3 bg-phosphor hover:bg-phosphor/90 text-matteBlack text-xs font-bold transition-all flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-circle-down"></i> DESCARGAR FICHA TÉCNICA (PNG)
-                </button>
-            </div>
-        </div>
-    </div>
 
     <!-- PANEL DESLIZANTE DEL CARRITO (CART DRAWER) -->
     <div id="cart-drawer" class="fixed inset-y-0 right-0 w-full max-w-md bg-consoleBg border-l-2 border-consoleBorder z-50 shadow-2xl flex flex-col translate-x-full transition-transform duration-300 ease-in-out font-mono">
@@ -429,13 +350,13 @@
         <!-- Lista de Stickers en el Carrito (Scrolleable) -->
         <div id="cart-items-container" class="flex-1 overflow-y-auto p-6 space-y-4">
             <!-- Cargado dinámicamente desde JS -->
-            <div class="flex flex-col items-center justify-center text-center py-24 space-y-4">
+            <div class="flex flex-col items-center justify-center text-center py-24 space-y-4 font-mono">
                 <div class="w-12 h-12 border border-dashed border-zinc-700 flex items-center justify-center text-zinc-600">
                     <i class="fa-solid fa-folder-plus text-lg"></i>
                 </div>
                 <div>
                     <p class="text-xs font-bold text-zinc-300">ORDEN VACÍA</p>
-                    <p class="text-[10px] text-zinc-500 mt-1">Configura tus dimensiones y haz clic en "Agregar a la Orden".</p>
+                    <p class="text-[10px] text-zinc-500 mt-1 font-mono">Configura tus dimensiones y haz clic en "Agregar a la Orden".</p>
                 </div>
             </div>
         </div>
@@ -455,7 +376,7 @@
                     ELIMINAR TODO
                 </button>
                 <button onclick="procesarCompra()" class="py-3 text-[11px] font-bold bg-phosphor hover:bg-phosphor/90 text-matteBlack transition-all flex items-center justify-center gap-1.5">
-                    <i class="fa-solid fa-paper-plane"></i> ENVIAR AL TALLER
+                    <i class="fa-solid fa-file-arrow-down text-sm"></i> DESCARGAR TICKET DE ORDEN
                 </button>
             </div>
         </div>
@@ -468,15 +389,18 @@
 
     <script>
         const APP_STATE = {
-            image: null,           // Imagen cargada
-            imageLoaded: false,    // Indica si se completó la carga
-            fileName: 'pulso_oraculo_pixel.png', // Nombre de archivo por defecto
-            shape: 'personalized', // 'personalized', 'circular', 'squared'
-            borderSize: 12,        // Tamaño del borde en píxeles
-            borderColor: '#ffffff',// Color del borde
-            selectedSize: 5,       // En cm
-            quantity: 10,          // Cantidad predeterminada
-            cart: []               // Stickers guardados en el carrito
+            image: null,           
+            imageLoaded: false,    
+            fileName: 'pulso_oraculo_pixel.png', 
+            shape: 'personalized', 
+            borderSize: 12,        
+            borderColor: '#ffffff',
+            selectedSize: 5,       
+            quantity: 10,  
+            material: 'standard', // 'standard', 'holo'
+            laminado: false,
+            corteFisico: false,
+            cart: []               
         };
 
         // Elementos del DOM
@@ -526,7 +450,7 @@
             setupDragAndDrop();
             setupInputs();
             updateSelectedSizeUI();
-            updateQuantityUI();
+            updateRendimientoUI();
             renderCart();
             requestAnimationFrame(animateLoop);
         };
@@ -628,12 +552,28 @@
                 }
             });
 
-            // Soportar envío de formularios mediante la tecla Enter
             document.getElementById('custom-size-input').addEventListener('keyup', (e) => {
                 if (e.key === 'Enter') applyCustomSize();
             });
-            document.getElementById('custom-qty-input').addEventListener('keyup', (e) => {
-                if (e.key === 'Enter') applyCustomQuantity();
+
+            // LÓGICA DE BARRA DESLIZANTE DE CANTIDAD (10 a 999)
+            const qtySlider = document.getElementById('qty-slider');
+            const qtyInput = document.getElementById('qty-input');
+
+            qtySlider.addEventListener('input', (e) => {
+                let val = parseInt(e.target.value);
+                qtyInput.value = val;
+                APP_STATE.quantity = val;
+                updateRendimientoUI();
+            });
+
+            qtyInput.addEventListener('input', (e) => {
+                let val = parseInt(e.target.value);
+                if (val >= 10 && val <= 999) {
+                    qtySlider.value = val;
+                    APP_STATE.quantity = val;
+                    updateRendimientoUI();
+                }
             });
         }
 
@@ -720,63 +660,49 @@
             
             const txt = `${APP_STATE.selectedSize} × ${heightCm} cm`;
             finalDimensionsLabel.innerHTML = `${txt}`;
+            updateRendimientoUI();
         }
 
-        function setQuantity(qty) {
-            APP_STATE.quantity = qty;
-            document.getElementById('custom-qty-input-container').classList.add('hidden');
-            updateQuantityUI();
-            showToast(`Volumen ajustado a ${qty} unidades`);
-        }
-
-        function triggerCustomQuantity() {
-            const container = document.getElementById('custom-qty-input-container');
-            const input = document.getElementById('custom-qty-input');
+        // --- SISTEMA DE MATERIAL Y ACABADOS ---
+        function setMaterial(mat) {
+            APP_STATE.material = mat;
+            document.getElementById('mat-standard').className = "py-2 px-2 text-[10px] font-mono border border-consoleBorder hover:border-zinc-500 bg-matteBlack/20 text-zinc-300 transition-all";
+            document.getElementById('mat-holo').className = "py-2 px-2 text-[10px] font-mono border border-consoleBorder hover:border-zinc-500 bg-matteBlack/20 text-zinc-300 transition-all";
             
-            container.classList.toggle('hidden');
-            if (!container.classList.contains('hidden')) {
-                input.value = APP_STATE.quantity;
-                input.focus();
-            }
+            document.getElementById(`mat-${mat}`).className = "py-2 px-2 text-[10px] font-mono border-2 border-phosphor bg-phosphor/10 text-phosphor font-bold transition-all";
+            updateRendimientoUI();
         }
 
-        function applyCustomQuantity() {
-            const input = document.getElementById('custom-qty-input');
-            const val = parseInt(input.value);
-            if (val && !isNaN(val)) {
-                if (val > 0) {
-                    APP_STATE.quantity = val;
-                    document.getElementById('custom-qty-text').innerText = `✏️ ${val} uds`;
-                    updateQuantityUI(true);
-                    document.getElementById('custom-qty-input-container').classList.add('hidden');
-                    showToast(`Tiraje configurado: ${val} unidades`);
-                } else {
-                    showToast('Ingresa una cantidad mayor a 0', 'error');
-                }
-            } else {
-                showToast('Introduce una cantidad válida', 'error');
-            }
+        function toggleLaminado(val) { APP_STATE.laminado = val; updateRendimientoUI(); }
+        function toggleCorteFisico(val) { APP_STATE.corteFisico = val; updateRendimientoUI(); }
+
+
+        // --- ALGORITMO TÉCNICO DE ÁREA ÚTIL DE PLANILLA ---
+        function calcularRendimiento(anchoCm, altoCm) {
+            // Área útil real de impresión en una planilla de 50x50 es de 42x45 cm
+            const cols1 = Math.floor(42 / anchoCm);
+            const rows1 = Math.floor(45 / altoCm);
+            const total1 = cols1 * rows1;
+
+            const cols2 = Math.floor(42 / altoCm);
+            const rows2 = Math.floor(45 / anchoCm);
+            const total2 = cols2 * rows2;
+
+            const max = Math.max(total1, total2);
+            return max > 0 ? max : 1;
         }
 
-        function updateQuantityUI(isCustom = false) {
-            const btn10 = document.getElementById('qty-10');
-            const btn50 = document.getElementById('qty-50');
-            const btnCustom = document.getElementById('qty-custom');
+        function updateRendimientoUI() {
+            if (!APP_STATE.imageLoaded) return;
+            const aspect = APP_STATE.image.height / APP_STATE.image.width;
+            const heightCm = (APP_STATE.selectedSize * aspect).toFixed(1);
             
-            [btn10, btn50, btnCustom].forEach(btn => {
-                btn.className = "py-2 text-xs font-mono border border-consoleBorder hover:border-zinc-500 bg-matteBlack/20 text-zinc-300 transition-all flex items-center justify-center gap-1";
-            });
-
-            if (isCustom) {
-                btnCustom.className = "py-2 text-xs font-mono border-2 border-phosphor bg-phosphor/10 text-phosphor font-bold transition-all flex items-center justify-center gap-1";
-            } else {
-                document.getElementById('custom-qty-text').innerText = `✏️ Otro`;
-                if (APP_STATE.quantity === 10) {
-                    btn10.className = "py-2 text-xs font-mono border-2 border-phosphor bg-phosphor/10 text-phosphor font-bold transition-all";
-                } else if (APP_STATE.quantity === 50) {
-                    btn50.className = "py-2 text-xs font-mono border-2 border-phosphor bg-phosphor/10 text-phosphor font-bold transition-all";
-                }
-            }
+            const pzPorPlanilla = calcularRendimiento(APP_STATE.selectedSize, heightCm);
+            const planillas = Math.ceil(APP_STATE.quantity / pzPorPlanilla);
+            
+            document.getElementById('rendimiento-info').innerHTML = 
+                `<span class="text-phosphor font-bold">${pzPorPlanilla} pz</span> por planilla útil (42x45cm).<br>
+                 Producción requerida para ${APP_STATE.quantity} pz: <strong class="text-white">${planillas} planilla(s)</strong>.`;
         }
 
         // Helper para dibujar rectángulos con bordes redondeados
@@ -914,188 +840,6 @@
             updateDimensionsLabel();
         }
 
-        function openExportModal() {
-            if (!APP_STATE.imageLoaded) {
-                showToast("Por favor carga una imagen antes de generar la Ficha.", "error");
-                return;
-            }
-
-            let corteTexto = "Personalizado (Die-cut)";
-            if (APP_STATE.shape === 'circular') corteTexto = "Circular";
-            if (APP_STATE.shape === 'squared') corteTexto = "Cuadrada";
-            
-            document.getElementById('spec-cut-value').innerText = corteTexto;
-            
-            const aspect = APP_STATE.image.height / APP_STATE.image.width;
-            const heightCm = (APP_STATE.selectedSize * aspect).toFixed(1);
-            document.getElementById('spec-dimensions-value').innerText = `${APP_STATE.selectedSize} × ${heightCm} cm`;
-            
-            const mmGrosor = (APP_STATE.borderSize * 0.1).toFixed(1);
-            document.getElementById('spec-border-value').innerText = `${mmGrosor} mm (${APP_STATE.borderSize}px)`;
-            
-            document.getElementById('spec-qty-value').innerText = `${APP_STATE.quantity} unidades`;
-            
-            document.getElementById('spec-border-color-text').innerText = APP_STATE.borderColor.toUpperCase();
-            document.getElementById('spec-border-color-block').style.backgroundColor = APP_STATE.borderColor;
-            
-            document.getElementById('spec-filename-watermark').innerText = APP_STATE.fileName;
-            
-            const options = { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' };
-            const today = new Date();
-            document.getElementById('spec-date-watermark').innerText = today.toLocaleDateString('es-ES', options).replace('.', '');
-
-            const modal = document.getElementById('export-modal');
-            const modalContent = document.getElementById('export-modal-content');
-            
-            modal.classList.remove('hidden');
-            setTimeout(() => {
-                modal.classList.add('opacity-100');
-                modalContent.classList.remove('scale-95');
-            }, 10);
-
-            const modalCanvas = document.getElementById('modal-sticker-canvas');
-            renderSticker(modalCanvas, 1.5); 
-        }
-
-        function closeExportModal() {
-            const modal = document.getElementById('export-modal');
-            const modalContent = document.getElementById('export-modal-content');
-            
-            modal.classList.remove('opacity-100');
-            modalContent.classList.add('scale-95');
-            setTimeout(() => {
-                modal.classList.add('hidden');
-            }, 300);
-        }
-
-        function downloadFicha() {
-            showToast("Procesando vectores para Ficha Técnica...");
-            
-            const exportCanvas = document.createElement('canvas');
-            exportCanvas.width = 1000;
-            exportCanvas.height = 600;
-            const eCtx = exportCanvas.getContext('2d');
-            
-            eCtx.fillStyle = "#0c0c0e";
-            eCtx.fillRect(0, 0, exportCanvas.width, exportCanvas.height);
-            
-            eCtx.strokeStyle = "#22242e";
-            eCtx.lineWidth = 4;
-            eCtx.strokeRect(10, 10, exportCanvas.width - 20, exportCanvas.height - 20);
-
-            // Retícula de alineación blueprint
-            eCtx.fillStyle = "#121318";
-            eCtx.fillRect(40, 40, 450, 520);
-            eCtx.strokeStyle = "rgba(204, 255, 0, 0.04)";
-            eCtx.lineWidth = 1;
-            const gridSize = 20;
-            for (let x = 40; x < 490; x += gridSize) {
-                eCtx.beginPath();
-                eCtx.moveTo(x, 40);
-                eCtx.lineTo(x, 560);
-                eCtx.stroke();
-            }
-            for (let y = 40; y < 560; y += gridSize) {
-                eCtx.beginPath();
-                eCtx.moveTo(40, y);
-                eCtx.lineTo(490, y);
-                eCtx.stroke();
-            }
-
-            const tempCanvas = document.createElement('canvas');
-            renderSticker(tempCanvas, 1.2);
-            const stickerW = 340;
-            const stickerH = 340;
-            const stickerX = 40 + (450 - stickerW) / 2;
-            const stickerY = 40 + (520 - stickerH) / 2;
-            eCtx.drawImage(tempCanvas, stickerX, stickerY, stickerW, stickerH);
-
-            eCtx.fillStyle = "#121318"; 
-            eCtx.fillRect(520, 40, 440, 520);
-            eCtx.strokeStyle = "#22242e";
-            eCtx.lineWidth = 2;
-            eCtx.strokeRect(520, 40, 440, 520);
-
-            eCtx.fillStyle = "#ccff00"; 
-            eCtx.font = "bold 24px monospace";
-            eCtx.fillText("ESPECIFICACIONES DE CORTE", 550, 90);
-            
-            eCtx.fillStyle = "#9ca3af";
-            eCtx.font = "12px monospace";
-            eCtx.fillText("TALLER DE PREPRENSA • GRISFOSFORESCENTE", 550, 115);
-
-            eCtx.strokeStyle = "#22242e";
-            eCtx.beginPath();
-            eCtx.moveTo(550, 135);
-            eCtx.lineTo(930, 135);
-            eCtx.stroke();
-
-            function drawSpecBlock(label, val, xY) {
-                eCtx.fillStyle = "#0c0c0e";
-                eCtx.fillRect(550, xY, 380, 50);
-                eCtx.strokeStyle = "#22242e";
-                eCtx.strokeRect(550, xY, 380, 50);
-
-                eCtx.fillStyle = "#555866";
-                eCtx.font = "bold 9px monospace";
-                eCtx.fillText(label.toUpperCase(), 565, xY + 16);
-
-                eCtx.fillStyle = "#ffffff";
-                eCtx.font = "bold 13px monospace";
-                eCtx.fillText(val, 565, xY + 36);
-            }
-
-            let corteTexto = "PERSONALIZADO (DIE-CUT)";
-            if (APP_STATE.shape === 'circular') corteTexto = "CIRCULAR";
-            if (APP_STATE.shape === 'squared') corteTexto = "CUADRADO";
-
-            const aspect = APP_STATE.image.height / APP_STATE.image.width;
-            const heightCm = (APP_STATE.selectedSize * aspect).toFixed(1);
-            const mmGrosor = (APP_STATE.borderSize * 0.1).toFixed(1);
-
-            drawSpecBlock("Troquelado", corteTexto, 150);
-            drawSpecBlock("Dimensiones base", `${APP_STATE.selectedSize} × ${heightCm} cm`, 210);
-            drawSpecBlock("Margen del vector", `${mmGrosor} mm (${APP_STATE.borderSize}px)`, 270);
-            drawSpecBlock("Tiraje / Volumen", `${APP_STATE.quantity} unidades`, 330);
-            
-            eCtx.fillStyle = "#0c0c0e";
-            eCtx.fillRect(550, 390, 380, 50);
-            eCtx.strokeStyle = "#22242e";
-            eCtx.strokeRect(550, 390, 380, 50);
-
-            eCtx.fillStyle = "#555866";
-            eCtx.font = "bold 9px monospace";
-            eCtx.fillText("COLOR DEL SUSTRATO", 565, 390 + 16);
-
-            eCtx.fillStyle = "#ffffff";
-            eCtx.font = "bold 13px monospace";
-            eCtx.fillText(APP_STATE.borderColor.toUpperCase(), 565, 390 + 36);
-
-            eCtx.fillStyle = APP_STATE.borderColor;
-            eCtx.fillRect(875, 400, 40, 30);
-            eCtx.strokeStyle = "#22242e";
-            eCtx.strokeRect(875, 400, 40, 30);
-
-            eCtx.fillStyle = "#4b5563";
-            eCtx.font = "9px monospace";
-            eCtx.fillText(APP_STATE.fileName, 550, 525);
-            
-            const options = { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' };
-            const todayStr = new Date().toLocaleDateString('es-ES', options).replace('.', '');
-            eCtx.fillText(`${todayStr} • GRISFOSFORESCENTE.COM.MX`, 550, 540);
-
-            eCtx.fillStyle = "#ccff00";
-            eCtx.font = "bold 22px monospace";
-            eCtx.fillText("GF", 895, 540);
-
-            const link = document.createElement('a');
-            link.download = `VECTORSPEC_${APP_STATE.selectedSize}x${heightCm}cm.png`;
-            link.href = exportCanvas.toDataURL('image/png');
-            link.click();
-            
-            showToast("Plano técnico vectorial descargado", "success");
-        }
-
         // --- SISTEMA DEL CARRITO DE COMPRAS MULTI-STIKER ---
 
         // Abre o cierra el Drawer lateral del carrito
@@ -1119,31 +863,23 @@
             }
         }
 
-        // Algoritmo de costos dinámico con escala de descuentos por volumen
-        function calcularPrecio(size, qty) {
-            // Precio base por cm2 de $0.12 MXN
-            const area = size * size;
-            let unitBase = area * 0.12;
+        // CÁLCULO DE PRECIOS EXACTOS POR PLANILLA
+        function calcularPrecio(size, heightCm, qty, material, laminado, corteFisico) {
+            const pzPorPlanilla = calcularRendimiento(size, heightCm);
+            const planillas = Math.ceil(qty / pzPorPlanilla);
             
-            // Garantizar costo mínimo unitario para medidas pequeñas
-            if (unitBase < 5.0) unitBase = 5.0; 
+            let costoPorPlanilla = 0;
+            if (material === 'standard') costoPorPlanilla += 140;
+            if (material === 'holo') costoPorPlanilla += 240;
+            if (laminado) costoPorPlanilla += 70;
+            if (corteFisico) costoPorPlanilla += 60;
             
-            // Multiplicador de volumen
-            let discountFactor = 1.0;
-            if (qty >= 100) {
-                discountFactor = 0.70; // 30% descuento masivo
-            } else if (qty >= 50) {
-                discountFactor = 0.85; // 15% descuento mayorista
-            } else if (qty >= 20) {
-                discountFactor = 0.95; // 5% descuento regular
-            }
-            
-            const unitPrice = Math.max(2.5, unitBase * discountFactor);
-            const totalPrice = unitPrice * qty;
+            const totalPrice = planillas * costoPorPlanilla;
             
             return {
-                unit: unitPrice.toFixed(2),
-                total: totalPrice.toFixed(2)
+                total: totalPrice.toFixed(2),
+                planillas: planillas,
+                pzPorPlanilla: pzPorPlanilla
             };
         }
 
@@ -1154,11 +890,11 @@
                 return;
             }
 
-            // Capturar la imagen directamente del lienzo renderizado
             const thumbnail = stickerCanvas.toDataURL('image/png');
             const aspect = APP_STATE.image.height / APP_STATE.image.width;
             const heightCm = (APP_STATE.selectedSize * aspect).toFixed(1);
-            const prices = calcularPrecio(APP_STATE.selectedSize, APP_STATE.quantity);
+            
+            const prices = calcularPrecio(APP_STATE.selectedSize, heightCm, APP_STATE.quantity, APP_STATE.material, APP_STATE.laminado, APP_STATE.corteFisico);
             
             let corteTexto = "Silueta";
             if (APP_STATE.shape === 'circular') corteTexto = "Circular";
@@ -1168,27 +904,28 @@
                 id: Date.now(),
                 thumbnail: thumbnail,
                 fileName: APP_STATE.fileName,
-                shape: APP_STATE.shape,
                 shapeLabel: corteTexto,
                 size: APP_STATE.selectedSize,
                 heightCm: heightCm,
                 borderSize: APP_STATE.borderSize,
                 borderColor: APP_STATE.borderColor,
                 quantity: APP_STATE.quantity,
-                unitPrice: parseFloat(prices.unit),
+                materialLabel: APP_STATE.material === 'standard' ? 'Vinil Blanco' : 'Holográfico',
+                laminado: APP_STATE.laminado,
+                corteFisico: APP_STATE.corteFisico,
+                planillas: prices.planillas,
                 totalPrice: parseFloat(prices.total)
             };
 
             APP_STATE.cart.push(item);
             renderCart();
             
-            // Gatillar animación del badge de notificación
             const badge = document.getElementById('cart-badge');
             badge.classList.remove('animate-bounce');
             void badge.offsetWidth; 
             badge.classList.add('animate-bounce');
 
-            showToast(`¡Añadido! ${APP_STATE.quantity} stickers de ${APP_STATE.selectedSize} cm`, "success");
+            showToast(`Línea agregada: ${APP_STATE.quantity} pz (${prices.planillas} planillas)`, "success");
         }
 
         // Renderiza los elementos guardados en la interfaz lateral
@@ -1229,30 +966,24 @@
 
                 html += `
                     <div class="bg-matteBlack/80 border border-consoleBorder p-4 flex gap-4 items-center relative group hover:border-phosphor/30 transition-all font-mono">
-                        <!-- Miniatura del Sticker real -->
                         <div class="w-16 h-16 shrink-0 border border-consoleBorder blueprint-grid relative overflow-hidden flex items-center justify-center">
                             <img src="${item.thumbnail}" class="max-w-full max-h-full object-contain p-1" alt="Preview">
                         </div>
                         
-                        <!-- Especificaciones -->
                         <div class="flex-1 min-w-0 font-mono">
                             <div class="flex items-center gap-1.5">
                                 <span class="text-xs font-bold text-white truncate max-w-[120px]">${item.fileName}</span>
-                                <span class="text-[9px] bg-phosphor/10 text-phosphor px-1.5 py-0.5 border border-phosphor/20 font-bold uppercase">${item.shapeLabel}</span>
                             </div>
-                            <p class="text-[10px] text-zinc-400 mt-1">
-                                MEDIDA: <span class="text-gray-200 font-bold">${item.size} × ${item.heightCm} cm</span>
-                            </p>
-                            <p class="text-[10px] text-zinc-400">
-                                SEGURIDAD: <span class="text-gray-200 font-mono" style="color: ${item.borderColor}">${item.borderColor}</span> (${(item.borderSize*0.1).toFixed(1)}mm)
+                            <p class="text-[9px] text-zinc-400 mt-1">DIM: <span class="text-gray-200 font-bold">${item.size} × ${item.heightCm} cm</span> | <span class="uppercase">${item.shapeLabel}</span></p>
+                            <p class="text-[9px] text-zinc-500 mt-0.5 uppercase">
+                                ${item.materialLabel} ${item.laminado ? '+ LAM' : ''} ${item.corteFisico ? '+ CORTE COMP' : ''}
                             </p>
                             <div class="flex justify-between items-center mt-2 pt-1 border-t border-consoleBorder/30">
-                                <span class="text-[9px] text-zinc-500">${item.quantity} uds × $${item.unitPrice.toFixed(2)}</span>
-                                <span class="text-xs font-bold text-phosphor">$${item.totalPrice.toFixed(2)} MXN</span>
+                                <span class="text-[9px] text-zinc-400 font-bold">${item.quantity} pz <span class="text-zinc-600">(${item.planillas} planillas)</span></span>
+                                <span class="text-xs font-bold text-phosphor">$${item.totalPrice.toFixed(2)}</span>
                             </div>
                         </div>
 
-                        <!-- Botón Eliminar Ítem -->
                         <button onclick="eliminarDelCarrito(${item.id})" class="absolute top-2 right-2 text-zinc-600 hover:text-red-400 p-1 transition-colors">
                             <i class="fa-regular fa-trash-can text-xs"></i>
                         </button>
@@ -1269,7 +1000,7 @@
         function eliminarDelCarrito(id) {
             APP_STATE.cart = APP_STATE.cart.filter(item => item.id !== id);
             renderCart();
-            showToast("Elemento removido de la orden");
+            showToast("Línea removida de la orden");
         }
 
         // Vacía completamente la orden
@@ -1280,21 +1011,140 @@
             showToast("Orden vaciada exitosamente.", "info");
         }
 
-        // Simula la confirmación y checkout de los múltiples ítems
-        function procesarCompra() {
+        // GENERACIÓN DE TICKET GENERAL EN CANVAS PNG
+        async function procesarCompra() {
             if (APP_STATE.cart.length === 0) {
                 showToast("No hay elementos para procesar.", "error");
                 return;
             }
             
-            toggleCartDrawer();
-            showToast("Enviando coordenadas al taller de impresión...", "info");
+            showToast("Generando ticket de orden...", "info");
+
+            const canvas = document.createElement('canvas');
+            const width = 800;
+            const itemHeight = 160;
+            const headerHeight = 200;
+            const footerHeight = 150;
+            const height = headerHeight + (APP_STATE.cart.length * itemHeight) + footerHeight;
+
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext('2d');
+
+            // Fondo base
+            ctx.fillStyle = "#0a0a0c";
+            ctx.fillRect(0, 0, width, height);
+
+            // Retícula blueprint
+            ctx.strokeStyle = "rgba(204, 255, 0, 0.04)";
+            ctx.lineWidth = 1;
+            for (let x = 0; x < width; x += 20) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, height); ctx.stroke(); }
+            for (let y = 0; y < height; y += 20) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(width, y); ctx.stroke(); }
+
+            // Borde exterior
+            ctx.strokeStyle = "#22242e";
+            ctx.lineWidth = 4;
+            ctx.strokeRect(10, 10, width - 20, height - 20);
+
+            // Encabezado del ticket
+            ctx.fillStyle = "#ccff00";
+            ctx.font = "bold 32px monospace";
+            ctx.fillText("TICKET DE ORDEN // PRE-PRENSA", 40, 80);
+
+            ctx.fillStyle = "#9ca3af";
+            ctx.font = "16px monospace";
+            ctx.fillText("GRISFOSFORESCENTE.COM.MX", 40, 110);
+
+            const today = new Date();
+            const dateStr = today.toLocaleString('es-ES', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }).toUpperCase();
+            ctx.fillText(`FECHA DEL TICKET: ${dateStr}`, 40, 140);
             
-            setTimeout(() => {
-                showToast("🚀 ¡Línea de corte vinculada! Nos pondremos en contacto.", "success");
-                APP_STATE.cart = [];
-                renderCart();
-            }, 1200);
+            ctx.strokeStyle = "#22242e";
+            ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(40, 160); ctx.lineTo(width - 40, 160); ctx.stroke();
+
+            // Dibujar cada ítem del carrito
+            let currentY = 190;
+            let totalCost = 0;
+
+            for (let index = 0; index < APP_STATE.cart.length; index++) {
+                const item = APP_STATE.cart[index];
+                totalCost += item.totalPrice;
+
+                // Caja contenedora del ítem
+                ctx.fillStyle = "#121318";
+                ctx.fillRect(40, currentY, width - 80, itemHeight - 20);
+                ctx.strokeStyle = "#22242e";
+                ctx.strokeRect(40, currentY, width - 80, itemHeight - 20);
+
+                // Caja para miniatura
+                ctx.fillStyle = "#0a0a0c";
+                ctx.fillRect(60, currentY + 20, 100, 100);
+                ctx.strokeRect(60, currentY + 20, 100, 100);
+                
+                // Cargar imagen miniatura de forma asíncrona
+                const img = new Image();
+                await new Promise((resolve) => {
+                    img.onload = () => {
+                        const scale = Math.min(90 / img.width, 90 / img.height);
+                        const w = img.width * scale;
+                        const h = img.height * scale;
+                        ctx.drawImage(img, 60 + (100 - w) / 2, currentY + 20 + (100 - h) / 2, w, h);
+                        resolve();
+                    };
+                    img.src = item.thumbnail;
+                });
+
+                // Textos descriptivos
+                ctx.fillStyle = "#ccff00";
+                ctx.font = "bold 16px monospace";
+                ctx.fillText(`[LÍNEA 0${index + 1}] ${item.fileName.substring(0, 30)}`, 180, currentY + 40);
+
+                ctx.fillStyle = "#ffffff";
+                ctx.font = "14px monospace";
+                ctx.fillText(`DIMENSIONES: ${item.size} × ${item.heightCm} cm | TROQUEL: ${item.shapeLabel}`, 180, currentY + 65);
+                
+                const acabados = `${item.materialLabel} ${item.laminado ? '+ LAMINADO' : ''} ${item.corteFisico ? '+ CORTE COMPLETO' : ''}`;
+                ctx.fillText(`SUSTRATO: ${acabados.toUpperCase()}`, 180, currentY + 85);
+
+                ctx.fillStyle = "#9ca3af";
+                ctx.fillText(`VOLUMEN: ${item.quantity} pz (${item.planillas} planillas)`, 180, currentY + 110);
+
+                // Precio del ítem
+                ctx.fillStyle = "#ccff00";
+                ctx.font = "bold 20px monospace";
+                const costText = `$${item.totalPrice.toFixed(2)}`;
+                const costWidth = ctx.measureText(costText).width;
+                ctx.fillText(costText, width - 60 - costWidth, currentY + 110);
+
+                currentY += itemHeight;
+            }
+
+            // Pie del ticket
+            ctx.strokeStyle = "#22242e";
+            ctx.beginPath(); ctx.moveTo(40, currentY + 20); ctx.lineTo(width - 40, currentY + 20); ctx.stroke();
+
+            ctx.fillStyle = "#ffffff";
+            ctx.font = "bold 24px monospace";
+            ctx.fillText("TOTAL A PROCESAR:", 40, currentY + 70);
+
+            ctx.fillStyle = "#ccff00";
+            const totalText = `$${totalCost.toFixed(2)} MXN`;
+            const totalWidth = ctx.measureText(totalText).width;
+            ctx.fillText(totalText, width - 40 - totalWidth, currentY + 70);
+
+            // Exportar e iniciar descarga
+            const link = document.createElement('a');
+            link.download = `ORDEN_GF_${Date.now()}.png`;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+
+            toggleCartDrawer();
+            showToast("¡Ticket de orden generado y descargado!", "success");
+            
+            // Vaciar carrito automáticamente tras descargar
+            APP_STATE.cart = [];
+            renderCart();
         }
 
         function showToast(message, type = 'info') {
