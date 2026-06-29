@@ -162,7 +162,7 @@
         <section class="py-20 px-6 bg-gray-50 border-b-[6px] border-baseBlack">
             <div class="max-w-7xl mx-auto">
                 <h2 class="text-3xl md:text-4xl font-black uppercase text-center mb-12">Nuestros Sustratos</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                     <!-- Card 1 -->
                     <div class="bg-baseWhite border-[3px] border-baseBlack p-6 shadow-brutal transition-transform hover:-translate-y-1">
                         <div class="w-12 h-12 bg-brandGreen border-2 border-baseBlack flex items-center justify-center mb-4 rounded-full">
@@ -171,6 +171,15 @@
                         <h3 class="text-xl font-bold uppercase mb-2">Vinil Base</h3>
                         <p class="text-sm text-textMuted font-medium mb-4">Blanco brillante o mate. Alta adherencia y resistencia para uso en exteriores e interiores.</p>
                         <div class="text-xl font-black text-brandPink">$140 <span class="text-xs text-baseBlack">/ planilla base</span></div>
+                    </div>
+                    <!-- Card Transparente -->
+                    <div class="bg-baseWhite border-[3px] border-baseBlack p-6 shadow-brutal transition-transform hover:-translate-y-1">
+                        <div class="w-12 h-12 bg-gray-200 border-2 border-baseBlack flex items-center justify-center mb-4 rounded-full text-gray-500">
+                            <i class="fa-solid fa-droplet text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold uppercase mb-2">Transparente</h3>
+                        <p class="text-sm text-textMuted font-medium mb-4">Fondo invisible para que tu diseño resalte. Ideal para cristales, empaques y envases.</p>
+                        <div class="text-xl font-black text-brandPink">$160 <span class="text-xs text-baseBlack">/ planilla base</span></div>
                     </div>
                     <!-- Card 2 -->
                     <div class="bg-baseWhite border-[3px] border-baseBlack p-6 shadow-brutal transition-transform hover:-translate-y-1">
@@ -258,7 +267,7 @@
                 <div class="space-y-5 border-t border-borderGray pt-6">
                     <div class="flex items-center gap-3 text-baseBlack">
                         <span class="bg-gray-100 text-baseBlack w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold border border-gray-200">3</span>
-                        <h3 class="text-sm font-bold uppercase tracking-wide">Borde</h3>
+                        <h3 class="text-sm font-bold uppercase tracking-wide">Borde (Blanco)</h3>
                     </div>
 
                     <div class="space-y-2">
@@ -269,15 +278,7 @@
                         <div class="flex items-center gap-3 pt-1">
                             <input type="range" id="border-size-slider" min="0" max="35" value="12" class="w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer">
                         </div>
-                        <p class="text-[10px] text-textMuted font-mono">Se recomienda para proteger el diseño.</p>
-                    </div>
-
-                    <div class="flex items-center justify-between pt-2">
-                        <span class="text-xs font-bold text-baseBlack uppercase">Color del borde</span>
-                        <div class="flex items-center gap-2 bg-gray-50 px-2 py-1 rounded-lg border border-gray-200">
-                            <input type="color" id="border-color-picker" value="#ffffff" class="w-6 h-6 border border-gray-300 rounded cursor-pointer p-0">
-                            <input type="text" id="border-color-hex" value="#FFFFFF" class="bg-transparent text-xs text-baseBlack font-mono font-bold w-16 outline-none uppercase text-center">
-                        </div>
+                        <p class="text-[10px] text-textMuted font-mono">Un margen blanco garantiza la protección de tu diseño durante el corte.</p>
                     </div>
                 </div>
 
@@ -339,14 +340,18 @@
                         <h3 class="text-sm font-bold uppercase tracking-wide">Sustrato / Material Base</h3>
                     </div>
                     
-                    <div class="grid grid-cols-2 gap-3 pt-1">
-                        <button id="mat-standard" onclick="setMaterial('standard')" class="py-3 px-2 text-xs font-bold rounded-lg border-2 border-baseBlack bg-baseBlack text-baseWhite transition-all flex flex-col items-center justify-center gap-1">
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
+                        <button id="mat-standard" onclick="setMaterial('standard')" class="py-3 px-1 text-[11px] font-bold rounded-lg border-2 border-baseBlack bg-baseBlack text-baseWhite transition-all flex flex-col items-center justify-center gap-1 text-center">
                             <span>Vinil Blanco</span>
-                            <span class="text-[10px] text-gray-400 font-normal">Base $140/pl</span>
+                            <span class="text-[9px] text-gray-400 font-normal">Base $140/pl</span>
                         </button>
-                        <button id="mat-holo" onclick="setMaterial('holo')" class="py-3 px-2 text-xs font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all flex flex-col items-center justify-center gap-1">
+                        <button id="mat-transparente" onclick="setMaterial('transparente')" class="py-3 px-1 text-[11px] font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all flex flex-col items-center justify-center gap-1 text-center">
+                            <span>Transparente</span>
+                            <span class="text-[9px] font-normal">Base $160/pl</span>
+                        </button>
+                        <button id="mat-holo" onclick="setMaterial('holo')" class="py-3 px-1 text-[11px] font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all flex flex-col items-center justify-center gap-1 text-center">
                             <span>Holográfico</span>
-                            <span class="text-[10px] font-normal">Base $240/pl</span>
+                            <span class="text-[9px] font-normal">Base $240/pl</span>
                         </button>
                     </div>
                 </div>
@@ -554,12 +559,12 @@
             fileName: 'aliens_pattern.png', 
             shape: 'personalized', 
             borderSize: 12,        
-            borderColor: '#ffffff',
+            borderColor: '#ffffff', // Borde blanco por defecto fijo
             selectedSize: 5,
             customMode: 'auto', 
             selectedHeight: null, 
             quantity: 10,  
-            material: 'standard', 
+            material: 'standard', // 'standard', 'transparente', 'holo'
             laminado: false,
             corteFisico: false,
             cart: []               
@@ -571,8 +576,6 @@
         const fileInput = document.getElementById('file-input');
         const borderSizeSlider = document.getElementById('border-size-slider');
         const borderSizeLabel = document.getElementById('border-size-label');
-        const borderColorPicker = document.getElementById('border-color-picker');
-        const borderColorHex = document.getElementById('border-color-hex');
         const finalDimensionsLabel = document.getElementById('sticker-final-dimensions-label');
 
         // SVG del patrón de cabezas de alien verdes basado en la Imagen 2
@@ -708,28 +711,6 @@
                 const mmEquivalent = (APP_STATE.borderSize * 0.1).toFixed(1);
                 borderSizeLabel.textContent = `${APP_STATE.borderSize}px (${mmEquivalent} mm)`;
                 renderSticker();
-            });
-
-            // Sincronizar Color Picker y Hex de texto
-            borderColorPicker.addEventListener('input', (e) => {
-                const color = e.target.value;
-                APP_STATE.borderColor = color;
-                borderColorHex.value = color.toUpperCase();
-                renderSticker();
-            });
-
-            borderColorHex.addEventListener('input', (e) => {
-                let color = e.target.value;
-                if (color.startsWith('#') && color.length === 7) {
-                    APP_STATE.borderColor = color;
-                    borderColorPicker.value = color;
-                    renderSticker();
-                } else if (!color.startsWith('#') && color.length === 6) {
-                    color = '#' + color;
-                    APP_STATE.borderColor = color;
-                    borderColorPicker.value = color;
-                    renderSticker();
-                }
             });
 
             document.getElementById('custom-auto-input').addEventListener('keyup', (e) => {
@@ -905,19 +886,25 @@
         // --- SISTEMA DE MATERIAL Y ACABADOS ---
         function setMaterial(mat) {
             APP_STATE.material = mat;
-            document.getElementById('mat-standard').className = "py-3 px-2 text-xs font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all flex flex-col items-center justify-center gap-1";
-            document.getElementById('mat-standard').innerHTML = `<span>Vinil Blanco</span><span class="text-[10px] font-normal">Base $140/pl</span>`;
             
-            document.getElementById('mat-holo').className = "py-3 px-2 text-xs font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all flex flex-col items-center justify-center gap-1";
-            document.getElementById('mat-holo').innerHTML = `<span>Holográfico</span><span class="text-[10px] font-normal">Base $240/pl</span>`;
-            
-            const activeBtn = document.getElementById(`mat-${mat}`);
-            activeBtn.className = "py-3 px-2 text-xs font-bold rounded-lg border-2 border-baseBlack bg-baseBlack text-baseWhite transition-all flex flex-col items-center justify-center gap-1";
-            if(mat === 'standard') {
-                activeBtn.innerHTML = `<span>Vinil Blanco</span><span class="text-[10px] text-gray-400 font-normal">Base $140/pl</span>`;
-            } else {
-                activeBtn.innerHTML = `<span>Holográfico</span><span class="text-[10px] text-gray-400 font-normal">Base $240/pl</span>`;
-            }
+            const mats = ['standard', 'transparente', 'holo'];
+            const labels = {
+                'standard': { title: 'Vinil Blanco', price: 'Base $140/pl' },
+                'transparente': { title: 'Transparente', price: 'Base $160/pl' },
+                'holo': { title: 'Holográfico', price: 'Base $240/pl' }
+            };
+
+            mats.forEach(m => {
+                const btn = document.getElementById(`mat-${m}`);
+                if(m === mat) {
+                    btn.className = "py-3 px-1 text-[11px] font-bold rounded-lg border-2 border-baseBlack bg-baseBlack text-baseWhite transition-all flex flex-col items-center justify-center gap-1 text-center";
+                    btn.innerHTML = `<span>${labels[m].title}</span><span class="text-[9px] text-gray-400 font-normal">${labels[m].price}</span>`;
+                } else {
+                    btn.className = "py-3 px-1 text-[11px] font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all flex flex-col items-center justify-center gap-1 text-center";
+                    btn.innerHTML = `<span>${labels[m].title}</span><span class="text-[9px] font-normal">${labels[m].price}</span>`;
+                }
+            });
+
             updateRendimientoUI();
         }
 
@@ -944,6 +931,7 @@
             const pzPorPlanilla = calcularRendimiento(size, heightCm);
             let costoPorPlanilla = 140; // Base: Vinil Blanco 140
             
+            if (material === 'transparente') costoPorPlanilla = 160;
             if (material === 'holo') costoPorPlanilla = 240;
             if (laminado) costoPorPlanilla += 70;
             if (corteFisico) costoPorPlanilla += 60;
@@ -966,7 +954,7 @@
             const prices = calcularPrecio(APP_STATE.selectedSize, heightCm, APP_STATE.quantity, APP_STATE.material, APP_STATE.laminado, APP_STATE.corteFisico);
             
             document.getElementById('rendimiento-info').innerHTML = 
-                `Caben <span class="font-bold text-baseBlack">${prices.pzPorPlanilla} pz</span> por planilla útil (42x45cm).<br>
+                `Caben <span class="font-bold text-baseBlack">${prices.pzPorPlanilla} pz</span> por planilla.<br>
                  Costo unitario por pieza: <strong class="text-baseBlack">$${prices.unitPrice} MXN</strong><br>
                  Total por ${APP_STATE.quantity} pz: <strong class="text-baseBlack">$${prices.total} MXN</strong>`;
         }
@@ -1149,6 +1137,10 @@
             if (APP_STATE.shape === 'circular') corteTexto = "Circular";
             if (APP_STATE.shape === 'squared') corteTexto = "Cuadrado";
 
+            let matLabel = 'Vinil Blanco';
+            if (APP_STATE.material === 'holo') matLabel = 'Holográfico';
+            if (APP_STATE.material === 'transparente') matLabel = 'Transparente';
+
             const item = {
                 id: Date.now(),
                 thumbnail: thumbnail,
@@ -1159,7 +1151,7 @@
                 borderSize: APP_STATE.borderSize,
                 borderColor: APP_STATE.borderColor,
                 quantity: APP_STATE.quantity,
-                materialLabel: APP_STATE.material === 'standard' ? 'Vinil Blanco' : 'Holográfico',
+                materialLabel: matLabel,
                 laminado: APP_STATE.laminado,
                 corteFisico: APP_STATE.corteFisico,
                 unitPrice: parseFloat(prices.unitPrice),
