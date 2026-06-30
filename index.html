@@ -300,8 +300,8 @@
                     <div class="space-y-2 pt-4">
                         <div class="flex items-center gap-2 w-full">
                             <span class="bg-brandGreen text-brandPink font-mono font-black text-[10px] px-2 py-0.5 border border-baseBlack shadow-[1px_1px_0_0_#000]">01</span>
-                            <h3 class="text-xs font-black text-brandPink uppercase tracking-widest">Archivo Base</h3>
-                            <div class="flex-1 border-b-2 border-dotted border-gray-200 mt-1"></div>
+                            <h3 class="text-xs font-black text-brandPink uppercase tracking-widest drop-shadow-[1px_1px_0_rgba(0,0,0,1)]">Archivo Base</h3>
+                            <div class="flex-1 border-b-2 border-dotted border-gray-300 mt-1"></div>
                             <span class="text-[9px] text-textMuted font-mono font-bold tracking-wider">PNG/SVG/JPG</span>
                         </div>
                         <div id="drop-zone" class="border-2 border-dashed border-gray-300 hover:border-baseBlack bg-gray-50 hover:bg-gray-100 p-5 text-center cursor-pointer transition-all group rounded-xl">
@@ -315,8 +315,8 @@
                     <div class="space-y-3 pt-4">
                         <div class="flex items-center gap-2 w-full">
                             <span class="bg-brandGreen text-brandPink font-mono font-black text-[10px] px-2 py-0.5 border border-baseBlack shadow-[1px_1px_0_0_#000]">02</span>
-                            <h3 class="text-xs font-black text-brandPink uppercase tracking-widest">Corte del sticker</h3>
-                            <div class="flex-1 border-b-2 border-dotted border-gray-200 mt-1"></div>
+                            <h3 class="text-xs font-black text-brandPink uppercase tracking-widest drop-shadow-[1px_1px_0_rgba(0,0,0,1)]">Corte del sticker</h3>
+                            <div class="flex-1 border-b-2 border-dotted border-gray-300 mt-1"></div>
                         </div>
                         <div class="grid grid-cols-3 gap-2 sm:gap-3">
                             <button id="shape-personalized" onclick="setShape('personalized')" class="flex flex-col items-center justify-center py-2.5 px-2 rounded-xl border-2 border-baseBlack bg-baseBlack text-brandGreen transition-all shadow-sm">
@@ -337,8 +337,8 @@
                     <div class="space-y-3 pt-4">
                         <div class="flex items-center gap-2 w-full">
                             <span class="bg-brandGreen text-brandPink font-mono font-black text-[10px] px-2 py-0.5 border border-baseBlack shadow-[1px_1px_0_0_#000]">03</span>
-                            <h3 class="text-xs font-black text-brandPink uppercase tracking-widest">Borde (Blanco)</h3>
-                            <div class="flex-1 border-b-2 border-dotted border-gray-200 mt-1"></div>
+                            <h3 class="text-xs font-black text-brandPink uppercase tracking-widest drop-shadow-[1px_1px_0_rgba(0,0,0,1)]">Borde (Blanco)</h3>
+                            <div class="flex-1 border-b-2 border-dotted border-gray-300 mt-1"></div>
                         </div>
                         <div class="space-y-2">
                             <div class="flex justify-between text-xs text-baseBlack font-bold">
@@ -355,8 +355,8 @@
                     <div class="space-y-3 pt-4">
                         <div class="flex items-center gap-2 w-full">
                             <span class="bg-brandGreen text-brandPink font-mono font-black text-[10px] px-2 py-0.5 border border-baseBlack shadow-[1px_1px_0_0_#000]">04</span>
-                            <h3 class="text-xs font-black text-brandPink uppercase tracking-widest">Ancho del sticker</h3>
-                            <div class="flex-1 border-b-2 border-dotted border-gray-200 mt-1"></div>
+                            <h3 class="text-xs font-black text-brandPink uppercase tracking-widest drop-shadow-[1px_1px_0_rgba(0,0,0,1)]">Ancho del sticker</h3>
+                            <div class="flex-1 border-b-2 border-dotted border-gray-300 mt-1"></div>
                         </div>
                         <div id="size-button-group" class="grid grid-cols-4 gap-2 pt-1">
                             <button onclick="setSize(3)" class="py-1.5 text-[11px] font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all">3 cm</button>
@@ -403,13 +403,17 @@
                     <div class="space-y-3 pt-4">
                         <div class="flex items-center gap-2 w-full">
                             <span class="bg-brandGreen text-brandPink font-mono font-black text-[10px] px-2 py-0.5 border border-baseBlack shadow-[1px_1px_0_0_#000]">05</span>
-                            <h3 class="text-xs font-black text-brandPink uppercase tracking-widest">Sustrato / Material Base</h3>
-                            <div class="flex-1 border-b-2 border-dotted border-gray-200 mt-1"></div>
+                            <h3 class="text-xs font-black text-brandPink uppercase tracking-widest drop-shadow-[1px_1px_0_rgba(0,0,0,1)]">Sustrato / Material Base</h3>
+                            <div class="flex-1 border-b-2 border-dotted border-gray-300 mt-1"></div>
                         </div>
                         <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 pt-1">
-                            <button id="mat-standard" onclick="setMaterial('standard')" class="py-2.5 px-1 text-[11px] font-bold rounded-lg border-2 border-baseBlack bg-baseBlack text-baseWhite transition-all flex flex-col items-center justify-center gap-0.5 text-center">
-                                <span>Vinil Blanco</span>
+                            <button id="mat-brillante" onclick="setMaterial('brillante')" class="py-2.5 px-1 text-[11px] font-bold rounded-lg border-2 border-baseBlack bg-baseBlack text-baseWhite transition-all flex flex-col items-center justify-center gap-0.5 text-center">
+                                <span>Blanco Brillante</span>
                                 <span class="text-[9px] text-gray-400 font-normal">Base $140/pl</span>
+                            </button>
+                            <button id="mat-mate" onclick="setMaterial('mate')" class="py-2.5 px-1 text-[11px] font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all flex flex-col items-center justify-center gap-0.5 text-center">
+                                <span>Blanco Mate</span>
+                                <span class="text-[9px] font-normal">Base $140/pl</span>
                             </button>
                             <button id="mat-transparente" onclick="setMaterial('transparente')" class="py-2.5 px-1 text-[11px] font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all flex flex-col items-center justify-center gap-0.5 text-center">
                                 <span>Transparente</span>
@@ -419,10 +423,10 @@
                                 <span>Holográfico</span>
                                 <span class="text-[9px] font-normal">Base $240/pl</span>
                             </button>
-                            <!-- BOTÓN SECRETO -->
-                            <button id="mat-custom" onclick="promptCustomMaterial()" class="py-2.5 px-1 text-[11px] font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all flex flex-col items-center justify-center gap-0.5 text-center">
-                                <span>Introducir Código</span>
-                                <span class="text-[9px] font-normal">---</span>
+                        </div>
+                        <div class="pt-1.5 w-full">
+                            <button id="btn-custom-code" onclick="promptCustomMaterial()" class="w-full py-2 px-3 text-[11px] font-bold rounded-lg border border-gray-200 bg-gray-50 hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all flex items-center justify-center gap-2 shadow-sm">
+                                <i class="fa-solid fa-key"></i> <span id="custom-code-label">Introducir Código de Agente o Promoción</span>
                             </button>
                         </div>
                     </div>
@@ -430,8 +434,8 @@
                     <div class="space-y-3 pt-4">
                         <div class="flex items-center gap-2 w-full">
                             <span class="bg-brandGreen text-brandPink font-mono font-black text-[10px] px-2 py-0.5 border border-baseBlack shadow-[1px_1px_0_0_#000]">06</span>
-                            <h3 class="text-xs font-black text-brandPink uppercase tracking-widest">Acabados (Opcional)</h3>
-                            <div class="flex-1 border-b-2 border-dotted border-gray-200 mt-1"></div>
+                            <h3 class="text-xs font-black text-brandPink uppercase tracking-widest drop-shadow-[1px_1px_0_rgba(0,0,0,1)]">Acabados (Opcional)</h3>
+                            <div class="flex-1 border-b-2 border-dotted border-gray-300 mt-1"></div>
                         </div>
                         <div class="grid grid-cols-2 gap-2 sm:gap-3 pt-1">
                             <label class="flex items-center gap-3 cursor-pointer p-2.5 rounded-lg border border-gray-200 bg-gray-50 hover:border-baseBlack transition-colors">
@@ -454,8 +458,8 @@
                     <div class="space-y-3 pt-4">
                         <div class="flex items-center gap-2 w-full">
                             <span class="bg-brandGreen text-brandPink font-mono font-black text-[10px] px-2 py-0.5 border border-baseBlack shadow-[1px_1px_0_0_#000]">07</span>
-                            <h3 class="text-xs font-black text-brandPink uppercase tracking-widest">Tiraje / Volumen</h3>
-                            <div class="flex-1 border-b-2 border-dotted border-gray-200 mt-1"></div>
+                            <h3 class="text-xs font-black text-brandPink uppercase tracking-widest drop-shadow-[1px_1px_0_rgba(0,0,0,1)]">Tiraje / Volumen</h3>
+                            <div class="flex-1 border-b-2 border-dotted border-gray-300 mt-1"></div>
                         </div>
                         <div class="flex items-center gap-4 bg-gray-50 p-3 rounded-xl border border-gray-200">
                             <input type="range" id="qty-slider" min="10" max="999" value="10" class="w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-baseBlack">
@@ -495,13 +499,11 @@
                             <canvas id="sticker-canvas" class="z-10 relative max-w-full max-h-full drop-shadow-xl cursor-crosshair transition-transform" style="width: 280px; height: 280px;"></canvas>
                         </div>
 
-                        <!-- SECCION DE DIMENSIONES Y ZOOM -->
                         <div class="mt-5 flex flex-col items-center text-center w-full">
                             <span class="inline-flex items-center gap-1.5 px-4 py-1.5 bg-gray-100 border border-gray-200 rounded-full text-baseBlack text-xs font-bold uppercase tracking-wide shadow-sm">
                                 DIMENSIÓN DE CORTE: <strong id="sticker-final-dimensions-label" class="text-brandPink">5.0 × 5.0 cm</strong>
                             </span>
 
-                            <!-- ZOOM CONTROL -->
                             <div class="w-full max-w-[260px] mt-4 hidden flex-col gap-2" id="zoom-control-container">
                                 <div class="w-full flex items-center gap-3 bg-gray-50 px-4 py-2 rounded-xl border border-gray-200 shadow-sm">
                                     <i class="fa-solid fa-image text-textMuted text-xs"></i>
@@ -1044,15 +1046,16 @@
         </div>
     </div>
 
-    <!-- MODAL CÓDIGO SECRETO (Nuevo) -->
+    <!-- MODAL CÓDIGO SECRETO -->
     <div id="secret-code-modal" class="fixed inset-0 bg-baseBlack/80 backdrop-blur-sm z-[80] flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
         <div class="bg-baseWhite border-[4px] border-baseBlack max-w-sm w-full p-6 relative flex flex-col shadow-brutal rounded-2xl scale-95 transition-transform duration-300" id="secret-code-content">
             <h3 class="font-black text-xl uppercase mb-4 text-center text-baseBlack">Introducir Código Especial</h3>
             <p class="text-xs text-textMuted text-center font-bold mb-4">Ingresa tu código promocional o de agente.</p>
             <input type="text" id="secret-code-input" placeholder="" class="w-full border-[3px] border-baseBlack px-4 py-3 text-sm font-black uppercase outline-none mb-4 rounded-xl focus:border-brandPink shadow-inner">
-            <div class="flex gap-3">
-                <button onclick="closeSecretCodeModal()" class="flex-1 bg-gray-200 text-baseBlack font-bold py-3 border-[3px] border-baseBlack rounded-xl hover:bg-gray-300 transition-colors">CANCELAR</button>
-                <button onclick="submitSecretCode()" class="flex-1 bg-brandGreen text-baseBlack font-black py-3 border-[3px] border-baseBlack rounded-xl hover:bg-brandGreen/90 transition-colors shadow-brutal-sm">APLICAR</button>
+            <div class="flex flex-wrap gap-2 sm:gap-3">
+                <button onclick="closeSecretCodeModal()" class="flex-1 min-w-[80px] bg-gray-200 text-baseBlack font-bold py-3 border-[3px] border-baseBlack rounded-xl hover:bg-gray-300 transition-colors text-xs">CANCELAR</button>
+                <button id="btn-remove-code" onclick="removeSecretCode()" class="hidden flex-1 min-w-[80px] bg-brandPink text-baseWhite font-bold py-3 border-[3px] border-baseBlack rounded-xl hover:bg-brandPink/90 transition-colors text-xs">DESACTIVAR</button>
+                <button onclick="submitSecretCode()" class="flex-1 min-w-[80px] bg-brandGreen text-baseBlack font-black py-3 border-[3px] border-baseBlack rounded-xl hover:bg-brandGreen/90 transition-colors shadow-brutal-sm text-xs">APLICAR</button>
             </div>
         </div>
     </div>
@@ -1112,12 +1115,13 @@
             customMode: 'auto', 
             selectedHeight: null, 
             quantity: 10,  
-            material: 'standard',
+            material: 'brillante',
             laminado: false,
             corteFisico: false,
             imageZoom: 1,
             imageOffsetX: 0,
             imageOffsetY: 0,
+            hasSecretCode: false,
             customMaterialPrice: 0,
             cart: []                
         };
@@ -1494,7 +1498,16 @@
             const modal = document.getElementById('secret-code-modal');
             const content = document.getElementById('secret-code-content');
             const input = document.getElementById('secret-code-input');
+            const removeBtn = document.getElementById('btn-remove-code');
+            
             input.value = ''; 
+            
+            if (APP_STATE.hasSecretCode) {
+                removeBtn.classList.remove('hidden');
+            } else {
+                removeBtn.classList.add('hidden');
+            }
+            
             modal.classList.remove('hidden');
             setTimeout(() => { 
                 modal.classList.remove('opacity-0'); 
@@ -1521,23 +1534,48 @@
             
             const match = code.trim().toLowerCase().match(/^kalua(\d+)$/);
             if (match) {
+                APP_STATE.hasSecretCode = true;
                 APP_STATE.customMaterialPrice = parseInt(match[1], 10);
-                setMaterial('custom');
-                showToast(`Código especial aplicado ($${APP_STATE.customMaterialPrice}).`, 'success');
+                
+                const codeBtn = document.getElementById('btn-custom-code');
+                const codeLabel = document.getElementById('custom-code-label');
+                if (codeBtn && codeLabel) {
+                    codeBtn.className = "w-full py-2 px-3 text-[11px] font-bold rounded-lg border-2 border-baseBlack bg-brandGreen text-baseBlack transition-all flex items-center justify-center gap-2 shadow-sm";
+                    codeLabel.innerText = `Código Aplicado: Descuento base $${APP_STATE.customMaterialPrice}`;
+                }
+
+                updateRendimientoUI();
+                showToast(`Código especial aplicado.`, 'success');
                 closeSecretCodeModal();
             } else {
                 showToast('Código inválido', 'error');
             }
         }
 
+        function removeSecretCode() {
+            APP_STATE.hasSecretCode = false;
+            APP_STATE.customMaterialPrice = 0;
+            
+            const codeBtn = document.getElementById('btn-custom-code');
+            const codeLabel = document.getElementById('custom-code-label');
+            if (codeBtn && codeLabel) {
+                codeBtn.className = "w-full py-2 px-3 text-[11px] font-bold rounded-lg border border-gray-200 bg-gray-50 hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all flex items-center justify-center gap-2 shadow-sm";
+                codeLabel.innerText = "Introducir Código de Agente o Promoción";
+            }
+            
+            updateRendimientoUI();
+            showToast("Promo desactivada correctamente.", "info");
+            closeSecretCodeModal();
+        }
+
         function setMaterial(mat) {
             APP_STATE.material = mat;
-            const mats = ['standard', 'transparente', 'holo', 'custom'];
+            const mats = ['brillante', 'mate', 'transparente', 'holo'];
             const labels = {
-                'standard': { title: 'Vinil Blanco', price: 'Base $140/pl' },
+                'brillante': { title: 'Blanco Brillante', price: 'Base $140/pl' },
+                'mate': { title: 'Blanco Mate', price: 'Base $140/pl' },
                 'transparente': { title: 'Transparente', price: 'Base $160/pl' },
-                'holo': { title: 'Holográfico', price: 'Base $240/pl' },
-                'custom': { title: 'Código Especial', price: `Base $${APP_STATE.customMaterialPrice}/pl` }
+                'holo': { title: 'Holográfico', price: 'Base $240/pl' }
             };
             mats.forEach(m => {
                 const btn = document.getElementById(`mat-${m}`);
@@ -1546,14 +1584,8 @@
                     btn.className = "py-2.5 px-1 text-[11px] font-bold rounded-lg border-2 border-baseBlack bg-baseBlack text-baseWhite transition-all flex flex-col items-center justify-center gap-0.5 text-center";
                     btn.innerHTML = `<span>${labels[m].title}</span><span class="text-[9px] text-gray-400 font-normal">${labels[m].price}</span>`;
                 } else {
-                    let displayTitle = labels[m].title;
-                    let displayPrice = labels[m].price;
-                    if (m === 'custom') {
-                        displayTitle = 'Introducir Código';
-                        displayPrice = '---';
-                    }
                     btn.className = "py-2.5 px-1 text-[11px] font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all flex flex-col items-center justify-center gap-0.5 text-center";
-                    btn.innerHTML = `<span>${displayTitle}</span><span class="text-[9px] font-normal">${displayPrice}</span>`;
+                    btn.innerHTML = `<span>${labels[m].title}</span><span class="text-[9px] font-normal">${labels[m].price}</span>`;
                 }
             });
             updateRendimientoUI();
@@ -1578,7 +1610,11 @@
             let costoPorPlanilla = 140; 
             if (material === 'transparente') costoPorPlanilla = 160;
             if (material === 'holo') costoPorPlanilla = 240;
-            if (material === 'custom') costoPorPlanilla = APP_STATE.customMaterialPrice;
+            
+            if (APP_STATE.hasSecretCode) {
+                costoPorPlanilla = APP_STATE.customMaterialPrice;
+            }
+
             if (laminado) costoPorPlanilla += 70;
             if (corteFisico) costoPorPlanilla += 60;
             const unitPrice = costoPorPlanilla / pzPorPlanilla;
@@ -1772,10 +1808,11 @@
             if (APP_STATE.shape === 'circular') corteTexto = "Circular";
             if (APP_STATE.shape === 'squared') corteTexto = "Cuadrado";
 
-            let matLabel = 'Vinil Blanco';
+            let matLabel = 'Vinil Blanco Brillante';
+            if (APP_STATE.material === 'mate') matLabel = 'Vinil Blanco Mate';
             if (APP_STATE.material === 'holo') matLabel = 'Holográfico';
             if (APP_STATE.material === 'transparente') matLabel = 'Transparente';
-            if (APP_STATE.material === 'custom') matLabel = `Especial ($${APP_STATE.customMaterialPrice})`;
+            // NOTA: No le agregamos el precio custom aquí, dejamos el material limpio.
 
             const item = {
                 id: Date.now(),
