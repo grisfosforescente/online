@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Sticker Studio - grisfosforescente.com.mx</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts: Space Grotesk, Share Tech Mono, Bangers & Plus Jakarta Sans -->
@@ -293,22 +298,23 @@
         </main>
 
         <!-- ESTUDIO / COTIZADOR -->
-        <div id="cotizador" class="bg-baseWhite py-10">
-            <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div id="cotizador" class="bg-baseWhite py-8">
+            <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
                 
                 <!-- COLUMNA IZQUIERDA: Herramientas y Ajustes (lg:col-span-5) -->
-                <section class="lg:col-span-5 bg-baseWhite p-8 border-[3px] border-baseBlack shadow-brutal space-y-8 relative z-10">
+                <!-- Compactado: Cambiado p-8 por p-5 sm:p-6, y space-y-8 por flex/gap y divide -->
+                <section class="lg:col-span-5 bg-baseWhite p-5 sm:p-6 border-[3px] border-baseBlack shadow-brutal flex flex-col gap-4 divide-y-[3px] divide-gray-100 relative z-10">
                     
                     <!-- Encabezado del Panel -->
-                    <div class="border-b-4 border-baseBlack pb-4 mb-2">
-                        <h2 class="text-2xl font-black uppercase tracking-tight flex items-center gap-2">
+                    <div class="pb-1">
+                        <h2 class="text-xl sm:text-2xl font-black uppercase tracking-tight flex items-center gap-2">
                             <i class="fa-solid fa-sliders text-brandPink"></i>
                             Configurador
                         </h2>
                     </div>
                     
                     <!-- ① PANEL: SUBIR DISEÑO -->
-                    <div class="space-y-3">
+                    <div class="space-y-2 pt-4">
                         <div class="flex items-center justify-between text-baseBlack">
                             <span class="flex items-center gap-3">
                                 <span class="bg-baseBlack text-brandGreen w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold">1</span>
@@ -317,39 +323,41 @@
                             <span class="text-[10px] text-textMuted font-bold">PNG / SVG / JPG</span>
                         </div>
                         
-                        <div id="drop-zone" class="border-2 border-dashed border-gray-300 hover:border-baseBlack bg-gray-50 hover:bg-gray-100 p-8 text-center cursor-pointer transition-all group rounded-xl">
+                        <!-- Compactado: p-8 a p-5 -->
+                        <div id="drop-zone" class="border-2 border-dashed border-gray-300 hover:border-baseBlack bg-gray-50 hover:bg-gray-100 p-5 text-center cursor-pointer transition-all group rounded-xl">
                             <input type="file" id="file-input" accept="image/png, image/jpeg, image/svg+xml" class="hidden">
-                            <i class="fa-solid fa-cloud-arrow-up text-3xl text-gray-400 group-hover:text-brandPink mb-3 transition-colors"></i>
+                            <i class="fa-solid fa-cloud-arrow-up text-3xl text-gray-400 group-hover:text-brandPink mb-2 transition-colors"></i>
                             <p class="text-sm font-bold uppercase text-baseBlack">Sube tu diseño aquí</p>
                             <p class="text-[10px] text-textMuted font-mono mt-1">Fondo transparente recomendado</p>
                         </div>
                     </div>
 
                     <!-- ② PANEL: SELECCIÓN DE CORTE -->
-                    <div class="space-y-4 border-t border-borderGray pt-6">
+                    <div class="space-y-3 pt-4">
                         <div class="flex items-center gap-3 text-baseBlack">
                             <span class="bg-gray-100 text-baseBlack w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold border border-gray-200">2</span>
                             <h3 class="text-sm font-bold uppercase tracking-wide">Corte del sticker</h3>
                         </div>
                         
-                        <div class="grid grid-cols-3 gap-3">
-                            <button id="shape-personalized" onclick="setShape('personalized')" class="flex flex-col items-center justify-center py-4 px-2 rounded-xl border-2 border-baseBlack bg-baseBlack text-brandGreen transition-all shadow-sm">
-                                <i class="fa-solid fa-wave-square text-lg mb-2"></i>
+                        <!-- Compactado: py-4 a py-2.5 -->
+                        <div class="grid grid-cols-3 gap-2 sm:gap-3">
+                            <button id="shape-personalized" onclick="setShape('personalized')" class="flex flex-col items-center justify-center py-2.5 px-2 rounded-xl border-2 border-baseBlack bg-baseBlack text-brandGreen transition-all shadow-sm">
+                                <i class="fa-solid fa-wave-square text-base mb-1"></i>
                                 <span class="text-[10px] font-bold uppercase tracking-wide">Silueta</span>
                             </button>
-                            <button id="shape-circular" onclick="setShape('circular')" class="flex flex-col items-center justify-center py-4 px-2 rounded-xl border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all shadow-sm">
-                                <i class="fa-regular fa-circle text-lg mb-2"></i>
+                            <button id="shape-circular" onclick="setShape('circular')" class="flex flex-col items-center justify-center py-2.5 px-2 rounded-xl border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all shadow-sm">
+                                <i class="fa-regular fa-circle text-base mb-1"></i>
                                 <span class="text-[10px] font-bold uppercase tracking-wide">Circular</span>
                             </button>
-                            <button id="shape-squared" onclick="setShape('squared')" class="flex flex-col items-center justify-center py-4 px-2 rounded-xl border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all shadow-sm">
-                                <i class="fa-regular fa-square text-lg mb-2"></i>
+                            <button id="shape-squared" onclick="setShape('squared')" class="flex flex-col items-center justify-center py-2.5 px-2 rounded-xl border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all shadow-sm">
+                                <i class="fa-regular fa-square text-base mb-1"></i>
                                 <span class="text-[10px] font-bold uppercase tracking-wide">Cuadrado</span>
                             </button>
                         </div>
                     </div>
 
                     <!-- ③ PANEL: CONTROL DE MARGEN / BORDE -->
-                    <div class="space-y-5 border-t border-borderGray pt-6">
+                    <div class="space-y-3 pt-4">
                         <div class="flex items-center gap-3 text-baseBlack">
                             <span class="bg-gray-100 text-baseBlack w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold border border-gray-200">3</span>
                             <h3 class="text-sm font-bold uppercase tracking-wide">Borde (Blanco)</h3>
@@ -361,80 +369,81 @@
                                 <span id="border-size-label" class="bg-gray-100 px-2 py-0.5 rounded text-textMuted">12px (1.2 mm)</span>
                             </div>
                             <div class="flex items-center gap-3 pt-1">
-                                <input type="range" id="border-size-slider" min="0" max="35" value="12" class="w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                                <!-- Tope ajustado a 30 (3.0 mm) -->
+                                <input type="range" id="border-size-slider" min="0" max="30" value="12" class="w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer">
                             </div>
-                            <p class="text-[10px] text-textMuted font-mono">Un margen blanco garantiza la protección de tu diseño durante el corte.</p>
+                            <p class="text-[10px] text-textMuted font-mono leading-tight">Un margen blanco garantiza la protección de tu diseño.</p>
                         </div>
                     </div>
 
                     <!-- ④ PANEL: DIMENSIONES REALES -->
-                    <div class="space-y-4 border-t border-borderGray pt-6">
+                    <div class="space-y-3 pt-4">
                         <div class="flex items-center gap-3 text-baseBlack">
                             <span class="bg-gray-100 text-baseBlack w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold border border-gray-200">4</span>
                             <h3 class="text-sm font-bold uppercase tracking-wide">Ancho del sticker</h3>
                         </div>
                         
+                        <!-- Compactado: py-2 a py-1.5 -->
                         <div id="size-button-group" class="grid grid-cols-4 gap-2 pt-1">
-                            <button onclick="setSize(3)" class="py-2 text-xs font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all">3 cm</button>
-                            <button onclick="setSize(4)" class="py-2 text-xs font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all">4 cm</button>
-                            <button onclick="setSize(5)" class="py-2 text-xs font-bold rounded-lg border-2 border-baseBlack bg-baseBlack text-brandGreen transition-all">5 cm</button>
-                            <button onclick="setSize(6)" class="py-2 text-xs font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all">6 cm</button>
-                            <button onclick="setSize(8)" class="py-2 text-xs font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all">8 cm</button>
-                            <button onclick="setSize(10)" class="py-2 text-xs font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all">10 cm</button>
-                            <button id="btn-custom-auto" onclick="triggerCustomSize('auto')" class="py-2 text-xs font-bold rounded-lg border border-gray-200 bg-gray-50 hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all flex items-center justify-center gap-1">
+                            <button onclick="setSize(3)" class="py-1.5 text-[11px] font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all">3 cm</button>
+                            <button onclick="setSize(4)" class="py-1.5 text-[11px] font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all">4 cm</button>
+                            <button onclick="setSize(5)" class="py-1.5 text-[11px] font-bold rounded-lg border-2 border-baseBlack bg-baseBlack text-brandGreen transition-all">5 cm</button>
+                            <button onclick="setSize(6)" class="py-1.5 text-[11px] font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all">6 cm</button>
+                            <button onclick="setSize(8)" class="py-1.5 text-[11px] font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all">8 cm</button>
+                            <button onclick="setSize(10)" class="py-1.5 text-[11px] font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all">10 cm</button>
+                            <button id="btn-custom-auto" onclick="triggerCustomSize('auto')" class="py-1.5 text-[11px] font-bold rounded-lg border border-gray-200 bg-gray-50 hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all flex items-center justify-center gap-1">
                                 <span id="custom-auto-text">✏️ Ancho</span>
                             </button>
-                            <button id="btn-custom-free" onclick="triggerCustomSize('free')" class="py-2 text-xs font-bold rounded-lg border border-gray-200 bg-gray-50 hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all flex items-center justify-center gap-1">
+                            <button id="btn-custom-free" onclick="triggerCustomSize('free')" class="py-1.5 text-[11px] font-bold rounded-lg border border-gray-200 bg-gray-50 hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all flex items-center justify-center gap-1">
                                 <span id="custom-free-text">📐 Libre</span>
                             </button>
                         </div>
 
-                        <!-- Ancho manual (Auto alto) -->
-                        <div id="custom-auto-input-container" class="mt-3 hidden transition-all duration-300">
+                        <div id="custom-auto-input-container" class="mt-2 hidden transition-all duration-300">
                             <div class="flex items-center gap-2 bg-gray-50 border border-gray-200 rounded-lg p-1.5 focus-within:border-baseBlack">
                                 <span class="text-[10px] font-bold uppercase text-textMuted pl-2">Ancho:</span>
                                 <input type="number" id="custom-auto-input" min="1" max="100" step="0.5" placeholder="Ej: 7.5" class="bg-transparent text-sm text-baseBlack outline-none w-full font-bold">
                                 <span class="text-[10px] font-bold uppercase text-textMuted pr-2">cm</span>
-                                <button onclick="applyCustomSize()" class="bg-baseBlack text-baseWhite text-xs font-bold px-4 py-2 rounded hover:bg-brandGreen hover:text-baseBlack transition-colors shrink-0">
+                                <button onclick="applyCustomSize()" class="bg-baseBlack text-baseWhite text-xs font-bold px-4 py-1.5 rounded hover:bg-brandGreen hover:text-baseBlack transition-colors shrink-0">
                                     Aplicar
                                 </button>
                             </div>
                         </div>
 
-                        <!-- Todo personalizado -->
-                        <div id="custom-free-input-container" class="mt-3 hidden transition-all duration-300">
+                        <div id="custom-free-input-container" class="mt-2 hidden transition-all duration-300">
                             <div class="flex items-center gap-1 bg-gray-50 border border-gray-200 rounded-lg p-1.5 focus-within:border-baseBlack">
                                 <span class="text-[10px] font-bold uppercase text-textMuted pl-2">W:</span>
                                 <input type="number" id="custom-w-input" min="1" max="100" step="0.5" placeholder="Ancho" class="bg-transparent text-sm text-baseBlack outline-none w-full font-bold text-center">
                                 <span class="text-[10px] font-bold uppercase text-textMuted border-l border-gray-300 pl-2">H:</span>
                                 <input type="number" id="custom-h-input" min="1" max="100" step="0.5" placeholder="Alto" class="bg-transparent text-sm text-baseBlack outline-none w-full font-bold text-center">
                                 <span class="text-[10px] font-bold uppercase text-textMuted pr-2">cm</span>
-                                <button onclick="applyFreeSize()" class="bg-baseBlack text-baseWhite text-xs font-bold px-3 py-2 rounded hover:bg-brandGreen hover:text-baseBlack transition-colors shrink-0">
+                                <button onclick="applyFreeSize()" class="bg-baseBlack text-baseWhite text-xs font-bold px-3 py-1.5 rounded hover:bg-brandGreen hover:text-baseBlack transition-colors shrink-0">
                                     Fijar
                                 </button>
                             </div>
                         </div>
                         
-                        <p id="dimension-helper-text" class="text-[10px] text-textMuted font-mono">El alto se calcula automático para mantener la proporción.</p>
+                        <p id="dimension-helper-text" class="text-[10px] text-textMuted font-mono leading-tight">El alto se calcula automático para mantener la proporción.</p>
                     </div>
 
                     <!-- ⑤ PANEL NUEVO: MATERIAL BASE -->
-                    <div class="space-y-4 border-t border-borderGray pt-6">
+                    <div class="space-y-3 pt-4">
                         <div class="flex items-center gap-3 text-baseBlack">
                             <span class="bg-gray-100 text-baseBlack w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold border border-gray-200">5</span>
                             <h3 class="text-sm font-bold uppercase tracking-wide">Sustrato / Material Base</h3>
                         </div>
                         
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
-                            <button id="mat-standard" onclick="setMaterial('standard')" class="py-3 px-1 text-[11px] font-bold rounded-lg border-2 border-baseBlack bg-baseBlack text-baseWhite transition-all flex flex-col items-center justify-center gap-1 text-center">
+                        <!-- Compactado: py-3 a py-2.5 -->
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3 pt-1">
+                            <button id="mat-standard" onclick="setMaterial('standard')" class="py-2.5 px-1 text-[11px] font-bold rounded-lg border-2 border-baseBlack bg-baseBlack text-baseWhite transition-all flex flex-col items-center justify-center gap-0.5 text-center">
                                 <span>Vinil Blanco</span>
                                 <span class="text-[9px] text-gray-400 font-normal">Base $140/pl</span>
                             </button>
-                            <button id="mat-transparente" onclick="setMaterial('transparente')" class="py-3 px-1 text-[11px] font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all flex flex-col items-center justify-center gap-1 text-center">
+                            <button id="mat-transparente" onclick="setMaterial('transparente')" class="py-2.5 px-1 text-[11px] font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all flex flex-col items-center justify-center gap-0.5 text-center">
                                 <span>Transparente</span>
                                 <span class="text-[9px] font-normal">Base $160/pl</span>
                             </button>
-                            <button id="mat-holo" onclick="setMaterial('holo')" class="py-3 px-1 text-[11px] font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all flex flex-col items-center justify-center gap-1 text-center">
+                            <button id="mat-holo" onclick="setMaterial('holo')" class="py-2.5 px-1 text-[11px] font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all flex flex-col items-center justify-center gap-0.5 text-center">
                                 <span>Holográfico</span>
                                 <span class="text-[9px] font-normal">Base $240/pl</span>
                             </button>
@@ -442,32 +451,33 @@
                     </div>
 
                     <!-- ⑥ PANEL: ACABADOS -->
-                    <div class="space-y-4 border-t border-borderGray pt-6">
+                    <div class="space-y-3 pt-4">
                         <div class="flex items-center gap-3 text-baseBlack">
                             <span class="bg-gray-100 text-baseBlack w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold border border-gray-200">6</span>
                             <h3 class="text-sm font-bold uppercase tracking-wide">Acabados (Opcional)</h3>
                         </div>
                         
-                        <div class="grid grid-cols-2 gap-3 pt-1">
-                            <label class="flex items-center gap-3 cursor-pointer p-3 rounded-lg border border-gray-200 bg-gray-50 hover:border-baseBlack transition-colors">
+                        <!-- Compactado: p-3 a p-2.5 -->
+                        <div class="grid grid-cols-2 gap-2 sm:gap-3 pt-1">
+                            <label class="flex items-center gap-3 cursor-pointer p-2.5 rounded-lg border border-gray-200 bg-gray-50 hover:border-baseBlack transition-colors">
                                 <input type="checkbox" id="check-laminado" onchange="toggleLaminado(this.checked)" class="accent-baseBlack w-4 h-4">
                                 <div class="flex flex-col">
-                                    <span class="text-xs font-bold text-baseBlack">Laminado</span>
-                                    <span class="text-[10px] text-textMuted">+$70 / pl</span>
+                                    <span class="text-[11px] sm:text-xs font-bold text-baseBlack">Laminado</span>
+                                    <span class="text-[10px] text-textMuted leading-none">+$70 / pl</span>
                                 </div>
                             </label>
-                            <label class="flex items-center gap-3 cursor-pointer p-3 rounded-lg border border-gray-200 bg-gray-50 hover:border-baseBlack transition-colors">
+                            <label class="flex items-center gap-3 cursor-pointer p-2.5 rounded-lg border border-gray-200 bg-gray-50 hover:border-baseBlack transition-colors">
                                 <input type="checkbox" id="check-corte" onchange="toggleCorteFisico(this.checked)" class="accent-baseBlack w-4 h-4">
                                 <div class="flex flex-col">
-                                    <span class="text-xs font-bold text-baseBlack leading-tight">Corte Completo</span>
-                                    <span class="text-[10px] text-textMuted">+$60 / pl</span>
+                                    <span class="text-[11px] sm:text-xs font-bold text-baseBlack leading-tight">Corte Completo</span>
+                                    <span class="text-[10px] text-textMuted leading-none">+$60 / pl</span>
                                 </div>
                             </label>
                         </div>
                     </div>
 
                     <!-- ⑦ PANEL: VOLUMEN DE TIRADA -->
-                    <div class="space-y-4 border-t border-borderGray pt-6">
+                    <div class="space-y-3 pt-4">
                         <div class="flex items-center justify-between">
                             <div class="flex items-center gap-3 text-baseBlack">
                                 <span class="bg-gray-100 text-baseBlack w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold border border-gray-200">7</span>
@@ -475,22 +485,23 @@
                             </div>
                         </div>
                         
-                        <div class="flex items-center gap-4 bg-gray-50 p-4 rounded-xl border border-gray-200">
+                        <div class="flex items-center gap-4 bg-gray-50 p-3 rounded-xl border border-gray-200">
                             <input type="range" id="qty-slider" min="10" max="999" value="10" class="w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-baseBlack">
-                            <div class="flex items-center gap-1 bg-baseWhite border border-gray-300 px-3 py-2 rounded-lg shrink-0 focus-within:border-baseBlack">
-                                <input type="number" id="qty-input" min="10" max="999" value="10" class="bg-transparent text-sm text-baseBlack outline-none w-12 font-bold text-center">
+                            <div class="flex items-center gap-1 bg-baseWhite border border-gray-300 px-3 py-1.5 rounded-lg shrink-0 focus-within:border-baseBlack">
+                                <input type="number" id="qty-input" min="10" max="999" value="10" class="bg-transparent text-sm text-baseBlack outline-none w-10 font-bold text-center">
                                 <span class="text-[10px] text-textMuted font-bold uppercase">PZ</span>
                             </div>
                         </div>
                         
-                        <div id="rendimiento-info" class="text-xs text-baseBlack bg-brandGreen/20 p-4 rounded-xl border border-brandGreen/40 leading-relaxed font-medium">
+                        <div id="rendimiento-info" class="text-xs text-baseBlack bg-brandGreen/20 p-3 rounded-xl border border-brandGreen/40 leading-relaxed font-medium">
                             Carga un diseño para calcular el rendimiento y el costo unitario basado en la planilla.
                         </div>
                     </div>
                 </section>
 
                 <!-- COLUMNA DERECHA: Mesa de Trabajo Principal (lg:col-span-7) -->
-                <section class="lg:col-span-7 space-y-6 lg:sticky lg:top-[100px]">
+                <!-- Compactado: top-[80px] y padding interno -->
+                <section class="lg:col-span-7 space-y-4 lg:sticky lg:top-[80px]">
                     
                     <div class="flex items-center justify-between px-2">
                         <span class="font-bold text-xs uppercase text-baseBlack tracking-wider flex items-center gap-2">
@@ -500,11 +511,11 @@
                         <span class="text-[10px] font-mono font-bold text-textMuted uppercase bg-gray-100 px-2 py-1 rounded">ESCALA: 1:1 PRE-PRENSA</span>
                     </div>
 
-                    <!-- Mesa de Trabajo Brutalista Clara -->
-                    <div class="relative bg-baseWhite border-[3px] border-baseBlack p-6 shadow-brutal flex flex-col justify-center items-center overflow-hidden min-h-[480px]">
+                    <!-- Mesa de Trabajo Brutalista Clara (Menos altura mínima para ajustarse a escritorios) -->
+                    <div class="relative bg-baseWhite border-[3px] border-baseBlack p-5 sm:p-6 shadow-brutal flex flex-col justify-center items-center overflow-hidden min-h-[380px] lg:min-h-[440px]">
                         
                         <!-- RULER HORIZONTAL -->
-                        <div class="absolute top-0 left-0 right-0 h-6 bg-gray-50 border-b border-borderGray flex justify-between items-center px-4 font-mono text-[9px] text-textMuted font-bold">
+                        <div class="absolute top-0 left-0 right-0 h-5 bg-gray-50 border-b border-borderGray flex justify-between items-center px-4 font-mono text-[9px] text-textMuted font-bold">
                             <span>0</span>
                             <span>10</span>
                             <span>20</span>
@@ -518,7 +529,7 @@
                         </div>
 
                         <!-- RULER VERTICAL -->
-                        <div class="absolute top-6 left-0 bottom-0 w-6 bg-gray-50 border-r border-borderGray flex flex-col justify-between items-center py-4 font-mono text-[9px] text-textMuted font-bold">
+                        <div class="absolute top-5 left-0 bottom-0 w-5 bg-gray-50 border-r border-borderGray flex flex-col justify-between items-center py-4 font-mono text-[9px] text-textMuted font-bold">
                             <span>0</span>
                             <span>10</span>
                             <span>20</span>
@@ -531,7 +542,7 @@
                         </div>
 
                         <!-- Contenedor del Lienzo -->
-                        <div id="canvas-wrapper" class="w-full max-w-[380px] aspect-square relative flex items-center justify-center blueprint-grid bg-[#d9d9d9] border-2 border-baseBlack mt-4 p-4 shadow-inner">
+                        <div id="canvas-wrapper" class="w-full max-w-[360px] aspect-square relative flex items-center justify-center blueprint-grid bg-[#d9d9d9] border-2 border-baseBlack mt-3 p-4 shadow-inner">
                             <!-- Líneas de corte de registro en las esquinas -->
                             <div class="absolute top-2 left-2 w-3 h-3 border-t-2 border-l-2 border-baseBlack opacity-30"></div>
                             <div class="absolute top-2 right-2 w-3 h-3 border-t-2 border-r-2 border-baseBlack opacity-30"></div>
@@ -539,11 +550,11 @@
                             <div class="absolute bottom-2 right-2 w-3 h-3 border-b-2 border-r-2 border-baseBlack opacity-30"></div>
 
                             <!-- CANVAS DE DIBUJO REAL DEL STICKER -->
-                            <canvas id="sticker-canvas" class="z-10 relative max-w-full max-h-full drop-shadow-xl cursor-crosshair transition-transform" style="width: 300px; height: 300px;"></canvas>
+                            <canvas id="sticker-canvas" class="z-10 relative max-w-full max-h-full drop-shadow-xl cursor-crosshair transition-transform" style="width: 280px; height: 280px;"></canvas>
                         </div>
 
                         <!-- Datos Técnicos del Trazo en pantalla -->
-                        <div class="mt-6 flex flex-col items-center text-center">
+                        <div class="mt-5 flex flex-col items-center text-center">
                             <span class="inline-flex items-center gap-1.5 px-4 py-1.5 bg-gray-100 border border-gray-200 rounded-full text-baseBlack text-xs font-bold uppercase tracking-wide shadow-sm">
                                 DIMENSIÓN DE CORTE: <strong id="sticker-final-dimensions-label" class="text-brandPink">5.0 × 5.0 cm</strong>
                             </span>
@@ -551,16 +562,16 @@
                     </div>
 
                     <!-- Botones de Acción -->
-                    <div class="grid grid-cols-1 gap-4 pt-2">
-                        <!-- Botón Añadir al Carrito con estilo verde redondeado -->
-                        <button onclick="agregarAlCarrito()" class="w-full bg-brandGreen hover:bg-brandGreen/90 text-baseBlack font-bold text-sm py-4 px-8 rounded-full border-2 border-baseBlack shadow-brutal shadow-brutal-hover flex items-center justify-center gap-2 transition-all">
+                    <div class="grid grid-cols-1 gap-3 pt-2">
+                        <!-- Botón Añadir al Carrito más estrecho (py-3 en lugar de py-4) -->
+                        <button onclick="agregarAlCarrito()" class="w-full bg-brandGreen hover:bg-brandGreen/90 text-baseBlack font-bold text-sm py-3 px-6 rounded-full border-2 border-baseBlack shadow-brutal shadow-brutal-hover flex items-center justify-center gap-2 transition-all">
                             <i class="fa-solid fa-circle-plus text-lg"></i> AGREGAR A LA ORDEN DE CORTE
                         </button>
                     </div>
 
-                    <div class="bg-gray-50 border border-gray-200 p-4 rounded-xl text-center">
-                        <p class="text-[11px] text-textMuted font-medium leading-relaxed">
-                            <span class="text-brandPink font-bold">// NOTA DE PREPRENSA:</span> Las dimensiones se calculan a escala real a partir de los vectores detectados. Los trazos son validados por grisfosforescente.com.mx antes de ser mandados al cabezal.
+                    <div class="bg-gray-50 border border-gray-200 p-3 rounded-xl text-center">
+                        <p class="text-[10px] text-textMuted font-medium leading-relaxed">
+                            <span class="text-brandPink font-bold">// NOTA DE PREPRENSA:</span> Las dimensiones se calculan a escala real a partir de los vectores detectados. Los trazos son validados por grisfosforescente.com.mx.
                         </p>
                     </div>
                 </section>
@@ -1054,16 +1065,16 @@
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="border-[3px] border-baseBlack shadow-brutal-sm overflow-hidden bg-gray-100 flex items-center justify-center relative aspect-[3/4] hover:shadow-brutal transition-all">
-                    <img src="promo1.png" alt="Promoción 1" class="w-full h-full object-cover" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'533\'><rect width=\'400\' height=\'533\' fill=\'%23f3f4f6\'/><text x=\'50%\' y=\'50%\' font-family=\'monospace\' font-size=\'24\' font-weight=\'bold\' text-anchor=\'middle\' alignment-baseline=\'middle\' fill=\'%239ca3af\'>PROMO1.PNG</text></svg>'">
+                    <img src="promo1.png" alt="Promoción 1" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/400x533/f3f4f6/9ca3af?text=PROMO1'">
                 </div>
                 <div class="border-[3px] border-baseBlack shadow-brutal-sm overflow-hidden bg-gray-100 flex items-center justify-center relative aspect-[3/4] hover:shadow-brutal transition-all">
-                    <img src="promo2.png" alt="Promoción 2" class="w-full h-full object-cover" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'533\'><rect width=\'400\' height=\'533\' fill=\'%23f3f4f6\'/><text x=\'50%\' y=\'50%\' font-family=\'monospace\' font-size=\'24\' font-weight=\'bold\' text-anchor=\'middle\' alignment-baseline=\'middle\' fill=\'%239ca3af\'>PROMO2.PNG</text></svg>'">
+                    <img src="promo2.png" alt="Promoción 2" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/400x533/f3f4f6/9ca3af?text=PROMO2'">
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- PANEL DESLIZANTE DEL CARRITO GLOBAL (Sticker Studio) -->
+    <!-- PANEL DESLIZANTE DEL CARRITO GLOBAL -->
     <div id="cart-drawer" class="fixed inset-y-0 right-0 w-full max-w-md bg-gray-50 border-l-[3px] border-baseBlack z-50 shadow-2xl flex flex-col translate-x-full transition-transform duration-300 ease-in-out">
         <div class="p-6 border-b-[3px] border-baseBlack flex justify-between items-center bg-baseWhite">
             <div class="flex items-center gap-3">
@@ -1078,15 +1089,7 @@
         </div>
         
         <div id="cart-items-container" class="flex-1 overflow-y-auto p-6 space-y-4">
-            <div class="flex flex-col items-center justify-center text-center py-24 space-y-4">
-                <div class="w-16 h-16 border-2 border-dashed border-gray-300 bg-baseWhite rounded-2xl flex items-center justify-center text-gray-400">
-                    <i class="fa-solid fa-folder-open text-2xl"></i>
-                </div>
-                <div>
-                    <p class="text-sm font-bold text-baseBlack">ORDEN VACÍA</p>
-                    <p class="text-xs text-textMuted mt-1">Configura tus dimensiones y haz clic en "Agregar a la Orden".</p>
-                </div>
-            </div>
+            <!-- Cargado dinámicamente desde JS -->
         </div>
         
         <div class="p-6 border-t-[3px] border-baseBlack bg-baseWhite space-y-4">
@@ -1301,10 +1304,10 @@
             const btnCirc = document.getElementById('shape-circular');
             const btnSq = document.getElementById('shape-squared');
             [btnPers, btnCirc, btnSq].forEach(btn => {
-                btn.className = "flex flex-col items-center justify-center py-4 px-2 rounded-xl border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all shadow-sm";
+                btn.className = "flex flex-col items-center justify-center py-2.5 px-2 rounded-xl border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all shadow-sm";
             });
             const activeBtn = document.getElementById(`shape-${shapeType}`);
-            activeBtn.className = "flex flex-col items-center justify-center py-4 px-2 rounded-xl border-2 border-baseBlack bg-baseBlack text-brandGreen transition-all shadow-sm";
+            activeBtn.className = "flex flex-col items-center justify-center py-2.5 px-2 rounded-xl border-2 border-baseBlack bg-baseBlack text-brandGreen transition-all shadow-sm";
             showToast(`Corte establecido en: ${shapeType === 'personalized' ? 'Corte de Silueta' : shapeType === 'circular' ? 'Circular' : 'Cuadrado'}`);
             renderSticker();
         }
@@ -1392,20 +1395,20 @@
             const sizeGroup = document.getElementById('size-button-group');
             const buttons = sizeGroup.getElementsByTagName('button');
             for (let i = 0; i < buttons.length - 2; i++) {
-                buttons[i].className = "py-2 text-xs font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all";
+                buttons[i].className = "py-1.5 text-[11px] font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all";
                 if (!customMode && buttons[i].innerText.trim() === `${APP_STATE.selectedSize} cm`) {
-                    buttons[i].className = "py-2 text-xs font-bold rounded-lg border-2 border-baseBlack bg-baseBlack text-brandGreen transition-all";
+                    buttons[i].className = "py-1.5 text-[11px] font-bold rounded-lg border-2 border-baseBlack bg-baseBlack text-brandGreen transition-all";
                 }
             }
             const btnAuto = document.getElementById('btn-custom-auto');
             const btnFree = document.getElementById('btn-custom-free');
-            btnAuto.className = "py-2 text-xs font-bold rounded-lg border border-gray-200 bg-gray-50 hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all flex items-center justify-center gap-1";
-            btnFree.className = "py-2 text-xs font-bold rounded-lg border border-gray-200 bg-gray-50 hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all flex items-center justify-center gap-1";
+            btnAuto.className = "py-1.5 text-[11px] font-bold rounded-lg border border-gray-200 bg-gray-50 hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all flex items-center justify-center gap-1";
+            btnFree.className = "py-1.5 text-[11px] font-bold rounded-lg border border-gray-200 bg-gray-50 hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all flex items-center justify-center gap-1";
 
             if (customMode === 'auto') {
-                btnAuto.className = "py-2 text-xs font-bold rounded-lg border-2 border-baseBlack bg-baseBlack text-brandGreen transition-all flex items-center justify-center gap-1";
+                btnAuto.className = "py-1.5 text-[11px] font-bold rounded-lg border-2 border-baseBlack bg-baseBlack text-brandGreen transition-all flex items-center justify-center gap-1";
             } else if (customMode === 'free') {
-                btnFree.className = "py-2 text-xs font-bold rounded-lg border-2 border-baseBlack bg-baseBlack text-brandGreen transition-all flex items-center justify-center gap-1";
+                btnFree.className = "py-1.5 text-[11px] font-bold rounded-lg border-2 border-baseBlack bg-baseBlack text-brandGreen transition-all flex items-center justify-center gap-1";
             }
 
             const helperText = document.getElementById('dimension-helper-text');
@@ -1434,10 +1437,10 @@
             mats.forEach(m => {
                 const btn = document.getElementById(`mat-${m}`);
                 if(m === mat) {
-                    btn.className = "py-3 px-1 text-[11px] font-bold rounded-lg border-2 border-baseBlack bg-baseBlack text-baseWhite transition-all flex flex-col items-center justify-center gap-1 text-center";
+                    btn.className = "py-2.5 px-1 text-[11px] font-bold rounded-lg border-2 border-baseBlack bg-baseBlack text-baseWhite transition-all flex flex-col items-center justify-center gap-0.5 text-center";
                     btn.innerHTML = `<span>${labels[m].title}</span><span class="text-[9px] text-gray-400 font-normal">${labels[m].price}</span>`;
                 } else {
-                    btn.className = "py-3 px-1 text-[11px] font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all flex flex-col items-center justify-center gap-1 text-center";
+                    btn.className = "py-2.5 px-1 text-[11px] font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all flex flex-col items-center justify-center gap-0.5 text-center";
                     btn.innerHTML = `<span>${labels[m].title}</span><span class="text-[9px] font-normal">${labels[m].price}</span>`;
                 }
             });
@@ -1599,6 +1602,7 @@
         function toggleCartDrawer() {
             const drawer = document.getElementById('cart-drawer');
             const backdrop = document.getElementById('cart-backdrop');
+            if (!drawer || !backdrop) return;
             if (drawer.classList.contains('translate-x-full')) {
                 drawer.classList.remove('translate-x-full');
                 backdrop.classList.remove('hidden');
@@ -1646,9 +1650,11 @@
             renderCart();
             
             const badge = document.getElementById('cart-badge');
-            badge.classList.remove('animate-bounce');
-            void badge.offsetWidth; 
-            badge.classList.add('animate-bounce');
+            if (badge) {
+                badge.classList.remove('animate-bounce');
+                void badge.offsetWidth; 
+                badge.classList.add('animate-bounce');
+            }
 
             showToast(`Línea agregada: ${APP_STATE.quantity} pz a $${prices.unitPrice} c/u`, "success");
         }
@@ -1658,6 +1664,8 @@
             const badge = document.getElementById('cart-badge');
             const totalQtyEl = document.getElementById('cart-total-qty');
             const totalPriceEl = document.getElementById('cart-total-price');
+
+            if (!container) return; // Validación importante para evitar errores en DOM incompleto
 
             if (APP_STATE.cart.length === 0) {
                 container.innerHTML = `
@@ -1671,14 +1679,16 @@
                         </div>
                     </div>
                 `;
-                badge.classList.add('hidden');
-                totalQtyEl.innerText = "0 uds";
-                totalPriceEl.innerText = "$0.00 MXN";
+                if(badge) badge.classList.add('hidden');
+                if(totalQtyEl) totalQtyEl.innerText = "0 uds";
+                if(totalPriceEl) totalPriceEl.innerText = "$0.00 MXN";
                 return;
             }
 
-            badge.innerText = APP_STATE.cart.length;
-            badge.classList.remove('hidden');
+            if(badge) {
+                badge.innerText = APP_STATE.cart.length;
+                badge.classList.remove('hidden');
+            }
 
             let html = '';
             let totalQty = 0;
@@ -1713,8 +1723,8 @@
                 `;
             });
             container.innerHTML = html;
-            totalQtyEl.innerText = `${totalQty} uds`;
-            totalPriceEl.innerText = `$${totalPrice.toLocaleString('es-MX', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} MXN`;
+            if(totalQtyEl) totalQtyEl.innerText = `${totalQty} uds`;
+            if(totalPriceEl) totalPriceEl.innerText = `$${totalPrice.toLocaleString('es-MX', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} MXN`;
         }
 
         function eliminarDelCarrito(id) {
@@ -1737,11 +1747,12 @@
             const width = 800;
             const itemHeight = 160;
             const headerHeight = 200;
-            const footerHeight = 150;
+            const footerHeight = 480; 
             const height = headerHeight + (APP_STATE.cart.length * itemHeight) + footerHeight;
             canvas.width = width;
             canvas.height = height;
             const ctx = canvas.getContext('2d');
+            
             ctx.fillStyle = "#ffffff";
             ctx.fillRect(0, 0, width, height);
             ctx.strokeStyle = "rgba(0, 0, 0, 0.05)";
@@ -1751,11 +1762,12 @@
             ctx.strokeStyle = "#000000";
             ctx.lineWidth = 6;
             ctx.strokeRect(10, 10, width - 20, height - 20);
+            
             ctx.fillStyle = "#000000";
             ctx.fillRect(10, 10, width - 20, 140);
             ctx.fillStyle = "#ccff00";
             ctx.font = "bold 32px monospace";
-            ctx.fillText("TICKET DE ORDEN // PRE-PRENSA", 40, 60);
+            ctx.fillText("COTIZACIÓN // 2026", 40, 60);
             ctx.fillStyle = "#ffffff";
             ctx.font = "16px monospace";
             ctx.fillText("GRISFOSFORESCENTE.COM.MX", 40, 95);
@@ -1763,8 +1775,10 @@
             const dateStr = today.toLocaleString('es-ES', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }).toUpperCase();
             ctx.fillStyle = "#ff007f";
             ctx.fillText(`FECHA DEL TICKET: ${dateStr}`, 40, 125);
+            
             let currentY = 180;
             let totalCost = 0;
+            
             for (let index = 0; index < APP_STATE.cart.length; index++) {
                 const item = APP_STATE.cart[index];
                 totalCost += item.totalPrice;
@@ -1782,6 +1796,7 @@
                 ctx.strokeStyle = "#000000";
                 ctx.lineWidth = 2;
                 ctx.strokeRect(60, currentY + 20, 100, 100);
+                
                 const img = new Image();
                 await new Promise((resolve) => {
                     img.onload = () => {
@@ -1793,6 +1808,7 @@
                     };
                     img.src = item.thumbnail;
                 });
+                
                 ctx.fillStyle = "#000000";
                 ctx.font = "bold 16px monospace";
                 ctx.fillText(`[LÍNEA 0${index + 1}] ${item.fileName.substring(0, 30)}`, 180, currentY + 40);
@@ -1810,6 +1826,7 @@
                 ctx.fillText(costText, width - 60 - costWidth, currentY + 110);
                 currentY += itemHeight;
             }
+            
             ctx.strokeStyle = "#000000";
             ctx.beginPath(); ctx.moveTo(40, currentY + 20); ctx.lineTo(width - 40, currentY + 20); ctx.stroke();
             ctx.fillStyle = "#000000";
@@ -1819,18 +1836,74 @@
             const totalText = `$${totalCost.toFixed(2)} MXN`;
             const totalWidth = ctx.measureText(totalText).width;
             ctx.fillText(totalText, width - 40 - totalWidth, currentY + 70);
+
+            // --- BLOQUE DE DATOS DE PAGO DIBUJADO CON CÓDIGO ---
+            currentY += 120;
+            
+            // Fondo negro
+            ctx.fillStyle = "#000000";
+            ctx.fillRect(40, currentY, width - 80, 290);
+            
+            ctx.textAlign = "center";
+            
+            // Texto principal
+            ctx.font = "bold 22px monospace";
+            ctx.fillStyle = "#ffffff";
+            ctx.fillText("PARA PROCESAR TU PEDIDO COMPARTE EL", width / 2, currentY + 45);
+            ctx.fillStyle = "#ccff00"; // Verde fosfo
+            ctx.fillText("COMPROBANTE DE PAGO CON TU VENDEDORA", width / 2, currentY + 75);
+            
+            // Línea separadora
+            ctx.strokeStyle = "#333333";
+            ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(80, currentY + 105); ctx.lineTo(width - 80, currentY + 105); ctx.stroke();
+            
+            // Datos Bancarios (2 columnas)
+            ctx.textAlign = "left";
+            
+            // Cuenta 1 (Izquierda)
+            ctx.fillStyle = "#ffffff";
+            ctx.font = "bold 16px monospace";
+            ctx.fillText("BANCO AZTECA", 80, currentY + 140);
+            ctx.font = "16px monospace";
+            ctx.fillText("Ivan Alberto Menjivar Palma", 80, currentY + 165);
+            ctx.fillStyle = "#ccff00"; // Verde fosfo
+            ctx.font = "bold 22px monospace";
+            ctx.fillText("1271 8001 3026 091621", 80, currentY + 195);
+            
+            // Cuenta 2 (Derecha)
+            ctx.textAlign = "right";
+            ctx.fillStyle = "#ffffff";
+            ctx.font = "bold 16px monospace";
+            ctx.fillText("BANCO AZTECA", width - 80, currentY + 140);
+            ctx.font = "16px monospace";
+            ctx.fillText("Ameltzy A Ramírez Chávez", width - 80, currentY + 165);
+            ctx.fillStyle = "#ccff00"; // Verde fosfo
+            ctx.font = "bold 22px monospace";
+            ctx.fillText("1271 8002 1164 638200", width - 80, currentY + 195);
+            
+            // Texto factura MÁS GRANDE Y EN DOS LÍNEAS
+            ctx.textAlign = "center";
+            ctx.fillStyle = "#ff007f"; // Rosa fosfo
+            ctx.font = "bold 22px monospace";
+            ctx.fillText("SI REQUIERES FACTURA, CONSULTA LOS DATOS", width / 2, currentY + 245);
+            ctx.fillText("NECESARIOS ANTES DE REALIZAR TU DEPÓSITO.", width / 2, currentY + 275);
+            
+            // Descargar Ticket
             const link = document.createElement('a');
-            link.download = `ORDEN_GF_${Date.now()}.png`;
+            link.download = `COTIZACION_GF_${Date.now()}.png`;
             link.href = canvas.toDataURL('image/png');
             link.click();
+            
             toggleCartDrawer();
-            showToast("¡Ticket de orden generado y descargado!", "success");
+            showToast("¡Cotización generada y descargada!", "success");
             APP_STATE.cart = [];
             renderCart();
         }
 
         function showToast(message, type = 'info') {
             const container = document.getElementById('toast-container');
+            if (!container) return;
             const toast = document.createElement('div');
             toast.className = `flex items-center gap-3 px-5 py-4 border-2 shadow-brutal-sm text-sm font-bold transform translate-y-2 opacity-0 transition-all duration-300 pointer-events-auto max-w-sm rounded-xl `;
             if (type === 'error') {
@@ -1855,6 +1928,7 @@
         function openPromosModal() {
             const modal = document.getElementById('promo-modal');
             const content = document.getElementById('promo-modal-content');
+            if (!modal || !content) return;
             modal.classList.remove('hidden');
             setTimeout(() => { modal.classList.remove('opacity-0'); content.classList.remove('scale-95'); }, 10);
         }
@@ -1862,6 +1936,7 @@
         function closePromosModal() {
             const modal = document.getElementById('promo-modal');
             const content = document.getElementById('promo-modal-content');
+            if (!modal || !content) return;
             modal.classList.add('opacity-0');
             content.classList.add('scale-95');
             setTimeout(() => { modal.classList.add('hidden'); }, 300);
