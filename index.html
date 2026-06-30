@@ -34,7 +34,7 @@
                         borderGray: '#e5e7eb',   
                         textMuted: '#6b7280',
                         // Colores Fosfo Kids
-                        fosfoYellow: '#FFE100',
+                        fosfoYellow: '#ccff00',
                         fosfoCyan: '#00D4FF',
                         fosfoPink: '#FF2E93'
                     },
@@ -113,7 +113,7 @@
         }
 
         .step-btn-active {
-            background-color: #FFE100;
+            background-color: #ccff00;
             color: black;
             border-color: black;
             border-width: 3px;
@@ -142,7 +142,7 @@
 
         .selected-card {
             border: 5px solid #FF2E93 !important;
-            background-color: #FFE100 !important;
+            background-color: #ccff00 !important;
             transform: translateY(-4px);
             box-shadow: 6px 6px 0px 0px #000000 !important;
         }
@@ -175,6 +175,7 @@
                     <a href="#" onclick="switchView('sticker'); return false;" class="hover:text-brandGreen transition-colors">INICIO</a>
                     <button onclick="openPromosModal()" class="hover:text-brandPink transition-colors uppercase">PROMOCIONES</button>
                     <a href="#" onclick="switchView('escolares'); return false;" class="hover:text-brandGreen transition-colors uppercase text-center">ESCOLARES 2026</a>
+                    <button onclick="openGameModal()" class="hover:text-brandPink transition-colors uppercase flex items-center gap-1 text-brandGreen font-black"><span class="text-xl">👽</span> <span class="hidden md:inline">JUEGA Y GANA</span></button>
                     <a href="https://wa.me/message/LOS67PCNOUMBM1" target="_blank" class="hover:text-brandPink transition-colors flex items-center gap-1.5">
                         <i class="fa-brands fa-whatsapp text-lg"></i>
                         <span class="hidden md:inline">COTIZA CON UN AGENTE</span>
@@ -1027,6 +1028,44 @@
                 </div>
             </div>
         </main>
+    </div>
+
+    <!-- MODAL DEL JUEGO (FLAPPY UFO) -->
+    <div id="game-modal" class="fixed inset-0 bg-baseBlack/90 backdrop-blur-md z-[70] flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-baseWhite border-[4px] border-brandGreen w-full max-w-sm rounded-3xl p-6 relative flex flex-col items-center shadow-brutal scale-95 transition-transform duration-300">
+            <button onclick="closeGameModal()" class="absolute -top-4 -right-4 bg-brandPink text-baseWhite border-2 border-baseBlack w-10 h-10 rounded-full flex items-center justify-center shadow-brutal-sm hover:scale-110 transition-transform z-10">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            <h3 class="font-comic text-3xl uppercase text-baseBlack mb-2 text-center leading-none">Misión Extraterrestre</h3>
+            <p class="text-[11px] font-bold text-textMuted text-center mb-4 leading-tight uppercase">Sobrevive 20 obstáculos (Dificultad Extrema) para ganar un 20% de descuento directo. ¡Suerte!</p>
+            
+            <div class="relative w-full aspect-[3/4] bg-baseBlack border-[4px] border-baseBlack rounded-xl overflow-hidden shadow-inner" id="game-canvas-container">
+                <canvas id="flappy-canvas" width="300" height="400" class="block w-full h-full cursor-pointer touch-none"></canvas>
+                <!-- Overlays -->
+                <div id="game-start-overlay" class="absolute inset-0 flex flex-col items-center justify-center bg-baseBlack/60 backdrop-blur-sm">
+                    <span class="text-6xl mb-4 animate-bounce">🛸</span>
+                    <button onclick="startFlappyGame()" class="bg-brandGreen text-baseBlack font-black uppercase px-6 py-2 rounded-xl border-2 border-baseBlack shadow-brutal-sm hover:scale-105 transition-transform">Toca para Iniciar</button>
+                </div>
+                <div id="game-over-overlay" class="absolute inset-0 flex flex-col items-center justify-center bg-brandPink/90 backdrop-blur-sm hidden">
+                    <h4 class="font-comic text-4xl text-baseWhite uppercase mb-1">¡Estrellado!</h4>
+                    <p class="text-baseWhite font-black text-sm mb-4">Puntuación: <span id="final-score" class="text-brandGreen">0</span></p>
+                    <button onclick="startFlappyGame()" class="bg-baseWhite text-baseBlack font-black uppercase px-6 py-2 rounded-xl border-2 border-baseBlack shadow-brutal-sm hover:scale-105 transition-transform">Reintentar</button>
+                </div>
+                <div id="game-win-overlay" class="absolute inset-0 flex flex-col items-center justify-center bg-brandGreen/95 backdrop-blur-sm hidden">
+                    <h4 class="font-comic text-4xl text-baseBlack uppercase mb-1">¡LO LOGRASTE!</h4>
+                    <p class="text-baseBlack font-black text-xs text-center mb-4 px-4 leading-tight">Misión completada.<br>Aquí tienes tu descuento del 20%:</p>
+                    <div class="bg-baseWhite border-4 border-baseBlack px-4 py-2 font-mono font-black text-2xl text-brandPink shadow-brutal-sm mb-4 select-all">
+                        UFO20PRO
+                    </div>
+                    <button onclick="closeGameModal()" class="bg-baseBlack text-brandGreen font-black uppercase px-6 py-2 rounded-xl border-2 border-baseBlack shadow-brutal-sm hover:scale-105 transition-transform">Reclamar y Salir</button>
+                </div>
+            </div>
+            
+            <div class="w-full flex justify-between items-center mt-4 px-2">
+                <span class="font-black text-xs text-textMuted uppercase">SCORE: <span id="current-score" class="text-baseBlack text-lg">0</span></span>
+                <span class="font-black text-xs text-textMuted uppercase">META: <span class="text-brandPink text-lg">20</span></span>
+            </div>
+        </div>
     </div>
 
     <!-- MODAL DE PROMOCIONES GLOBAL -->
@@ -2313,8 +2352,8 @@
             ctx.lineWidth = 8;
             ctx.strokeRect(40, 40, width - 80, height - 80);
 
-            // Cabecera Amarilla Fosfo
-            ctx.fillStyle = "#FFE100";
+            // Cabecera Amarilla Fosfo (Ahora Verde)
+            ctx.fillStyle = "#ccff00";
             ctx.fillRect(44, 44, width - 88, 160);
             ctx.beginPath();
             ctx.moveTo(44, 204);
@@ -2448,7 +2487,7 @@
             ctx.font = "900 24px 'Plus Jakarta Sans', sans-serif";
             ctx.fillText("TOTAL A PAGAR", width - 80, currentY + 10);
 
-            ctx.fillStyle = "#FFE100";
+            ctx.fillStyle = "#ccff00";
             ctx.font = "40px 'Bangers', cursive, sans-serif";
             const tWidth = ctx.measureText(totalC).width + 40;
             ctx.fillRect(width - 80 - tWidth, currentY + 25, tWidth, 50);
@@ -2472,6 +2511,169 @@
             link.click();
 
             showFosfoToast("💾 ¡Ticket descargado con éxito!", "success");
+        }
+
+        // --- FLAPPY UFO GAME LOGIC ---
+        let flappyCanvas, fCtx;
+        let ufoY, ufoV, pipes, flappyScore, gameFrame, flappyReqId;
+        let flappyState = 'START'; 
+        
+        const FLAPPY_GRAVITY = 0.35; // Gravedad dura
+        const FLAPPY_JUMP = -6.5;    // Salto pronunciado
+        const PIPE_SPEED = 4;        // Velocidad rápida
+        const PIPE_WIDTH = 45;
+        const PIPE_GAP = 110;        // Hueco estrecho (super difícil)
+
+        function openGameModal() {
+            const modal = document.getElementById('game-modal');
+            modal.classList.remove('hidden');
+            setTimeout(() => { modal.classList.remove('opacity-0'); modal.firstElementChild.classList.remove('scale-95'); }, 10);
+            
+            flappyCanvas = document.getElementById('flappy-canvas');
+            fCtx = flappyCanvas.getContext('2d');
+            
+            // Listeners de salto
+            flappyCanvas.addEventListener('mousedown', flappyJump);
+            flappyCanvas.addEventListener('touchstart', (e) => { e.preventDefault(); flappyJump(); }, {passive: false});
+            
+            flappyState = 'START';
+            gameFrame = 0;
+            drawFlappyIdle();
+        }
+
+        function closeGameModal() {
+            const modal = document.getElementById('game-modal');
+            modal.classList.add('opacity-0');
+            modal.firstElementChild.classList.add('scale-95');
+            setTimeout(() => { modal.classList.add('hidden'); }, 300);
+            cancelAnimationFrame(flappyReqId);
+        }
+
+        function drawFlappyBackground() {
+            fCtx.fillStyle = '#000000';
+            fCtx.fillRect(0, 0, flappyCanvas.width, flappyCanvas.height);
+            fCtx.fillStyle = '#ffffff';
+            for(let i=0; i<35; i++) { // Efecto de estrellas en el fondo
+                let sx = (Math.random() * flappyCanvas.width + gameFrame * (i%2? -0.6:-0.2)) % flappyCanvas.width;
+                if(sx < 0) sx += flappyCanvas.width;
+                fCtx.fillRect(sx, Math.random() * flappyCanvas.height, i%2?2:1, i%2?2:1);
+            }
+        }
+
+        function drawFlappyIdle() {
+            gameFrame++;
+            drawFlappyBackground();
+            fCtx.font = "34px Arial";
+            fCtx.textAlign = "center";
+            fCtx.textBaseline = "middle";
+            fCtx.fillText("🛸", flappyCanvas.width/3, flappyCanvas.height/2 + Math.sin(Date.now()/200)*12);
+            if(flappyState === 'START') flappyReqId = requestAnimationFrame(drawFlappyIdle);
+        }
+
+        function startFlappyGame() {
+            document.getElementById('game-start-overlay').classList.add('hidden');
+            document.getElementById('game-over-overlay').classList.add('hidden');
+            document.getElementById('game-win-overlay').classList.add('hidden');
+            
+            ufoY = flappyCanvas.height / 2;
+            ufoV = 0;
+            pipes = [];
+            flappyScore = 0;
+            gameFrame = 0;
+            flappyState = 'PLAYING';
+            document.getElementById('current-score').innerText = flappyScore;
+            
+            cancelAnimationFrame(flappyReqId);
+            flappyLoop();
+        }
+
+        function flappyJump() {
+            if (flappyState === 'PLAYING') {
+                ufoV = FLAPPY_JUMP;
+            } else if (flappyState === 'START') {
+                startFlappyGame();
+            }
+        }
+
+        function flappyLoop() {
+            if (flappyState !== 'PLAYING') return;
+            
+            gameFrame++;
+            drawFlappyBackground();
+            
+            // Físicas del Platillo Volador
+            ufoV += FLAPPY_GRAVITY;
+            ufoY += ufoV;
+            
+            // Generar Obstáculos (Tubos/Asteroides)
+            if (gameFrame % 65 === 0) {
+                let minPipe = 40;
+                let maxPipe = flappyCanvas.height - PIPE_GAP - minPipe;
+                let topH = Math.floor(Math.random() * (maxPipe - minPipe + 1) + minPipe);
+                pipes.push({ x: flappyCanvas.width, topH: topH, passed: false });
+            }
+            
+            fCtx.fillStyle = '#ccff00'; // Color de obstáculos acorde a tu marca
+            for (let i = 0; i < pipes.length; i++) {
+                let p = pipes[i];
+                p.x -= PIPE_SPEED;
+                
+                // Tubo arriba y abajo
+                fCtx.fillRect(p.x, 0, PIPE_WIDTH, p.topH);
+                fCtx.fillRect(p.x, p.topH + PIPE_GAP, PIPE_WIDTH, flappyCanvas.height - p.topH - PIPE_GAP);
+                
+                // Colisiones
+                let ufoRadius = 13; // Ajuste para darle un micro margen de error al jugador
+                let ufoX = flappyCanvas.width / 3;
+                
+                // Choque con el piso o techo
+                if (ufoY - ufoRadius < 0 || ufoY + ufoRadius > flappyCanvas.height) {
+                    return flappyGameOver();
+                }
+                
+                // Choque con los tubos
+                if (ufoX + ufoRadius > p.x && ufoX - ufoRadius < p.x + PIPE_WIDTH) {
+                    if (ufoY - ufoRadius < p.topH || ufoY + ufoRadius > p.topH + PIPE_GAP) {
+                        return flappyGameOver();
+                    }
+                }
+                
+                // Sumar puntos
+                if (p.x + PIPE_WIDTH < ufoX && !p.passed) {
+                    flappyScore++;
+                    p.passed = true;
+                    document.getElementById('current-score').innerText = flappyScore;
+                    if (flappyScore >= 20) {
+                        return flappyWin();
+                    }
+                }
+            }
+            
+            // Limpiar memoria de tubos pasados
+            if (pipes.length > 0 && pipes[0].x < -PIPE_WIDTH) pipes.shift();
+            
+            // Dibujar OVNI
+            fCtx.font = "34px Arial";
+            fCtx.textAlign = "center";
+            fCtx.textBaseline = "middle";
+            fCtx.save();
+            fCtx.translate(flappyCanvas.width / 3, ufoY);
+            fCtx.rotate(Math.min(Math.max(ufoV * 0.08, -0.5), 1));
+            fCtx.fillText("🛸", 0, 0);
+            fCtx.restore();
+            
+            flappyReqId = requestAnimationFrame(flappyLoop);
+        }
+
+        function flappyGameOver() {
+            flappyState = 'OVER';
+            document.getElementById('final-score').innerText = flappyScore;
+            document.getElementById('game-over-overlay').classList.remove('hidden');
+        }
+
+        function flappyWin() {
+            flappyState = 'WIN';
+            document.getElementById('game-win-overlay').classList.remove('hidden');
         }
     </script>
 </body>
