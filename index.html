@@ -11,17 +11,16 @@
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Space Grotesk, Share Tech Mono, Bangers & Plus Jakarta Sans -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Plus+Jakarta+Sans:ital,wght@0,600;0,800;0,900;1,700&family=Share+Tech+Mono&family=Space+Grotesk:wght@400;500;700;900&display=swap" rel="stylesheet">
     
-    <!-- FontAwesome para Iconos (Sticker Studio) -->
+    <!-- FontAwesome & Lucide Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Lucide Icons (Fosfo Kids) -->
     <script src="https://unpkg.com/lucide@latest"></script>
     
-    <!-- Configuración del tema Tailwind (Estilo Brutalista Claro) -->
+    <!-- Configuración del tema Tailwind -->
     <script>
         tailwind.config = {
             theme: {
@@ -33,8 +32,7 @@
                         baseWhite: '#ffffff',    
                         borderGray: '#e5e7eb',   
                         textMuted: '#6b7280',
-                        // Colores Fosfo Kids
-                        fosfoYellow: '#ccff00',
+                        fosfoYellow: '#ccff00', /* Se actualizó al verde de la marca */
                         fosfoCyan: '#00D4FF',
                         fosfoPink: '#FF2E93'
                     },
@@ -49,7 +47,6 @@
         }
     </script>
 
-    <!-- Global Variables for Fosfo Kids -->
     <script>
         window.activePage = 1;
         window.imgErrorCount = 0;
@@ -72,7 +69,7 @@
     </script>
 
     <style>
-        /* --- ESTILOS STICKER STUDIO --- */
+        /* --- ESTILOS --- */
         .shadow-brutal { box-shadow: 6px 6px 0px 0px #000000; }
         .shadow-brutal-sm { box-shadow: 3px 3px 0px 0px #000000; }
         .shadow-brutal-hover:hover {
@@ -102,7 +99,6 @@
             100% { transform: translateX(-50%); }
         }
 
-        /* --- ESTILOS FOSFO KIDS --- */
         .shadow-comic-black { box-shadow: 6px 6px 0px 0px #000000; }
         .shadow-comic-sm { box-shadow: 3px 3px 0px 0px #000000; }
         
@@ -160,7 +156,7 @@
 </head>
 <body class="bg-baseWhite text-baseBlack font-sans min-h-screen overflow-x-hidden antialiased selection:bg-brandGreen selection:text-baseBlack">
 
-    <!-- BANNER SUPERIOR PROMOCIONAL -->
+    <!-- BANNER SUPERIOR (Antes de todo) -->
     <div class="w-full bg-baseBlack border-b-4 border-baseBlack flex justify-center">
         <img src="banner.gif" alt="Banner Promocional" class="w-full h-auto block" onerror="this.src='https://placehold.co/1200x120/000000/ccff00?text=BANNER.GIF+AQUI'">
     </div>
@@ -168,14 +164,16 @@
     <!-- HEADER NEGRO (Global) -->
     <header class="bg-baseBlack px-6 py-4 sticky top-0 z-50 border-b-4 border-baseBlack shadow-md">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-            
             <div class="flex items-center gap-6">
                 <!-- Enlaces de Navegación -->
                 <nav class="flex items-center gap-4 md:gap-6 text-baseWhite font-bold text-[11px] md:text-sm tracking-wide">
                     <a href="#" onclick="switchView('sticker'); return false;" class="hover:text-brandGreen transition-colors">INICIO</a>
                     <button onclick="openPromosModal()" class="hover:text-brandPink transition-colors uppercase">PROMOCIONES</button>
                     <a href="#" onclick="switchView('escolares'); return false;" class="hover:text-brandGreen transition-colors uppercase text-center">ESCOLARES 2026</a>
-                    <button onclick="openGameModal()" class="hover:text-brandPink transition-colors uppercase flex items-center gap-1 text-brandGreen font-black"><span class="text-xl">👽</span> <span class="hidden md:inline">JUEGA Y GANA</span></button>
+                    <!-- NUEVO BOTÓN DE ALIEN PARA JUEGO -->
+                    <button onclick="openGameModal()" class="hover:text-brandPink transition-colors uppercase flex items-center gap-1 text-brandGreen font-black">
+                        <span class="text-xl">👽</span> <span class="hidden md:inline">JUEGA Y GANA</span>
+                    </button>
                     <a href="https://wa.me/message/LOS67PCNOUMBM1" target="_blank" class="hover:text-brandPink transition-colors flex items-center gap-1.5">
                         <i class="fa-brands fa-whatsapp text-lg"></i>
                         <span class="hidden md:inline">COTIZA CON UN AGENTE</span>
@@ -185,14 +183,14 @@
             </div>
             
             <div class="flex items-center gap-4 md:gap-6">
-                <!-- Botón de Carrito (Solo visible en Sticker Studio) -->
+                <!-- Botón de Carrito -->
                 <button id="nav-cart-btn" onclick="toggleCartDrawer()" class="relative flex items-center gap-2 text-baseWhite hover:text-brandGreen transition-colors font-bold text-sm tracking-wide">
                     <i class="fa-solid fa-cart-shopping text-lg"></i>
                     <span class="hidden md:inline">CARRITO</span>
                     <span id="cart-badge" class="hidden absolute -top-2 -right-3 bg-brandPink text-baseWhite text-[10px] font-black px-1.5 py-0.5 rounded-full shadow-md">0</span>
                 </button>
 
-                <!-- Botón Principal "Cotizar Online" (SIN ETIQUETA 'NUEVO') -->
+                <!-- BOTÓN COTIZA ONLINE SIN LA ETIQUETA "NUEVO" -->
                 <a href="#cotizador" onclick="switchView('sticker');" class="relative bg-baseBlack text-brandGreen border-2 border-brandGreen px-4 md:px-6 py-2 font-bold text-xs md:text-sm hover:bg-brandGreen hover:text-baseBlack transition-colors text-center">
                     Cotiza On Line
                 </a>
@@ -204,15 +202,12 @@
     <!-- VISTA 1: STICKER STUDIO                    -->
     <!-- ========================================== -->
     <div id="view-sticker" class="block">
-        <!-- LANDING PAGE HERO -->
         <main id="home">
-            <!-- SECCIÓN MÁS COMPACTA (pt-10 pb-12) -->
             <section class="border-b-[6px] border-baseBlack bg-baseWhite pt-10 pb-12 px-6 relative overflow-hidden">
                 <div class="max-w-5xl mx-auto text-center relative z-10">
                     <div class="inline-block bg-brandGreen text-baseBlack font-black px-3 py-1 mb-4 text-xs md:text-sm border-2 border-baseBlack shadow-brutal-sm transform -rotate-1">
                         NUEVA EXPERIENCIA DE COMPRA
                     </div>
-                    <!-- Textos ligeramente reducidos -->
                     <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-[0.95] mb-4">
                         Taller de <span class="text-transparent" style="-webkit-text-stroke: 2px #000;">Stickers y Etiquetas</span>
                     </h1>
@@ -227,12 +222,10 @@
                     </div>
                 </div>
                 
-                <!-- Decoración Técnica de Fondo -->
                 <div class="absolute top-6 left-6 w-16 h-16 border-t-4 border-l-4 border-baseBlack opacity-20 hidden md:block"></div>
                 <div class="absolute bottom-6 right-6 w-16 h-16 border-b-4 border-r-4 border-baseBlack opacity-20 hidden md:block"></div>
             </section>
 
-            <!-- CINTA ANIMADA (MARQUEE) -->
             <div class="bg-baseBlack text-brandGreen font-mono font-bold text-sm py-3 border-b-4 border-baseBlack overflow-hidden whitespace-nowrap flex items-center">
                 <div class="marquee">
                     <span class="mx-4">/// IMPRESIÓN DE ALTA CALIDAD</span>
@@ -253,12 +246,10 @@
                 </div>
             </div>
 
-            <!-- MÓDULO DE MATERIALES -->
             <section class="py-20 px-6 bg-gray-50 border-b-[6px] border-baseBlack">
                 <div class="max-w-7xl mx-auto">
                     <h2 class="text-3xl md:text-4xl font-black uppercase text-center mb-12">Nuestros Sustratos</h2>
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                        <!-- Card 1 -->
                         <div class="bg-baseWhite border-[3px] border-baseBlack p-6 shadow-brutal transition-transform hover:-translate-y-1">
                             <div class="w-12 h-12 bg-brandGreen border-2 border-baseBlack flex items-center justify-center mb-4 rounded-full">
                                 <i class="fa-solid fa-file-invoice text-xl"></i>
@@ -267,7 +258,6 @@
                             <p class="text-sm text-textMuted font-medium mb-4">Blanco brillante o mate. Alta adherencia y resistencia para uso en exteriores e interiores.</p>
                             <div class="text-xl font-black text-brandPink">$140 <span class="text-xs text-baseBlack">/ planilla base</span></div>
                         </div>
-                        <!-- Card Transparente -->
                         <div class="bg-baseWhite border-[3px] border-baseBlack p-6 shadow-brutal transition-transform hover:-translate-y-1">
                             <div class="w-12 h-12 bg-gray-200 border-2 border-baseBlack flex items-center justify-center mb-4 rounded-full text-gray-500">
                                 <i class="fa-solid fa-droplet text-xl"></i>
@@ -276,7 +266,6 @@
                             <p class="text-sm text-textMuted font-medium mb-4">Fondo invisible para que tu diseño resalte. Ideal para cristales, empaques y envases.</p>
                             <div class="text-xl font-black text-brandPink">$160 <span class="text-xs text-baseBlack">/ planilla base</span></div>
                         </div>
-                        <!-- Card 3 -->
                         <div class="bg-baseWhite border-[3px] border-baseBlack p-6 shadow-brutal transition-transform hover:-translate-y-1">
                             <div class="w-12 h-12 bg-baseBlack text-brandGreen border-2 border-baseBlack flex items-center justify-center mb-4 rounded-full">
                                 <i class="fa-solid fa-gem text-xl"></i>
@@ -285,7 +274,6 @@
                             <p class="text-sm text-textMuted font-medium mb-4">Efecto arcoíris premium que cambia con la luz. Ideal para dar un toque exclusivo a tu marca.</p>
                             <div class="text-xl font-black text-brandPink">$240 <span class="text-xs text-baseBlack">/ planilla base</span></div>
                         </div>
-                        <!-- Card 4 -->
                         <div class="bg-baseWhite border-[3px] border-baseBlack p-6 shadow-brutal transition-transform hover:-translate-y-1">
                             <div class="w-12 h-12 bg-brandPink text-baseWhite border-2 border-baseBlack flex items-center justify-center mb-4 rounded-full">
                                 <i class="fa-solid fa-layer-group text-xl"></i>
@@ -302,14 +290,9 @@
             </section>
         </main>
 
-        <!-- ESTUDIO / COTIZADOR -->
         <div id="cotizador" class="bg-baseWhite py-8">
             <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
-                
-                <!-- COLUMNA IZQUIERDA: Herramientas y Ajustes (lg:col-span-5) -->
                 <section class="lg:col-span-5 bg-baseWhite p-5 sm:p-6 border-[3px] border-baseBlack shadow-brutal flex flex-col gap-4 divide-y-[3px] divide-gray-100 relative z-10">
-                    
-                    <!-- Encabezado del Panel -->
                     <div class="pb-1">
                         <h2 class="text-xl sm:text-2xl font-black uppercase tracking-tight flex items-center gap-2">
                             <i class="fa-solid fa-sliders text-brandPink"></i>
@@ -317,7 +300,6 @@
                         </h2>
                     </div>
                     
-                    <!-- ① PANEL: SUBIR DISEÑO -->
                     <div class="space-y-2 pt-4">
                         <div class="flex items-center justify-between text-baseBlack">
                             <span class="flex items-center gap-3">
@@ -326,7 +308,6 @@
                             </span>
                             <span class="text-[10px] text-textMuted font-bold">PNG / SVG / JPG</span>
                         </div>
-                        
                         <div id="drop-zone" class="border-2 border-dashed border-gray-300 hover:border-baseBlack bg-gray-50 hover:bg-gray-100 p-5 text-center cursor-pointer transition-all group rounded-xl">
                             <input type="file" id="file-input" accept="image/png, image/jpeg, image/svg+xml" class="hidden">
                             <i class="fa-solid fa-cloud-arrow-up text-3xl text-gray-400 group-hover:text-brandPink mb-2 transition-colors"></i>
@@ -335,13 +316,11 @@
                         </div>
                     </div>
 
-                    <!-- ② PANEL: SELECCIÓN DE CORTE -->
                     <div class="space-y-3 pt-4">
                         <div class="flex items-center gap-3 text-baseBlack">
                             <span class="bg-gray-100 text-baseBlack w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold border border-gray-200">2</span>
                             <h3 class="text-sm font-bold uppercase tracking-wide">Corte del sticker</h3>
                         </div>
-                        
                         <div class="grid grid-cols-3 gap-2 sm:gap-3">
                             <button id="shape-personalized" onclick="setShape('personalized')" class="flex flex-col items-center justify-center py-2.5 px-2 rounded-xl border-2 border-baseBlack bg-baseBlack text-brandGreen transition-all shadow-sm">
                                 <i class="fa-solid fa-wave-square text-base mb-1"></i>
@@ -358,13 +337,11 @@
                         </div>
                     </div>
 
-                    <!-- ③ PANEL: CONTROL DE MARGEN / BORDE -->
                     <div class="space-y-3 pt-4">
                         <div class="flex items-center gap-3 text-baseBlack">
                             <span class="bg-gray-100 text-baseBlack w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold border border-gray-200">3</span>
                             <h3 class="text-sm font-bold uppercase tracking-wide">Borde (Blanco)</h3>
                         </div>
-
                         <div class="space-y-2">
                             <div class="flex justify-between text-xs text-baseBlack font-bold">
                                 <span>Grosor del borde</span>
@@ -377,13 +354,11 @@
                         </div>
                     </div>
 
-                    <!-- ④ PANEL: DIMENSIONES REALES -->
                     <div class="space-y-3 pt-4">
                         <div class="flex items-center gap-3 text-baseBlack">
                             <span class="bg-gray-100 text-baseBlack w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold border border-gray-200">4</span>
                             <h3 class="text-sm font-bold uppercase tracking-wide">Ancho del sticker</h3>
                         </div>
-                        
                         <div id="size-button-group" class="grid grid-cols-4 gap-2 pt-1">
                             <button onclick="setSize(3)" class="py-1.5 text-[11px] font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all">3 cm</button>
                             <button onclick="setSize(4)" class="py-1.5 text-[11px] font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all">4 cm</button>
@@ -426,13 +401,11 @@
                         <p id="dimension-helper-text" class="text-[10px] text-textMuted font-mono leading-tight">El alto se calcula automático para mantener la proporción.</p>
                     </div>
 
-                    <!-- ⑤ PANEL NUEVO: MATERIAL BASE -->
                     <div class="space-y-3 pt-4">
                         <div class="flex items-center gap-3 text-baseBlack">
                             <span class="bg-gray-100 text-baseBlack w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold border border-gray-200">5</span>
                             <h3 class="text-sm font-bold uppercase tracking-wide">Sustrato / Material Base</h3>
                         </div>
-                        
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3 pt-1">
                             <button id="mat-standard" onclick="setMaterial('standard')" class="py-2.5 px-1 text-[11px] font-bold rounded-lg border-2 border-baseBlack bg-baseBlack text-baseWhite transition-all flex flex-col items-center justify-center gap-0.5 text-center">
                                 <span>Vinil Blanco</span>
@@ -449,13 +422,11 @@
                         </div>
                     </div>
 
-                    <!-- ⑥ PANEL: ACABADOS -->
                     <div class="space-y-3 pt-4">
                         <div class="flex items-center gap-3 text-baseBlack">
                             <span class="bg-gray-100 text-baseBlack w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold border border-gray-200">6</span>
                             <h3 class="text-sm font-bold uppercase tracking-wide">Acabados (Opcional)</h3>
                         </div>
-                        
                         <div class="grid grid-cols-2 gap-2 sm:gap-3 pt-1">
                             <label class="flex items-center gap-3 cursor-pointer p-2.5 rounded-lg border border-gray-200 bg-gray-50 hover:border-baseBlack transition-colors">
                                 <input type="checkbox" id="check-laminado" onchange="toggleLaminado(this.checked)" class="accent-baseBlack w-4 h-4">
@@ -474,7 +445,6 @@
                         </div>
                     </div>
 
-                    <!-- ⑦ PANEL: VOLUMEN DE TIRADA -->
                     <div class="space-y-3 pt-4">
                         <div class="flex items-center justify-between">
                             <div class="flex items-center gap-3 text-baseBlack">
@@ -482,7 +452,6 @@
                                 <h3 class="text-sm font-bold uppercase tracking-wide">Tiraje / Volumen</h3>
                             </div>
                         </div>
-                        
                         <div class="flex items-center gap-4 bg-gray-50 p-3 rounded-xl border border-gray-200">
                             <input type="range" id="qty-slider" min="10" max="999" value="10" class="w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-baseBlack">
                             <div class="flex items-center gap-1 bg-baseWhite border border-gray-300 px-3 py-1.5 rounded-lg shrink-0 focus-within:border-baseBlack">
@@ -490,16 +459,13 @@
                                 <span class="text-[10px] text-textMuted font-bold uppercase">PZ</span>
                             </div>
                         </div>
-                        
                         <div id="rendimiento-info" class="text-xs text-baseBlack bg-brandGreen/20 p-3 rounded-xl border border-brandGreen/40 leading-relaxed font-medium">
                             Carga un diseño para calcular el rendimiento y el costo unitario basado en la planilla.
                         </div>
                     </div>
                 </section>
 
-                <!-- COLUMNA DERECHA: Mesa de Trabajo Principal (lg:col-span-7) -->
                 <section class="lg:col-span-7 space-y-4 lg:sticky lg:top-[80px]">
-                    
                     <div class="flex items-center justify-between px-2">
                         <span class="font-bold text-xs uppercase text-baseBlack tracking-wider flex items-center gap-2">
                             <span class="w-2.5 h-2.5 bg-brandPink rounded-full"></span>
@@ -508,40 +474,36 @@
                         <span class="text-[10px] font-mono font-bold text-textMuted uppercase bg-gray-100 px-2 py-1 rounded">ESCALA: 1:1 PRE-PRENSA</span>
                     </div>
 
-                    <!-- Mesa de Trabajo Brutalista Clara -->
                     <div class="relative bg-baseWhite border-[3px] border-baseBlack p-5 sm:p-6 shadow-brutal flex flex-col justify-center items-center overflow-hidden min-h-[380px] lg:min-h-[440px]">
-                        
-                        <!-- RULER HORIZONTAL -->
                         <div class="absolute top-0 left-0 right-0 h-5 bg-gray-50 border-b border-borderGray flex justify-between items-center px-4 font-mono text-[9px] text-textMuted font-bold">
                             <span>0</span><span>10</span><span>20</span><span>30</span><span>40</span><span>50</span><span>60</span><span>70</span><span>80</span><span>90 mm</span>
                         </div>
-
-                        <!-- RULER VERTICAL -->
                         <div class="absolute top-5 left-0 bottom-0 w-5 bg-gray-50 border-r border-borderGray flex flex-col justify-between items-center py-4 font-mono text-[9px] text-textMuted font-bold">
                             <span>0</span><span>10</span><span>20</span><span>30</span><span>40</span><span>50</span><span>60</span><span>70</span><span>80</span>
                         </div>
 
-                        <!-- Contenedor del Lienzo -->
                         <div id="canvas-wrapper" class="w-full max-w-[360px] aspect-square relative flex items-center justify-center blueprint-grid bg-[#d9d9d9] border-2 border-baseBlack mt-3 p-4 shadow-inner">
-                            <!-- Líneas de corte de registro en las esquinas -->
                             <div class="absolute top-2 left-2 w-3 h-3 border-t-2 border-l-2 border-baseBlack opacity-30"></div>
                             <div class="absolute top-2 right-2 w-3 h-3 border-t-2 border-r-2 border-baseBlack opacity-30"></div>
                             <div class="absolute bottom-2 left-2 w-3 h-3 border-b-2 border-l-2 border-baseBlack opacity-30"></div>
                             <div class="absolute bottom-2 right-2 w-3 h-3 border-b-2 border-r-2 border-baseBlack opacity-30"></div>
-
-                            <!-- CANVAS DE DIBUJO REAL DEL STICKER -->
                             <canvas id="sticker-canvas" class="z-10 relative max-w-full max-h-full drop-shadow-xl cursor-crosshair transition-transform" style="width: 280px; height: 280px;"></canvas>
                         </div>
 
-                        <!-- Datos Técnicos del Trazo en pantalla -->
-                        <div class="mt-5 flex flex-col items-center text-center">
+                        <!-- BARRA DE ZOOM PARA MÁSCARA CIRCULAR/CUADRADA -->
+                        <div class="mt-5 flex flex-col items-center text-center w-full">
                             <span class="inline-flex items-center gap-1.5 px-4 py-1.5 bg-gray-100 border border-gray-200 rounded-full text-baseBlack text-xs font-bold uppercase tracking-wide shadow-sm">
                                 DIMENSIÓN DE CORTE: <strong id="sticker-final-dimensions-label" class="text-brandPink">5.0 × 5.0 cm</strong>
                             </span>
+
+                            <div class="w-full max-w-[260px] mt-4 hidden items-center gap-3 bg-gray-50 px-4 py-2 rounded-xl border border-gray-200 shadow-sm" id="zoom-control-container">
+                                <i class="fa-solid fa-image text-textMuted text-xs"></i>
+                                <input type="range" id="image-zoom-slider" min="0.2" max="3" step="0.05" value="1" class="w-full h-1.5 bg-gray-300 rounded-lg appearance-none cursor-pointer accent-brandPink">
+                                <i class="fa-solid fa-magnifying-glass-plus text-baseBlack text-sm"></i>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Botones de Acción -->
                     <div class="grid grid-cols-1 gap-3 pt-2">
                         <button onclick="agregarAlCarrito()" class="w-full bg-brandGreen hover:bg-brandGreen/90 text-baseBlack font-bold text-sm py-3 px-6 rounded-full border-2 border-baseBlack shadow-brutal shadow-brutal-hover flex items-center justify-center gap-2 transition-all">
                             <i class="fa-solid fa-circle-plus text-lg"></i> AGREGAR A LA ORDEN DE CORTE
@@ -557,7 +519,6 @@
             </div>
         </div>
 
-        <!-- FOOTER SÓLIDO -->
         <footer class="bg-baseBlack text-baseWhite py-12 px-6 border-t-8 border-brandGreen mt-12">
             <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
                 <div>
@@ -565,9 +526,9 @@
                     <p class="text-xs text-gray-400 mt-1">Stickers Chingones</p>
                 </div>
                 <div class="flex gap-4">
-                    <a href="#" class="w-10 h-10 bg-baseWhite text-baseBlack rounded-full flex items-center justify-center hover:bg-brandPink hover:text-baseWhite transition-colors"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#" class="w-10 h-10 bg-baseWhite text-baseBlack rounded-full flex items-center justify-center hover:bg-brandPink hover:text-baseWhite transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#" class="w-10 h-10 bg-baseWhite text-baseBlack rounded-full flex items-center justify-center hover:bg-brandPink hover:text-baseWhite transition-colors"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="https://www.instagram.com/gris_fosforescente/" target="_blank" class="w-10 h-10 bg-baseWhite text-baseBlack rounded-full flex items-center justify-center hover:bg-brandPink hover:text-baseWhite transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/grisfosforescente" target="_blank" class="w-10 h-10 bg-baseWhite text-baseBlack rounded-full flex items-center justify-center hover:bg-brandPink hover:text-baseWhite transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://www.tiktok.com/@grisfosforescente" target="_blank" class="w-10 h-10 bg-baseWhite text-baseBlack rounded-full flex items-center justify-center hover:bg-brandPink hover:text-baseWhite transition-colors"><i class="fa-brands fa-tiktok"></i></a>
                 </div>
             </div>
         </footer>
@@ -579,7 +540,6 @@
     <!-- ========================================== -->
     <div id="view-escolares" class="hidden comic-dots-bg font-sans-bold min-h-screen text-black pb-12 w-full">
         
-        <!-- NOTIFICADOR TOAST (Fosfo Kids) -->
         <div id="fosfo-toast" class="fixed top-24 left-1/2 transform -translate-x-1/2 z-[70] pointer-events-none opacity-0 transition-all duration-300 max-w-xs w-full px-4">
             <div class="bg-fosfoYellow text-black border-[3px] border-black font-black p-3 shadow-comic-black flex items-center gap-3 rounded-2xl">
                 <div class="bg-white p-1 border-[3px] border-black rounded-full shrink-0 shadow-sm">
@@ -589,7 +549,6 @@
             </div>
         </div>
 
-        <!-- POPUP DE PREGUNTA EXTRAS -->
         <div id="extras-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50 transition-opacity duration-300">
             <div class="bg-white rounded-3xl p-8 max-w-sm w-full shadow-comic-black border-[5px] border-black text-center space-y-4 relative">
                 <div class="absolute -top-8 left-1/2 transform -translate-x-1/2 text-6xl">🤔</div>
@@ -608,7 +567,6 @@
             </div>
         </div>
 
-        <!-- HEADER LOCAL FOSFO KIDS -->
         <header class="w-full bg-fosfoYellow border-b-[5px] border-black py-4 px-4 relative overflow-hidden shadow-sm">
             <div class="max-w-2xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 relative z-10">
                 <div class="flex items-center gap-4 flex-col sm:flex-row text-center sm:text-left">
@@ -630,7 +588,6 @@
 
         <main class="w-full max-w-lg mx-auto px-4 mt-6 flex flex-col gap-6 font-sans-bold">
             
-            <!-- NAVEGACIÓN -->
             <div class="bg-white border-[4px] border-black p-1.5 shadow-comic-black flex justify-between items-stretch gap-1 rounded-2xl w-full">
                 <button onclick="fosfoGoToStep(1)" id="btn-step-1" class="step-btn step-btn-active flex-1 flex flex-col items-center justify-center py-2.5 px-1 font-black text-[9px] sm:text-xs uppercase transition-all duration-200">
                     <span class="step-icon text-xl sm:hidden mb-1 leading-none">🎒</span>
@@ -659,10 +616,8 @@
                 </button>
             </div>
 
-            <!-- PANEL CONTENEDOR -->
             <div class="bg-white border-[5px] border-black p-5 sm:p-8 shadow-comic-black relative w-full rounded-3xl">
             
-                <!-- PASO 1 -->
                 <div id="step-content-1" class="step-pane space-y-5">
                     <div class="text-center sm:text-left mb-4">
                         <h2 class="font-comic text-3xl md:text-4xl text-black uppercase tracking-wide">🎒 Paso 1: Elige tu Paquete</h2>
@@ -670,7 +625,6 @@
                     </div>
                     
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                        <!-- Paquete Chico -->
                         <div id="card-pkg-chico" onclick="selectPackage('chico', 260)" class="border-[3px] border-black p-4 relative bg-[#FFF0F5] cursor-pointer hover:scale-[1.02] transition-all select-none rounded-2xl">
                             <div class="absolute -top-4 -right-2 border-[3px] border-black bg-fosfoPink text-white px-3 py-1 font-comic text-xl rotate-[4deg] shadow-comic-sm">72 pzas x $260</div>
                             <h3 class="font-comic text-2xl text-black mt-2">PAQUETE CHICO</h3>
@@ -684,7 +638,6 @@
                             <div class="mt-3 flex justify-end"><span id="badge-pkg-chico" class="bg-fosfoCyan border-2 border-black text-black font-black px-3 py-1 text-[10px] uppercase hidden rounded-xl shadow-sm">¡ELEGIDO! ✓</span></div>
                         </div>
 
-                        <!-- Paquete Grande -->
                         <div id="card-pkg-grande" onclick="selectPackage('grande', 340)" class="border-[3px] border-black p-4 relative bg-[#ECFDF5] cursor-pointer hover:scale-[1.02] transition-all select-none rounded-2xl">
                             <div class="absolute -top-4 -right-2 border-[3px] border-black bg-fosfoCyan text-black px-3 py-1 font-comic text-xl rotate-[-4deg] shadow-comic-sm">120 pzas x $340</div>
                             <h3 class="font-comic text-2xl text-black mt-2">PAQUETE GRANDE</h3>
@@ -699,7 +652,6 @@
                         </div>
                     </div>
 
-                    <!-- Sin Paquete -->
                     <div id="card-pkg-personalizado" onclick="selectPackage('individual', 0)" class="border-[3px] border-black p-4 relative bg-[#FFFBEB] cursor-pointer hover:scale-[1.02] transition-all select-none w-full shadow-comic-sm rounded-2xl mt-2">
                         <div class="absolute -top-3 right-4 border-[3px] border-black bg-[#A55EEA] text-white px-3 py-0.5 font-comic text-xl rotate-1 shadow-comic-sm">Armado Libre</div>
                         <h3 class="font-comic text-2xl text-black mt-2">SÓLO ETIQUETAS SUELTAS</h3>
@@ -714,7 +666,6 @@
                     </div>
                 </div>
 
-                <!-- PASO 2 -->
                 <div id="step-content-2" class="step-pane hidden space-y-5">
                     <div class="mb-4">
                         <h2 class="font-comic text-3xl md:text-4xl text-black uppercase tracking-wide">➕ Paso 2: ¿Deseas agregar más?</h2>
@@ -782,7 +733,6 @@
                     </div>
                 </div>
 
-                <!-- PASO 3 -->
                 <div id="step-content-3" class="step-pane hidden space-y-6">
                     <div class="mb-4">
                         <h2 class="font-comic text-3xl md:text-4xl text-black uppercase tracking-wide">✏️ Paso 3: Especificaciones</h2>
@@ -869,7 +819,6 @@
                     </div>
                 </div>
 
-                <!-- PASO 4 -->
                 <div id="step-content-4" class="step-pane hidden space-y-6">
                     <div class="mb-4">
                         <h2 class="font-comic text-3xl md:text-4xl text-black uppercase tracking-wide">🎨 Paso 4: Elige el Diseño</h2>
@@ -940,14 +889,12 @@
                     </div>
                 </div>
 
-                <!-- PASO 5 -->
                 <div id="step-content-5" class="step-pane hidden space-y-6">
                     <div class="text-center sm:text-left mb-4">
                         <h2 class="font-comic text-3xl md:text-4xl text-black uppercase tracking-wide">🧾 Paso 5: Ticket de Pedido</h2>
                         <p class="text-xs font-bold text-gray-500 uppercase mt-1">Revisa que todo esté correcto antes de descargar.</p>
                     </div>
 
-                    <!-- PREVIEW VISUAL DEL TICKET -->
                     <div class="bg-white p-5 border-[5px] border-black relative rounded-3xl max-w-sm mx-auto shadow-comic-black" id="ticket-preview-box">
                         <div class="absolute -top-4 right-4 bg-black text-white text-[10px] font-black px-3 py-1 border-2 border-white rotate-[3deg] uppercase tracking-wider shadow-comic-sm">ORDEN FOSFO KIDS</div>
                         
@@ -1030,40 +977,46 @@
         </main>
     </div>
 
-    <!-- MODAL DEL JUEGO (FLAPPY UFO) -->
+    <!-- MODAL DEL JUEGO (FLAPPY UFO) ACTUALIZADO -->
     <div id="game-modal" class="fixed inset-0 bg-baseBlack/90 backdrop-blur-md z-[70] flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
         <div class="bg-baseWhite border-[4px] border-brandGreen w-full max-w-sm rounded-3xl p-6 relative flex flex-col items-center shadow-brutal scale-95 transition-transform duration-300">
             <button onclick="closeGameModal()" class="absolute -top-4 -right-4 bg-brandPink text-baseWhite border-2 border-baseBlack w-10 h-10 rounded-full flex items-center justify-center shadow-brutal-sm hover:scale-110 transition-transform z-10">
                 <i class="fa-solid fa-xmark text-xl"></i>
             </button>
             <h3 class="font-comic text-3xl uppercase text-baseBlack mb-2 text-center leading-none">Misión Extraterrestre</h3>
-            <p class="text-[11px] font-bold text-textMuted text-center mb-4 leading-tight uppercase">Sobrevive 20 obstáculos (Dificultad Extrema) para ganar un 20% de descuento directo. ¡Suerte!</p>
+            <p class="text-[11px] font-bold text-textMuted text-center mb-4 leading-tight uppercase">Sobrevive 20 obstáculos (Dificultad Extrema) para ganar un 20% de descuento. ¡Tienes 3 intentos!</p>
             
             <div class="relative w-full aspect-[3/4] bg-baseBlack border-[4px] border-baseBlack rounded-xl overflow-hidden shadow-inner" id="game-canvas-container">
                 <canvas id="flappy-canvas" width="300" height="400" class="block w-full h-full cursor-pointer touch-none"></canvas>
-                <!-- Overlays -->
+                
                 <div id="game-start-overlay" class="absolute inset-0 flex flex-col items-center justify-center bg-baseBlack/60 backdrop-blur-sm">
                     <span class="text-6xl mb-4 animate-bounce">🛸</span>
                     <button onclick="startFlappyGame()" class="bg-brandGreen text-baseBlack font-black uppercase px-6 py-2 rounded-xl border-2 border-baseBlack shadow-brutal-sm hover:scale-105 transition-transform">Toca para Iniciar</button>
                 </div>
-                <div id="game-over-overlay" class="absolute inset-0 flex flex-col items-center justify-center bg-brandPink/90 backdrop-blur-sm hidden">
+                
+                <!-- Overlay si se estrella (Muestra % en base a puntos) -->
+                <div id="game-over-overlay" class="absolute inset-0 flex flex-col items-center justify-center bg-brandPink/95 backdrop-blur-sm hidden px-4 text-center">
                     <h4 class="font-comic text-4xl text-baseWhite uppercase mb-1">¡Estrellado!</h4>
-                    <p class="text-baseWhite font-black text-sm mb-4">Puntuación: <span id="final-score" class="text-brandGreen">0</span></p>
-                    <button onclick="startFlappyGame()" class="bg-baseWhite text-baseBlack font-black uppercase px-6 py-2 rounded-xl border-2 border-baseBlack shadow-brutal-sm hover:scale-105 transition-transform">Reintentar</button>
-                </div>
-                <div id="game-win-overlay" class="absolute inset-0 flex flex-col items-center justify-center bg-brandGreen/95 backdrop-blur-sm hidden">
-                    <h4 class="font-comic text-4xl text-baseBlack uppercase mb-1">¡LO LOGRASTE!</h4>
-                    <p class="text-baseBlack font-black text-xs text-center mb-4 px-4 leading-tight">Misión completada.<br>Aquí tienes tu descuento del 20%:</p>
-                    <div class="bg-baseWhite border-4 border-baseBlack px-4 py-2 font-mono font-black text-2xl text-brandPink shadow-brutal-sm mb-4 select-all">
-                        UFO20PRO
+                    <div class="bg-baseWhite text-baseBlack rounded-xl p-3 border-2 border-baseBlack mb-4 shadow-brutal-sm w-full">
+                        <p class="font-black text-sm uppercase leading-tight">Ganaste un <span id="final-discount" class="text-brandPink text-xl">0%</span> de descuento</p>
+                        <p class="text-[10px] font-bold text-textMuted mt-1 leading-tight">Toma captura de tu puntuación y compártela a tu vendedor por WhatsApp.</p>
                     </div>
-                    <button onclick="closeGameModal()" class="bg-baseBlack text-brandGreen font-black uppercase px-6 py-2 rounded-xl border-2 border-baseBlack shadow-brutal-sm hover:scale-105 transition-transform">Reclamar y Salir</button>
+                    <button id="btn-retry" onclick="startFlappyGame()" class="bg-baseWhite text-baseBlack font-black uppercase px-6 py-2 rounded-xl border-2 border-baseBlack shadow-brutal-sm hover:scale-105 transition-transform">Reintentar</button>
+                    <button onclick="closeGameModal()" class="mt-2 bg-transparent text-baseWhite font-bold uppercase text-xs hover:underline">Salir</button>
+                </div>
+
+                <!-- Overlay si sobrevive los 20 pts -->
+                <div id="game-win-overlay" class="absolute inset-0 flex flex-col items-center justify-center bg-brandGreen/95 backdrop-blur-sm hidden px-4 text-center">
+                    <h4 class="font-comic text-4xl text-baseBlack uppercase mb-1">¡LO LOGRASTE!</h4>
+                    <p class="text-baseBlack font-black text-xs mb-4 leading-tight uppercase">Misión completada.<br>Ganaste el máximo descuento:<br><span class="text-xl text-brandPink bg-baseWhite px-2 py-1 mt-1 inline-block border-2 border-baseBlack rounded shadow-brutal-sm">20% OFF</span></p>
+                    <p class="text-[10px] font-bold text-baseBlack mb-4 leading-tight">Toma captura de tu puntuación y compártela a tu vendedor por WhatsApp.</p>
+                    <button onclick="closeGameModal()" class="bg-baseBlack text-brandGreen font-black uppercase px-6 py-2 rounded-xl border-2 border-baseBlack shadow-brutal-sm hover:scale-105 transition-transform">Salir</button>
                 </div>
             </div>
             
             <div class="w-full flex justify-between items-center mt-4 px-2">
                 <span class="font-black text-xs text-textMuted uppercase">SCORE: <span id="current-score" class="text-baseBlack text-lg">0</span></span>
-                <span class="font-black text-xs text-textMuted uppercase">META: <span class="text-brandPink text-lg">20</span></span>
+                <span class="font-black text-xs text-textMuted uppercase">INTENTOS: <span id="game-attempts" class="text-brandPink text-lg">3</span></span>
             </div>
         </div>
     </div>
@@ -1128,21 +1081,16 @@
         </div>
     </div>
     
-    <!-- Fondo oscuro desenfocado de protección para el Drawer y Modales -->
     <div id="cart-backdrop" class="fixed inset-0 bg-baseBlack/60 backdrop-blur-sm z-40 hidden opacity-0 transition-opacity duration-300" onclick="toggleCartDrawer()"></div>
-
-    <!-- TOAST STICKER STUDIO -->
     <div id="toast-container" class="fixed bottom-6 right-6 z-50 pointer-events-none space-y-2"></div>
 
-    <!-- SCRIPT STICKER STUDIO Y RUTEO SPA -->
     <script>
-        // Función de ruteo de Vistas SPA
         function switchView(viewName) {
             if (viewName === 'escolares') {
                 document.getElementById('view-sticker').classList.add('hidden');
                 document.getElementById('view-escolares').classList.remove('hidden');
                 document.getElementById('nav-cart-btn').classList.add('hidden');
-                if (typeof lucide !== 'undefined' && lucide.createIcons) { lucide.createIcons(); }
+                try { if (typeof lucide !== 'undefined' && lucide.createIcons) { lucide.createIcons(); } } catch(e) {}
             } else {
                 document.getElementById('view-escolares').classList.add('hidden');
                 document.getElementById('view-sticker').classList.remove('hidden');
@@ -1165,6 +1113,7 @@
             material: 'standard',
             laminado: false,
             corteFisico: false,
+            imageZoom: 1, /* Variable de zoom agregada */
             cart: []               
         };
 
@@ -1209,19 +1158,19 @@
         };
 
         window.onload = function() {
-            loadSample('alienPattern');
-            setupDragAndDrop();
-            setupInputs();
-            updateSelectedSizeUI();
-            updateRendimientoUI();
-            renderCart();
-            requestAnimationFrame(animateLoop);
+            try { loadSample('alienPattern'); } catch(e){}
+            try { setupDragAndDrop(); } catch(e){}
+            try { setupInputs(); } catch(e){}
+            try { updateSelectedSizeUI(); } catch(e){}
+            try { updateRendimientoUI(); } catch(e){}
+            try { renderCart(); } catch(e){}
+            try { requestAnimationFrame(animateLoop); } catch(e){}
             
-            try { if (typeof lucide !== 'undefined' && lucide.createIcons) { lucide.createIcons(); } } catch (e) {}
+            try { if (typeof lucide !== 'undefined' && lucide.createIcons) { lucide.createIcons(); } } catch(e){}
             try {
                 selectPackage('chico', 260); selectFosfoMaterial('vinil_blanco_brillante', 0); selectLaminated('ninguno', 0);
                 changeCatalogPage(1); selectGridDesign(1, 1, 1);
-            } catch (err) {}
+            } catch(e){}
         };
 
         window.addEventListener('resize', () => {
@@ -1236,6 +1185,9 @@
                 APP_STATE.image = img;
                 APP_STATE.imageLoaded = true;
                 APP_STATE.fileName = `aliens_pattern_design.png`;
+                APP_STATE.imageZoom = 1;
+                const zoomSlider = document.getElementById('image-zoom-slider');
+                if (zoomSlider) zoomSlider.value = 1;
                 renderSticker();
             };
         }
@@ -1272,6 +1224,9 @@
                     APP_STATE.image = img;
                     APP_STATE.imageLoaded = true;
                     APP_STATE.fileName = file.name;
+                    APP_STATE.imageZoom = 1;
+                    const zoomSlider = document.getElementById('image-zoom-slider');
+                    if (zoomSlider) zoomSlider.value = 1;
                     showToast(`Archivo "${file.name}" importado`);
                     renderSticker();
                 };
@@ -1310,6 +1265,14 @@
                     updateRendimientoUI();
                 }
             });
+
+            const zoomSlider = document.getElementById('image-zoom-slider');
+            if (zoomSlider) {
+                zoomSlider.addEventListener('input', (e) => {
+                    APP_STATE.imageZoom = parseFloat(e.target.value);
+                    renderSticker();
+                });
+            }
         }
 
         function setShape(shapeType) {
@@ -1322,11 +1285,25 @@
             });
             const activeBtn = document.getElementById(`shape-${shapeType}`);
             activeBtn.className = "flex flex-col items-center justify-center py-2.5 px-2 rounded-xl border-2 border-baseBlack bg-baseBlack text-brandGreen transition-all shadow-sm";
+            
+            // MOSTRAR/OCULTAR ZOOM
+            const zoomContainer = document.getElementById('zoom-control-container');
+            if (zoomContainer) {
+                if (shapeType === 'personalized') {
+                    zoomContainer.classList.remove('flex');
+                    zoomContainer.classList.add('hidden');
+                } else {
+                    zoomContainer.classList.remove('hidden');
+                    zoomContainer.classList.add('flex');
+                }
+            }
+
             showToast(`Corte establecido en: ${shapeType === 'personalized' ? 'Corte de Silueta' : shapeType === 'circular' ? 'Circular' : 'Cuadrado'}`);
             renderSticker();
         }
 
         function getHeightCm() {
+            // Regla restaurada: Si es circular o cuadrado, fuerza la proporción 1:1 (Alto = Ancho)
             if (APP_STATE.shape === 'circular' || APP_STATE.shape === 'squared') {
                 return APP_STATE.selectedSize.toFixed(1);
             }
@@ -1544,7 +1521,6 @@
             const x = (baseSize - w) / 2;
             const y = (baseSize - h) / 2;
 
-            // Calcular proporciones internas para NO estirar la imagen dentro del circulo/cuadrado
             const imgAspect = img.height / img.width;
             let imgW = w;
             let imgH = h;
@@ -1553,6 +1529,12 @@
             } else {
                 imgH = w * imgAspect;
             }
+
+            if (APP_STATE.shape !== 'personalized') {
+                imgW *= (APP_STATE.imageZoom || 1);
+                imgH *= (APP_STATE.imageZoom || 1);
+            }
+
             const imgX = x + (w - imgW) / 2;
             const imgY = y + (h - imgH) / 2;
 
@@ -1866,11 +1848,11 @@
             const totalWidth = ctx.measureText(totalText).width;
             ctx.fillText(totalText, width - 40 - totalWidth, currentY + 70);
 
+            // Bloque de datos de pago apilados hacia abajo (sin encimarse)
             currentY += 120;
             
             ctx.fillStyle = "#000000";
             ctx.fillRect(40, currentY, width - 80, 430);
-            
             ctx.textAlign = "center";
             
             ctx.font = "bold 24px monospace";
@@ -2158,12 +2140,25 @@
 
         function selectPackage(pkg, price) {
             fosfoSelectedPackage = pkg; fosfoBasePrice = price;
-            ['chico', 'grande', 'personalizado'].forEach(p => {
-                const card = document.getElementById(`card-pkg-${p}`); const badge = document.getElementById(`badge-pkg-${p}`);
-                if (card) card.classList.remove('selected-card'); if (badge) badge.classList.add('hidden');
+            ['chico', 'grande', 'individual'].forEach(p => {
+                const card = document.getElementById(`card-pkg-${p}`);
+                const badge = document.getElementById(`badge-pkg-${p}`);
+                if (card) card.classList.remove('selected-card');
+                if (badge) badge.classList.add('hidden');
+                
+                // Extra fallback just in case 'personalizado' ID matches 'individual'
+                const cardPers = document.getElementById(`card-pkg-personalizado`);
+                const badgePers = document.getElementById(`badge-pkg-personalizado`);
+                if (cardPers) cardPers.classList.remove('selected-card');
+                if (badgePers) badgePers.classList.add('hidden');
             });
-            const actCard = document.getElementById(`card-pkg-${pkg}`); const actBadge = document.getElementById(`badge-pkg-${pkg}`);
-            if (actCard) actCard.classList.add('selected-card'); if (actBadge) actBadge.classList.remove('hidden');
+
+            const targetId = pkg === 'individual' ? 'personalizado' : pkg;
+            const actCard = document.getElementById(`card-pkg-${targetId}`);
+            const actBadge = document.getElementById(`badge-pkg-${targetId}`);
+            if (actCard) actCard.classList.add('selected-card');
+            if (actBadge) actBadge.classList.remove('hidden');
+            
             calculateFosfoPrice(); updateLiveSummary();
         }
 
@@ -2313,7 +2308,6 @@
         async function captureOrderCanvas() {
             showFosfoToast("📸 Generando ticket mágico...", "success");
             
-            // Esperar que las fuentes comic y sans carguen
             await document.fonts.ready;
 
             const canvas = document.createElement('canvas');
@@ -2332,7 +2326,6 @@
             canvas.height = height;
             const ctx = canvas.getContext('2d');
 
-            // Fondo base estilo Fosfo Kids (dots bg)
             ctx.fillStyle = "#f8fafc";
             ctx.fillRect(0, 0, width, height);
 
@@ -2345,15 +2338,13 @@
                 }
             }
 
-            // Cuadro Blanco Principal
             ctx.fillStyle = "#ffffff";
             ctx.fillRect(40, 40, width - 80, height - 80);
             ctx.strokeStyle = "#000000";
             ctx.lineWidth = 8;
             ctx.strokeRect(40, 40, width - 80, height - 80);
 
-            // Cabecera Amarilla Fosfo (Ahora Verde)
-            ctx.fillStyle = "#ccff00";
+            ctx.fillStyle = "#ccff00"; 
             ctx.fillRect(44, 44, width - 88, 160);
             ctx.beginPath();
             ctx.moveTo(44, 204);
@@ -2403,7 +2394,6 @@
 
             currentY += 20;
 
-            // Caja Datos a Imprimir Cyan
             ctx.fillStyle = "#cffafe"; 
             ctx.fillRect(80, currentY, width - 160, 180);
             ctx.strokeRect(80, currentY, width - 160, 180);
@@ -2456,7 +2446,6 @@
                 currentY += 130;
             }
 
-            // Divider Line
             ctx.beginPath();
             ctx.moveTo(80, currentY);
             ctx.lineTo(width - 80, currentY);
@@ -2487,7 +2476,7 @@
             ctx.font = "900 24px 'Plus Jakarta Sans', sans-serif";
             ctx.fillText("TOTAL A PAGAR", width - 80, currentY + 10);
 
-            ctx.fillStyle = "#ccff00";
+            ctx.fillStyle = "#ccff00"; 
             ctx.font = "40px 'Bangers', cursive, sans-serif";
             const tWidth = ctx.measureText(totalC).width + 40;
             ctx.fillRect(width - 80 - tWidth, currentY + 25, tWidth, 50);
@@ -2496,7 +2485,6 @@
             ctx.fillStyle = "#000000";
             ctx.fillText(totalC, width - 100, currentY + 62);
 
-            // Footer
             currentY += 120;
             ctx.textAlign = "center";
             ctx.fillStyle = "#94a3b8";
@@ -2517,12 +2505,13 @@
         let flappyCanvas, fCtx;
         let ufoY, ufoV, pipes, flappyScore, gameFrame, flappyReqId;
         let flappyState = 'START'; 
+        let flappyAttempts = 3;
         
-        const FLAPPY_GRAVITY = 0.35; // Gravedad dura
-        const FLAPPY_JUMP = -6.5;    // Salto pronunciado
-        const PIPE_SPEED = 4;        // Velocidad rápida
+        const FLAPPY_GRAVITY = 0.35; 
+        const FLAPPY_JUMP = -6.5;    
+        const PIPE_SPEED = 4;        
         const PIPE_WIDTH = 45;
-        const PIPE_GAP = 110;        // Hueco estrecho (super difícil)
+        const PIPE_GAP = 110;        
 
         function openGameModal() {
             const modal = document.getElementById('game-modal');
@@ -2532,7 +2521,10 @@
             flappyCanvas = document.getElementById('flappy-canvas');
             fCtx = flappyCanvas.getContext('2d');
             
-            // Listeners de salto
+            flappyAttempts = 3;
+            const attEl = document.getElementById('game-attempts');
+            if(attEl) attEl.innerText = flappyAttempts;
+
             flappyCanvas.addEventListener('mousedown', flappyJump);
             flappyCanvas.addEventListener('touchstart', (e) => { e.preventDefault(); flappyJump(); }, {passive: false});
             
@@ -2553,7 +2545,7 @@
             fCtx.fillStyle = '#000000';
             fCtx.fillRect(0, 0, flappyCanvas.width, flappyCanvas.height);
             fCtx.fillStyle = '#ffffff';
-            for(let i=0; i<35; i++) { // Efecto de estrellas en el fondo
+            for(let i=0; i<35; i++) {
                 let sx = (Math.random() * flappyCanvas.width + gameFrame * (i%2? -0.6:-0.2)) % flappyCanvas.width;
                 if(sx < 0) sx += flappyCanvas.width;
                 fCtx.fillRect(sx, Math.random() * flappyCanvas.height, i%2?2:1, i%2?2:1);
@@ -2571,6 +2563,14 @@
         }
 
         function startFlappyGame() {
+            if (flappyAttempts <= 0) {
+                showToast("Ya no tienes intentos disponibles. Toma captura de tu puntaje.", "error");
+                return;
+            }
+            flappyAttempts--;
+            const attEl = document.getElementById('game-attempts');
+            if(attEl) attEl.innerText = flappyAttempts;
+
             document.getElementById('game-start-overlay').classList.add('hidden');
             document.getElementById('game-over-overlay').classList.add('hidden');
             document.getElementById('game-win-overlay').classList.add('hidden');
@@ -2601,11 +2601,9 @@
             gameFrame++;
             drawFlappyBackground();
             
-            // Físicas del Platillo Volador
             ufoV += FLAPPY_GRAVITY;
             ufoY += ufoV;
             
-            // Generar Obstáculos (Tubos/Asteroides)
             if (gameFrame % 65 === 0) {
                 let minPipe = 40;
                 let maxPipe = flappyCanvas.height - PIPE_GAP - minPipe;
@@ -2613,32 +2611,27 @@
                 pipes.push({ x: flappyCanvas.width, topH: topH, passed: false });
             }
             
-            fCtx.fillStyle = '#ccff00'; // Color de obstáculos acorde a tu marca
+            fCtx.fillStyle = '#ccff00';
             for (let i = 0; i < pipes.length; i++) {
                 let p = pipes[i];
                 p.x -= PIPE_SPEED;
                 
-                // Tubo arriba y abajo
                 fCtx.fillRect(p.x, 0, PIPE_WIDTH, p.topH);
                 fCtx.fillRect(p.x, p.topH + PIPE_GAP, PIPE_WIDTH, flappyCanvas.height - p.topH - PIPE_GAP);
                 
-                // Colisiones
-                let ufoRadius = 13; // Ajuste para darle un micro margen de error al jugador
+                let ufoRadius = 13;
                 let ufoX = flappyCanvas.width / 3;
                 
-                // Choque con el piso o techo
                 if (ufoY - ufoRadius < 0 || ufoY + ufoRadius > flappyCanvas.height) {
                     return flappyGameOver();
                 }
                 
-                // Choque con los tubos
                 if (ufoX + ufoRadius > p.x && ufoX - ufoRadius < p.x + PIPE_WIDTH) {
                     if (ufoY - ufoRadius < p.topH || ufoY + ufoRadius > p.topH + PIPE_GAP) {
                         return flappyGameOver();
                     }
                 }
                 
-                // Sumar puntos
                 if (p.x + PIPE_WIDTH < ufoX && !p.passed) {
                     flappyScore++;
                     p.passed = true;
@@ -2649,10 +2642,8 @@
                 }
             }
             
-            // Limpiar memoria de tubos pasados
             if (pipes.length > 0 && pipes[0].x < -PIPE_WIDTH) pipes.shift();
             
-            // Dibujar OVNI
             fCtx.font = "34px Arial";
             fCtx.textAlign = "center";
             fCtx.textBaseline = "middle";
@@ -2667,7 +2658,17 @@
 
         function flappyGameOver() {
             flappyState = 'OVER';
-            document.getElementById('final-score').innerText = flappyScore;
+            document.getElementById('final-discount').innerText = flappyScore + "%";
+            
+            const btnRetry = document.getElementById('btn-retry');
+            if (btnRetry) {
+                if (flappyAttempts > 0) {
+                    btnRetry.style.display = 'block';
+                } else {
+                    btnRetry.style.display = 'none'; 
+                }
+            }
+            
             document.getElementById('game-over-overlay').classList.remove('hidden');
         }
 
