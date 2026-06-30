@@ -306,7 +306,6 @@
             <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
                 
                 <!-- COLUMNA IZQUIERDA: Herramientas y Ajustes (lg:col-span-5) -->
-                <!-- Compactado: Cambiado p-8 por p-5 sm:p-6, y space-y-8 por flex/gap y divide -->
                 <section class="lg:col-span-5 bg-baseWhite p-5 sm:p-6 border-[3px] border-baseBlack shadow-brutal flex flex-col gap-4 divide-y-[3px] divide-gray-100 relative z-10">
                     
                     <!-- Encabezado del Panel -->
@@ -327,7 +326,6 @@
                             <span class="text-[10px] text-textMuted font-bold">PNG / SVG / JPG</span>
                         </div>
                         
-                        <!-- Compactado: p-8 a p-5 -->
                         <div id="drop-zone" class="border-2 border-dashed border-gray-300 hover:border-baseBlack bg-gray-50 hover:bg-gray-100 p-5 text-center cursor-pointer transition-all group rounded-xl">
                             <input type="file" id="file-input" accept="image/png, image/jpeg, image/svg+xml" class="hidden">
                             <i class="fa-solid fa-cloud-arrow-up text-3xl text-gray-400 group-hover:text-brandPink mb-2 transition-colors"></i>
@@ -343,7 +341,6 @@
                             <h3 class="text-sm font-bold uppercase tracking-wide">Corte del sticker</h3>
                         </div>
                         
-                        <!-- Compactado: py-4 a py-2.5 -->
                         <div class="grid grid-cols-3 gap-2 sm:gap-3">
                             <button id="shape-personalized" onclick="setShape('personalized')" class="flex flex-col items-center justify-center py-2.5 px-2 rounded-xl border-2 border-baseBlack bg-baseBlack text-brandGreen transition-all shadow-sm">
                                 <i class="fa-solid fa-wave-square text-base mb-1"></i>
@@ -373,7 +370,6 @@
                                 <span id="border-size-label" class="bg-gray-100 px-2 py-0.5 rounded text-textMuted">12px (1.2 mm)</span>
                             </div>
                             <div class="flex items-center gap-3 pt-1">
-                                <!-- Tope ajustado a 30 (3.0 mm) -->
                                 <input type="range" id="border-size-slider" min="0" max="30" value="12" class="w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer">
                             </div>
                             <p class="text-[10px] text-textMuted font-mono leading-tight">Un margen blanco garantiza la protección de tu diseño.</p>
@@ -387,7 +383,6 @@
                             <h3 class="text-sm font-bold uppercase tracking-wide">Ancho del sticker</h3>
                         </div>
                         
-                        <!-- Compactado: py-2 a py-1.5 -->
                         <div id="size-button-group" class="grid grid-cols-4 gap-2 pt-1">
                             <button onclick="setSize(3)" class="py-1.5 text-[11px] font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all">3 cm</button>
                             <button onclick="setSize(4)" class="py-1.5 text-[11px] font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all">4 cm</button>
@@ -437,7 +432,6 @@
                             <h3 class="text-sm font-bold uppercase tracking-wide">Sustrato / Material Base</h3>
                         </div>
                         
-                        <!-- Compactado: py-3 a py-2.5 -->
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3 pt-1">
                             <button id="mat-standard" onclick="setMaterial('standard')" class="py-2.5 px-1 text-[11px] font-bold rounded-lg border-2 border-baseBlack bg-baseBlack text-baseWhite transition-all flex flex-col items-center justify-center gap-0.5 text-center">
                                 <span>Vinil Blanco</span>
@@ -461,7 +455,6 @@
                             <h3 class="text-sm font-bold uppercase tracking-wide">Acabados (Opcional)</h3>
                         </div>
                         
-                        <!-- Compactado: p-3 a p-2.5 -->
                         <div class="grid grid-cols-2 gap-2 sm:gap-3 pt-1">
                             <label class="flex items-center gap-3 cursor-pointer p-2.5 rounded-lg border border-gray-200 bg-gray-50 hover:border-baseBlack transition-colors">
                                 <input type="checkbox" id="check-laminado" onchange="toggleLaminado(this.checked)" class="accent-baseBlack w-4 h-4">
@@ -504,7 +497,6 @@
                 </section>
 
                 <!-- COLUMNA DERECHA: Mesa de Trabajo Principal (lg:col-span-7) -->
-                <!-- Compactado: top-[80px] y padding interno -->
                 <section class="lg:col-span-7 space-y-4 lg:sticky lg:top-[80px]">
                     
                     <div class="flex items-center justify-between px-2">
@@ -515,34 +507,17 @@
                         <span class="text-[10px] font-mono font-bold text-textMuted uppercase bg-gray-100 px-2 py-1 rounded">ESCALA: 1:1 PRE-PRENSA</span>
                     </div>
 
-                    <!-- Mesa de Trabajo Brutalista Clara (Menos altura mínima para ajustarse a escritorios) -->
+                    <!-- Mesa de Trabajo Brutalista Clara -->
                     <div class="relative bg-baseWhite border-[3px] border-baseBlack p-5 sm:p-6 shadow-brutal flex flex-col justify-center items-center overflow-hidden min-h-[380px] lg:min-h-[440px]">
                         
                         <!-- RULER HORIZONTAL -->
                         <div class="absolute top-0 left-0 right-0 h-5 bg-gray-50 border-b border-borderGray flex justify-between items-center px-4 font-mono text-[9px] text-textMuted font-bold">
-                            <span>0</span>
-                            <span>10</span>
-                            <span>20</span>
-                            <span>30</span>
-                            <span>40</span>
-                            <span>50</span>
-                            <span>60</span>
-                            <span>70</span>
-                            <span>80</span>
-                            <span>90 mm</span>
+                            <span>0</span><span>10</span><span>20</span><span>30</span><span>40</span><span>50</span><span>60</span><span>70</span><span>80</span><span>90 mm</span>
                         </div>
 
                         <!-- RULER VERTICAL -->
                         <div class="absolute top-5 left-0 bottom-0 w-5 bg-gray-50 border-r border-borderGray flex flex-col justify-between items-center py-4 font-mono text-[9px] text-textMuted font-bold">
-                            <span>0</span>
-                            <span>10</span>
-                            <span>20</span>
-                            <span>30</span>
-                            <span>40</span>
-                            <span>50</span>
-                            <span>60</span>
-                            <span>70</span>
-                            <span>80</span>
+                            <span>0</span><span>10</span><span>20</span><span>30</span><span>40</span><span>50</span><span>60</span><span>70</span><span>80</span>
                         </div>
 
                         <!-- Contenedor del Lienzo -->
@@ -567,7 +542,6 @@
 
                     <!-- Botones de Acción -->
                     <div class="grid grid-cols-1 gap-3 pt-2">
-                        <!-- Botón Añadir al Carrito más estrecho (py-3 en lugar de py-4) -->
                         <button onclick="agregarAlCarrito()" class="w-full bg-brandGreen hover:bg-brandGreen/90 text-baseBlack font-bold text-sm py-3 px-6 rounded-full border-2 border-baseBlack shadow-brutal shadow-brutal-hover flex items-center justify-center gap-2 transition-all">
                             <i class="fa-solid fa-circle-plus text-lg"></i> AGREGAR A LA ORDEN DE CORTE
                         </button>
@@ -972,7 +946,7 @@
                         <p class="text-xs font-bold text-gray-500 uppercase mt-1">Revisa que todo esté correcto antes de descargar.</p>
                     </div>
 
-                    <!-- PREVIEW VISUAL DEL TICKET (Diseño HTML solo para visualizar, la descarga es por Canvas JS) -->
+                    <!-- PREVIEW VISUAL DEL TICKET -->
                     <div class="bg-white p-5 border-[5px] border-black relative rounded-3xl max-w-sm mx-auto shadow-comic-black" id="ticket-preview-box">
                         <div class="absolute -top-4 right-4 bg-black text-white text-[10px] font-black px-3 py-1 border-2 border-white rotate-[3deg] uppercase tracking-wider shadow-comic-sm">ORDEN FOSFO KIDS</div>
                         
@@ -1040,7 +1014,6 @@
                     </div>
 
                     <div class="mt-8 space-y-3 font-sans-bold w-full">
-                        <!-- BOTÓN CORREGIDO CON NUEVA FUNCIÓN CANVAS NATIVO -->
                         <button onclick="captureOrderCanvas()" class="w-full bg-fosfoPink text-white font-comic text-3xl py-4 border-[4px] border-black shadow-comic-black hover:scale-[1.02] transition-transform flex items-center justify-center gap-3 rounded-2xl active:scale-95">
                             <i data-lucide="download" class="w-7 h-7 stroke-[3]"></i> DESCARGAR TICKET
                         </button>
@@ -1197,7 +1170,6 @@
         };
 
         window.onload = function() {
-            // Inicializar Sticker Studio
             loadSample('alienPattern');
             setupDragAndDrop();
             setupInputs();
@@ -1206,7 +1178,6 @@
             renderCart();
             requestAnimationFrame(animateLoop);
             
-            // Inicializar Fosfo Kids
             try { if (typeof lucide !== 'undefined' && lucide.createIcons) { lucide.createIcons(); } } catch (e) {}
             try {
                 selectPackage('chico', 260); selectFosfoMaterial('vinil_blanco_brillante', 0); selectLaminated('ninguno', 0);
@@ -1317,6 +1288,9 @@
         }
 
         function getHeightCm() {
+            if (APP_STATE.shape === 'circular' || APP_STATE.shape === 'squared') {
+                return APP_STATE.selectedSize.toFixed(1);
+            }
             if (!APP_STATE.imageLoaded) return APP_STATE.selectedSize.toFixed(1);
             if (APP_STATE.customMode === 'free' && APP_STATE.selectedHeight) {
                 return APP_STATE.selectedHeight.toFixed(1);
@@ -1531,6 +1505,18 @@
             const x = (baseSize - w) / 2;
             const y = (baseSize - h) / 2;
 
+            // Calcular proporciones internas para NO estirar la imagen dentro del circulo/cuadrado
+            const imgAspect = img.height / img.width;
+            let imgW = w;
+            let imgH = h;
+            if (imgAspect > (h / w)) {
+                imgW = h / imgAspect;
+            } else {
+                imgH = w * imgAspect;
+            }
+            const imgX = x + (w - imgW) / 2;
+            const imgY = y + (h - imgH) / 2;
+
             if (APP_STATE.shape === 'circular') {
                 targetCtx.save();
                 const centerX = baseSize / 2;
@@ -1547,7 +1533,7 @@
                 targetCtx.beginPath();
                 targetCtx.arc(centerX, centerY, radius, 0, Math.PI * 2);
                 targetCtx.clip();
-                targetCtx.drawImage(img, x, y, w, h);
+                targetCtx.drawImage(img, imgX, imgY, imgW, imgH);
                 targetCtx.restore();
             } else if (APP_STATE.shape === 'squared') {
                 targetCtx.save();
@@ -1567,14 +1553,14 @@
                 targetCtx.beginPath();
                 drawRoundedRect(targetCtx, x, y, w, h, Math.max(2, cornerRadius - borderOffset));
                 targetCtx.clip();
-                targetCtx.drawImage(img, x, y, w, h);
+                targetCtx.drawImage(img, imgX, imgY, imgW, imgH);
                 targetCtx.restore();
             } else {
                 const offscreen = document.createElement('canvas');
                 offscreen.width = baseSize;
                 offscreen.height = baseSize;
                 const oCtx = offscreen.getContext('2d');
-                oCtx.drawImage(img, x, y, w, h);
+                oCtx.drawImage(img, imgX, imgY, imgW, imgH);
                 const maskCanvas = document.createElement('canvas');
                 maskCanvas.width = baseSize;
                 maskCanvas.height = baseSize;
@@ -1598,7 +1584,7 @@
                     targetCtx.drawImage(maskCanvas, 0, 0);
                 }
                 targetCtx.restore();
-                targetCtx.drawImage(img, x, y, w, h);
+                targetCtx.drawImage(img, imgX, imgY, imgW, imgH);
             }
             updateDimensionsLabel();
         }
@@ -1744,7 +1730,6 @@
             showToast("Orden vaciada exitosamente.", "info");
         }
 
-        // ---------- ARREGLO AL CANVAS OVERLAP -----------
         async function procesarCompra() {
             if (APP_STATE.cart.length === 0) { showToast("No hay elementos para procesar.", "error"); return; }
             showToast("Generando ticket de orden...", "info");
@@ -1752,7 +1737,7 @@
             const width = 800;
             const itemHeight = 160;
             const headerHeight = 200;
-            const footerHeight = 600;  // <-- AUMENTADO PARA DAR MÁS ESPACIO
+            const footerHeight = 600; 
             const height = headerHeight + (APP_STATE.cart.length * itemHeight) + footerHeight;
             canvas.width = width;
             canvas.height = height;
@@ -1842,57 +1827,48 @@
             const totalWidth = ctx.measureText(totalText).width;
             ctx.fillText(totalText, width - 40 - totalWidth, currentY + 70);
 
-            // --- BLOQUE DE DATOS DE PAGO APILADOS ---
             currentY += 120;
             
-            // Fondo negro
             ctx.fillStyle = "#000000";
             ctx.fillRect(40, currentY, width - 80, 430);
             
             ctx.textAlign = "center";
             
-            // Texto principal
             ctx.font = "bold 24px monospace";
             ctx.fillStyle = "#ffffff";
             ctx.fillText("PARA PROCESAR TU PEDIDO COMPARTE EL", width / 2, currentY + 45);
-            ctx.fillStyle = "#ccff00"; // Verde fosfo
+            ctx.fillStyle = "#ccff00"; 
             ctx.fillText("COMPROBANTE DE PAGO CON TU VENDEDORA", width / 2, currentY + 75);
             
-            // Línea separadora
             ctx.strokeStyle = "#333333";
             ctx.lineWidth = 2;
             ctx.beginPath(); ctx.moveTo(80, currentY + 115); ctx.lineTo(width - 80, currentY + 115); ctx.stroke();
             
-            // Cuenta 1 
             ctx.fillStyle = "#ffffff"; ctx.font = "bold 16px monospace";
             ctx.fillText("BANCO AZTECA", width / 2, currentY + 150);
             ctx.font = "18px monospace";
             ctx.fillText("Ivan Alberto Menjivar Palma", width / 2, currentY + 175);
-            ctx.fillStyle = "#ccff00"; // Verde fosfo
+            ctx.fillStyle = "#ccff00"; 
             ctx.font = "bold 32px monospace";
             ctx.fillText("1271 8001 3026 091621", width / 2, currentY + 215);
 
-            // Línea divisoria pequeña
             ctx.strokeStyle = "#333333";
             ctx.lineWidth = 1;
             ctx.beginPath(); ctx.moveTo(200, currentY + 245); ctx.lineTo(width - 200, currentY + 245); ctx.stroke();
             
-            // Cuenta 2
             ctx.fillStyle = "#ffffff"; ctx.font = "bold 16px monospace";
             ctx.fillText("BANCO AZTECA", width / 2, currentY + 280);
             ctx.font = "18px monospace";
             ctx.fillText("Ameltzy A Ramírez Chávez", width / 2, currentY + 305);
-            ctx.fillStyle = "#ccff00"; // Verde fosfo
+            ctx.fillStyle = "#ccff00"; 
             ctx.font = "bold 32px monospace";
             ctx.fillText("1271 8002 1164 638200", width / 2, currentY + 345);
             
-            // Texto factura
-            ctx.fillStyle = "#ff007f"; // Rosa fosfo
+            ctx.fillStyle = "#ff007f"; 
             ctx.font = "bold 20px monospace";
             ctx.fillText("SI REQUIERES FACTURA, CONSULTA LOS DATOS", width / 2, currentY + 390);
             ctx.fillText("NECESARIOS ANTES DE REALIZAR TU DEPÓSITO.", width / 2, currentY + 415);
             
-            // Descargar Ticket
             const link = document.createElement('a');
             link.download = `COTIZACION_GF_${Date.now()}.png`;
             link.href = canvas.toDataURL('image/png');
