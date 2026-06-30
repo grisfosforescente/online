@@ -20,7 +20,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://unpkg.com/lucide@latest"></script>
     
-    <!-- Configuración del tema Tailwind -->
     <script>
         tailwind.config = {
             theme: {
@@ -32,7 +31,7 @@
                         baseWhite: '#ffffff',    
                         borderGray: '#e5e7eb',   
                         textMuted: '#6b7280',
-                        fosfoYellow: '#ccff00', /* Se actualizó al verde de la marca */
+                        fosfoYellow: '#ccff00', 
                         fosfoCyan: '#00D4FF',
                         fosfoPink: '#FF2E93'
                     },
@@ -69,7 +68,7 @@
     </script>
 
     <style>
-        /* --- ESTILOS --- */
+        /* --- ESTILOS GENERALES --- */
         .shadow-brutal { box-shadow: 6px 6px 0px 0px #000000; }
         .shadow-brutal-sm { box-shadow: 3px 3px 0px 0px #000000; }
         .shadow-brutal-hover:hover {
@@ -156,7 +155,7 @@
 </head>
 <body class="bg-baseWhite text-baseBlack font-sans min-h-screen overflow-x-hidden antialiased selection:bg-brandGreen selection:text-baseBlack">
 
-    <!-- BANNER SUPERIOR (Antes de todo) -->
+    <!-- BANNER SUPERIOR PROMOCIONAL -->
     <div class="w-full bg-baseBlack border-b-4 border-baseBlack flex justify-center">
         <img src="banner.gif" alt="Banner Promocional" class="w-full h-auto block" onerror="this.src='https://placehold.co/1200x120/000000/ccff00?text=BANNER.GIF+AQUI'">
     </div>
@@ -170,10 +169,7 @@
                     <a href="#" onclick="switchView('sticker'); return false;" class="hover:text-brandGreen transition-colors">INICIO</a>
                     <button onclick="openPromosModal()" class="hover:text-brandPink transition-colors uppercase">PROMOCIONES</button>
                     <a href="#" onclick="switchView('escolares'); return false;" class="hover:text-brandGreen transition-colors uppercase text-center">ESCOLARES 2026</a>
-                    <!-- NUEVO BOTÓN DE ALIEN PARA JUEGO -->
-                    <button onclick="openGameModal()" class="hover:text-brandPink transition-colors uppercase flex items-center gap-1 text-brandGreen font-black">
-                        <span class="text-xl">👽</span> <span class="hidden md:inline">JUEGA Y GANA</span>
-                    </button>
+                    <button onclick="openGameModal()" class="hover:text-brandPink transition-colors uppercase flex items-center gap-1 text-brandGreen font-black"><span class="text-xl">👽</span> <span class="hidden md:inline">JUEGA Y GANA</span></button>
                     <a href="https://wa.me/message/LOS67PCNOUMBM1" target="_blank" class="hover:text-brandPink transition-colors flex items-center gap-1.5">
                         <i class="fa-brands fa-whatsapp text-lg"></i>
                         <span class="hidden md:inline">COTIZA CON UN AGENTE</span>
@@ -190,7 +186,6 @@
                     <span id="cart-badge" class="hidden absolute -top-2 -right-3 bg-brandPink text-baseWhite text-[10px] font-black px-1.5 py-0.5 rounded-full shadow-md">0</span>
                 </button>
 
-                <!-- BOTÓN COTIZA ONLINE SIN LA ETIQUETA "NUEVO" -->
                 <a href="#cotizador" onclick="switchView('sticker');" class="relative bg-baseBlack text-brandGreen border-2 border-brandGreen px-4 md:px-6 py-2 font-bold text-xs md:text-sm hover:bg-brandGreen hover:text-baseBlack transition-colors text-center">
                     Cotiza On Line
                 </a>
@@ -202,7 +197,7 @@
     <!-- VISTA 1: STICKER STUDIO                    -->
     <!-- ========================================== -->
     <div id="view-sticker" class="block">
-        <main id="home">
+        <main>
             <section class="border-b-[6px] border-baseBlack bg-baseWhite pt-10 pb-12 px-6 relative overflow-hidden">
                 <div class="max-w-5xl mx-auto text-center relative z-10">
                     <div class="inline-block bg-brandGreen text-baseBlack font-black px-3 py-1 mb-4 text-xs md:text-sm border-2 border-baseBlack shadow-brutal-sm transform -rotate-1">
@@ -292,6 +287,7 @@
 
         <div id="cotizador" class="bg-baseWhite py-8">
             <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+                
                 <section class="lg:col-span-5 bg-baseWhite p-5 sm:p-6 border-[3px] border-baseBlack shadow-brutal flex flex-col gap-4 divide-y-[3px] divide-gray-100 relative z-10">
                     <div class="pb-1">
                         <h2 class="text-xl sm:text-2xl font-black uppercase tracking-tight flex items-center gap-2">
@@ -406,7 +402,7 @@
                             <span class="bg-gray-100 text-baseBlack w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold border border-gray-200">5</span>
                             <h3 class="text-sm font-bold uppercase tracking-wide">Sustrato / Material Base</h3>
                         </div>
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3 pt-1">
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 pt-1">
                             <button id="mat-standard" onclick="setMaterial('standard')" class="py-2.5 px-1 text-[11px] font-bold rounded-lg border-2 border-baseBlack bg-baseBlack text-baseWhite transition-all flex flex-col items-center justify-center gap-0.5 text-center">
                                 <span>Vinil Blanco</span>
                                 <span class="text-[9px] text-gray-400 font-normal">Base $140/pl</span>
@@ -418,6 +414,11 @@
                             <button id="mat-holo" onclick="setMaterial('holo')" class="py-2.5 px-1 text-[11px] font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all flex flex-col items-center justify-center gap-0.5 text-center">
                                 <span>Holográfico</span>
                                 <span class="text-[9px] font-normal">Base $240/pl</span>
+                            </button>
+                            <!-- BOTÓN SECRETO -->
+                            <button id="mat-custom" onclick="promptCustomMaterial()" class="py-2.5 px-1 text-[11px] font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all flex flex-col items-center justify-center gap-0.5 text-center">
+                                <span>Introducir Código</span>
+                                <span class="text-[9px] font-normal">---</span>
                             </button>
                         </div>
                     </div>
@@ -490,23 +491,30 @@
                             <canvas id="sticker-canvas" class="z-10 relative max-w-full max-h-full drop-shadow-xl cursor-crosshair transition-transform" style="width: 280px; height: 280px;"></canvas>
                         </div>
 
-                        <!-- BARRA DE ZOOM PARA MÁSCARA CIRCULAR/CUADRADA -->
+                        <!-- SECCION DE DIMENSIONES Y ZOOM -->
                         <div class="mt-5 flex flex-col items-center text-center w-full">
                             <span class="inline-flex items-center gap-1.5 px-4 py-1.5 bg-gray-100 border border-gray-200 rounded-full text-baseBlack text-xs font-bold uppercase tracking-wide shadow-sm">
                                 DIMENSIÓN DE CORTE: <strong id="sticker-final-dimensions-label" class="text-brandPink">5.0 × 5.0 cm</strong>
                             </span>
 
-                            <div class="w-full max-w-[260px] mt-4 hidden items-center gap-3 bg-gray-50 px-4 py-2 rounded-xl border border-gray-200 shadow-sm" id="zoom-control-container">
-                                <i class="fa-solid fa-image text-textMuted text-xs"></i>
-                                <input type="range" id="image-zoom-slider" min="0.2" max="3" step="0.05" value="1" class="w-full h-1.5 bg-gray-300 rounded-lg appearance-none cursor-pointer accent-brandPink">
-                                <i class="fa-solid fa-magnifying-glass-plus text-baseBlack text-sm"></i>
+                            <!-- ZOOM CONTROL -->
+                            <div class="w-full max-w-[260px] mt-4 hidden flex-col gap-2" id="zoom-control-container">
+                                <div class="w-full flex items-center gap-3 bg-gray-50 px-4 py-2 rounded-xl border border-gray-200 shadow-sm">
+                                    <i class="fa-solid fa-image text-textMuted text-xs"></i>
+                                    <input type="range" id="image-zoom-slider" min="0.2" max="3" step="0.05" value="1" class="w-full h-1.5 bg-gray-300 rounded-lg appearance-none cursor-pointer accent-brandPink">
+                                    <i class="fa-solid fa-magnifying-glass-plus text-baseBlack text-sm"></i>
+                                </div>
+                                <p class="text-[9px] text-textMuted font-bold uppercase tracking-wider">👆 Arrastra la imagen para acomodarla</p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-1 gap-3 pt-2">
-                        <button onclick="agregarAlCarrito()" class="w-full bg-brandGreen hover:bg-brandGreen/90 text-baseBlack font-bold text-sm py-3 px-6 rounded-full border-2 border-baseBlack shadow-brutal shadow-brutal-hover flex items-center justify-center gap-2 transition-all">
-                            <i class="fa-solid fa-circle-plus text-lg"></i> AGREGAR A LA ORDEN DE CORTE
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                        <button onclick="descargarDisenoPNG()" class="w-full bg-baseWhite hover:bg-gray-100 text-baseBlack font-bold text-xs sm:text-sm py-3 px-4 rounded-full border-2 border-baseBlack shadow-brutal shadow-brutal-hover flex items-center justify-center gap-2 transition-all">
+                            <i class="fa-solid fa-image text-lg"></i> DESCARGAR PNG SIN FONDO
+                        </button>
+                        <button onclick="agregarAlCarrito()" class="w-full bg-brandGreen hover:bg-brandGreen/90 text-baseBlack font-bold text-xs sm:text-sm py-3 px-4 rounded-full border-2 border-baseBlack shadow-brutal shadow-brutal-hover flex items-center justify-center gap-2 transition-all">
+                            <i class="fa-solid fa-circle-plus text-lg"></i> AGREGAR A LA ORDEN
                         </button>
                     </div>
 
@@ -518,22 +526,7 @@
                 </section>
             </div>
         </div>
-
-        <footer class="bg-baseBlack text-baseWhite py-12 px-6 border-t-8 border-brandGreen mt-12">
-            <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-                <div>
-                    <h3 class="font-mono font-bold text-2xl tracking-tighter">GRISFOSFORESCENTE.COM.MX</h3>
-                    <p class="text-xs text-gray-400 mt-1">Stickers Chingones</p>
-                </div>
-                <div class="flex gap-4">
-                    <a href="https://www.instagram.com/gris_fosforescente/" target="_blank" class="w-10 h-10 bg-baseWhite text-baseBlack rounded-full flex items-center justify-center hover:bg-brandPink hover:text-baseWhite transition-colors"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https://www.facebook.com/grisfosforescente" target="_blank" class="w-10 h-10 bg-baseWhite text-baseBlack rounded-full flex items-center justify-center hover:bg-brandPink hover:text-baseWhite transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="https://www.tiktok.com/@grisfosforescente" target="_blank" class="w-10 h-10 bg-baseWhite text-baseBlack rounded-full flex items-center justify-center hover:bg-brandPink hover:text-baseWhite transition-colors"><i class="fa-brands fa-tiktok"></i></a>
-                </div>
-            </div>
-        </footer>
-    </div>
-
+    </div> <!-- FIN VISTA STICKER STUDIO -->
 
     <!-- ========================================== -->
     <!-- VISTA 2: FOSFO KIDS (ESCOLARES 2026)       -->
@@ -587,7 +580,6 @@
         </header>
 
         <main class="w-full max-w-lg mx-auto px-4 mt-6 flex flex-col gap-6 font-sans-bold">
-            
             <div class="bg-white border-[4px] border-black p-1.5 shadow-comic-black flex justify-between items-stretch gap-1 rounded-2xl w-full">
                 <button onclick="fosfoGoToStep(1)" id="btn-step-1" class="step-btn step-btn-active flex-1 flex flex-col items-center justify-center py-2.5 px-1 font-black text-[9px] sm:text-xs uppercase transition-all duration-200">
                     <span class="step-icon text-xl sm:hidden mb-1 leading-none">🎒</span>
@@ -617,7 +609,7 @@
             </div>
 
             <div class="bg-white border-[5px] border-black p-5 sm:p-8 shadow-comic-black relative w-full rounded-3xl">
-            
+                <!-- STEP 1 -->
                 <div id="step-content-1" class="step-pane space-y-5">
                     <div class="text-center sm:text-left mb-4">
                         <h2 class="font-comic text-3xl md:text-4xl text-black uppercase tracking-wide">🎒 Paso 1: Elige tu Paquete</h2>
@@ -652,7 +644,7 @@
                         </div>
                     </div>
 
-                    <div id="card-pkg-personalizado" onclick="selectPackage('individual', 0)" class="border-[3px] border-black p-4 relative bg-[#FFFBEB] cursor-pointer hover:scale-[1.02] transition-all select-none w-full shadow-comic-sm rounded-2xl mt-2">
+                    <div id="card-pkg-personalizado" onclick="selectPackage('personalizado', 0)" class="border-[3px] border-black p-4 relative bg-[#FFFBEB] cursor-pointer hover:scale-[1.02] transition-all select-none w-full shadow-comic-sm rounded-2xl mt-2">
                         <div class="absolute -top-3 right-4 border-[3px] border-black bg-[#A55EEA] text-white px-3 py-0.5 font-comic text-xl rotate-1 shadow-comic-sm">Armado Libre</div>
                         <h3 class="font-comic text-2xl text-black mt-2">SÓLO ETIQUETAS SUELTAS</h3>
                         <p class="text-[11px] font-black text-gray-600 uppercase mb-1">Diseña tu propio juego con las cantidades exactas que necesites.</p>
@@ -666,6 +658,7 @@
                     </div>
                 </div>
 
+                <!-- STEP 2 -->
                 <div id="step-content-2" class="step-pane hidden space-y-5">
                     <div class="mb-4">
                         <h2 class="font-comic text-3xl md:text-4xl text-black uppercase tracking-wide">➕ Paso 2: ¿Deseas agregar más?</h2>
@@ -733,6 +726,7 @@
                     </div>
                 </div>
 
+                <!-- STEP 3 -->
                 <div id="step-content-3" class="step-pane hidden space-y-6">
                     <div class="mb-4">
                         <h2 class="font-comic text-3xl md:text-4xl text-black uppercase tracking-wide">✏️ Paso 3: Especificaciones</h2>
@@ -819,6 +813,7 @@
                     </div>
                 </div>
 
+                <!-- STEP 4 -->
                 <div id="step-content-4" class="step-pane hidden space-y-6">
                     <div class="mb-4">
                         <h2 class="font-comic text-3xl md:text-4xl text-black uppercase tracking-wide">🎨 Paso 4: Elige el Diseño</h2>
@@ -889,6 +884,7 @@
                     </div>
                 </div>
 
+                <!-- STEP 5 -->
                 <div id="step-content-5" class="step-pane hidden space-y-6">
                     <div class="text-center sm:text-left mb-4">
                         <h2 class="font-comic text-3xl md:text-4xl text-black uppercase tracking-wide">🧾 Paso 5: Ticket de Pedido</h2>
@@ -943,7 +939,6 @@
                             <div id="ticket-extras-block" class="bg-slate-100 p-3 border-[3px] border-black shadow-comic-sm rounded-xl hidden text-center mb-3">
                                 <div id="ticket-extras-title" class="text-[9px] font-black uppercase text-gray-500 tracking-widest mb-2">🧩 PIEZAS DEL PEDIDO</div>
                                 <div class="flex flex-wrap gap-1.5 justify-center text-slate-800" id="ticket-extras-list">
-                                    <!-- Inyección JS -->
                                 </div>
                             </div>
 
@@ -975,9 +970,13 @@
                 </div>
             </div>
         </main>
-    </div>
+    </div> <!-- FIN VISTA FOSFO KIDS -->
 
-    <!-- MODAL DEL JUEGO (FLAPPY UFO) ACTUALIZADO -->
+    <!-- ========================================== -->
+    <!-- MODALES GLOBALES                           -->
+    <!-- ========================================== -->
+
+    <!-- MODAL DEL JUEGO (FLAPPY UFO) -->
     <div id="game-modal" class="fixed inset-0 bg-baseBlack/90 backdrop-blur-md z-[70] flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
         <div class="bg-baseWhite border-[4px] border-brandGreen w-full max-w-sm rounded-3xl p-6 relative flex flex-col items-center shadow-brutal scale-95 transition-transform duration-300">
             <button onclick="closeGameModal()" class="absolute -top-4 -right-4 bg-brandPink text-baseWhite border-2 border-baseBlack w-10 h-10 rounded-full flex items-center justify-center shadow-brutal-sm hover:scale-110 transition-transform z-10">
@@ -994,22 +993,20 @@
                     <button onclick="startFlappyGame()" class="bg-brandGreen text-baseBlack font-black uppercase px-6 py-2 rounded-xl border-2 border-baseBlack shadow-brutal-sm hover:scale-105 transition-transform">Toca para Iniciar</button>
                 </div>
                 
-                <!-- Overlay si se estrella (Muestra % en base a puntos) -->
                 <div id="game-over-overlay" class="absolute inset-0 flex flex-col items-center justify-center bg-brandPink/95 backdrop-blur-sm hidden px-4 text-center">
                     <h4 class="font-comic text-4xl text-baseWhite uppercase mb-1">¡Estrellado!</h4>
                     <div class="bg-baseWhite text-baseBlack rounded-xl p-3 border-2 border-baseBlack mb-4 shadow-brutal-sm w-full">
                         <p class="font-black text-sm uppercase leading-tight">Ganaste un <span id="final-discount" class="text-brandPink text-xl">0%</span> de descuento</p>
-                        <p class="text-[10px] font-bold text-textMuted mt-1 leading-tight">Toma captura de tu puntuación y compártela a tu vendedor por WhatsApp.</p>
+                        <p class="text-[10px] font-bold text-textMuted mt-1 leading-tight">Toma captura de pantalla y envíasela a tu asesor por WhatsApp.</p>
                     </div>
                     <button id="btn-retry" onclick="startFlappyGame()" class="bg-baseWhite text-baseBlack font-black uppercase px-6 py-2 rounded-xl border-2 border-baseBlack shadow-brutal-sm hover:scale-105 transition-transform">Reintentar</button>
                     <button onclick="closeGameModal()" class="mt-2 bg-transparent text-baseWhite font-bold uppercase text-xs hover:underline">Salir</button>
                 </div>
 
-                <!-- Overlay si sobrevive los 20 pts -->
                 <div id="game-win-overlay" class="absolute inset-0 flex flex-col items-center justify-center bg-brandGreen/95 backdrop-blur-sm hidden px-4 text-center">
                     <h4 class="font-comic text-4xl text-baseBlack uppercase mb-1">¡LO LOGRASTE!</h4>
                     <p class="text-baseBlack font-black text-xs mb-4 leading-tight uppercase">Misión completada.<br>Ganaste el máximo descuento:<br><span class="text-xl text-brandPink bg-baseWhite px-2 py-1 mt-1 inline-block border-2 border-baseBlack rounded shadow-brutal-sm">20% OFF</span></p>
-                    <p class="text-[10px] font-bold text-baseBlack mb-4 leading-tight">Toma captura de tu puntuación y compártela a tu vendedor por WhatsApp.</p>
+                    <p class="text-[10px] font-bold text-baseBlack mb-4 leading-tight">Toma captura de pantalla a esta ventana.</p>
                     <button onclick="closeGameModal()" class="bg-baseBlack text-brandGreen font-black uppercase px-6 py-2 rounded-xl border-2 border-baseBlack shadow-brutal-sm hover:scale-105 transition-transform">Salir</button>
                 </div>
             </div>
@@ -1021,7 +1018,7 @@
         </div>
     </div>
 
-    <!-- MODAL DE PROMOCIONES GLOBAL -->
+    <!-- MODAL DE PROMOCIONES -->
     <div id="promo-modal" class="fixed inset-0 bg-baseBlack/80 backdrop-blur-sm z-[60] flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
         <div id="promo-modal-content" class="bg-baseWhite border-[4px] border-baseBlack max-w-4xl w-full p-6 md:p-8 relative flex flex-col shadow-brutal scale-95 transition-transform duration-300 max-h-[90vh] overflow-y-auto">
             <div class="flex justify-between items-center pb-4 border-b-[3px] border-baseBlack mb-6">
@@ -1043,7 +1040,20 @@
         </div>
     </div>
 
-    <!-- PANEL DESLIZANTE DEL CARRITO GLOBAL -->
+    <!-- MODAL CÓDIGO SECRETO (Nuevo) -->
+    <div id="secret-code-modal" class="fixed inset-0 bg-baseBlack/80 backdrop-blur-sm z-[80] flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-baseWhite border-[4px] border-baseBlack max-w-sm w-full p-6 relative flex flex-col shadow-brutal rounded-2xl scale-95 transition-transform duration-300" id="secret-code-content">
+            <h3 class="font-black text-xl uppercase mb-4 text-center text-baseBlack">Introducir Código Especial</h3>
+            <p class="text-xs text-textMuted text-center font-bold mb-4">Ingresa tu código promocional o de agente.</p>
+            <input type="text" id="secret-code-input" placeholder="" class="w-full border-[3px] border-baseBlack px-4 py-3 text-sm font-black uppercase outline-none mb-4 rounded-xl focus:border-brandPink shadow-inner">
+            <div class="flex gap-3">
+                <button onclick="closeSecretCodeModal()" class="flex-1 bg-gray-200 text-baseBlack font-bold py-3 border-[3px] border-baseBlack rounded-xl hover:bg-gray-300 transition-colors">CANCELAR</button>
+                <button onclick="submitSecretCode()" class="flex-1 bg-brandGreen text-baseBlack font-black py-3 border-[3px] border-baseBlack rounded-xl hover:bg-brandGreen/90 transition-colors shadow-brutal-sm">APLICAR</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PANEL DEL CARRITO -->
     <div id="cart-drawer" class="fixed inset-y-0 right-0 w-full max-w-md bg-gray-50 border-l-[3px] border-baseBlack z-50 shadow-2xl flex flex-col translate-x-full transition-transform duration-300 ease-in-out">
         <div class="p-6 border-b-[3px] border-baseBlack flex justify-between items-center bg-baseWhite">
             <div class="flex items-center gap-3">
@@ -1058,7 +1068,6 @@
         </div>
         
         <div id="cart-items-container" class="flex-1 overflow-y-auto p-6 space-y-4">
-            <!-- Cargado dinámicamente desde JS -->
         </div>
         
         <div class="p-6 border-t-[3px] border-baseBlack bg-baseWhite space-y-4">
@@ -1084,21 +1093,10 @@
     <div id="cart-backdrop" class="fixed inset-0 bg-baseBlack/60 backdrop-blur-sm z-40 hidden opacity-0 transition-opacity duration-300" onclick="toggleCartDrawer()"></div>
     <div id="toast-container" class="fixed bottom-6 right-6 z-50 pointer-events-none space-y-2"></div>
 
+    <!-- ========================================== -->
+    <!-- LÓGICA DE LA APLICACIÓN (JAVASCRIPT)       -->
+    <!-- ========================================== -->
     <script>
-        function switchView(viewName) {
-            if (viewName === 'escolares') {
-                document.getElementById('view-sticker').classList.add('hidden');
-                document.getElementById('view-escolares').classList.remove('hidden');
-                document.getElementById('nav-cart-btn').classList.add('hidden');
-                try { if (typeof lucide !== 'undefined' && lucide.createIcons) { lucide.createIcons(); } } catch(e) {}
-            } else {
-                document.getElementById('view-escolares').classList.add('hidden');
-                document.getElementById('view-sticker').classList.remove('hidden');
-                document.getElementById('nav-cart-btn').classList.remove('hidden');
-            }
-            window.scrollTo(0, 0);
-        }
-
         const APP_STATE = {
             image: null,           
             imageLoaded: false,    
@@ -1113,8 +1111,11 @@
             material: 'standard',
             laminado: false,
             corteFisico: false,
-            imageZoom: 1, /* Variable de zoom agregada */
-            cart: []               
+            imageZoom: 1,
+            imageOffsetX: 0,
+            imageOffsetY: 0,
+            customMaterialPrice: 0,
+            cart: []                
         };
 
         const stickerCanvas = document.getElementById('sticker-canvas');
@@ -1158,24 +1159,37 @@
         };
 
         window.onload = function() {
-            try { loadSample('alienPattern'); } catch(e){}
-            try { setupDragAndDrop(); } catch(e){}
-            try { setupInputs(); } catch(e){}
-            try { updateSelectedSizeUI(); } catch(e){}
-            try { updateRendimientoUI(); } catch(e){}
-            try { renderCart(); } catch(e){}
-            try { requestAnimationFrame(animateLoop); } catch(e){}
+            loadSample('alienPattern');
+            setupDragAndDrop();
+            setupCanvasDrag();
+            setupInputs();
+            updateSelectedSizeUI();
+            updateRendimientoUI();
+            renderCart();
+            requestAnimationFrame(animateLoop);
             
-            try { if (typeof lucide !== 'undefined' && lucide.createIcons) { lucide.createIcons(); } } catch(e){}
+            try { if (typeof lucide !== 'undefined' && lucide.createIcons) { lucide.createIcons(); } } catch (e) {}
             try {
                 selectPackage('chico', 260); selectFosfoMaterial('vinil_blanco_brillante', 0); selectLaminated('ninguno', 0);
                 changeCatalogPage(1); selectGridDesign(1, 1, 1);
-            } catch(e){}
+            } catch (err) {}
         };
 
-        window.addEventListener('resize', () => {
-            renderSticker();
-        });
+        window.addEventListener('resize', () => { renderSticker(); });
+
+        function switchView(viewName) {
+            if (viewName === 'escolares') {
+                document.getElementById('view-sticker').classList.add('hidden');
+                document.getElementById('view-escolares').classList.remove('hidden');
+                document.getElementById('nav-cart-btn').classList.add('hidden');
+                if (typeof lucide !== 'undefined' && lucide.createIcons) { lucide.createIcons(); }
+            } else {
+                document.getElementById('view-escolares').classList.add('hidden');
+                document.getElementById('view-sticker').classList.remove('hidden');
+                document.getElementById('nav-cart-btn').classList.remove('hidden');
+            }
+            window.scrollTo(0, 0);
+        }
 
         function loadSample(key) {
             const svgString = SAMPLES[key];
@@ -1186,6 +1200,8 @@
                 APP_STATE.imageLoaded = true;
                 APP_STATE.fileName = `aliens_pattern_design.png`;
                 APP_STATE.imageZoom = 1;
+                APP_STATE.imageOffsetX = 0;
+                APP_STATE.imageOffsetY = 0;
                 const zoomSlider = document.getElementById('image-zoom-slider');
                 if (zoomSlider) zoomSlider.value = 1;
                 renderSticker();
@@ -1225,6 +1241,8 @@
                     APP_STATE.imageLoaded = true;
                     APP_STATE.fileName = file.name;
                     APP_STATE.imageZoom = 1;
+                    APP_STATE.imageOffsetX = 0;
+                    APP_STATE.imageOffsetY = 0;
                     const zoomSlider = document.getElementById('image-zoom-slider');
                     if (zoomSlider) zoomSlider.value = 1;
                     showToast(`Archivo "${file.name}" importado`);
@@ -1233,6 +1251,54 @@
                 img.src = event.target.result;
             };
             reader.readAsDataURL(file);
+        }
+
+        function setupCanvasDrag() {
+            let isDragging = false;
+            let dragStartX = 0;
+            let dragStartY = 0;
+            let initialOffsetX = 0;
+            let initialOffsetY = 0;
+
+            const onDragStart = (x, y) => {
+                if (!APP_STATE.imageLoaded || APP_STATE.shape === 'personalized') return;
+                isDragging = true;
+                dragStartX = x;
+                dragStartY = y;
+                initialOffsetX = APP_STATE.imageOffsetX;
+                initialOffsetY = APP_STATE.imageOffsetY;
+                stickerCanvas.style.cursor = 'grabbing';
+            };
+
+            const onDragMove = (x, y) => {
+                if (!isDragging) return;
+                const rect = stickerCanvas.getBoundingClientRect();
+                const scaleX = stickerCanvas.width / rect.width;
+                const scaleY = stickerCanvas.height / rect.height;
+                const dx = (x - dragStartX) * scaleX;
+                const dy = (y - dragStartY) * scaleY;
+                APP_STATE.imageOffsetX = initialOffsetX + dx;
+                APP_STATE.imageOffsetY = initialOffsetY + dy;
+                renderSticker();
+            };
+
+            const onDragEnd = () => {
+                isDragging = false;
+                stickerCanvas.style.cursor = 'crosshair';
+            };
+
+            stickerCanvas.addEventListener('mousedown', (e) => onDragStart(e.clientX, e.clientY));
+            window.addEventListener('mousemove', (e) => onDragMove(e.clientX, e.clientY));
+            window.addEventListener('mouseup', onDragEnd);
+
+            stickerCanvas.addEventListener('touchstart', (e) => {
+                if (e.touches.length === 1) onDragStart(e.touches[0].clientX, e.touches[0].clientY);
+            }, {passive: false});
+            window.addEventListener('touchmove', (e) => {
+                if (isDragging && e.target === stickerCanvas) e.preventDefault(); 
+                if (isDragging && e.touches.length > 0) onDragMove(e.touches[0].clientX, e.touches[0].clientY);
+            }, {passive: false});
+            window.addEventListener('touchend', onDragEnd);
         }
 
         function setupInputs() {
@@ -1277,6 +1343,8 @@
 
         function setShape(shapeType) {
             APP_STATE.shape = shapeType;
+            APP_STATE.imageOffsetX = 0;
+            APP_STATE.imageOffsetY = 0;
             const btnPers = document.getElementById('shape-personalized');
             const btnCirc = document.getElementById('shape-circular');
             const btnSq = document.getElementById('shape-squared');
@@ -1286,7 +1354,6 @@
             const activeBtn = document.getElementById(`shape-${shapeType}`);
             activeBtn.className = "flex flex-col items-center justify-center py-2.5 px-2 rounded-xl border-2 border-baseBlack bg-baseBlack text-brandGreen transition-all shadow-sm";
             
-            // MOSTRAR/OCULTAR ZOOM
             const zoomContainer = document.getElementById('zoom-control-container');
             if (zoomContainer) {
                 if (shapeType === 'personalized') {
@@ -1303,7 +1370,6 @@
         }
 
         function getHeightCm() {
-            // Regla restaurada: Si es circular o cuadrado, fuerza la proporción 1:1 (Alto = Ancho)
             if (APP_STATE.shape === 'circular' || APP_STATE.shape === 'squared') {
                 return APP_STATE.selectedSize.toFixed(1);
             }
@@ -1420,22 +1486,70 @@
             updateRendimientoUI();
         }
 
+        function promptCustomMaterial() {
+            const modal = document.getElementById('secret-code-modal');
+            const content = document.getElementById('secret-code-content');
+            const input = document.getElementById('secret-code-input');
+            input.value = ''; 
+            modal.classList.remove('hidden');
+            setTimeout(() => { 
+                modal.classList.remove('opacity-0'); 
+                content.classList.remove('scale-95'); 
+                input.focus();
+            }, 10);
+        }
+
+        function closeSecretCodeModal() {
+            const modal = document.getElementById('secret-code-modal');
+            const content = document.getElementById('secret-code-content');
+            modal.classList.add('opacity-0');
+            content.classList.add('scale-95');
+            setTimeout(() => { modal.classList.add('hidden'); }, 300);
+        }
+
+        function submitSecretCode() {
+            const input = document.getElementById('secret-code-input');
+            const code = input.value;
+            if (!code) {
+                showToast('Introduce un código válido', 'error');
+                return;
+            }
+            
+            const match = code.trim().toLowerCase().match(/^kalua(\d+)$/);
+            if (match) {
+                APP_STATE.customMaterialPrice = parseInt(match[1], 10);
+                setMaterial('custom');
+                showToast(`Código especial aplicado ($${APP_STATE.customMaterialPrice}).`, 'success');
+                closeSecretCodeModal();
+            } else {
+                showToast('Código inválido', 'error');
+            }
+        }
+
         function setMaterial(mat) {
             APP_STATE.material = mat;
-            const mats = ['standard', 'transparente', 'holo'];
+            const mats = ['standard', 'transparente', 'holo', 'custom'];
             const labels = {
                 'standard': { title: 'Vinil Blanco', price: 'Base $140/pl' },
                 'transparente': { title: 'Transparente', price: 'Base $160/pl' },
-                'holo': { title: 'Holográfico', price: 'Base $240/pl' }
+                'holo': { title: 'Holográfico', price: 'Base $240/pl' },
+                'custom': { title: 'Código Especial', price: `Base $${APP_STATE.customMaterialPrice}/pl` }
             };
             mats.forEach(m => {
                 const btn = document.getElementById(`mat-${m}`);
+                if (!btn) return;
                 if(m === mat) {
                     btn.className = "py-2.5 px-1 text-[11px] font-bold rounded-lg border-2 border-baseBlack bg-baseBlack text-baseWhite transition-all flex flex-col items-center justify-center gap-0.5 text-center";
                     btn.innerHTML = `<span>${labels[m].title}</span><span class="text-[9px] text-gray-400 font-normal">${labels[m].price}</span>`;
                 } else {
+                    let displayTitle = labels[m].title;
+                    let displayPrice = labels[m].price;
+                    if (m === 'custom') {
+                        displayTitle = 'Introducir Código';
+                        displayPrice = '---';
+                    }
                     btn.className = "py-2.5 px-1 text-[11px] font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all flex flex-col items-center justify-center gap-0.5 text-center";
-                    btn.innerHTML = `<span>${labels[m].title}</span><span class="text-[9px] font-normal">${labels[m].price}</span>`;
+                    btn.innerHTML = `<span>${displayTitle}</span><span class="text-[9px] font-normal">${displayPrice}</span>`;
                 }
             });
             updateRendimientoUI();
@@ -1460,6 +1574,7 @@
             let costoPorPlanilla = 140; 
             if (material === 'transparente') costoPorPlanilla = 160;
             if (material === 'holo') costoPorPlanilla = 240;
+            if (material === 'custom') costoPorPlanilla = APP_STATE.customMaterialPrice;
             if (laminado) costoPorPlanilla += 70;
             if (corteFisico) costoPorPlanilla += 60;
             const unitPrice = costoPorPlanilla / pzPorPlanilla;
@@ -1530,13 +1645,17 @@
                 imgH = w * imgAspect;
             }
 
+            let imgX = x + (w - imgW) / 2;
+            let imgY = y + (h - imgH) / 2;
+
             if (APP_STATE.shape !== 'personalized') {
                 imgW *= (APP_STATE.imageZoom || 1);
                 imgH *= (APP_STATE.imageZoom || 1);
+                imgX = x + (w - imgW) / 2;
+                imgY = y + (h - imgH) / 2;
+                imgX += APP_STATE.imageOffsetX;
+                imgY += APP_STATE.imageOffsetY;
             }
-
-            const imgX = x + (w - imgW) / 2;
-            const imgY = y + (h - imgH) / 2;
 
             if (APP_STATE.shape === 'circular') {
                 targetCtx.save();
@@ -1626,6 +1745,19 @@
             }
         }
 
+        function descargarDisenoPNG() {
+            if (!APP_STATE.imageLoaded) { 
+                showToast("Debes cargar una imagen antes de descargar.", "error"); 
+                return; 
+            }
+            const dataUrl = stickerCanvas.toDataURL('image/png');
+            const link = document.createElement('a');
+            link.download = `sticker_sin_fondo_${Date.now()}.png`;
+            link.href = dataUrl;
+            link.click();
+            showToast("📸 ¡Diseño PNG descargado con éxito!", "success");
+        }
+
         function agregarAlCarrito() {
             if (!APP_STATE.imageLoaded) { showToast("Debes cargar una imagen antes de agregar a la orden.", "error"); return; }
             const thumbnail = stickerCanvas.toDataURL('image/png');
@@ -1639,6 +1771,7 @@
             let matLabel = 'Vinil Blanco';
             if (APP_STATE.material === 'holo') matLabel = 'Holográfico';
             if (APP_STATE.material === 'transparente') matLabel = 'Transparente';
+            if (APP_STATE.material === 'custom') matLabel = `Especial ($${APP_STATE.customMaterialPrice})`;
 
             const item = {
                 id: Date.now(),
@@ -1848,13 +1981,10 @@
             const totalWidth = ctx.measureText(totalText).width;
             ctx.fillText(totalText, width - 40 - totalWidth, currentY + 70);
 
-            // Bloque de datos de pago apilados hacia abajo (sin encimarse)
             currentY += 120;
-            
             ctx.fillStyle = "#000000";
             ctx.fillRect(40, currentY, width - 80, 430);
             ctx.textAlign = "center";
-            
             ctx.font = "bold 24px monospace";
             ctx.fillStyle = "#ffffff";
             ctx.fillText("PARA PROCESAR TU PEDIDO COMPARTE EL", width / 2, currentY + 45);
@@ -1942,8 +2072,7 @@
             setTimeout(() => { modal.classList.add('hidden'); }, 300);
         }
 
-        // --- SCRIPTS FOSFO KIDS (MÓDULO ESCOLARES 2026) ---
-
+        // --- SCRIPTS FOSFO KIDS ---
         let fosfoCurrentStep = 1;
         let fosfoSelectedPackage = 'chico';
         let fosfoBasePrice = 260;
@@ -1954,73 +2083,19 @@
         let fosfoActiveDesignIndex = 1;
 
         const catalogMapping = {
-            1: {
-                1: { id: 1, name: "Gabby's Dollhouse" }, 2: { id: 2, name: "Sesame Street" }, 3: { id: 3, name: "Stitch Tropical" },
-                4: { id: 4, name: "Minions Gru" }, 5: { id: 5, name: "Barbie Mattel Pink" }, 6: { id: 6, name: "Stitch Pajamas" },
-                7: { id: 7, name: "Blippi Elenor" }, 8: { id: 8, name: "Inside Out 2" }, 9: { id: 9, name: "Baby Yoda" },
-                10: { id: 10, name: "Intensamente Tristeza" }, 11: { id: 11, name: "Care Bears" }, 12: { id: 12, name: "Homer Simpson" },
-                13: { id: 13, name: "BT21 BTS" }, 14: { id: 14, name: "Snoopy Red" }, 15: { id: 15, name: "Roblox Red" }
-            },
-            2: {
-                1: { id: 16, name: "Capibaras Paula" }, 2: { id: 17, name: "Pusheen Gamer" }, 3: { id: 18, name: "Balón Mateo" },
-                4: { id: 19, name: "Renato Dulces" }, 5: { id: 20, name: "Luisa V. K/DA" }, 6: { id: 21, name: "Leopardo" },
-                7: { id: 22, name: "Capitan América" }, 8: { id: 23, name: "Minecraft Derek" }, 9: { id: 24, name: "Minecraft Abejas" },
-                10: { id: 25, name: "Donovan Goku" }, 11: { id: 26, name: "Minecraft Lucca" }, 12: { id: 27, name: "Pikachu Elisa" },
-                13: { id: 28, name: "Hulk Dennis" }, 14: { id: 29, name: "Rugrats Reptar" }, 15: { id: 30, name: "Roblox Lego" }
-            },
-            3: {
-                1: { id: 31, name: "Bart Simpson" }, 2: { id: 32, name: "Ben 10 Luca" }, 3: { id: 33, name: "Kirby" },
-                4: { id: 34, name: "Sonic" }, 5: { id: 35, name: "Miles Morales" }, 6: { id: 36, name: "Godzilla" },
-                7: { id: 37, name: "Minecraft Dirt" }, 8: { id: 38, name: "Club Misterio" }, 9: { id: 39, name: "Batman Batwheels" },
-                10: { id: 40, name: "Mbappé Madrid" }, 11: { id: 41, name: "Messi Argentina" }, 12: { id: 42, name: "Pumas UNAM" },
-                13: { id: 43, name: "Porsche Oscar" }, 14: { id: 44, name: "Lego Jurassic" }, 15: { id: 45, name: "Rayo McQueen" }
-            },
-            4: {
-                1: { id: 46, name: "Venom Black" }, 2: { id: 47, name: "Venom White" }, 3: { id: 48, name: "Sylvanian Families" },
-                4: { id: 49, name: "Capibara Dino" }, 5: { id: 50, name: "One Piece" }, 6: { id: 51, name: "Pikachu Leonardo" },
-                7: { id: 52, name: "Minnie Mouse" }, 8: { id: 53, name: "Portugal CR7" }, 9: { id: 54, name: "Shark Tiburón" },
-                10: { id: 55, name: "Harry Potter" }, 11: { id: 56, name: "Gianna Neon" }, 12: { id: 57, name: "Vegeta" },
-                13: { id: 58, name: "Gumball" }, 14: { id: 59, name: "Zombies Disney" }, 15: { id: 60, name: "K/DA Kali" }
-            },
-            5: {
-                1: { id: 61, name: "Jurassic Park" }, 2: { id: 62, name: "Furia Nocturna" }, 3: { id: 63, name: "Capibaras Alan" },
-                4: { id: 64, name: "Call of Duty" }, 5: { id: 65, name: "Barbie Renata" }, 6: { id: 66, name: "Demon Slayer" },
-                7: { id: 67, name: "Princesas Chibi" }, 8: { id: 68, name: "Plants vs Zombies" }, 9: { id: 69, name: "MrBeast" },
-                10: { id: 70, name: "Nina Mares" }, 11: { id: 71, name: "Hello Kitty" }, 12: { id: 72, name: "Ranita Naomi" },
-                13: { id: 73, name: "Chimuelo Lucca" }, 14: { id: 74, name: "Beyblade" }, 15: { id: 75, name: "Real Madrid Jorge" }
-            },
-            6: {
-                1: { id: 76, name: "Mickey Mouse" }, 2: { id: 77, name: "Sanrio Macarons" }, 3: { id: 78, name: "Kuromi Dark" },
-                4: { id: 79, name: "Bluey & Bingo" }, 5: { id: 80, name: "Bob Esponja" }, 6: { id: 81, name: "Sirenita" },
-                7: { id: 82, name: "Turning Red" }, 8: { id: 83, name: "Mario Tubos" }, 9: { id: 84, name: "Mario & Luigi" },
-                10: { id: 85, name: "Leonardo Kinder" }, 11: { id: 86, name: "Minion Bart" }, 12: { id: 87, name: "Inside Out" },
-                13: { id: 88, name: "Mafalda" }, 14: { id: 89, name: "Chica Donuts" }, 15: { id: 90, name: "Familia Bluey" }
-            },
-            7: {
-                1: { id: 91, name: "Sirenita Mar" }, 2: { id: 92, name: "Stitch Escolar" }, 3: { id: 93, name: "Spiderman" },
-                4: { id: 94, name: "Hello Kitty Leo" }, 5: { id: 95, name: "Paw Patrol" }, 6: { id: 96, name: "Stitch Rosa" },
-                7: { id: 97, name: "Minecraft Sant" }, 8: { id: 98, name: "Gabby Yellow" }, 9: { id: 99, name: "Chicas Superp." },
-                10: { id: 100, name: "Cinnamoroll" }, 11: { id: 101, name: "Baloncesto" }, 12: { id: 102, name: "Barbie Glitter" },
-                13: { id: 103, name: "Princesa Peach" }, 14: { id: 104, name: "Sirenas Mar" }, 15: { id: 105, name: "Trolls" }
-            },
-            8: {
-                1: { id: 106, name: "Capibaras Jimena" }, 2: { id: 107, name: "My Little Pony" }, 3: { id: 108, name: "Hello Kitty Red" },
-                4: { id: 109, name: "Barbie Blonde" }, 5: { id: 110, name: "Peppa Pig" }, 6: { id: 111, name: "Frozen Elsa" },
-                7: { id: 112, name: "Monster High" }, 8: { id: 113, name: "Ladybug" }, 9: { id: 114, name: "Brujita Gema" },
-                10: { id: 115, name: "Circo Lucca" }, 11: { id: 116, name: "Garfield" }, 12: { id: 117, name: "Paw Patrol Blue" },
-                13: { id: 118, name: "Minecraft Green" }, 14: { id: 119, name: "Bob & Patricio" }, 15: { id: 120, name: "Stitch Paula" }
-            },
-            9: {
-                1: { id: 121, name: "Comida Kawaii" }, 2: { id: 122, name: "Harry Potter" }, 3: { id: 123, name: "Astronauta" },
-                4: { id: 124, name: "Coraline" }, 5: { id: 125, name: "Dino Purple" }, 6: { id: 126, name: "Unicornio Rainbow" },
-                7: { id: 127, name: "Unicornio Pink" }, 8: { id: 128, name: "Gatos Pastel" }, 9: { id: 129, name: "Animales Selva" },
-                10: { id: 130, name: "Monstruos Gum" }, 11: { id: 131, name: "Snoopy Skate" }, 12: { id: 132, name: "Kuromi Ela" },
-                13: { id: 133, name: "Intensamente" }, 14: { id: 134, name: "Hwang In Yeop" }, 15: { id: 135, name: "Godzilla Kong" }
-            }
+            1: { 1: { id: 1, name: "Gabby's Dollhouse" }, 2: { id: 2, name: "Sesame Street" }, 3: { id: 3, name: "Stitch Tropical" }, 4: { id: 4, name: "Minions Gru" }, 5: { id: 5, name: "Barbie Mattel Pink" }, 6: { id: 6, name: "Stitch Pajamas" }, 7: { id: 7, name: "Blippi Elenor" }, 8: { id: 8, name: "Inside Out 2" }, 9: { id: 9, name: "Baby Yoda" }, 10: { id: 10, name: "Intensamente Tristeza" }, 11: { id: 11, name: "Care Bears" }, 12: { id: 12, name: "Homer Simpson" }, 13: { id: 13, name: "BT21 BTS" }, 14: { id: 14, name: "Snoopy Red" }, 15: { id: 15, name: "Roblox Red" } },
+            2: { 1: { id: 16, name: "Capibaras Paula" }, 2: { id: 17, name: "Pusheen Gamer" }, 3: { id: 18, name: "Balón Mateo" }, 4: { id: 19, name: "Renato Dulces" }, 5: { id: 20, name: "Luisa V. K/DA" }, 6: { id: 21, name: "Leopardo" }, 7: { id: 22, name: "Capitan América" }, 8: { id: 23, name: "Minecraft Derek" }, 9: { id: 24, name: "Minecraft Abejas" }, 10: { id: 25, name: "Donovan Goku" }, 11: { id: 26, name: "Minecraft Lucca" }, 12: { id: 27, name: "Pikachu Elisa" }, 13: { id: 28, name: "Hulk Dennis" }, 14: { id: 29, name: "Rugrats Reptar" }, 15: { id: 30, name: "Roblox Lego" } },
+            3: { 1: { id: 31, name: "Bart Simpson" }, 2: { id: 32, name: "Ben 10 Luca" }, 3: { id: 33, name: "Kirby" }, 4: { id: 34, name: "Sonic" }, 5: { id: 35, name: "Miles Morales" }, 6: { id: 36, name: "Godzilla" }, 7: { id: 37, name: "Minecraft Dirt" }, 8: { id: 38, name: "Club Misterio" }, 9: { id: 39, name: "Batman Batwheels" }, 10: { id: 40, name: "Mbappé Madrid" }, 11: { id: 41, name: "Messi Argentina" }, 12: { id: 42, name: "Pumas UNAM" }, 13: { id: 43, name: "Porsche Oscar" }, 14: { id: 44, name: "Lego Jurassic" }, 15: { id: 45, name: "Rayo McQueen" } },
+            4: { 1: { id: 46, name: "Venom Black" }, 2: { id: 47, name: "Venom White" }, 3: { id: 48, name: "Sylvanian Families" }, 4: { id: 49, name: "Capibara Dino" }, 5: { id: 50, name: "One Piece" }, 6: { id: 51, name: "Pikachu Leonardo" }, 7: { id: 52, name: "Minnie Mouse" }, 8: { id: 53, name: "Portugal CR7" }, 9: { id: 54, name: "Shark Tiburón" }, 10: { id: 55, name: "Harry Potter" }, 11: { id: 56, name: "Gianna Neon" }, 12: { id: 57, name: "Vegeta" }, 13: { id: 58, name: "Gumball" }, 14: { id: 59, name: "Zombies Disney" }, 15: { id: 60, name: "K/DA Kali" } },
+            5: { 1: { id: 61, name: "Jurassic Park" }, 2: { id: 62, name: "Furia Nocturna" }, 3: { id: 63, name: "Capibaras Alan" }, 4: { id: 64, name: "Call of Duty" }, 5: { id: 65, name: "Barbie Renata" }, 6: { id: 66, name: "Demon Slayer" }, 7: { id: 67, name: "Princesas Chibi" }, 8: { id: 68, name: "Plants vs Zombies" }, 9: { id: 69, name: "MrBeast" }, 10: { id: 70, name: "Nina Mares" }, 11: { id: 71, name: "Hello Kitty" }, 12: { id: 72, name: "Ranita Naomi" }, 13: { id: 73, name: "Chimuelo Lucca" }, 14: { id: 74, name: "Beyblade" }, 15: { id: 75, name: "Real Madrid Jorge" } },
+            6: { 1: { id: 76, name: "Mickey Mouse" }, 2: { id: 77, name: "Sanrio Macarons" }, 3: { id: 78, name: "Kuromi Dark" }, 4: { id: 79, name: "Bluey & Bingo" }, 5: { id: 80, name: "Bob Esponja" }, 6: { id: 81, name: "Sirenita" }, 7: { id: 82, name: "Turning Red" }, 8: { id: 83, name: "Mario Tubos" }, 9: { id: 84, name: "Mario & Luigi" }, 10: { id: 85, name: "Leonardo Kinder" }, 11: { id: 86, name: "Minion Bart" }, 12: { id: 87, name: "Inside Out" }, 13: { id: 88, name: "Mafalda" }, 14: { id: 89, name: "Chica Donuts" }, 15: { id: 90, name: "Familia Bluey" } },
+            7: { 1: { id: 91, name: "Sirenita Mar" }, 2: { id: 92, name: "Stitch Escolar" }, 3: { id: 93, name: "Spiderman" }, 4: { id: 94, name: "Hello Kitty Leo" }, 5: { id: 95, name: "Paw Patrol" }, 6: { id: 96, name: "Stitch Rosa" }, 7: { id: 97, name: "Minecraft Sant" }, 8: { id: 98, name: "Gabby Yellow" }, 9: { id: 99, name: "Chicas Superp." }, 10: { id: 100, name: "Cinnamoroll" }, 11: { id: 101, name: "Baloncesto" }, 12: { id: 102, name: "Barbie Glitter" }, 13: { id: 103, name: "Princesa Peach" }, 14: { id: 104, name: "Sirenas Mar" }, 15: { id: 105, name: "Trolls" } },
+            8: { 1: { id: 106, name: "Capibaras Jimena" }, 2: { id: 107, name: "My Little Pony" }, 3: { id: 108, name: "Hello Kitty Red" }, 4: { id: 109, name: "Barbie Blonde" }, 5: { id: 110, name: "Peppa Pig" }, 6: { id: 111, name: "Frozen Elsa" }, 7: { id: 112, name: "Monster High" }, 8: { id: 113, name: "Ladybug" }, 9: { id: 114, name: "Brujita Gema" }, 10: { id: 115, name: "Circo Lucca" }, 11: { id: 116, name: "Garfield" }, 12: { id: 117, name: "Paw Patrol Blue" }, 13: { id: 118, name: "Minecraft Green" }, 14: { id: 119, name: "Bob & Patricio" }, 15: { id: 120, name: "Stitch Paula" } },
+            9: { 1: { id: 121, name: "Comida Kawaii" }, 2: { id: 122, name: "Harry Potter" }, 3: { id: 123, name: "Astronauta" }, 4: { id: 124, name: "Coraline" }, 5: { id: 125, name: "Dino Purple" }, 6: { id: 126, name: "Unicornio Rainbow" }, 7: { id: 127, name: "Unicornio Pink" }, 8: { id: 128, name: "Gatos Pastel" }, 9: { id: 129, name: "Animales Selva" }, 10: { id: 130, name: "Monstruos Gum" }, 11: { id: 131, name: "Snoopy Skate" }, 12: { id: 132, name: "Kuromi Ela" }, 13: { id: 133, name: "Intensamente" }, 14: { id: 134, name: "Hwang In Yeop" }, 15: { id: 135, name: "Godzilla Kong" } }
         };
 
         function showExtrasPrompt() {
-            if (fosfoSelectedPackage === 'individual') { fosfoGoToStep(2); return; }
+            if (fosfoSelectedPackage === 'personalizado') { fosfoGoToStep(2); return; }
             const modal = document.getElementById('extras-modal');
             if (modal) { modal.classList.remove('hidden'); modal.classList.add('flex'); }
         }
@@ -2140,25 +2215,12 @@
 
         function selectPackage(pkg, price) {
             fosfoSelectedPackage = pkg; fosfoBasePrice = price;
-            ['chico', 'grande', 'individual'].forEach(p => {
-                const card = document.getElementById(`card-pkg-${p}`);
-                const badge = document.getElementById(`badge-pkg-${p}`);
-                if (card) card.classList.remove('selected-card');
-                if (badge) badge.classList.add('hidden');
-                
-                // Extra fallback just in case 'personalizado' ID matches 'individual'
-                const cardPers = document.getElementById(`card-pkg-personalizado`);
-                const badgePers = document.getElementById(`badge-pkg-personalizado`);
-                if (cardPers) cardPers.classList.remove('selected-card');
-                if (badgePers) badgePers.classList.add('hidden');
+            ['chico', 'grande', 'personalizado'].forEach(p => {
+                const card = document.getElementById(`card-pkg-${p}`); const badge = document.getElementById(`badge-pkg-${p}`);
+                if (card) card.classList.remove('selected-card'); if (badge) badge.classList.add('hidden');
             });
-
-            const targetId = pkg === 'individual' ? 'personalizado' : pkg;
-            const actCard = document.getElementById(`card-pkg-${targetId}`);
-            const actBadge = document.getElementById(`badge-pkg-${targetId}`);
-            if (actCard) actCard.classList.add('selected-card');
-            if (actBadge) actBadge.classList.remove('hidden');
-            
+            const actCard = document.getElementById(`card-pkg-${pkg}`); const actBadge = document.getElementById(`badge-pkg-${pkg}`);
+            if (actCard) actCard.classList.add('selected-card'); if (actBadge) actBadge.classList.remove('hidden');
             calculateFosfoPrice(); updateLiveSummary();
         }
 
@@ -2193,7 +2255,7 @@
             const qtyCu = document.getElementById('qty-cuaderno') ? parseInt(document.getElementById('qty-cuaderno').value) || 0 : 0;
             const qtyLi = document.getElementById('qty-libro') ? parseInt(document.getElementById('qty-libro').value) || 0 : 0;
 
-            if (fosfoSelectedPackage === 'individual') { fosfoBasePrice = (qtyL * 2) + (qtyC * 4) + (qtyCu * 3) + (qtyLi * 5); }
+            if (fosfoSelectedPackage === 'personalizado') { fosfoBasePrice = (qtyL * 2) + (qtyC * 4) + (qtyCu * 3) + (qtyLi * 5); }
             else {
                 const pPrice = fosfoSelectedPackage === 'chico' ? 260 : 340;
                 fosfoBasePrice = pPrice + (qtyL * 2) + (qtyC * 4) + (qtyCu * 3) + (qtyLi * 5);
@@ -2244,7 +2306,7 @@
                 
                 const titleExtra = document.getElementById('ticket-extras-title');
                 if (titleExtra) {
-                    titleExtra.innerText = fosfoSelectedPackage === 'individual' ? '🧩 PIEZAS DEL SET PERSONALIZADO' : '🧩 PIEZAS EXTRAS AÑADIDAS';
+                    titleExtra.innerText = fosfoSelectedPackage === 'personalizado' ? '🧩 PIEZAS DEL SET PERSONALIZADO' : '🧩 PIEZAS EXTRAS AÑADIDAS';
                 }
                 extrasBlock.classList.remove('hidden');
                 } else {
@@ -2307,9 +2369,7 @@
 
         async function captureOrderCanvas() {
             showFosfoToast("📸 Generando ticket mágico...", "success");
-            
             await document.fonts.ready;
-
             const canvas = document.createElement('canvas');
             const width = 800;
             let height = 850;
@@ -2321,14 +2381,12 @@
             const totalAdicionales = qtyL + qtyC + qtyCu + qtyLi;
 
             if (totalAdicionales > 0) height += 120;
-
             canvas.width = width;
             canvas.height = height;
             const ctx = canvas.getContext('2d');
 
             ctx.fillStyle = "#f8fafc";
             ctx.fillRect(0, 0, width, height);
-
             ctx.fillStyle = "#cbd5e1";
             for (let x = 10; x < width; x += 20) {
                 for (let y = 10; y < height; y += 20) {
@@ -2393,7 +2451,6 @@
             drawRow("🛡️ Laminado:", lamName);
 
             currentY += 20;
-
             ctx.fillStyle = "#cffafe"; 
             ctx.fillRect(80, currentY, width - 160, 180);
             ctx.strokeRect(80, currentY, width - 160, 180);
@@ -2501,7 +2558,7 @@
             showFosfoToast("💾 ¡Ticket descargado con éxito!", "success");
         }
 
-        // --- FLAPPY UFO GAME LOGIC ---
+        // --- FLAPPY UFO ---
         let flappyCanvas, fCtx;
         let ufoY, ufoV, pipes, flappyScore, gameFrame, flappyReqId;
         let flappyState = 'START'; 
@@ -2527,10 +2584,21 @@
 
             flappyCanvas.addEventListener('mousedown', flappyJump);
             flappyCanvas.addEventListener('touchstart', (e) => { e.preventDefault(); flappyJump(); }, {passive: false});
+            window.addEventListener('keydown', handleFlappyKeyDown);
             
             flappyState = 'START';
             gameFrame = 0;
             drawFlappyIdle();
+        }
+        
+        function handleFlappyKeyDown(e) {
+            if (e.code === 'Space') {
+                const modal = document.getElementById('game-modal');
+                if (modal && !modal.classList.contains('hidden')) {
+                    e.preventDefault();
+                    flappyJump();
+                }
+            }
         }
 
         function closeGameModal() {
@@ -2539,6 +2607,7 @@
             modal.firstElementChild.classList.add('scale-95');
             setTimeout(() => { modal.classList.add('hidden'); }, 300);
             cancelAnimationFrame(flappyReqId);
+            window.removeEventListener('keydown', handleFlappyKeyDown);
         }
 
         function drawFlappyBackground() {
@@ -2665,10 +2734,9 @@
                 if (flappyAttempts > 0) {
                     btnRetry.style.display = 'block';
                 } else {
-                    btnRetry.style.display = 'none'; 
+                    btnRetry.style.display = 'none';
                 }
             }
-            
             document.getElementById('game-over-overlay').classList.remove('hidden');
         }
 
