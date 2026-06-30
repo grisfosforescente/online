@@ -160,6 +160,11 @@
 </head>
 <body class="bg-baseWhite text-baseBlack font-sans min-h-screen overflow-x-hidden antialiased selection:bg-brandGreen selection:text-baseBlack">
 
+    <!-- BANNER SUPERIOR PROMOCIONAL -->
+    <div class="w-full bg-baseBlack border-b-4 border-baseBlack">
+        <img src="banner.png" alt="Banner Promocional" class="w-full h-auto block" onerror="this.style.display='none'">
+    </div>
+
     <!-- HEADER NEGRO (Global) -->
     <header class="bg-baseBlack px-6 py-4 sticky top-0 z-50 border-b-4 border-baseBlack shadow-md">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
@@ -1766,15 +1771,15 @@
             ctx.fillStyle = "#000000";
             ctx.fillRect(10, 10, width - 20, 140);
             ctx.fillStyle = "#ccff00";
-            ctx.font = "bold 32px monospace";
-            ctx.fillText("COTIZACIÓN // 2026", 40, 60);
+            ctx.font = "bold 40px monospace";
+            ctx.fillText("COTIZACIÓN // 2026", 40, 65);
             ctx.fillStyle = "#ffffff";
-            ctx.font = "16px monospace";
-            ctx.fillText("GRISFOSFORESCENTE.COM.MX", 40, 95);
+            ctx.font = "18px monospace";
+            ctx.fillText("GRISFOSFORESCENTE.COM.MX", 40, 105);
             const today = new Date();
             const dateStr = today.toLocaleString('es-ES', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }).toUpperCase();
             ctx.fillStyle = "#ff007f";
-            ctx.fillText(`FECHA DEL TICKET: ${dateStr}`, 40, 125);
+            ctx.fillText(`FECHA DEL TICKET: ${dateStr}`, 40, 135);
             
             let currentY = 180;
             let totalCost = 0;
@@ -1830,7 +1835,7 @@
             ctx.strokeStyle = "#000000";
             ctx.beginPath(); ctx.moveTo(40, currentY + 20); ctx.lineTo(width - 40, currentY + 20); ctx.stroke();
             ctx.fillStyle = "#000000";
-            ctx.font = "bold 24px monospace";
+            ctx.font = "bold 28px monospace";
             ctx.fillText("TOTAL A PROCESAR:", 40, currentY + 70);
             ctx.fillStyle = "#ff007f";
             const totalText = `$${totalCost.toFixed(2)} MXN`;
@@ -1847,7 +1852,7 @@
             ctx.textAlign = "center";
             
             // Texto principal
-            ctx.font = "bold 22px monospace";
+            ctx.font = "bold 24px monospace";
             ctx.fillStyle = "#ffffff";
             ctx.fillText("PARA PROCESAR TU PEDIDO COMPARTE EL", width / 2, currentY + 45);
             ctx.fillStyle = "#ccff00"; // Verde fosfo
@@ -1856,7 +1861,7 @@
             // Línea separadora
             ctx.strokeStyle = "#333333";
             ctx.lineWidth = 2;
-            ctx.beginPath(); ctx.moveTo(80, currentY + 105); ctx.lineTo(width - 80, currentY + 105); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(80, currentY + 115); ctx.lineTo(width - 80, currentY + 115); ctx.stroke();
             
             // Datos Bancarios (2 columnas)
             ctx.textAlign = "left";
@@ -1864,28 +1869,28 @@
             // Cuenta 1 (Izquierda)
             ctx.fillStyle = "#ffffff";
             ctx.font = "bold 16px monospace";
-            ctx.fillText("BANCO AZTECA", 80, currentY + 140);
-            ctx.font = "16px monospace";
-            ctx.fillText("Ivan Alberto Menjivar Palma", 80, currentY + 165);
+            ctx.fillText("BANCO AZTECA", 80, currentY + 150);
+            ctx.font = "18px monospace";
+            ctx.fillText("Ivan Alberto Menjivar Palma", 80, currentY + 175);
             ctx.fillStyle = "#ccff00"; // Verde fosfo
-            ctx.font = "bold 22px monospace";
-            ctx.fillText("1271 8001 3026 091621", 80, currentY + 195);
+            ctx.font = "bold 28px monospace";
+            ctx.fillText("1271 8001 3026 091621", 80, currentY + 205);
             
             // Cuenta 2 (Derecha)
             ctx.textAlign = "right";
             ctx.fillStyle = "#ffffff";
             ctx.font = "bold 16px monospace";
-            ctx.fillText("BANCO AZTECA", width - 80, currentY + 140);
-            ctx.font = "16px monospace";
-            ctx.fillText("Ameltzy A Ramírez Chávez", width - 80, currentY + 165);
+            ctx.fillText("BANCO AZTECA", width - 80, currentY + 150);
+            ctx.font = "18px monospace";
+            ctx.fillText("Ameltzy A Ramírez Chávez", width - 80, currentY + 175);
             ctx.fillStyle = "#ccff00"; // Verde fosfo
-            ctx.font = "bold 22px monospace";
-            ctx.fillText("1271 8002 1164 638200", width - 80, currentY + 195);
+            ctx.font = "bold 28px monospace";
+            ctx.fillText("1271 8002 1164 638200", width - 80, currentY + 205);
             
             // Texto factura MÁS GRANDE Y EN DOS LÍNEAS
             ctx.textAlign = "center";
             ctx.fillStyle = "#ff007f"; // Rosa fosfo
-            ctx.font = "bold 22px monospace";
+            ctx.font = "bold 24px monospace";
             ctx.fillText("SI REQUIERES FACTURA, CONSULTA LOS DATOS", width / 2, currentY + 245);
             ctx.fillText("NECESARIOS ANTES DE REALIZAR TU DEPÓSITO.", width / 2, currentY + 275);
             
