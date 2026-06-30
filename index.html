@@ -289,20 +289,20 @@
             <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
                 
                 <section class="lg:col-span-5 bg-baseWhite p-5 sm:p-6 border-[3px] border-baseBlack shadow-brutal flex flex-col gap-4 divide-y-[3px] divide-gray-100 relative z-10">
-                    <div class="pb-1">
-                        <h2 class="text-xl sm:text-2xl font-black uppercase tracking-tight flex items-center gap-2">
+                    <div class="pb-3 border-b-[3px] border-baseBlack mb-2 flex items-center justify-between">
+                        <h2 class="text-xl sm:text-2xl font-black uppercase tracking-tight flex items-center gap-2 text-baseBlack">
                             <i class="fa-solid fa-sliders text-brandPink"></i>
                             Configurador
                         </h2>
+                        <span class="text-[9px] font-mono bg-baseBlack text-brandGreen px-2 py-1 uppercase tracking-widest">Sys_v1.0</span>
                     </div>
                     
                     <div class="space-y-2 pt-4">
-                        <div class="flex items-center justify-between text-baseBlack">
-                            <span class="flex items-center gap-3">
-                                <span class="bg-baseBlack text-brandGreen w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold">1</span>
-                                <h3 class="text-sm font-bold uppercase tracking-wide">Archivo Base</h3>
-                            </span>
-                            <span class="text-[10px] text-textMuted font-bold">PNG / SVG / JPG</span>
+                        <div class="flex items-center gap-2 w-full">
+                            <span class="bg-brandGreen text-brandPink font-mono font-black text-[10px] px-2 py-0.5 border border-baseBlack shadow-[1px_1px_0_0_#000]">01</span>
+                            <h3 class="text-xs font-black text-brandPink uppercase tracking-widest">Archivo Base</h3>
+                            <div class="flex-1 border-b-2 border-dotted border-gray-200 mt-1"></div>
+                            <span class="text-[9px] text-textMuted font-mono font-bold tracking-wider">PNG/SVG/JPG</span>
                         </div>
                         <div id="drop-zone" class="border-2 border-dashed border-gray-300 hover:border-baseBlack bg-gray-50 hover:bg-gray-100 p-5 text-center cursor-pointer transition-all group rounded-xl">
                             <input type="file" id="file-input" accept="image/png, image/jpeg, image/svg+xml" class="hidden">
@@ -313,9 +313,10 @@
                     </div>
 
                     <div class="space-y-3 pt-4">
-                        <div class="flex items-center gap-3 text-baseBlack">
-                            <span class="bg-gray-100 text-baseBlack w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold border border-gray-200">2</span>
-                            <h3 class="text-sm font-bold uppercase tracking-wide">Corte del sticker</h3>
+                        <div class="flex items-center gap-2 w-full">
+                            <span class="bg-brandGreen text-brandPink font-mono font-black text-[10px] px-2 py-0.5 border border-baseBlack shadow-[1px_1px_0_0_#000]">02</span>
+                            <h3 class="text-xs font-black text-brandPink uppercase tracking-widest">Corte del sticker</h3>
+                            <div class="flex-1 border-b-2 border-dotted border-gray-200 mt-1"></div>
                         </div>
                         <div class="grid grid-cols-3 gap-2 sm:gap-3">
                             <button id="shape-personalized" onclick="setShape('personalized')" class="flex flex-col items-center justify-center py-2.5 px-2 rounded-xl border-2 border-baseBlack bg-baseBlack text-brandGreen transition-all shadow-sm">
@@ -334,9 +335,10 @@
                     </div>
 
                     <div class="space-y-3 pt-4">
-                        <div class="flex items-center gap-3 text-baseBlack">
-                            <span class="bg-gray-100 text-baseBlack w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold border border-gray-200">3</span>
-                            <h3 class="text-sm font-bold uppercase tracking-wide">Borde (Blanco)</h3>
+                        <div class="flex items-center gap-2 w-full">
+                            <span class="bg-brandGreen text-brandPink font-mono font-black text-[10px] px-2 py-0.5 border border-baseBlack shadow-[1px_1px_0_0_#000]">03</span>
+                            <h3 class="text-xs font-black text-brandPink uppercase tracking-widest">Borde (Blanco)</h3>
+                            <div class="flex-1 border-b-2 border-dotted border-gray-200 mt-1"></div>
                         </div>
                         <div class="space-y-2">
                             <div class="flex justify-between text-xs text-baseBlack font-bold">
@@ -351,9 +353,10 @@
                     </div>
 
                     <div class="space-y-3 pt-4">
-                        <div class="flex items-center gap-3 text-baseBlack">
-                            <span class="bg-gray-100 text-baseBlack w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold border border-gray-200">4</span>
-                            <h3 class="text-sm font-bold uppercase tracking-wide">Ancho del sticker</h3>
+                        <div class="flex items-center gap-2 w-full">
+                            <span class="bg-brandGreen text-brandPink font-mono font-black text-[10px] px-2 py-0.5 border border-baseBlack shadow-[1px_1px_0_0_#000]">04</span>
+                            <h3 class="text-xs font-black text-brandPink uppercase tracking-widest">Ancho del sticker</h3>
+                            <div class="flex-1 border-b-2 border-dotted border-gray-200 mt-1"></div>
                         </div>
                         <div id="size-button-group" class="grid grid-cols-4 gap-2 pt-1">
                             <button onclick="setSize(3)" class="py-1.5 text-[11px] font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all">3 cm</button>
@@ -398,9 +401,10 @@
                     </div>
 
                     <div class="space-y-3 pt-4">
-                        <div class="flex items-center gap-3 text-baseBlack">
-                            <span class="bg-gray-100 text-baseBlack w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold border border-gray-200">5</span>
-                            <h3 class="text-sm font-bold uppercase tracking-wide">Sustrato / Material Base</h3>
+                        <div class="flex items-center gap-2 w-full">
+                            <span class="bg-brandGreen text-brandPink font-mono font-black text-[10px] px-2 py-0.5 border border-baseBlack shadow-[1px_1px_0_0_#000]">05</span>
+                            <h3 class="text-xs font-black text-brandPink uppercase tracking-widest">Sustrato / Material Base</h3>
+                            <div class="flex-1 border-b-2 border-dotted border-gray-200 mt-1"></div>
                         </div>
                         <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 pt-1">
                             <button id="mat-standard" onclick="setMaterial('standard')" class="py-2.5 px-1 text-[11px] font-bold rounded-lg border-2 border-baseBlack bg-baseBlack text-baseWhite transition-all flex flex-col items-center justify-center gap-0.5 text-center">
@@ -424,9 +428,10 @@
                     </div>
 
                     <div class="space-y-3 pt-4">
-                        <div class="flex items-center gap-3 text-baseBlack">
-                            <span class="bg-gray-100 text-baseBlack w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold border border-gray-200">6</span>
-                            <h3 class="text-sm font-bold uppercase tracking-wide">Acabados (Opcional)</h3>
+                        <div class="flex items-center gap-2 w-full">
+                            <span class="bg-brandGreen text-brandPink font-mono font-black text-[10px] px-2 py-0.5 border border-baseBlack shadow-[1px_1px_0_0_#000]">06</span>
+                            <h3 class="text-xs font-black text-brandPink uppercase tracking-widest">Acabados (Opcional)</h3>
+                            <div class="flex-1 border-b-2 border-dotted border-gray-200 mt-1"></div>
                         </div>
                         <div class="grid grid-cols-2 gap-2 sm:gap-3 pt-1">
                             <label class="flex items-center gap-3 cursor-pointer p-2.5 rounded-lg border border-gray-200 bg-gray-50 hover:border-baseBlack transition-colors">
@@ -447,11 +452,10 @@
                     </div>
 
                     <div class="space-y-3 pt-4">
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center gap-3 text-baseBlack">
-                                <span class="bg-gray-100 text-baseBlack w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold border border-gray-200">7</span>
-                                <h3 class="text-sm font-bold uppercase tracking-wide">Tiraje / Volumen</h3>
-                            </div>
+                        <div class="flex items-center gap-2 w-full">
+                            <span class="bg-brandGreen text-brandPink font-mono font-black text-[10px] px-2 py-0.5 border border-baseBlack shadow-[1px_1px_0_0_#000]">07</span>
+                            <h3 class="text-xs font-black text-brandPink uppercase tracking-widest">Tiraje / Volumen</h3>
+                            <div class="flex-1 border-b-2 border-dotted border-gray-200 mt-1"></div>
                         </div>
                         <div class="flex items-center gap-4 bg-gray-50 p-3 rounded-xl border border-gray-200">
                             <input type="range" id="qty-slider" min="10" max="999" value="10" class="w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-baseBlack">
