@@ -156,8 +156,12 @@
 <body class="bg-baseWhite text-baseBlack font-sans min-h-screen overflow-x-hidden antialiased selection:bg-brandGreen selection:text-baseBlack">
 
     <!-- BANNER SUPERIOR PROMOCIONAL -->
-    <div class="w-full bg-baseBlack border-b-4 border-baseBlack flex justify-center">
-        <img src="banner.gif" alt="Banner Promocional" class="w-full h-auto block" onerror="this.src='https://placehold.co/1200x120/000000/ccff00?text=BANNER.GIF+AQUI'">
+    <div class="w-full bg-baseBlack border-b-4 border-baseBlack relative overflow-hidden">
+        <div style="position: relative; width: 100%; height: 0; padding-top: 18.5185%; padding-bottom: 0; overflow: hidden; will-change: transform;">
+            <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0; margin: 0;"
+                src="https://www.canva.com/design/DAHOTzEH4ic/rfvVMjBBZajYaSCSUIEG5w/watch?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
+            </iframe>
+        </div>
     </div>
 
     <!-- HEADER NEGRO (Global) -->
@@ -1059,14 +1063,19 @@
                     <i class="fa-solid fa-xmark text-xl"></i>
                 </button>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="border-[3px] border-baseBlack shadow-brutal-sm overflow-hidden bg-gray-100 flex items-center justify-center relative aspect-[3/4] hover:shadow-brutal transition-all">
-                    <img src="./promo1.png" alt="Promoción 1" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/400x533/f3f4f6/9ca3af?text=PROMO1'">
+            
+            <!-- Canva Embed -->
+            <div class="w-full max-w-2xl mx-auto">
+                <div class="border-[4px] border-baseBlack shadow-brutal-sm overflow-hidden bg-gray-100 relative hover:shadow-brutal transition-all rounded-xl">
+                    <div style="position: relative; width: 100%; height: 0; padding-top: 141.9069%; padding-bottom: 0; overflow: hidden; will-change: transform;">
+                        <iframe id="promo-iframe" loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0; margin: 0;" src="https://www.canva.com/design/DAHOTyT0m4w/5YTnKvznuaNIN8Zz2vLLrg/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen"></iframe>
+                    </div>
                 </div>
-                <div class="border-[3px] border-baseBlack shadow-brutal-sm overflow-hidden bg-gray-100 flex items-center justify-center relative aspect-[3/4] hover:shadow-brutal transition-all">
-                    <img src="./promo2.png" alt="Promoción 2" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/400x533/f3f4f6/9ca3af?text=PROMO2'">
+                <div class="text-center mt-3 text-[10px] font-bold text-textMuted uppercase tracking-wider">
+                    <a id="promo-link-original" href="https://www.canva.com/design/DAHOTyT0m4w/5YTnKvznuaNIN8Zz2vLLrg/view" target="_blank" rel="noopener" class="hover:text-brandPink transition-colors underline">Ver diseño original</a> de Gris Fosforescente
                 </div>
             </div>
+
         </div>
     </div>
 
@@ -2580,11 +2589,11 @@
             
             try { if (typeof lucide !== 'undefined' && lucide.createIcons) { lucide.createIcons(); } } catch (e) {}
             try {
-                selectPackage('chico'); selectFosfoMaterial('vinil_blanco_brillante'); selectLaminated('ninguno');
+                selectPackage('chico', 260); selectFosfoMaterial('vinil_blanco_brillante', 0); selectLaminated('ninguno', 0);
                 changeCatalogPage(1); selectGridDesign(1, 1, 1);
             } catch (err) {}
         };
-        
+
         // --- ADMIN PANEL FUNCIONES ---
         function openAdminModal() {
             const modal = document.getElementById('admin-auth-modal');
@@ -2675,7 +2684,7 @@
             selectLaminated(fosfoSelectedLaminated);
             updateTicketData();
             
-            showToast('¡Precios guardados y actualizados!', 'success');
+            showToast('¡Configuración guardada y actualizada!', 'success');
             closeAdminModal();
         }
 
