@@ -166,6 +166,7 @@
             <div class="flex items-center gap-6">
                 <!-- Enlaces de Navegación -->
                 <nav class="flex items-center gap-4 md:gap-6 text-baseWhite font-bold text-[11px] md:text-sm tracking-wide">
+                    <button onclick="openAdminModal()" class="text-textMuted hover:text-brandPink transition-colors text-lg" title="Panel de Administración"><i class="fa-solid fa-gear"></i></button>
                     <a href="#" onclick="switchView('sticker'); return false;" class="hover:text-brandGreen transition-colors">INICIO</a>
                     <button onclick="openPromosModal()" class="hover:text-brandPink transition-colors uppercase">PROMOCIONES</button>
                     <a href="#" onclick="switchView('escolares'); return false;" class="hover:text-brandGreen transition-colors uppercase text-center">ESCOLARES 2026</a>
@@ -623,8 +624,8 @@
                     </div>
                     
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                        <div id="card-pkg-chico" onclick="selectPackage('chico', 260)" class="border-[3px] border-black p-4 relative bg-[#FFF0F5] cursor-pointer hover:scale-[1.02] transition-all select-none rounded-2xl">
-                            <div class="absolute -top-4 -right-2 border-[3px] border-black bg-fosfoPink text-white px-3 py-1 font-comic text-xl rotate-[4deg] shadow-comic-sm">72 pzas x $260</div>
+                        <div id="card-pkg-chico" onclick="selectPackage('chico')" class="border-[3px] border-black p-4 relative bg-[#FFF0F5] cursor-pointer hover:scale-[1.02] transition-all select-none rounded-2xl">
+                            <div id="price-label-chico" class="absolute -top-4 -right-2 border-[3px] border-black bg-fosfoPink text-white px-3 py-1 font-comic text-xl rotate-[4deg] shadow-comic-sm">72 pzas x $260</div>
                             <h3 class="font-comic text-2xl text-black mt-2">PAQUETE CHICO</h3>
                             <p class="text-[10px] font-black text-gray-600 uppercase tracking-wider mb-3">Ideal para Preescolar/Kínder</p>
                             <ul class="text-[11px] font-bold text-gray-800 space-y-1.5 border-t-2 border-black/20 pt-3">
@@ -636,8 +637,8 @@
                             <div class="mt-3 flex justify-end"><span id="badge-pkg-chico" class="bg-fosfoCyan border-2 border-black text-black font-black px-3 py-1 text-[10px] uppercase hidden rounded-xl shadow-sm">¡ELEGIDO! ✓</span></div>
                         </div>
 
-                        <div id="card-pkg-grande" onclick="selectPackage('grande', 340)" class="border-[3px] border-black p-4 relative bg-[#ECFDF5] cursor-pointer hover:scale-[1.02] transition-all select-none rounded-2xl">
-                            <div class="absolute -top-4 -right-2 border-[3px] border-black bg-fosfoCyan text-black px-3 py-1 font-comic text-xl rotate-[-4deg] shadow-comic-sm">120 pzas x $340</div>
+                        <div id="card-pkg-grande" onclick="selectPackage('grande')" class="border-[3px] border-black p-4 relative bg-[#ECFDF5] cursor-pointer hover:scale-[1.02] transition-all select-none rounded-2xl">
+                            <div id="price-label-grande" class="absolute -top-4 -right-2 border-[3px] border-black bg-fosfoCyan text-black px-3 py-1 font-comic text-xl rotate-[-4deg] shadow-comic-sm">120 pzas x $340</div>
                             <h3 class="font-comic text-2xl text-black mt-2">PAQUETE GRANDE</h3>
                             <p class="text-[10px] font-black text-gray-600 uppercase tracking-wider mb-3">Ideal para Primaria/Secundaria</p>
                             <ul class="text-[11px] font-bold text-gray-800 space-y-1.5 border-t-2 border-black/20 pt-3">
@@ -650,7 +651,7 @@
                         </div>
                     </div>
 
-                    <div id="card-pkg-personalizado" onclick="selectPackage('personalizado', 0)" class="border-[3px] border-black p-4 relative bg-[#FFFBEB] cursor-pointer hover:scale-[1.02] transition-all select-none w-full shadow-comic-sm rounded-2xl mt-2">
+                    <div id="card-pkg-personalizado" onclick="selectPackage('personalizado')" class="border-[3px] border-black p-4 relative bg-[#FFFBEB] cursor-pointer hover:scale-[1.02] transition-all select-none w-full shadow-comic-sm rounded-2xl mt-2">
                         <div class="absolute -top-3 right-4 border-[3px] border-black bg-[#A55EEA] text-white px-3 py-0.5 font-comic text-xl rotate-1 shadow-comic-sm">Armado Libre</div>
                         <h3 class="font-comic text-2xl text-black mt-2">SÓLO ETIQUETAS SUELTAS</h3>
                         <p class="text-[11px] font-black text-gray-600 uppercase mb-1">Diseña tu propio juego con las cantidades exactas que necesites.</p>
@@ -671,11 +672,11 @@
                         <p class="text-xs font-bold text-gray-500 uppercase mt-1">Suma hojas adicionales de etiquetas sueltas a tu orden.</p>
                     </div>
 
-                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-4">
+                    <div class="grid grid-cols-2 gap-4 mt-4">
                         <div class="bg-white border-[3px] border-black p-4 flex flex-col items-center justify-between text-center rounded-2xl shadow-comic-sm">
                             <span class="text-[9px] font-black bg-fosfoPink text-white px-2 py-1 border-2 border-black mb-2 rounded-md shadow-sm">5 x 1 cm</span>
                             <span class="text-sm font-black text-black uppercase mt-1">Lápices</span>
-                            <span class="text-[11px] font-black text-fosfoPink bg-gray-100 px-2 py-0.5 rounded mt-1">$2.00 c/u</span>
+                            <span id="price-label-lapiz" class="text-[11px] font-black text-fosfoPink bg-gray-100 px-2 py-0.5 rounded mt-1">$2.00 c/u</span>
                             <div class="flex items-center mt-3 gap-2 w-full justify-center">
                                 <button type="button" onclick="fosfoAdjustQty('lapiz', -5)" class="bg-black text-white w-8 h-8 flex items-center justify-center font-black rounded-lg text-xl active:scale-90 shadow-sm">-</button>
                                 <input type="number" id="qty-lapiz" value="0" min="0" onchange="calculateFosfoPrice()" class="w-12 text-center border-2 border-black rounded-lg text-sm font-black py-1">
@@ -686,7 +687,7 @@
                         <div class="bg-white border-[3px] border-black p-4 flex flex-col items-center justify-between text-center rounded-2xl shadow-comic-sm">
                             <span class="text-[9px] font-black bg-fosfoCyan text-black px-2 py-1 border-2 border-black mb-2 rounded-md shadow-sm">Ø 5 cm</span>
                             <span class="text-sm font-black text-black uppercase mt-1">Circulares</span>
-                            <span class="text-[11px] font-black text-fosfoPink bg-gray-100 px-2 py-0.5 rounded mt-1">$4.00 c/u</span>
+                            <span id="price-label-circulo" class="text-[11px] font-black text-fosfoPink bg-gray-100 px-2 py-0.5 rounded mt-1">$4.00 c/u</span>
                             <div class="flex items-center mt-3 gap-2 w-full justify-center">
                                 <button type="button" onclick="fosfoAdjustQty('circulo', -5)" class="bg-black text-white w-8 h-8 flex items-center justify-center font-black rounded-lg text-xl active:scale-90 shadow-sm">-</button>
                                 <input type="number" id="qty-circulo" value="0" min="0" onchange="calculateFosfoPrice()" class="w-12 text-center border-2 border-black rounded-lg text-sm font-black py-1">
@@ -697,7 +698,7 @@
                         <div class="bg-white border-[3px] border-black p-4 flex flex-col items-center justify-between text-center rounded-2xl shadow-comic-sm">
                             <span class="text-[9px] font-black bg-fosfoYellow text-black px-2 py-1 border-2 border-black mb-2 rounded-md shadow-sm">4 x 3 cm</span>
                             <span class="text-sm font-black text-black uppercase mt-1">Cuadernos</span>
-                            <span class="text-[11px] font-black text-fosfoPink bg-gray-100 px-2 py-0.5 rounded mt-1">$3.00 c/u</span>
+                            <span id="price-label-cuaderno" class="text-[11px] font-black text-fosfoPink bg-gray-100 px-2 py-0.5 rounded mt-1">$3.00 c/u</span>
                             <div class="flex items-center mt-3 gap-2 w-full justify-center">
                                 <button type="button" onclick="fosfoAdjustQty('cuaderno', -5)" class="bg-black text-white w-8 h-8 flex items-center justify-center font-black rounded-lg text-xl active:scale-90 shadow-sm">-</button>
                                 <input type="number" id="qty-cuaderno" value="0" min="0" onchange="calculateFosfoPrice()" class="w-12 text-center border-2 border-black rounded-lg text-sm font-black py-1">
@@ -708,35 +709,11 @@
                         <div class="bg-white border-[3px] border-black p-4 flex flex-col items-center justify-between text-center rounded-2xl shadow-comic-sm">
                             <span class="text-[9px] font-black bg-[#A55EEA] text-white px-2 py-1 border-2 border-black mb-2 rounded-md shadow-sm">7 x 5 cm</span>
                             <span class="text-sm font-black text-black uppercase mt-1">Libros</span>
-                            <span class="text-[11px] font-black text-fosfoPink bg-gray-100 px-2 py-0.5 rounded mt-1">$5.00 c/u</span>
+                            <span id="price-label-libro" class="text-[11px] font-black text-fosfoPink bg-gray-100 px-2 py-0.5 rounded mt-1">$5.00 c/u</span>
                             <div class="flex items-center mt-3 gap-2 w-full justify-center">
                                 <button type="button" onclick="fosfoAdjustQty('libro', -5)" class="bg-black text-white w-8 h-8 flex items-center justify-center font-black rounded-lg text-xl active:scale-90 shadow-sm">-</button>
                                 <input type="number" id="qty-libro" value="0" min="0" onchange="calculateFosfoPrice()" class="w-12 text-center border-2 border-black rounded-lg text-sm font-black py-1">
                                 <button type="button" onclick="fosfoAdjustQty('libro', 5)" class="bg-black text-white w-8 h-8 flex items-center justify-center font-black rounded-lg text-xl active:scale-90 shadow-sm">+</button>
-                            </div>
-                        </div>
-
-                        <!-- Nombres Personalizados -->
-                        <div class="bg-white border-[3px] border-black p-4 flex flex-col items-center justify-between text-center rounded-2xl shadow-comic-sm">
-                            <span class="text-[9px] font-black bg-[#FF8C00] text-white px-2 py-1 border-2 border-black mb-2 rounded-md shadow-sm">Variable</span>
-                            <span class="text-sm font-black text-black uppercase mt-1">Nombres<br>Person.</span>
-                            <span class="text-[11px] font-black text-fosfoPink bg-gray-100 px-2 py-0.5 rounded mt-1">$6.00 c/u</span>
-                            <div class="flex items-center mt-3 gap-2 w-full justify-center">
-                                <button type="button" onclick="fosfoAdjustQty('nombre', -1)" class="bg-black text-white w-8 h-8 flex items-center justify-center font-black rounded-lg text-xl active:scale-90 shadow-sm">-</button>
-                                <input type="number" id="qty-nombre" value="0" min="0" onchange="calculateFosfoPrice()" class="w-12 text-center border-2 border-black rounded-lg text-sm font-black py-1">
-                                <button type="button" onclick="fosfoAdjustQty('nombre', 1)" class="bg-black text-white w-8 h-8 flex items-center justify-center font-black rounded-lg text-xl active:scale-90 shadow-sm">+</button>
-                            </div>
-                        </div>
-
-                        <!-- Etiquetas por Materia -->
-                        <div class="bg-white border-[3px] border-black p-4 flex flex-col items-center justify-between text-center rounded-2xl shadow-comic-sm">
-                            <span class="text-[9px] font-black bg-[#00FA9A] text-black px-2 py-1 border-2 border-black mb-2 rounded-md shadow-sm">Especial</span>
-                            <span class="text-sm font-black text-black uppercase mt-1">Etiq. por<br>Materia</span>
-                            <span class="text-[11px] font-black text-fosfoPink bg-gray-100 px-2 py-0.5 rounded mt-1">$12.00 c/u</span>
-                            <div class="flex items-center mt-3 gap-2 w-full justify-center">
-                                <button type="button" onclick="fosfoAdjustQty('materia', -1)" class="bg-black text-white w-8 h-8 flex items-center justify-center font-black rounded-lg text-xl active:scale-90 shadow-sm">-</button>
-                                <input type="number" id="qty-materia" value="0" min="0" onchange="calculateFosfoPrice()" class="w-12 text-center border-2 border-black rounded-lg text-sm font-black py-1">
-                                <button type="button" onclick="fosfoAdjustQty('materia', 1)" class="bg-black text-white w-8 h-8 flex items-center justify-center font-black rounded-lg text-xl active:scale-90 shadow-sm">+</button>
                             </div>
                         </div>
                     </div>
@@ -791,20 +768,20 @@
                                 <i data-lucide="layers" class="w-5 h-5"></i> Tipo de Vinil Base
                             </h3>
                             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-2">
-                                <div onclick="selectFosfoMaterial('vinil_blanco_brillante', 0)" id="fosfo-mat-vinil_blanco_brillante" class="border-[3px] border-black p-3 bg-white cursor-pointer select-none relative rounded-2xl hover:bg-gray-50 transition-colors">
+                                <div onclick="selectFosfoMaterial('vinil_blanco_brillante')" id="fosfo-mat-vinil_blanco_brillante" class="border-[3px] border-black p-3 bg-white cursor-pointer select-none relative rounded-2xl hover:bg-gray-50 transition-colors">
                                     <div class="absolute -top-3 -right-2 bg-fosfoCyan text-black border-2 border-black font-black px-2 py-0.5 text-[9px] uppercase hidden check-indicator shadow-comic-sm rotate-3 z-20 rounded-md">✓ ELEGIDO</div>
                                     <h4 class="font-black text-xs text-black uppercase">Vinil Blanco Brillante</h4>
                                     <p class="text-[9px] text-[#39FF14] bg-black border border-black px-2 py-1 inline-block uppercase mt-2 shadow-comic-sm font-black tracking-widest rounded-md">Sin costo</p>
                                 </div>
-                                <div onclick="selectFosfoMaterial('vinil_blanco_mate', 0)" id="fosfo-mat-vinil_blanco_mate" class="border-[3px] border-black p-3 bg-white cursor-pointer select-none relative rounded-2xl hover:bg-gray-50 transition-colors">
+                                <div onclick="selectFosfoMaterial('vinil_blanco_mate')" id="fosfo-mat-vinil_blanco_mate" class="border-[3px] border-black p-3 bg-white cursor-pointer select-none relative rounded-2xl hover:bg-gray-50 transition-colors">
                                     <div class="absolute -top-3 -right-2 bg-fosfoCyan text-black border-2 border-black font-black px-2 py-0.5 text-[9px] uppercase hidden check-indicator shadow-comic-sm rotate-3 z-20 rounded-md">✓ ELEGIDO</div>
                                     <h4 class="font-black text-xs text-black uppercase">Vinil Blanco Mate</h4>
                                     <p class="text-[9px] text-[#39FF14] bg-black border border-black px-2 py-1 inline-block uppercase mt-2 shadow-comic-sm font-black tracking-widest rounded-md">Sin costo</p>
                                 </div>
-                                <div onclick="selectFosfoMaterial('vinil_holografico', 75)" id="fosfo-mat-vinil_holografico" class="border-[3px] border-black p-3 bg-white cursor-pointer select-none relative overflow-hidden rounded-2xl hover:bg-gray-50 transition-colors">
+                                <div onclick="selectFosfoMaterial('vinil_holografico')" id="fosfo-mat-vinil_holografico" class="border-[3px] border-black p-3 bg-white cursor-pointer select-none relative overflow-hidden rounded-2xl hover:bg-gray-50 transition-colors">
                                     <div class="absolute -top-3 -right-2 bg-fosfoCyan text-black border-2 border-black font-black px-2 py-0.5 text-[9px] uppercase hidden check-indicator shadow-comic-sm rotate-3 z-20 rounded-md">✓ ELEGIDO</div>
                                     <h4 class="font-black text-xs text-black uppercase relative z-10">Vinil Holográfico</h4>
-                                    <p class="text-[11px] text-fosfoPink font-black mt-1.5 relative z-10 bg-pink-50 inline-block px-1.5 py-0.5 rounded border border-pink-200">+$75.00 MXN</p>
+                                    <p id="price-label-holo" class="text-[11px] text-fosfoPink font-black mt-1.5 relative z-10 bg-pink-50 inline-block px-1.5 py-0.5 rounded border border-pink-200">+$75.00 MXN</p>
                                 </div>
                             </div>
                         </div>
@@ -814,20 +791,20 @@
                                 <i data-lucide="shield" class="w-5 h-5"></i> Laminado Protector
                             </h3>
                             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-2">
-                                <div onclick="selectLaminated('ninguno', 0)" id="lam-ninguno" class="border-[3px] border-black p-3 bg-white cursor-pointer select-none relative rounded-2xl hover:bg-gray-50 transition-colors">
+                                <div onclick="selectLaminated('ninguno')" id="lam-ninguno" class="border-[3px] border-black p-3 bg-white cursor-pointer select-none relative rounded-2xl hover:bg-gray-50 transition-colors">
                                     <div class="absolute -top-3 -right-2 bg-fosfoPink text-white border-2 border-black font-black px-2 py-0.5 text-[9px] uppercase hidden check-indicator shadow-comic-sm rotate-3 z-20 rounded-md">✓ ELEGIDO</div>
                                     <h4 class="font-black text-xs text-black uppercase">Sin Laminar</h4>
                                     <p class="text-[9px] text-[#39FF14] bg-black border border-black px-2 py-1 inline-block uppercase mt-2 shadow-comic-sm font-black tracking-widest rounded-md">Sin costo</p>
                                 </div>
-                                <div onclick="selectLaminated('brillante', 20)" id="lam-brillante" class="border-[3px] border-black p-3 bg-white cursor-pointer select-none relative rounded-2xl hover:bg-gray-50 transition-colors">
+                                <div onclick="selectLaminated('brillante')" id="lam-brillante" class="border-[3px] border-black p-3 bg-white cursor-pointer select-none relative rounded-2xl hover:bg-gray-50 transition-colors">
                                     <div class="absolute -top-3 -right-2 bg-fosfoPink text-white border-2 border-black font-black px-2 py-0.5 text-[9px] uppercase hidden check-indicator shadow-comic-sm rotate-3 z-20 rounded-md">✓ ELEGIDO</div>
                                     <h4 class="font-black text-xs text-black uppercase">Laminado Brillante</h4>
-                                    <p class="text-[11px] text-fosfoPink font-black mt-1.5 bg-pink-50 inline-block px-1.5 py-0.5 rounded border border-pink-200">+$20.00 MXN</p>
+                                    <p id="price-label-lamB" class="text-[11px] text-fosfoPink font-black mt-1.5 bg-pink-50 inline-block px-1.5 py-0.5 rounded border border-pink-200">+$20.00 MXN</p>
                                 </div>
-                                <div onclick="selectLaminated('mate', 30)" id="lam-mate" class="border-[3px] border-black p-3 bg-white cursor-pointer select-none relative rounded-2xl hover:bg-gray-50 transition-colors">
+                                <div onclick="selectLaminated('mate')" id="lam-mate" class="border-[3px] border-black p-3 bg-white cursor-pointer select-none relative rounded-2xl hover:bg-gray-50 transition-colors">
                                     <div class="absolute -top-3 -right-2 bg-fosfoPink text-white border-2 border-black font-black px-2 py-0.5 text-[9px] uppercase hidden check-indicator shadow-comic-sm rotate-3 z-20 rounded-md">✓ ELEGIDO</div>
                                     <h4 class="font-black text-xs text-black uppercase">Laminado Mate</h4>
-                                    <p class="text-[11px] text-fosfoPink font-black mt-1.5 bg-pink-50 inline-block px-1.5 py-0.5 rounded border border-pink-200">+$30.00 MXN</p>
+                                    <p id="price-label-lamM" class="text-[11px] text-fosfoPink font-black mt-1.5 bg-pink-50 inline-block px-1.5 py-0.5 rounded border border-pink-200">+$30.00 MXN</p>
                                 </div>
                             </div>
                         </div>
@@ -1080,6 +1057,91 @@
                 <button onclick="closeSecretCodeModal()" class="flex-1 min-w-[80px] bg-gray-200 text-baseBlack font-bold py-3 border-[3px] border-baseBlack rounded-xl hover:bg-gray-300 transition-colors text-xs">CANCELAR</button>
                 <button id="btn-remove-code" onclick="removeSecretCode()" class="hidden flex-1 min-w-[80px] bg-brandPink text-baseWhite font-bold py-3 border-[3px] border-baseBlack rounded-xl hover:bg-brandPink/90 transition-colors text-xs">DESACTIVAR</button>
                 <button onclick="submitSecretCode()" class="flex-1 min-w-[80px] bg-brandGreen text-baseBlack font-black py-3 border-[3px] border-baseBlack rounded-xl hover:bg-brandGreen/90 transition-colors shadow-brutal-sm text-xs">APLICAR</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL AUTENTICACIÓN ADMIN -->
+    <div id="admin-auth-modal" class="fixed inset-0 bg-baseBlack/80 backdrop-blur-sm z-[95] flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-baseWhite border-[4px] border-baseBlack max-w-sm w-full p-6 relative flex flex-col shadow-brutal rounded-2xl scale-95 transition-transform duration-300" id="admin-auth-content">
+            <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 text-4xl bg-baseWhite rounded-full border-4 border-baseBlack w-12 h-12 flex items-center justify-center shadow-brutal-sm">🔒</div>
+            <h3 class="font-black text-xl uppercase mb-4 mt-2 text-center text-baseBlack">Acceso Restringido</h3>
+            <p class="text-[11px] text-textMuted text-center font-bold mb-4 uppercase">Ingresa la contraseña para configurar precios.</p>
+            <input type="password" id="admin-pass-input" placeholder="******" class="w-full border-[3px] border-baseBlack px-4 py-3 text-lg font-black outline-none mb-5 rounded-xl focus:border-brandPink shadow-inner text-center tracking-[0.5em]">
+            <div class="flex gap-3">
+                <button onclick="closeAdminAuthModal()" class="flex-1 bg-gray-200 text-baseBlack font-bold py-3 border-[3px] border-baseBlack rounded-xl hover:bg-gray-300 transition-colors text-xs">CANCELAR</button>
+                <button onclick="verifyAdminPassword()" class="flex-1 bg-brandPink text-baseWhite font-black py-3 border-[3px] border-baseBlack rounded-xl hover:bg-brandPink/90 transition-colors shadow-brutal-sm text-xs">ENTRAR</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL PANEL DE ADMINISTRADOR -->
+    <div id="admin-modal" class="fixed inset-0 bg-baseBlack/80 backdrop-blur-sm z-[90] flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-baseWhite border-[4px] border-baseBlack max-w-md w-full p-6 relative flex flex-col shadow-brutal rounded-2xl scale-95 transition-transform duration-300 max-h-[90vh] overflow-y-auto" id="admin-modal-content">
+            <div class="flex justify-between items-center border-b-4 border-baseBlack pb-3 mb-4">
+                <h3 class="font-black text-2xl uppercase text-baseBlack flex items-center gap-2"><i class="fa-solid fa-gear text-brandPink"></i> Panel Admin</h3>
+                <button onclick="closeAdminModal()" class="bg-gray-200 hover:bg-gray-300 w-8 h-8 rounded-full border-2 border-baseBlack flex items-center justify-center transition-colors"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            
+            <div class="space-y-4 font-sans-bold">
+                <div>
+                    <h4 class="text-xs font-black text-brandPink uppercase tracking-widest border-b-2 border-gray-200 pb-1 mb-2">Paquetes Base (Fosfo Kids)</h4>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="text-[10px] font-bold text-textMuted uppercase">Paquete Chico ($)</label>
+                            <input type="number" id="admin-pkg-chico" class="w-full border-[3px] border-baseBlack px-3 py-2 text-sm font-black rounded-lg focus:border-brandGreen outline-none">
+                        </div>
+                        <div>
+                            <label class="text-[10px] font-bold text-textMuted uppercase">Paquete Grande ($)</label>
+                            <input type="number" id="admin-pkg-grande" class="w-full border-[3px] border-baseBlack px-3 py-2 text-sm font-black rounded-lg focus:border-brandGreen outline-none">
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-black text-brandPink uppercase tracking-widest border-b-2 border-gray-200 pb-1 mb-2">Piezas Extras Sueltas (C/U)</h4>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="text-[10px] font-bold text-textMuted uppercase">Lápices ($)</label>
+                            <input type="number" id="admin-lapiz" class="w-full border-[3px] border-baseBlack px-3 py-2 text-sm font-black rounded-lg focus:border-brandGreen outline-none">
+                        </div>
+                        <div>
+                            <label class="text-[10px] font-bold text-textMuted uppercase">Circulares ($)</label>
+                            <input type="number" id="admin-circulo" class="w-full border-[3px] border-baseBlack px-3 py-2 text-sm font-black rounded-lg focus:border-brandGreen outline-none">
+                        </div>
+                        <div>
+                            <label class="text-[10px] font-bold text-textMuted uppercase">Cuadernos ($)</label>
+                            <input type="number" id="admin-cuaderno" class="w-full border-[3px] border-baseBlack px-3 py-2 text-sm font-black rounded-lg focus:border-brandGreen outline-none">
+                        </div>
+                        <div>
+                            <label class="text-[10px] font-bold text-textMuted uppercase">Libros ($)</label>
+                            <input type="number" id="admin-libro" class="w-full border-[3px] border-baseBlack px-3 py-2 text-sm font-black rounded-lg focus:border-brandGreen outline-none">
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-black text-brandPink uppercase tracking-widest border-b-2 border-gray-200 pb-1 mb-2">Material y Acabados (Extras)</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <div>
+                            <label class="text-[10px] font-bold text-textMuted uppercase leading-none">Vinil Holográfico ($)</label>
+                            <input type="number" id="admin-holo" class="w-full border-[3px] border-baseBlack px-3 py-2 text-sm font-black rounded-lg focus:border-brandGreen outline-none mt-1">
+                        </div>
+                        <div>
+                            <label class="text-[10px] font-bold text-textMuted uppercase leading-none">Laminado Brillante ($)</label>
+                            <input type="number" id="admin-lam-b" class="w-full border-[3px] border-baseBlack px-3 py-2 text-sm font-black rounded-lg focus:border-brandGreen outline-none mt-1">
+                        </div>
+                        <div>
+                            <label class="text-[10px] font-bold text-textMuted uppercase leading-none">Laminado Mate ($)</label>
+                            <input type="number" id="admin-lam-m" class="w-full border-[3px] border-baseBlack px-3 py-2 text-sm font-black rounded-lg focus:border-brandGreen outline-none mt-1">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-6 flex justify-end gap-3">
+                <button onclick="closeAdminModal()" class="bg-gray-200 text-baseBlack font-bold py-2.5 px-5 border-[3px] border-baseBlack rounded-xl hover:bg-gray-300 transition-colors text-xs uppercase">Cancelar</button>
+                <button onclick="saveAdminPrices()" class="bg-baseBlack text-brandGreen font-black py-2.5 px-6 border-[3px] border-brandGreen rounded-xl hover:bg-brandGreen hover:border-baseBlack hover:text-baseBlack transition-colors shadow-brutal-sm text-xs uppercase">Guardar Cambios</button>
             </div>
         </div>
     </div>
@@ -1836,6 +1898,7 @@
             if (APP_STATE.material === 'mate') matLabel = 'Vinil Blanco Mate';
             if (APP_STATE.material === 'holo') matLabel = 'Holográfico';
             if (APP_STATE.material === 'transparente') matLabel = 'Transparente';
+            // El material se envía totalmente limpio a la orden, sin textos extra.
 
             const item = {
                 id: Date.now(),
@@ -2137,9 +2200,28 @@
         }
 
         // --- SCRIPTS FOSFO KIDS ---
+        const FOSFO_PRICES = {
+            pkgChico: 260,
+            pkgGrande: 340,
+            lapiz: 2,
+            circulo: 4,
+            cuaderno: 3,
+            libro: 5,
+            holo: 75,
+            lamBrillante: 20,
+            lamMate: 30
+        };
+
+        try {
+            const savedPrices = localStorage.getItem('fosfo_prices');
+            if (savedPrices) {
+                Object.assign(FOSFO_PRICES, JSON.parse(savedPrices));
+            }
+        } catch (e) { console.warn("Error cargando precios", e); }
+
         let fosfoCurrentStep = 1;
         let fosfoSelectedPackage = 'chico';
-        let fosfoBasePrice = 260;
+        let fosfoBasePrice = 0;
         let fosfoSelectedMaterial = 'vinil_blanco_brillante';
         let fosfoMaterialPrice = 0;
         let fosfoSelectedLaminated = 'ninguno';
@@ -2169,7 +2251,6 @@
             if (modal) { modal.classList.add('hidden'); modal.classList.remove('flex'); }
             if (wantsMore) { fosfoGoToStep(2); } else {
                 fosfoSyncQty('lapiz', 0); fosfoSyncQty('circulo', 0); fosfoSyncQty('cuaderno', 0); fosfoSyncQty('libro', 0);
-                fosfoSyncQty('nombre', 0); fosfoSyncQty('materia', 0);
                 fosfoGoToStep(3);
             }
         }
@@ -2278,8 +2359,9 @@
             if (input) { let newVal = (parseInt(input.value) || 0) + amount; if (newVal < 0) newVal = 0; fosfoSyncQty(type, newVal); }
         }
 
-        function selectPackage(pkg, price) {
-            fosfoSelectedPackage = pkg; fosfoBasePrice = price;
+        function selectPackage(pkg) {
+            fosfoSelectedPackage = pkg;
+            
             ['chico', 'grande', 'personalizado'].forEach(p => {
                 const card = document.getElementById(`card-pkg-${p}`); const badge = document.getElementById(`badge-pkg-${p}`);
                 if (card) card.classList.remove('selected-card'); if (badge) badge.classList.add('hidden');
@@ -2289,15 +2371,21 @@
             calculateFosfoPrice(); updateLiveSummary();
         }
 
-        function selectFosfoMaterial(material, price) {
-            fosfoSelectedMaterial = material; fosfoMaterialPrice = price;
+        function selectFosfoMaterial(material) {
+            fosfoSelectedMaterial = material;
+            if (material === 'vinil_holografico') {
+                fosfoMaterialPrice = FOSFO_PRICES.holo;
+            } else {
+                fosfoMaterialPrice = 0;
+            }
+
             ['vinil_blanco_brillante', 'vinil_blanco_mate', 'vinil_holografico'].forEach(mat => {
                 const el = document.getElementById(`fosfo-mat-${mat}`); if (el) el.classList.remove('selected-card');
             });
             const activeEl = document.getElementById(`fosfo-mat-${material}`); if (activeEl) activeEl.classList.add('selected-card');
             
             if (material === 'vinil_holografico') {
-                if (fosfoSelectedLaminated === 'brillante') { selectLaminated('mate', 30); showFosfoToast("⚠️ Holográfico no acepta Laminado Brillante.", "warning"); }
+                if (fosfoSelectedLaminated === 'brillante') { selectLaminated('mate'); showFosfoToast("⚠️ Holográfico no acepta Laminado Brillante.", "warning"); }
                 const lamB = document.getElementById('lam-brillante'); if(lamB) { lamB.style.opacity = '0.4'; lamB.style.pointerEvents = 'none'; }
             } else {
                 const lamB = document.getElementById('lam-brillante'); if(lamB) { lamB.style.opacity = '1'; lamB.style.pointerEvents = 'auto'; }
@@ -2305,8 +2393,12 @@
             calculateFosfoPrice();
         }
 
-        function selectLaminated(laminated, price) {
-            fosfoSelectedLaminated = laminated; fosfoLaminatedPrice = price;
+        function selectLaminated(laminated) {
+            fosfoSelectedLaminated = laminated;
+            if (laminated === 'brillante') fosfoLaminatedPrice = FOSFO_PRICES.lamBrillante;
+            else if (laminated === 'mate') fosfoLaminatedPrice = FOSFO_PRICES.lamMate;
+            else fosfoLaminatedPrice = 0;
+
             ['ninguno', 'brillante', 'mate'].forEach(lam => {
                 const el = document.getElementById(`lam-${lam}`); if (el) el.classList.remove('selected-card');
             });
@@ -2319,16 +2411,14 @@
             const qtyC = document.getElementById('qty-circulo') ? parseInt(document.getElementById('qty-circulo').value) || 0 : 0;
             const qtyCu = document.getElementById('qty-cuaderno') ? parseInt(document.getElementById('qty-cuaderno').value) || 0 : 0;
             const qtyLi = document.getElementById('qty-libro') ? parseInt(document.getElementById('qty-libro').value) || 0 : 0;
-            const qtyNombre = document.getElementById('qty-nombre') ? parseInt(document.getElementById('qty-nombre').value) || 0 : 0;
-            const qtyMateria = document.getElementById('qty-materia') ? parseInt(document.getElementById('qty-materia').value) || 0 : 0;
 
-            const costoAdicionales = (qtyL * 2) + (qtyC * 4) + (qtyCu * 3) + (qtyLi * 5) + (qtyNombre * 6) + (qtyMateria * 12);
+            const costExtras = (qtyL * FOSFO_PRICES.lapiz) + (qtyC * FOSFO_PRICES.circulo) + (qtyCu * FOSFO_PRICES.cuaderno) + (qtyLi * FOSFO_PRICES.libro);
 
             if (fosfoSelectedPackage === 'personalizado') { 
-                fosfoBasePrice = costoAdicionales; 
+                fosfoBasePrice = costExtras; 
             } else {
-                const pPrice = fosfoSelectedPackage === 'chico' ? 260 : 340;
-                fosfoBasePrice = pPrice + costoAdicionales;
+                const pPrice = fosfoSelectedPackage === 'chico' ? FOSFO_PRICES.pkgChico : FOSFO_PRICES.pkgGrande;
+                fosfoBasePrice = pPrice + costExtras;
             }
         }
 
@@ -2348,9 +2438,7 @@
             const qtyC = document.getElementById('qty-circulo') ? parseInt(document.getElementById('qty-circulo').value) || 0 : 0;
             const qtyCu = document.getElementById('qty-cuaderno') ? parseInt(document.getElementById('qty-cuaderno').value) || 0 : 0;
             const qtyLi = document.getElementById('qty-libro') ? parseInt(document.getElementById('qty-libro').value) || 0 : 0;
-            const qtyNombre = document.getElementById('qty-nombre') ? parseInt(document.getElementById('qty-nombre').value) || 0 : 0;
-            const qtyMateria = document.getElementById('qty-materia') ? parseInt(document.getElementById('qty-materia').value) || 0 : 0;
-            const totalAdicionales = qtyL + qtyC + qtyCu + qtyLi + qtyNombre + qtyMateria;
+            const totalAdicionales = qtyL + qtyC + qtyCu + qtyLi;
 
             let pkgText = '';
             if (fosfoSelectedPackage === 'chico') {
@@ -2371,20 +2459,18 @@
             if (extrasBlock && extrasList) {
                 extrasList.innerHTML = '';
                 if (totalAdicionales > 0) {
-                    if (qtyL > 0) extrasList.innerHTML += `<span class="bg-white border-2 border-black px-2 py-0.5 rounded-lg flex items-center gap-0.5 text-[9px] font-bold shadow-sm"> Lápices x${qtyL}</span>`;
-                    if (qtyC > 0) extrasList.innerHTML += `<span class="bg-white border-2 border-black px-2 py-0.5 rounded-lg flex items-center gap-0.5 text-[9px] font-bold shadow-sm"> Circulares x${qtyC}</span>`;
-                    if (qtyCu > 0) extrasList.innerHTML += `<span class="bg-white border-2 border-black px-2 py-0.5 rounded-lg flex items-center gap-0.5 text-[9px] font-bold shadow-sm"> Cuadernos x${qtyCu}</span>`;
-                    if (qtyLi > 0) extrasList.innerHTML += `<span class="bg-white border-2 border-black px-2 py-0.5 rounded-lg flex items-center gap-0.5 text-[9px] font-bold shadow-sm"> Libros x${qtyLi}</span>`;
-                    if (qtyNombre > 0) extrasList.innerHTML += `<span class="bg-white border-2 border-black px-2 py-0.5 rounded-lg flex items-center gap-0.5 text-[9px] font-bold shadow-sm"> Nombres x${qtyNombre}</span>`;
-                    if (qtyMateria > 0) extrasList.innerHTML += `<span class="bg-white border-2 border-black px-2 py-0.5 rounded-lg flex items-center gap-0.5 text-[9px] font-bold shadow-sm"> Materias x${qtyMateria}</span>`;
-                    
-                    const titleExtra = document.getElementById('ticket-extras-title');
-                    if (titleExtra) {
-                        titleExtra.innerText = fosfoSelectedPackage === 'personalizado' ? '🧩 PIEZAS DEL SET PERSONALIZADO' : '🧩 PIEZAS EXTRAS AÑADIDAS';
-                    }
-                    extrasBlock.classList.remove('hidden');
+                if (qtyL > 0) extrasList.innerHTML += `<span class="bg-white border-2 border-black px-2 py-0.5 rounded-lg flex items-center gap-0.5 text-[9px] font-bold shadow-sm"> Lápices x${qtyL}</span>`;
+                if (qtyC > 0) extrasList.innerHTML += `<span class="bg-white border-2 border-black px-2 py-0.5 rounded-lg flex items-center gap-0.5 text-[9px] font-bold shadow-sm"> Circulares x${qtyC}</span>`;
+                if (qtyCu > 0) extrasList.innerHTML += `<span class="bg-white border-2 border-black px-2 py-0.5 rounded-lg flex items-center gap-0.5 text-[9px] font-bold shadow-sm"> Cuadernos x${qtyCu}</span>`;
+                if (qtyLi > 0) extrasList.innerHTML += `<span class="bg-white border-2 border-black px-2 py-0.5 rounded-lg flex items-center gap-0.5 text-[9px] font-bold shadow-sm"> Libros x${qtyLi}</span>`;
+                
+                const titleExtra = document.getElementById('ticket-extras-title');
+                if (titleExtra) {
+                    titleExtra.innerText = fosfoSelectedPackage === 'personalizado' ? '🧩 PIEZAS DEL SET PERSONALIZADO' : '🧩 PIEZAS EXTRAS AÑADIDAS';
+                }
+                extrasBlock.classList.remove('hidden');
                 } else {
-                    extrasBlock.classList.add('hidden');
+                extrasBlock.classList.add('hidden');
                 }
             }
 
@@ -2440,6 +2526,145 @@
             const ticketTotalEl = document.getElementById('ticket-total');
             if (ticketTotalEl) ticketTotalEl.innerText = `$${totalSum.toFixed(2)} MXN`;
         }
+        
+        window.onload = function() {
+            loadSample('alienPattern');
+            setupDragAndDrop();
+            setupCanvasDrag();
+            setupInputs();
+            updateSelectedSizeUI();
+            updateRendimientoUI();
+            renderCart();
+            updateUIFromPrices(); // Sincroniza la UI con los precios iniciales de FOSFO_PRICES
+            requestAnimationFrame(animateLoop);
+            
+            try { if (typeof lucide !== 'undefined' && lucide.createIcons) { lucide.createIcons(); } } catch (e) {}
+            try {
+                selectPackage('chico'); selectFosfoMaterial('vinil_blanco_brillante'); selectLaminated('ninguno');
+                changeCatalogPage(1); selectGridDesign(1, 1, 1);
+            } catch (err) {}
+        };
+        
+        // --- ADMIN PANEL FUNCIONES ---
+        function openAdminModal() {
+            const modal = document.getElementById('admin-auth-modal');
+            const content = document.getElementById('admin-auth-content');
+            const input = document.getElementById('admin-pass-input');
+            input.value = '';
+            modal.classList.remove('hidden');
+            setTimeout(() => { 
+                modal.classList.remove('opacity-0'); 
+                content.classList.remove('scale-95'); 
+                input.focus(); 
+            }, 10);
+            
+            input.onkeyup = function(e) {
+                if (e.key === 'Enter') verifyAdminPassword();
+            };
+        }
+
+        function closeAdminAuthModal() {
+            const modal = document.getElementById('admin-auth-modal');
+            const content = document.getElementById('admin-auth-content');
+            modal.classList.add('opacity-0');
+            content.classList.add('scale-95');
+            setTimeout(() => { modal.classList.add('hidden'); }, 300);
+        }
+
+        function verifyAdminPassword() {
+            const input = document.getElementById('admin-pass-input');
+            if (input.value === '152420') {
+                closeAdminAuthModal();
+                setTimeout(() => {
+                    openAdminDashboard();
+                }, 300);
+            } else {
+                showToast('Contraseña incorrecta', 'error');
+                input.value = '';
+                input.focus();
+            }
+        }
+
+        function openAdminDashboard() {
+            document.getElementById('admin-pkg-chico').value = FOSFO_PRICES.pkgChico;
+            document.getElementById('admin-pkg-grande').value = FOSFO_PRICES.pkgGrande;
+            document.getElementById('admin-lapiz').value = FOSFO_PRICES.lapiz;
+            document.getElementById('admin-circulo').value = FOSFO_PRICES.circulo;
+            document.getElementById('admin-cuaderno').value = FOSFO_PRICES.cuaderno;
+            document.getElementById('admin-libro').value = FOSFO_PRICES.libro;
+            document.getElementById('admin-holo').value = FOSFO_PRICES.holo;
+            document.getElementById('admin-lam-b').value = FOSFO_PRICES.lamBrillante;
+            document.getElementById('admin-lam-m').value = FOSFO_PRICES.lamMate;
+
+            const modal = document.getElementById('admin-modal');
+            const content = document.getElementById('admin-modal-content');
+            modal.classList.remove('hidden');
+            setTimeout(() => { modal.classList.remove('opacity-0'); content.classList.remove('scale-95'); }, 10);
+        }
+
+        function closeAdminModal() {
+            const modal = document.getElementById('admin-modal');
+            const content = document.getElementById('admin-modal-content');
+            modal.classList.add('opacity-0');
+            content.classList.add('scale-95');
+            setTimeout(() => { modal.classList.add('hidden'); }, 300);
+        }
+
+        function saveAdminPrices() {
+            FOSFO_PRICES.pkgChico = parseFloat(document.getElementById('admin-pkg-chico').value) || 0;
+            FOSFO_PRICES.pkgGrande = parseFloat(document.getElementById('admin-pkg-grande').value) || 0;
+            FOSFO_PRICES.lapiz = parseFloat(document.getElementById('admin-lapiz').value) || 0;
+            FOSFO_PRICES.circulo = parseFloat(document.getElementById('admin-circulo').value) || 0;
+            FOSFO_PRICES.cuaderno = parseFloat(document.getElementById('admin-cuaderno').value) || 0;
+            FOSFO_PRICES.libro = parseFloat(document.getElementById('admin-libro').value) || 0;
+            FOSFO_PRICES.holo = parseFloat(document.getElementById('admin-holo').value) || 0;
+            FOSFO_PRICES.lamBrillante = parseFloat(document.getElementById('admin-lam-b').value) || 0;
+            FOSFO_PRICES.lamMate = parseFloat(document.getElementById('admin-lam-m').value) || 0;
+
+            try {
+                localStorage.setItem('fosfo_prices', JSON.stringify(FOSFO_PRICES));
+            } catch (e) {}
+
+            updateUIFromPrices();
+            selectPackage(fosfoSelectedPackage);
+            selectFosfoMaterial(fosfoSelectedMaterial);
+            selectLaminated(fosfoSelectedLaminated);
+            updateTicketData();
+            
+            showToast('¡Precios guardados y actualizados!', 'success');
+            closeAdminModal();
+        }
+
+        function updateUIFromPrices() {
+            const lblChico = document.getElementById('price-label-chico');
+            if (lblChico) lblChico.innerText = `72 pzas x $${FOSFO_PRICES.pkgChico}`;
+            
+            const lblGrande = document.getElementById('price-label-grande');
+            if (lblGrande) lblGrande.innerText = `120 pzas x $${FOSFO_PRICES.pkgGrande}`;
+
+            const lblLapiz = document.getElementById('price-label-lapiz');
+            if (lblLapiz) lblLapiz.innerText = `$${FOSFO_PRICES.lapiz.toFixed(2)} c/u`;
+
+            const lblCirculo = document.getElementById('price-label-circulo');
+            if (lblCirculo) lblCirculo.innerText = `$${FOSFO_PRICES.circulo.toFixed(2)} c/u`;
+
+            const lblCuaderno = document.getElementById('price-label-cuaderno');
+            if (lblCuaderno) lblCuaderno.innerText = `$${FOSFO_PRICES.cuaderno.toFixed(2)} c/u`;
+
+            const lblLibro = document.getElementById('price-label-libro');
+            if (lblLibro) lblLibro.innerText = `$${FOSFO_PRICES.libro.toFixed(2)} c/u`;
+
+            const lblHolo = document.getElementById('price-label-holo');
+            if (lblHolo) lblHolo.innerText = `+$${FOSFO_PRICES.holo.toFixed(2)} MXN`;
+
+            const lblLamB = document.getElementById('price-label-lamB');
+            if (lblLamB) lblLamB.innerText = `+$${FOSFO_PRICES.lamBrillante.toFixed(2)} MXN`;
+
+            const lblLamM = document.getElementById('price-label-lamM');
+            if (lblLamM) lblLamM.innerText = `+$${FOSFO_PRICES.lamMate.toFixed(2)} MXN`;
+        }
+
+        // --- FIN ADMIN PANEL ---
 
         async function captureOrderCanvas() {
             showFosfoToast("📸 Generando ticket mágico...", "success");
@@ -2452,9 +2677,7 @@
             const qtyC = parseInt(document.getElementById('qty-circulo').value) || 0;
             const qtyCu = parseInt(document.getElementById('qty-cuaderno').value) || 0;
             const qtyLi = parseInt(document.getElementById('qty-libro').value) || 0;
-            const qtyNombre = document.getElementById('qty-nombre') ? parseInt(document.getElementById('qty-nombre').value) || 0 : 0;
-            const qtyMateria = document.getElementById('qty-materia') ? parseInt(document.getElementById('qty-materia').value) || 0 : 0;
-            const totalAdicionales = qtyL + qtyC + qtyCu + qtyLi + qtyNombre + qtyMateria;
+            const totalAdicionales = qtyL + qtyC + qtyCu + qtyLi;
 
             if (totalAdicionales > 0) height += 120;
             canvas.width = width;
@@ -2572,8 +2795,6 @@
                 if (qtyC > 0) extraStr.push(`Circulares x${qtyC}`);
                 if (qtyCu > 0) extraStr.push(`Cuadernos x${qtyCu}`);
                 if (qtyLi > 0) extraStr.push(`Libros x${qtyLi}`);
-                if (qtyNombre > 0) extraStr.push(`Nombres x${qtyNombre}`);
-                if (qtyMateria > 0) extraStr.push(`Materias x${qtyMateria}`);
 
                 ctx.fillStyle = "#000000";
                 ctx.font = "bold 20px 'Plus Jakarta Sans', sans-serif";
