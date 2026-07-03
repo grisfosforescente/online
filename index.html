@@ -672,7 +672,7 @@
                         <p class="text-xs font-bold text-gray-500 uppercase mt-1">Suma hojas adicionales de etiquetas sueltas a tu orden.</p>
                     </div>
 
-                    <div class="grid grid-cols-2 gap-4 mt-4">
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-4">
                         <div class="bg-white border-[3px] border-black p-4 flex flex-col items-center justify-between text-center rounded-2xl shadow-comic-sm">
                             <span class="text-[9px] font-black bg-fosfoPink text-white px-2 py-1 border-2 border-black mb-2 rounded-md shadow-sm">5 x 1 cm</span>
                             <span class="text-sm font-black text-black uppercase mt-1">Lápices</span>
@@ -714,6 +714,29 @@
                                 <button type="button" onclick="fosfoAdjustQty('libro', -5)" class="bg-black text-white w-8 h-8 flex items-center justify-center font-black rounded-lg text-xl active:scale-90 shadow-sm">-</button>
                                 <input type="number" id="qty-libro" value="0" min="0" onchange="calculateFosfoPrice()" class="w-12 text-center border-2 border-black rounded-lg text-sm font-black py-1">
                                 <button type="button" onclick="fosfoAdjustQty('libro', 5)" class="bg-black text-white w-8 h-8 flex items-center justify-center font-black rounded-lg text-xl active:scale-90 shadow-sm">+</button>
+                            </div>
+                        </div>
+
+                        <!-- NUEVAS OPCIONES: NOMBRES Y MATERIAS -->
+                        <div class="bg-white border-[3px] border-black p-4 flex flex-col items-center justify-between text-center rounded-2xl shadow-comic-sm">
+                            <span class="text-[9px] font-black bg-orange-500 text-white px-2 py-1 border-2 border-black mb-2 rounded-md shadow-sm">Varias Med.</span>
+                            <span class="text-sm font-black text-black uppercase mt-1 leading-tight">Nombres Pers.</span>
+                            <span id="price-label-nombre" class="text-[11px] font-black text-fosfoPink bg-gray-100 px-2 py-0.5 rounded mt-1">$6.00 c/u</span>
+                            <div class="flex items-center mt-3 gap-2 w-full justify-center">
+                                <button type="button" onclick="fosfoAdjustQty('nombre', -1)" class="bg-black text-white w-8 h-8 flex items-center justify-center font-black rounded-lg text-xl active:scale-90 shadow-sm">-</button>
+                                <input type="number" id="qty-nombre" value="0" min="0" onchange="calculateFosfoPrice()" class="w-12 text-center border-2 border-black rounded-lg text-sm font-black py-1">
+                                <button type="button" onclick="fosfoAdjustQty('nombre', 1)" class="bg-black text-white w-8 h-8 flex items-center justify-center font-black rounded-lg text-xl active:scale-90 shadow-sm">+</button>
+                            </div>
+                        </div>
+
+                        <div class="bg-white border-[3px] border-black p-4 flex flex-col items-center justify-between text-center rounded-2xl shadow-comic-sm">
+                            <span class="text-[9px] font-black bg-blue-500 text-white px-2 py-1 border-2 border-black mb-2 rounded-md shadow-sm">Varias Med.</span>
+                            <span class="text-sm font-black text-black uppercase mt-1 leading-tight">Et. Materias</span>
+                            <span id="price-label-materia" class="text-[11px] font-black text-fosfoPink bg-gray-100 px-2 py-0.5 rounded mt-1">$12.00 c/u</span>
+                            <div class="flex items-center mt-3 gap-2 w-full justify-center">
+                                <button type="button" onclick="fosfoAdjustQty('materia', -1)" class="bg-black text-white w-8 h-8 flex items-center justify-center font-black rounded-lg text-xl active:scale-90 shadow-sm">-</button>
+                                <input type="number" id="qty-materia" value="0" min="0" onchange="calculateFosfoPrice()" class="w-12 text-center border-2 border-black rounded-lg text-sm font-black py-1">
+                                <button type="button" onclick="fosfoAdjustQty('materia', 1)" class="bg-black text-white w-8 h-8 flex items-center justify-center font-black rounded-lg text-xl active:scale-90 shadow-sm">+</button>
                             </div>
                         </div>
                     </div>
@@ -1100,7 +1123,7 @@
 
                 <div>
                     <h4 class="text-xs font-black text-brandPink uppercase tracking-widest border-b-2 border-gray-200 pb-1 mb-2">Piezas Extras Sueltas (C/U)</h4>
-                    <div class="grid grid-cols-2 gap-3">
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
                         <div>
                             <label class="text-[10px] font-bold text-textMuted uppercase">Lápices ($)</label>
                             <input type="number" id="admin-lapiz" class="w-full border-[3px] border-baseBlack px-3 py-2 text-sm font-black rounded-lg focus:border-brandGreen outline-none">
@@ -1116,6 +1139,14 @@
                         <div>
                             <label class="text-[10px] font-bold text-textMuted uppercase">Libros ($)</label>
                             <input type="number" id="admin-libro" class="w-full border-[3px] border-baseBlack px-3 py-2 text-sm font-black rounded-lg focus:border-brandGreen outline-none">
+                        </div>
+                        <div>
+                            <label class="text-[10px] font-bold text-textMuted uppercase leading-none mt-1 inline-block">Nombres Pers. ($)</label>
+                            <input type="number" id="admin-nombre" class="w-full border-[3px] border-baseBlack px-3 py-2 text-sm font-black rounded-lg focus:border-brandGreen outline-none">
+                        </div>
+                        <div>
+                            <label class="text-[10px] font-bold text-textMuted uppercase leading-none mt-1 inline-block">Et. Materias ($)</label>
+                            <input type="number" id="admin-materia" class="w-full border-[3px] border-baseBlack px-3 py-2 text-sm font-black rounded-lg focus:border-brandGreen outline-none">
                         </div>
                     </div>
                 </div>
@@ -2207,6 +2238,8 @@
             circulo: 4,
             cuaderno: 3,
             libro: 5,
+            nombre: 6,
+            materia: 12,
             holo: 75,
             lamBrillante: 20,
             lamMate: 30
@@ -2251,6 +2284,7 @@
             if (modal) { modal.classList.add('hidden'); modal.classList.remove('flex'); }
             if (wantsMore) { fosfoGoToStep(2); } else {
                 fosfoSyncQty('lapiz', 0); fosfoSyncQty('circulo', 0); fosfoSyncQty('cuaderno', 0); fosfoSyncQty('libro', 0);
+                fosfoSyncQty('nombre', 0); fosfoSyncQty('materia', 0);
                 fosfoGoToStep(3);
             }
         }
@@ -2411,8 +2445,10 @@
             const qtyC = document.getElementById('qty-circulo') ? parseInt(document.getElementById('qty-circulo').value) || 0 : 0;
             const qtyCu = document.getElementById('qty-cuaderno') ? parseInt(document.getElementById('qty-cuaderno').value) || 0 : 0;
             const qtyLi = document.getElementById('qty-libro') ? parseInt(document.getElementById('qty-libro').value) || 0 : 0;
+            const qtyN = document.getElementById('qty-nombre') ? parseInt(document.getElementById('qty-nombre').value) || 0 : 0;
+            const qtyM = document.getElementById('qty-materia') ? parseInt(document.getElementById('qty-materia').value) || 0 : 0;
 
-            const costExtras = (qtyL * FOSFO_PRICES.lapiz) + (qtyC * FOSFO_PRICES.circulo) + (qtyCu * FOSFO_PRICES.cuaderno) + (qtyLi * FOSFO_PRICES.libro);
+            const costExtras = (qtyL * FOSFO_PRICES.lapiz) + (qtyC * FOSFO_PRICES.circulo) + (qtyCu * FOSFO_PRICES.cuaderno) + (qtyLi * FOSFO_PRICES.libro) + (qtyN * FOSFO_PRICES.nombre) + (qtyM * FOSFO_PRICES.materia);
 
             if (fosfoSelectedPackage === 'personalizado') { 
                 fosfoBasePrice = costExtras; 
@@ -2438,7 +2474,9 @@
             const qtyC = document.getElementById('qty-circulo') ? parseInt(document.getElementById('qty-circulo').value) || 0 : 0;
             const qtyCu = document.getElementById('qty-cuaderno') ? parseInt(document.getElementById('qty-cuaderno').value) || 0 : 0;
             const qtyLi = document.getElementById('qty-libro') ? parseInt(document.getElementById('qty-libro').value) || 0 : 0;
-            const totalAdicionales = qtyL + qtyC + qtyCu + qtyLi;
+            const qtyN = document.getElementById('qty-nombre') ? parseInt(document.getElementById('qty-nombre').value) || 0 : 0;
+            const qtyM = document.getElementById('qty-materia') ? parseInt(document.getElementById('qty-materia').value) || 0 : 0;
+            const totalAdicionales = qtyL + qtyC + qtyCu + qtyLi + qtyN + qtyM;
 
             let pkgText = '';
             if (fosfoSelectedPackage === 'chico') {
@@ -2463,6 +2501,8 @@
                 if (qtyC > 0) extrasList.innerHTML += `<span class="bg-white border-2 border-black px-2 py-0.5 rounded-lg flex items-center gap-0.5 text-[9px] font-bold shadow-sm"> Circulares x${qtyC}</span>`;
                 if (qtyCu > 0) extrasList.innerHTML += `<span class="bg-white border-2 border-black px-2 py-0.5 rounded-lg flex items-center gap-0.5 text-[9px] font-bold shadow-sm"> Cuadernos x${qtyCu}</span>`;
                 if (qtyLi > 0) extrasList.innerHTML += `<span class="bg-white border-2 border-black px-2 py-0.5 rounded-lg flex items-center gap-0.5 text-[9px] font-bold shadow-sm"> Libros x${qtyLi}</span>`;
+                if (qtyN > 0) extrasList.innerHTML += `<span class="bg-white border-2 border-black px-2 py-0.5 rounded-lg flex items-center gap-0.5 text-[9px] font-bold shadow-sm"> Nombres x${qtyN}</span>`;
+                if (qtyM > 0) extrasList.innerHTML += `<span class="bg-white border-2 border-black px-2 py-0.5 rounded-lg flex items-center gap-0.5 text-[9px] font-bold shadow-sm"> Materias x${qtyM}</span>`;
                 
                 const titleExtra = document.getElementById('ticket-extras-title');
                 if (titleExtra) {
@@ -2592,6 +2632,8 @@
             document.getElementById('admin-circulo').value = FOSFO_PRICES.circulo;
             document.getElementById('admin-cuaderno').value = FOSFO_PRICES.cuaderno;
             document.getElementById('admin-libro').value = FOSFO_PRICES.libro;
+            document.getElementById('admin-nombre').value = FOSFO_PRICES.nombre;
+            document.getElementById('admin-materia').value = FOSFO_PRICES.materia;
             document.getElementById('admin-holo').value = FOSFO_PRICES.holo;
             document.getElementById('admin-lam-b').value = FOSFO_PRICES.lamBrillante;
             document.getElementById('admin-lam-m').value = FOSFO_PRICES.lamMate;
@@ -2617,6 +2659,8 @@
             FOSFO_PRICES.circulo = parseFloat(document.getElementById('admin-circulo').value) || 0;
             FOSFO_PRICES.cuaderno = parseFloat(document.getElementById('admin-cuaderno').value) || 0;
             FOSFO_PRICES.libro = parseFloat(document.getElementById('admin-libro').value) || 0;
+            FOSFO_PRICES.nombre = parseFloat(document.getElementById('admin-nombre').value) || 0;
+            FOSFO_PRICES.materia = parseFloat(document.getElementById('admin-materia').value) || 0;
             FOSFO_PRICES.holo = parseFloat(document.getElementById('admin-holo').value) || 0;
             FOSFO_PRICES.lamBrillante = parseFloat(document.getElementById('admin-lam-b').value) || 0;
             FOSFO_PRICES.lamMate = parseFloat(document.getElementById('admin-lam-m').value) || 0;
@@ -2654,6 +2698,12 @@
             const lblLibro = document.getElementById('price-label-libro');
             if (lblLibro) lblLibro.innerText = `$${FOSFO_PRICES.libro.toFixed(2)} c/u`;
 
+            const lblNombre = document.getElementById('price-label-nombre');
+            if (lblNombre) lblNombre.innerText = `$${FOSFO_PRICES.nombre.toFixed(2)} c/u`;
+
+            const lblMateria = document.getElementById('price-label-materia');
+            if (lblMateria) lblMateria.innerText = `$${FOSFO_PRICES.materia.toFixed(2)} c/u`;
+
             const lblHolo = document.getElementById('price-label-holo');
             if (lblHolo) lblHolo.innerText = `+$${FOSFO_PRICES.holo.toFixed(2)} MXN`;
 
@@ -2677,7 +2727,9 @@
             const qtyC = parseInt(document.getElementById('qty-circulo').value) || 0;
             const qtyCu = parseInt(document.getElementById('qty-cuaderno').value) || 0;
             const qtyLi = parseInt(document.getElementById('qty-libro').value) || 0;
-            const totalAdicionales = qtyL + qtyC + qtyCu + qtyLi;
+            const qtyN = parseInt(document.getElementById('qty-nombre').value) || 0;
+            const qtyM = parseInt(document.getElementById('qty-materia').value) || 0;
+            const totalAdicionales = qtyL + qtyC + qtyCu + qtyLi + qtyN + qtyM;
 
             if (totalAdicionales > 0) height += 120;
             canvas.width = width;
@@ -2795,6 +2847,8 @@
                 if (qtyC > 0) extraStr.push(`Circulares x${qtyC}`);
                 if (qtyCu > 0) extraStr.push(`Cuadernos x${qtyCu}`);
                 if (qtyLi > 0) extraStr.push(`Libros x${qtyLi}`);
+                if (qtyN > 0) extraStr.push(`Nombres x${qtyN}`);
+                if (qtyM > 0) extraStr.push(`Materias x${qtyM}`);
 
                 ctx.fillStyle = "#000000";
                 ctx.font = "bold 20px 'Plus Jakarta Sans', sans-serif";
