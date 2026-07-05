@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://unpkg.com/lucide@latest"></script>
     
+    <!-- Configuración del tema Tailwind -->
     <script>
         tailwind.config = {
             theme: {
@@ -155,7 +156,7 @@
 </head>
 <body class="bg-baseWhite text-baseBlack font-sans min-h-screen overflow-x-hidden antialiased selection:bg-brandGreen selection:text-baseBlack">
 
-    <!-- BANNER SUPERIOR PROMOCIONAL -->
+    <!-- BANNER SUPERIOR PROMOCIONAL (CANVA EMBED) -->
     <div class="w-full bg-baseBlack border-b-4 border-baseBlack relative overflow-hidden">
         <div style="position: relative; width: 100%; height: 0; padding-top: 18.5185%; padding-bottom: 0; overflow: hidden; will-change: transform;">
             <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0; margin: 0;"
@@ -170,7 +171,7 @@
             <div class="flex items-center gap-6">
                 <!-- Enlaces de Navegación -->
                 <nav class="flex items-center gap-4 md:gap-6 text-baseWhite font-bold text-[11px] md:text-sm tracking-wide">
-                    <button onclick="openAdminModal()" class="text-textMuted hover:text-brandPink transition-colors text-lg" title="Panel de Administración"><i class="fa-solid fa-gear"></i></button>
+                    <button onclick="openAdminAuthModal()" class="text-textMuted hover:text-brandPink transition-colors text-lg" title="Panel de Administración"><i class="fa-solid fa-gear"></i></button>
                     <a href="#" onclick="switchView('sticker'); return false;" class="hover:text-brandGreen transition-colors">INICIO</a>
                     <button onclick="openPromosModal()" class="hover:text-brandPink transition-colors uppercase">PROMOCIONES</button>
                     <a href="#" onclick="switchView('escolares'); return false;" class="hover:text-brandGreen transition-colors uppercase text-center">ESCOLARES 2026</a>
@@ -1099,7 +1100,7 @@
             <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 text-4xl bg-baseWhite rounded-full border-4 border-baseBlack w-12 h-12 flex items-center justify-center shadow-brutal-sm">🔒</div>
             <h3 class="font-black text-xl uppercase mb-4 mt-2 text-center text-baseBlack">Acceso Restringido</h3>
             <p class="text-[11px] text-textMuted text-center font-bold mb-4 uppercase">Ingresa la contraseña para configurar precios.</p>
-            <input type="password" id="admin-pass-input" placeholder="******" class="w-full border-[3px] border-baseBlack px-4 py-3 text-lg font-black outline-none mb-5 rounded-xl focus:border-brandPink shadow-inner text-center tracking-[0.5em]">
+            <input type="password" id="admin-pass-input" placeholder="******" class="w-full border-[3px] border-baseBlack px-4 py-3 text-lg font-black outline-none mb-5 rounded-xl focus:border-brandPink shadow-inner text-center tracking-[0.5em]" onkeyup="if(event.key === 'Enter') verifyAdminPassword()">
             <div class="flex gap-3">
                 <button onclick="closeAdminAuthModal()" class="flex-1 bg-gray-200 text-baseBlack font-bold py-3 border-[3px] border-baseBlack rounded-xl hover:bg-gray-300 transition-colors text-xs">CANCELAR</button>
                 <button onclick="verifyAdminPassword()" class="flex-1 bg-brandPink text-baseWhite font-black py-3 border-[3px] border-baseBlack rounded-xl hover:bg-brandPink/90 transition-colors shadow-brutal-sm text-xs">ENTRAR</button>
@@ -1240,7 +1241,7 @@
             selectedSize: 5,
             customMode: 'auto', 
             selectedHeight: null, 
-            quantity: 10,  
+            quantity: 1,  // Mínimo desde 1 planilla
             material: 'brillante',
             laminado: false,
             corteFisico: false,
@@ -1304,7 +1305,7 @@
             
             try { if (typeof lucide !== 'undefined' && lucide.createIcons) { lucide.createIcons(); } } catch (e) {}
             try {
-                selectPackage('chico', 260); selectFosfoMaterial('vinil_blanco_brillante', 0); selectLaminated('ninguno', 0);
+                selectPackage('chico'); selectFosfoMaterial('vinil_blanco_brillante'); selectLaminated('ninguno');
                 changeCatalogPage(1); selectGridDesign(1, 1, 1);
             } catch (err) {}
         };
@@ -1938,7 +1939,6 @@
             if (APP_STATE.material === 'mate') matLabel = 'Vinil Blanco Mate';
             if (APP_STATE.material === 'holo') matLabel = 'Holográfico';
             if (APP_STATE.material === 'transparente') matLabel = 'Transparente';
-            // El material se envía totalmente limpio a la orden, sin textos extra.
 
             const item = {
                 id: Date.now(),
@@ -2055,22 +2055,18 @@
             if (APP_STATE.cart.length === 0) { showToast("No hay elementos para procesar.", "error"); return; }
             showToast("Generando ticket de orden...", "info");
 
-            // Cargar imágenes de Canva descargadas previamente
             const topImg = new Image(); topImg.crossOrigin = "anonymous";
             const bottomImg = new Image(); bottomImg.crossOrigin = "anonymous";
             topImg.src = 'ticket-top.png';
             bottomImg.src = 'ticket-bottom.png';
             
-            await new Promise((resolve) => {
-                let loaded = 0;
-                const check = () => { loaded++; if(loaded === 2) resolve(); };
-                topImg.onload = check; bottomImg.onload = check;
-                topImg.onerror = check; bottomImg.onerror = check;
-            });
+            await Promise.all([
+                new Promise(resolve => { topImg.onload = topImg.onerror = resolve; }),
+                new Promise(resolve => { bottomImg.onload = bottomImg.onerror = resolve; })
+            ]);
 
             const width = 800;
             const itemHeight = 160;
-            // Calculamos altura exacta: header (200) + items + totales (120) + footer (180)
             const height = 200 + (APP_STATE.cart.length * itemHeight) + 120 + 180; 
             const canvas = document.createElement('canvas');
             canvas.width = width;
@@ -2087,7 +2083,6 @@
             ctx.lineWidth = 6;
             ctx.strokeRect(10, 10, width - 20, height - 20);
             
-            // BANNER SUPERIOR
             if (topImg.complete && topImg.naturalHeight !== 0) {
                 ctx.drawImage(topImg, 10, 10, width - 20, 150);
             } else {
@@ -2165,7 +2160,6 @@
             const totalWidth = ctx.measureText(totalText).width;
             ctx.fillText(totalText, width - 40 - totalWidth, currentY + 70);
 
-            // BANNER INFERIOR
             if (bottomImg.complete && bottomImg.naturalHeight !== 0) {
                 ctx.drawImage(bottomImg, 10, height - 160, width - 20, 150);
             } else {
@@ -2226,7 +2220,7 @@
             setTimeout(() => { modal.classList.add('hidden'); }, 300);
         }
 
-        // --- SCRIPTS FOSFO KIDS ---
+        // --- SCRIPTS FOSFO KIDS & ADMIN PANEL ---
         const FOSFO_PRICES = {
             pkgChico: 260,
             pkgGrande: 340,
@@ -2250,7 +2244,7 @@
 
         let fosfoCurrentStep = 1;
         let fosfoSelectedPackage = 'chico';
-        let fosfoBasePrice = 0;
+        let fosfoBasePrice = FOSFO_PRICES.pkgChico;
         let fosfoSelectedMaterial = 'vinil_blanco_brillante';
         let fosfoMaterialPrice = 0;
         let fosfoSelectedLaminated = 'ninguno';
@@ -2391,7 +2385,6 @@
 
         function selectPackage(pkg) {
             fosfoSelectedPackage = pkg;
-            
             ['chico', 'grande', 'personalizado'].forEach(p => {
                 const card = document.getElementById(`card-pkg-${p}`); const badge = document.getElementById(`badge-pkg-${p}`);
                 if (card) card.classList.remove('selected-card'); if (badge) badge.classList.add('hidden');
@@ -2402,12 +2395,9 @@
         }
 
         function selectFosfoMaterial(material) {
-            fosfoSelectedMaterial = material;
-            if (material === 'vinil_holografico') {
-                fosfoMaterialPrice = FOSFO_PRICES.holo;
-            } else {
-                fosfoMaterialPrice = 0;
-            }
+            fosfoSelectedMaterial = material; 
+            if (material === 'vinil_holografico') fosfoMaterialPrice = FOSFO_PRICES.holo;
+            else fosfoMaterialPrice = 0;
 
             ['vinil_blanco_brillante', 'vinil_blanco_mate', 'vinil_holografico'].forEach(mat => {
                 const el = document.getElementById(`fosfo-mat-${mat}`); if (el) el.classList.remove('selected-card');
@@ -2424,7 +2414,7 @@
         }
 
         function selectLaminated(laminated) {
-            fosfoSelectedLaminated = laminated;
+            fosfoSelectedLaminated = laminated; 
             if (laminated === 'brillante') fosfoLaminatedPrice = FOSFO_PRICES.lamBrillante;
             else if (laminated === 'mate') fosfoLaminatedPrice = FOSFO_PRICES.lamMate;
             else fosfoLaminatedPrice = 0;
@@ -2476,10 +2466,10 @@
 
             let pkgText = '';
             if (fosfoSelectedPackage === 'chico') {
-                pkgText = 'PAQUETE CHICO (72 PZAS)';
+                pkgText = `PAQUETE CHICO (72 PZAS)`;
                 if (totalAdicionales > 0) pkgText += ` + ADICIONALES`;
             } else if (fosfoSelectedPackage === 'grande') {
-                pkgText = 'PAQUETE GRANDE (120 PZAS)';
+                pkgText = `PAQUETE GRANDE (120 PZAS)`;
                 if (totalAdicionales > 0) pkgText += ` + ADICIONALES`;
             } else {
                 pkgText = `SET PERSONALIZADO`;
@@ -2566,23 +2556,10 @@
         async function captureOrderCanvas() {
             showFosfoToast("📸 Generando ticket mágico...", "success");
             await document.fonts.ready;
-
-            // Cargar imágenes de Canva descargadas previamente
-            const topImg = new Image(); topImg.crossOrigin = "anonymous";
-            const bottomImg = new Image(); bottomImg.crossOrigin = "anonymous";
-            topImg.src = 'ticket-top.png';
-            bottomImg.src = 'ticket-bottom.png';
-            
-            await new Promise((resolve) => {
-                let loaded = 0;
-                const check = () => { loaded++; if(loaded === 2) resolve(); };
-                topImg.onload = check; bottomImg.onload = check;
-                topImg.onerror = check; bottomImg.onerror = check;
-            });
-
             const canvas = document.createElement('canvas');
             const width = 800;
-            
+            let height = 850;
+
             const qtyL = parseInt(document.getElementById('qty-lapiz').value) || 0;
             const qtyC = parseInt(document.getElementById('qty-circulo').value) || 0;
             const qtyCu = parseInt(document.getElementById('qty-cuaderno').value) || 0;
@@ -2591,10 +2568,7 @@
             const qtyM = parseInt(document.getElementById('qty-materia').value) || 0;
             const totalAdicionales = qtyL + qtyC + qtyCu + qtyLi + qtyN + qtyM;
 
-            // Altura exacta y perfecta calculada con o sin extras
-            let height = 1000;
-            if (totalAdicionales > 0) height += 130;
-
+            if (totalAdicionales > 0) height += 120;
             canvas.width = width;
             canvas.height = height;
             const ctx = canvas.getContext('2d');
@@ -2616,7 +2590,16 @@
             ctx.lineWidth = 8;
             ctx.strokeRect(40, 40, width - 80, height - 80);
 
-            // TOP BANNER (Reemplaza los titulos)
+            const topImg = new Image(); topImg.crossOrigin = "anonymous";
+            const bottomImg = new Image(); bottomImg.crossOrigin = "anonymous";
+            topImg.src = 'ticket-top.png';
+            bottomImg.src = 'ticket-bottom.png';
+            
+            await Promise.all([
+                new Promise(resolve => { topImg.onload = topImg.onerror = resolve; }),
+                new Promise(resolve => { bottomImg.onload = bottomImg.onerror = resolve; })
+            ]);
+
             if (topImg.complete && topImg.naturalHeight !== 0) {
                 ctx.drawImage(topImg, 44, 44, width - 88, 150);
             } else {
@@ -2765,7 +2748,6 @@
             ctx.font = "bold 16px 'Plus Jakarta Sans', sans-serif";
             ctx.fillText(`FECHA: ${dateStr}   |   GRISFOSFORESCENTE.COM.MX`, width / 2, height - 215);
 
-            // BOTTOM BANNER (Cuentas)
             if (bottomImg.complete && bottomImg.naturalHeight !== 0) {
                 ctx.drawImage(bottomImg, 44, height - 44 - 150, width - 88, 150);
             } else {
@@ -2967,6 +2949,121 @@
         function flappyWin() {
             flappyState = 'WIN';
             document.getElementById('game-win-overlay').classList.remove('hidden');
+        }
+
+        // --- FUNCIONES DEL PANEL ADMIN ---
+        function openAdminAuthModal() {
+            const modal = document.getElementById('admin-auth-modal');
+            const content = document.getElementById('admin-auth-content');
+            const input = document.getElementById('admin-pass-input');
+            input.value = '';
+            modal.classList.remove('hidden');
+            setTimeout(() => { modal.classList.remove('opacity-0'); content.classList.remove('scale-95'); input.focus(); }, 10);
+        }
+
+        function closeAdminAuthModal() {
+            const modal = document.getElementById('admin-auth-modal');
+            const content = document.getElementById('admin-auth-content');
+            modal.classList.add('opacity-0');
+            content.classList.add('scale-95');
+            setTimeout(() => { modal.classList.add('hidden'); }, 300);
+        }
+
+        function verifyAdminPassword() {
+            const input = document.getElementById('admin-pass-input');
+            if (input.value === '152420') {
+                closeAdminAuthModal();
+                setTimeout(openAdminModal, 300);
+            } else {
+                if (typeof showToast === 'function') showToast('Contraseña incorrecta', 'error');
+                input.value = '';
+                input.focus();
+            }
+        }
+
+        function openAdminModal() {
+            const modal = document.getElementById('admin-modal');
+            const content = document.getElementById('admin-modal-content');
+            
+            document.getElementById('admin-pkg-chico').value = FOSFO_PRICES.pkgChico;
+            document.getElementById('admin-pkg-grande').value = FOSFO_PRICES.pkgGrande;
+            document.getElementById('admin-lapiz').value = FOSFO_PRICES.lapiz;
+            document.getElementById('admin-circulo').value = FOSFO_PRICES.circulo;
+            document.getElementById('admin-cuaderno').value = FOSFO_PRICES.cuaderno;
+            document.getElementById('admin-libro').value = FOSFO_PRICES.libro;
+            document.getElementById('admin-nombre').value = FOSFO_PRICES.nombre;
+            document.getElementById('admin-materia').value = FOSFO_PRICES.materia;
+            document.getElementById('admin-holo').value = FOSFO_PRICES.holo;
+            document.getElementById('admin-lam-b').value = FOSFO_PRICES.lamBrillante;
+            document.getElementById('admin-lam-m').value = FOSFO_PRICES.lamMate;
+
+            modal.classList.remove('hidden');
+            setTimeout(() => { modal.classList.remove('opacity-0'); content.classList.remove('scale-95'); }, 10);
+        }
+
+        function closeAdminModal() {
+            const modal = document.getElementById('admin-modal');
+            const content = document.getElementById('admin-modal-content');
+            modal.classList.add('opacity-0');
+            content.classList.add('scale-95');
+            setTimeout(() => { modal.classList.add('hidden'); }, 300);
+        }
+
+        function saveAdminPrices() {
+            FOSFO_PRICES.pkgChico = parseInt(document.getElementById('admin-pkg-chico').value) || 260;
+            FOSFO_PRICES.pkgGrande = parseInt(document.getElementById('admin-pkg-grande').value) || 340;
+            FOSFO_PRICES.lapiz = parseInt(document.getElementById('admin-lapiz').value) || 2;
+            FOSFO_PRICES.circulo = parseInt(document.getElementById('admin-circulo').value) || 4;
+            FOSFO_PRICES.cuaderno = parseInt(document.getElementById('admin-cuaderno').value) || 3;
+            FOSFO_PRICES.libro = parseInt(document.getElementById('admin-libro').value) || 5;
+            FOSFO_PRICES.nombre = parseInt(document.getElementById('admin-nombre').value) || 6;
+            FOSFO_PRICES.materia = parseInt(document.getElementById('admin-materia').value) || 12;
+            FOSFO_PRICES.holo = parseInt(document.getElementById('admin-holo').value) || 75;
+            FOSFO_PRICES.lamBrillante = parseInt(document.getElementById('admin-lam-b').value) || 20;
+            FOSFO_PRICES.lamMate = parseInt(document.getElementById('admin-lam-m').value) || 30;
+
+            localStorage.setItem('fosfo_prices', JSON.stringify(FOSFO_PRICES));
+            updatePricesUI();
+            if (typeof showToast === 'function') showToast('Precios actualizados y guardados', 'success');
+            closeAdminModal();
+        }
+
+        function updatePricesUI() {
+            const lblChico = document.getElementById('price-label-chico');
+            if (lblChico) lblChico.innerText = `72 pzas x $${FOSFO_PRICES.pkgChico}`;
+            
+            const lblGrande = document.getElementById('price-label-grande');
+            if (lblGrande) lblGrande.innerText = `120 pzas x $${FOSFO_PRICES.pkgGrande}`;
+
+            const lblLapiz = document.getElementById('price-label-lapiz');
+            if (lblLapiz) lblLapiz.innerText = `$${FOSFO_PRICES.lapiz.toFixed(2)} c/u`;
+
+            const lblCirculo = document.getElementById('price-label-circulo');
+            if (lblCirculo) lblCirculo.innerText = `$${FOSFO_PRICES.circulo.toFixed(2)} c/u`;
+
+            const lblCuaderno = document.getElementById('price-label-cuaderno');
+            if (lblCuaderno) lblCuaderno.innerText = `$${FOSFO_PRICES.cuaderno.toFixed(2)} c/u`;
+
+            const lblLibro = document.getElementById('price-label-libro');
+            if (lblLibro) lblLibro.innerText = `$${FOSFO_PRICES.libro.toFixed(2)} c/u`;
+
+            const lblNombre = document.getElementById('price-label-nombre');
+            if (lblNombre) lblNombre.innerText = `$${FOSFO_PRICES.nombre.toFixed(2)} c/u`;
+
+            const lblMateria = document.getElementById('price-label-materia');
+            if (lblMateria) lblMateria.innerText = `$${FOSFO_PRICES.materia.toFixed(2)} c/u`;
+
+            const lblHolo = document.getElementById('price-label-holo');
+            if (lblHolo) lblHolo.innerText = `+$${FOSFO_PRICES.holo.toFixed(2)} MXN`;
+
+            const lblLamB = document.getElementById('price-label-lamB');
+            if (lblLamB) lblLamB.innerText = `+$${FOSFO_PRICES.lamBrillante.toFixed(2)} MXN`;
+
+            const lblLamM = document.getElementById('price-label-lamM');
+            if (lblLamM) lblLamM.innerText = `+$${FOSFO_PRICES.lamMate.toFixed(2)} MXN`;
+
+            calculateFosfoPrice();
+            updateLiveSummary();
         }
     </script>
 </body>
