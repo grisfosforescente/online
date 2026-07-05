@@ -14,7 +14,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Plus+Jakarta+Sans:ital,wght@0,600;0,800;0,900;1,700&family=Share+Tech+Mono&family=Space+Grotesk:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=Space+Mono:wght@400;700&family=Space+Grotesk:wght@400;500;700;900&display=swap" rel="stylesheet">
     
     <!-- FontAwesome & Lucide Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -38,7 +38,7 @@
                     },
                     fontFamily: {
                         sans: ['Space Grotesk', 'sans-serif'],
-                        mono: ['Share Tech Mono', 'monospace'],
+                        mono: ['Space Mono', 'monospace'],
                         'sans-bold': ['Plus Jakarta Sans', 'sans-serif'],
                         comic: ['Bangers', 'cursive']
                     }
@@ -69,6 +69,14 @@
     </script>
 
     <style>
+        /* --- OPTIMIZACIÓN DE RENDERIZADO MÓVIL --- */
+        html, body {
+            -webkit-text-size-adjust: 100%;
+            text-size-adjust: 100%;
+            text-rendering: optimizeLegibility;
+        }
+        .font-comic { font-weight: 400 !important; } /* Evita la falsa negrita en Chrome */
+
         /* --- ESTILOS GENERALES --- */
         .shadow-brutal { box-shadow: 6px 6px 0px 0px #000000; }
         .shadow-brutal-sm { box-shadow: 3px 3px 0px 0px #000000; }
@@ -155,6 +163,11 @@
     </style>
 </head>
 <body class="bg-baseWhite text-baseBlack font-sans min-h-screen overflow-x-hidden antialiased selection:bg-brandGreen selection:text-baseBlack">
+
+    <!-- AVISO LEGAL GLOBAL -->
+    <div class="bg-brandPink text-baseWhite font-black text-[10px] md:text-xs text-center py-2 px-4 uppercase tracking-widest relative z-[100] border-b-[3px] border-baseBlack shadow-md">
+        ⚠️ Verifica tu ticket y monto final con un vendedor antes de realizar tu pago ⚠️
+    </div>
 
     <!-- BANNER SUPERIOR PROMOCIONAL (CANVA EMBED) -->
     <div class="w-full bg-baseBlack border-b-4 border-baseBlack relative overflow-hidden">
@@ -936,7 +949,8 @@
 
                         <div class="py-3 text-xs font-black text-black font-sans-bold">
                             <div class="bg-black text-fosfoYellow p-2 border-[3px] border-black text-center font-black text-[9px] uppercase tracking-wider shadow-comic-sm rounded-xl leading-tight mb-3">
-                                🚨 2 DÍAS HÁBILES DESPUÉS DEL PAGO.
+                                🚨 2 DÍAS HÁBILES DESPUÉS DEL PAGO.<br>
+                                <span class="text-brandPink">⚠️ VERIFICA TU TICKET Y MONTO CON UN VENDEDOR ANTES DE PAGAR.</span>
                             </div>
 
                             <div class="bg-slate-50 border-[3px] border-black rounded-xl p-3 text-[10px] space-y-2 shadow-comic-sm mb-3">
@@ -1205,6 +1219,24 @@
         </div>
     </div>
 
+    <!-- MODAL TAMAÑO ESPECIAL (Menor a 2cm o Mayor a 45cm) -->
+    <div id="size-warning-modal" class="fixed inset-0 bg-baseBlack/80 backdrop-blur-sm z-[100] flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-baseWhite border-[4px] border-baseBlack max-w-sm w-full p-6 sm:p-8 relative flex flex-col items-center text-center shadow-brutal rounded-3xl scale-95 transition-transform duration-300">
+            <button onclick="closeSizeWarningModal()" class="absolute -top-4 -right-4 bg-brandPink text-baseWhite border-2 border-baseBlack w-10 h-10 rounded-full flex items-center justify-center shadow-brutal-sm hover:scale-110 transition-transform z-10">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            <div class="w-16 h-16 bg-brandGreen rounded-full border-[3px] border-baseBlack flex items-center justify-center mb-4 shadow-brutal-sm text-3xl">
+                📏
+            </div>
+            <h3 class="font-comic text-3xl uppercase text-baseBlack mb-2 leading-none">Tamaño Especial</h3>
+            <p class="text-xs font-bold text-textMuted mb-6 uppercase tracking-tight">Para fabricar stickers menores a 2 cm o mayores a 45 cm, por favor contacta directo a un vendedor para revisar detalles técnicos y de formato.</p>
+            <a href="https://wa.me/message/LOS67PCNOUMBM1" target="_blank" onclick="closeSizeWarningModal()" class="w-full bg-[#25D366] text-baseBlack font-black uppercase py-4 rounded-xl border-[3px] border-baseBlack shadow-brutal shadow-brutal-hover flex items-center justify-center gap-2 text-lg transition-all">
+                <i class="fa-brands fa-whatsapp text-2xl"></i> Hablar con Ventas
+            </a>
+            <button onclick="closeSizeWarningModal()" class="mt-4 text-[10px] font-black text-textMuted uppercase hover:text-baseBlack underline tracking-widest">Entendido, regresaré</button>
+        </div>
+    </div>
+
     <!-- PANEL DEL CARRITO -->
     <div id="cart-drawer" class="fixed inset-y-0 right-0 w-full max-w-md bg-gray-50 border-l-[3px] border-baseBlack z-50 shadow-2xl flex flex-col translate-x-full transition-transform duration-300 ease-in-out">
         <div class="p-6 border-b-[3px] border-baseBlack flex justify-between items-center bg-baseWhite">
@@ -1230,6 +1262,9 @@
             <div class="flex justify-between items-center text-sm border-b-2 border-gray-100 pb-4">
                 <span class="text-textMuted font-bold">Costo de Sustratos:</span>
                 <span id="cart-total-price" class="text-brandPink font-black text-xl">$0.00 MXN</span>
+            </div>
+            <div class="bg-yellow-100 border-2 border-yellow-400 p-2 rounded-lg text-[9px] font-black text-yellow-800 uppercase text-center mt-3 shadow-sm">
+                ⚠️ IMPORTANTE: Verifica tu ticket y monto final con un vendedor antes de pagar.
             </div>
             <div class="grid grid-cols-2 gap-3 pt-2">
                 <button onclick="vaciarCarrito()" class="py-3 text-xs font-bold rounded-xl border-2 border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-colors">
@@ -1535,6 +1570,17 @@
         }
 
         function setSize(cm) {
+            let calcHeight = cm;
+            if (APP_STATE.imageLoaded && APP_STATE.shape === 'personalized') {
+                const aspect = APP_STATE.image.height / APP_STATE.image.width;
+                calcHeight = cm * aspect;
+            }
+            
+            if (cm < 2 || calcHeight < 2 || cm > 45 || calcHeight > 45) {
+                showSizeWarningModal();
+                return;
+            }
+
             APP_STATE.selectedSize = cm;
             APP_STATE.customMode = 'auto';
             document.getElementById('custom-auto-input-container').classList.add('hidden');
@@ -1569,6 +1615,17 @@
             const input = document.getElementById('custom-auto-input');
             const val = parseFloat(input.value);
             if (val && !isNaN(val) && val > 0 && val <= 100) {
+                let calcHeight = val;
+                if (APP_STATE.imageLoaded && APP_STATE.shape === 'personalized') {
+                    const aspect = APP_STATE.image.height / APP_STATE.image.width;
+                    calcHeight = val * aspect;
+                }
+                
+                if (val < 2 || calcHeight < 2 || val > 45 || calcHeight > 45) {
+                    showSizeWarningModal();
+                    return;
+                }
+
                 APP_STATE.selectedSize = val;
                 APP_STATE.customMode = 'auto';
                 document.getElementById('custom-auto-text').innerText = `✏️ ${val} cm`;
@@ -1589,6 +1646,11 @@
             const wVal = parseFloat(wInput.value);
             const hVal = parseFloat(hInput.value);
             if (wVal && hVal && !isNaN(wVal) && !isNaN(hVal) && wVal > 0 && hVal > 0 && wVal <= 100 && hVal <= 100) {
+                if (wVal < 2 || hVal < 2 || wVal > 45 || hVal > 45) {
+                    showSizeWarningModal();
+                    return;
+                }
+
                 APP_STATE.selectedSize = wVal;
                 APP_STATE.selectedHeight = hVal;
                 APP_STATE.customMode = 'free';
@@ -1755,19 +1817,26 @@
             let costoPorPlanilla = 140; 
             if (material === 'transparente') costoPorPlanilla = 160;
             if (material === 'holo') costoPorPlanilla = 240;
+            if (material === 'custom') costoPorPlanilla = APP_STATE.customMaterialPrice;
             
-            if (APP_STATE.hasSecretCode) {
-                costoPorPlanilla = APP_STATE.customMaterialPrice;
+            // NUEVO: Regla de Alta Densidad (+$30 por planilla si > 110 pz)
+            let cargoDensidad = 0;
+            if (pzPorPlanilla > 110) {
+                cargoDensidad = 30;
+                costoPorPlanilla += cargoDensidad;
             }
 
             if (laminado) costoPorPlanilla += 70;
             if (corteFisico) costoPorPlanilla += 60;
+            
             const unitPrice = costoPorPlanilla / pzPorPlanilla;
             const totalPrice = unitPrice * qty;
+            
             return {
                 total: totalPrice.toFixed(2),
                 unitPrice: unitPrice.toFixed(2),
-                pzPorPlanilla: pzPorPlanilla
+                pzPorPlanilla: pzPorPlanilla,
+                altaDensidad: cargoDensidad > 0 // Bandera para mostrar el aviso
             };
         }
 
@@ -1775,10 +1844,17 @@
             if (!APP_STATE.imageLoaded) return;
             const heightCm = getHeightCm();
             const prices = calcularPrecio(APP_STATE.selectedSize, heightCm, APP_STATE.quantity, APP_STATE.material, APP_STATE.laminado, APP_STATE.corteFisico);
+            
+            let avisoDensidad = '';
+            if (prices.altaDensidad) {
+                avisoDensidad = `<div class="mt-2 text-[10px] text-brandPink font-bold uppercase"><i class="fa-solid fa-circle-info"></i> Aplica recargo de $30/planilla por alta densidad (>110pz).</div>`;
+            }
+
             document.getElementById('rendimiento-info').innerHTML = 
                 `Caben <span class="font-bold text-baseBlack">${prices.pzPorPlanilla} pz</span> por planilla.<br>
                  Costo unitario por pieza: <strong class="text-baseBlack">$${prices.unitPrice} MXN</strong><br>
-                 Total por ${APP_STATE.quantity} pz: <strong class="text-baseBlack">$${prices.total} MXN</strong>`;
+                 Total por ${APP_STATE.quantity} pz: <strong class="text-baseBlack">$${prices.total} MXN</strong>
+                 ${avisoDensidad}`;
         }
 
         function drawRoundedRect(ctx, x, y, width, height, radius) {
@@ -2178,6 +2254,11 @@
             const totalWidth = ctx.measureText(totalText).width;
             ctx.fillText(totalText, width - 40 - totalWidth, currentY + 70);
 
+            ctx.fillStyle = "#ff007f";
+            ctx.font = "bold 20px monospace";
+            ctx.textAlign = "center";
+            ctx.fillText("⚠️ VERIFICA TU TICKET Y MONTO CON UN VENDEDOR ANTES DE PAGAR", width/2, height - 180);
+
             if (bottomImg.complete && bottomImg.naturalHeight !== 0) {
                 ctx.drawImage(bottomImg, 10, height - 160, width - 20, 150);
             } else {
@@ -2253,6 +2334,21 @@
             if (!modal || !content) return;
             modal.classList.add('opacity-0');
             content.classList.add('scale-95');
+            setTimeout(() => { modal.classList.add('hidden'); }, 300);
+        }
+
+        function showSizeWarningModal() {
+            const modal = document.getElementById('size-warning-modal');
+            if (!modal) return;
+            modal.classList.remove('hidden');
+            setTimeout(() => { modal.classList.remove('opacity-0'); modal.firstElementChild.classList.remove('scale-95'); }, 10);
+        }
+
+        function closeSizeWarningModal() {
+            const modal = document.getElementById('size-warning-modal');
+            if (!modal) return;
+            modal.classList.add('opacity-0');
+            modal.firstElementChild.classList.add('scale-95');
             setTimeout(() => { modal.classList.add('hidden'); }, 300);
         }
 
@@ -2780,6 +2876,11 @@
             // FECHA Y WEB
             const dateStr = new Date().toLocaleString('es-ES', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }).toUpperCase();
             ctx.textAlign = "center";
+            
+            ctx.fillStyle = "#FF2E93";
+            ctx.font = "900 18px 'Plus Jakarta Sans', sans-serif";
+            ctx.fillText("⚠️ VERIFICA TU TICKET Y MONTO CON UN VENDEDOR ANTES DE PAGAR", width / 2, currentY - 50);
+
             ctx.fillStyle = "#94a3b8";
             ctx.font = "bold 16px 'Plus Jakarta Sans', sans-serif";
             ctx.fillText(`FECHA: ${dateStr}`, width / 2, currentY - 20);
