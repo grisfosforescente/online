@@ -1817,26 +1817,30 @@
             let costoPorPlanilla = 140; 
             if (material === 'transparente') costoPorPlanilla = 160;
             if (material === 'holo') costoPorPlanilla = 240;
-            if (material === 'custom') costoPorPlanilla = APP_STATE.customMaterialPrice;
             
-            // NUEVO: Regla de Alta Densidad (+$30 por planilla si > 110 pz)
+            if (APP_STATE.hasSecretCode) {
+                costoPorPlanilla = APP_STATE.customMaterialPrice;
+            }
+
+            // REGLA DE ALTA DENSIDAD
             let cargoDensidad = 0;
             if (pzPorPlanilla > 110) {
-                cargoDensidad = 30;
+                // Cobra $30 por cada bloque de 50pz que haya en la planilla
+                let bloquesDe50 = Math.floor(pzPorPlanilla / 50);
+                cargoDensidad = bloquesDe50 * 30;
                 costoPorPlanilla += cargoDensidad;
             }
 
             if (laminado) costoPorPlanilla += 70;
             if (corteFisico) costoPorPlanilla += 60;
-            
             const unitPrice = costoPorPlanilla / pzPorPlanilla;
             const totalPrice = unitPrice * qty;
-            
             return {
                 total: totalPrice.toFixed(2),
                 unitPrice: unitPrice.toFixed(2),
                 pzPorPlanilla: pzPorPlanilla,
-                altaDensidad: cargoDensidad > 0 // Bandera para mostrar el aviso
+                cargoDensidad: cargoDensidad,
+                altaDensidad: pzPorPlanilla > 110
             };
         }
 
@@ -1847,7 +1851,7 @@
             
             let avisoDensidad = '';
             if (prices.altaDensidad) {
-                avisoDensidad = `<div class="mt-2 text-[10px] text-brandPink font-bold uppercase"><i class="fa-solid fa-circle-info"></i> Aplica recargo de $30/planilla por alta densidad (>110pz).</div>`;
+                avisoDensidad = `<div class="mt-2 text-[10px] text-brandPink font-bold uppercase"><i class="fa-solid fa-circle-info"></i> Aplica recargo de $${prices.cargoDensidad} MXN/planilla por alta densidad (+$30 por cada 50pz).</div>`;
             }
 
             document.getElementById('rendimiento-info').innerHTML = 
