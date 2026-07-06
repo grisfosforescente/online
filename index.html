@@ -190,8 +190,8 @@
                     <a href="#" onclick="switchView('sticker'); return false;" class="hover:text-brandGreen transition-colors">INICIO</a>
                     <button onclick="openPromosModal()" class="hover:text-brandPink transition-colors uppercase">PROMOCIONES</button>
                     <a href="#" onclick="switchView('escolares'); return false;" class="hover:text-brandGreen transition-colors uppercase text-center">ESCOLARES 2026</a>
-                    <!-- BOTÓN CREADOR PLANILLAS -->
-                    <button onclick="openPlanillaModal()" class="hover:text-brandPink transition-colors uppercase flex items-center gap-1 text-brandGreen font-black"><span class="text-xl">🎨</span> <span class="hidden md:inline">CREA TU PLANILLA</span></button>
+                    <!-- BOTÓN CREADOR PLANILLAS (INTEGRADO COMO PESTAÑA) -->
+                    <button onclick="switchView('planilla'); return false;" class="hover:text-brandPink transition-colors uppercase flex items-center gap-1 text-brandGreen font-black"><span class="text-xl">🎨</span> <span>CREA TU PLANILLA</span></button>
                     <a href="https://wa.me/message/LOS67PCNOUMBM1" target="_blank" class="hover:text-brandPink transition-colors flex items-center gap-1.5">
                         <i class="fa-brands fa-whatsapp text-lg"></i>
                         <span class="hidden md:inline">COTIZA CON UN AGENTE</span>
@@ -477,7 +477,7 @@
                         </div>
                     </div>
 
-                    <!-- 07. TIRAJE / VOLUMEN - AJUSTADO PARA PERMITIR SELECCIÓN DESDE 1 PZ -->
+                    <!-- 07. TIRAJE / VOLUMEN - AJUSTADO DESDE 1 PZ -->
                     <div class="space-y-3 pt-4">
                         <div class="flex items-center gap-2 w-full">
                             <span class="bg-brandGreen text-brandPink font-mono font-black text-[10px] px-2 py-0.5 border border-baseBlack shadow-[1px_1px_0_0_#000]">07</span>
@@ -559,7 +559,7 @@
     </div> <!-- FIN VISTA STICKER STUDIO -->
 
     <!-- ========================================== -->
-    <!-- VISTA 2: FOSFO KIDS (ESCOLARES 2026)       -->
+    <!-- VISTA 2: ESCOLARES (FOSFO KIDS 2026)       -->
     <!-- ========================================== -->
     <div id="view-escolares" class="hidden comic-dots-bg font-sans-bold min-h-screen text-black pb-12 w-full">
         
@@ -688,79 +688,83 @@
                     </div>
                 </div>
 
-                <!-- STEP 2: AGREGAR EXTRAS (CON NUEVOS PRODUCTOS INCLUIDOS) -->
+                <!-- STEP 2: AGREGAR EXTRAS (CON SUMA DE 1 EN 1) -->
                 <div id="step-content-2" class="step-pane hidden space-y-5">
                     <div class="mb-4">
                         <h2 class="font-comic text-3xl md:text-4xl text-black uppercase tracking-wide">➕ Paso 2: ¿Deseas agregar más?</h2>
-                        <p class="text-xs font-bold text-gray-500 uppercase mt-1">Suma hojas adicionales de etiquetas sueltas a tu orden.</p>
+                        <p class="text-xs font-bold text-gray-500 uppercase mt-1">Suma hojas adicionales de etiquetas sueltas a tu orden (Sumando de 1 en 1).</p>
                     </div>
 
                     <div class="grid grid-cols-2 gap-4 mt-4">
+                        <!-- Lápices -->
                         <div class="bg-white border-[3px] border-black p-4 flex flex-col items-center justify-between text-center rounded-2xl shadow-comic-sm">
                             <span class="text-[9px] font-black bg-fosfoPink text-white px-2 py-1 border-2 border-black mb-2 rounded-md shadow-sm">5 x 1 cm</span>
                             <span class="text-sm font-black text-black uppercase mt-1">Lápices</span>
                             <span class="text-[11px] font-black text-fosfoPink bg-gray-100 px-2 py-0.5 rounded mt-1">$2.00 c/u</span>
                             <div class="flex items-center mt-3 gap-2 w-full justify-center">
-                                <button type="button" onclick="fosfoAdjustQty('lapiz', -5)" class="bg-black text-white w-8 h-8 flex items-center justify-center font-black rounded-lg text-xl active:scale-90 shadow-sm">-</button>
+                                <button type="button" onclick="fosfoAdjustQty('lapiz', -1)" class="bg-black text-white w-8 h-8 flex items-center justify-center font-black rounded-lg text-xl active:scale-90 shadow-sm">-</button>
                                 <input type="number" id="qty-lapiz" value="0" min="0" onchange="calculateFosfoPrice()" class="w-12 text-center border-2 border-black rounded-lg text-sm font-black py-1">
-                                <button type="button" onclick="fosfoAdjustQty('lapiz', 5)" class="bg-black text-white w-8 h-8 flex items-center justify-center font-black rounded-lg text-xl active:scale-90 shadow-sm">+</button>
+                                <button type="button" onclick="fosfoAdjustQty('lapiz', 1)" class="bg-black text-white w-8 h-8 flex items-center justify-center font-black rounded-lg text-xl active:scale-90 shadow-sm">+</button>
                             </div>
                         </div>
 
+                        <!-- Circulares -->
                         <div class="bg-white border-[3px] border-black p-4 flex flex-col items-center justify-between text-center rounded-2xl shadow-comic-sm">
                             <span class="text-[9px] font-black bg-fosfoCyan text-black px-2 py-1 border-2 border-black mb-2 rounded-md shadow-sm">Ø 5 cm</span>
                             <span class="text-sm font-black text-black uppercase mt-1">Circulares</span>
                             <span class="text-[11px] font-black text-fosfoPink bg-gray-100 px-2 py-0.5 rounded mt-1">$4.00 c/u</span>
                             <div class="flex items-center mt-3 gap-2 w-full justify-center">
-                                <button type="button" onclick="fosfoAdjustQty('circulo', -5)" class="bg-black text-white w-8 h-8 flex items-center justify-center font-black rounded-lg text-xl active:scale-90 shadow-sm">-</button>
+                                <button type="button" onclick="fosfoAdjustQty('circulo', -1)" class="bg-black text-white w-8 h-8 flex items-center justify-center font-black rounded-lg text-xl active:scale-90 shadow-sm">-</button>
                                 <input type="number" id="qty-circulo" value="0" min="0" onchange="calculateFosfoPrice()" class="w-12 text-center border-2 border-black rounded-lg text-sm font-black py-1">
-                                <button type="button" onclick="fosfoAdjustQty('circulo', 5)" class="bg-black text-white w-8 h-8 flex items-center justify-center font-black rounded-lg text-xl active:scale-90 shadow-sm">+</button>
+                                <button type="button" onclick="fosfoAdjustQty('circulo', 1)" class="bg-black text-white w-8 h-8 flex items-center justify-center font-black rounded-lg text-xl active:scale-90 shadow-sm">+</button>
                             </div>
                         </div>
 
+                        <!-- Cuadernos -->
                         <div class="bg-white border-[3px] border-black p-4 flex flex-col items-center justify-between text-center rounded-2xl shadow-comic-sm">
                             <span class="text-[9px] font-black bg-fosfoYellow text-black px-2 py-1 border-2 border-black mb-2 rounded-md shadow-sm">4 x 3 cm</span>
                             <span class="text-sm font-black text-black uppercase mt-1">Cuadernos</span>
                             <span class="text-[11px] font-black text-fosfoPink bg-gray-100 px-2 py-0.5 rounded mt-1">$3.00 c/u</span>
                             <div class="flex items-center mt-3 gap-2 w-full justify-center">
-                                <button type="button" onclick="fosfoAdjustQty('cuaderno', -5)" class="bg-black text-white w-8 h-8 flex items-center justify-center font-black rounded-lg text-xl active:scale-90 shadow-sm">-</button>
+                                <button type="button" onclick="fosfoAdjustQty('cuaderno', -1)" class="bg-black text-white w-8 h-8 flex items-center justify-center font-black rounded-lg text-xl active:scale-90 shadow-sm">-</button>
                                 <input type="number" id="qty-cuaderno" value="0" min="0" onchange="calculateFosfoPrice()" class="w-12 text-center border-2 border-black rounded-lg text-sm font-black py-1">
-                                <button type="button" onclick="fosfoAdjustQty('cuaderno', 5)" class="bg-black text-white w-8 h-8 flex items-center justify-center font-black rounded-lg text-xl active:scale-90 shadow-sm">+</button>
+                                <button type="button" onclick="fosfoAdjustQty('cuaderno', 1)" class="bg-black text-white w-8 h-8 flex items-center justify-center font-black rounded-lg text-xl active:scale-90 shadow-sm">+</button>
                             </div>
                         </div>
 
+                        <!-- Libros -->
                         <div class="bg-white border-[3px] border-black p-4 flex flex-col items-center justify-between text-center rounded-2xl shadow-comic-sm">
                             <span class="text-[9px] font-black bg-[#A55EEA] text-white px-2 py-1 border-2 border-black mb-2 rounded-md shadow-sm">7 x 5 cm</span>
                             <span class="text-sm font-black text-black uppercase mt-1">Libros</span>
                             <span class="text-[11px] font-black text-fosfoPink bg-gray-100 px-2 py-0.5 rounded mt-1">$5.00 c/u</span>
                             <div class="flex items-center mt-3 gap-2 w-full justify-center">
-                                <button type="button" onclick="fosfoAdjustQty('libro', -5)" class="bg-black text-white w-8 h-8 flex items-center justify-center font-black rounded-lg text-xl active:scale-90 shadow-sm">-</button>
+                                <button type="button" onclick="fosfoAdjustQty('libro', -1)" class="bg-black text-white w-8 h-8 flex items-center justify-center font-black rounded-lg text-xl active:scale-90 shadow-sm">-</button>
                                 <input type="number" id="qty-libro" value="0" min="0" onchange="calculateFosfoPrice()" class="w-12 text-center border-2 border-black rounded-lg text-sm font-black py-1">
-                                <button type="button" onclick="fosfoAdjustQty('libro', 5)" class="bg-black text-white w-8 h-8 flex items-center justify-center font-black rounded-lg text-xl active:scale-90 shadow-sm">+</button>
+                                <button type="button" onclick="fosfoAdjustQty('libro', 1)" class="bg-black text-white w-8 h-8 flex items-center justify-center font-black rounded-lg text-xl active:scale-90 shadow-sm">+</button>
                             </div>
                         </div>
 
-                        <!-- 5. NOMBRES PERS. (NUEVO) -->
+                        <!-- Nombres Personales -->
                         <div class="bg-white border-[3px] border-black p-4 flex flex-col items-center justify-between text-center rounded-2xl shadow-comic-sm">
                             <span class="text-[9px] font-black bg-[#22C55E] text-white px-2 py-1 border-2 border-black mb-2 rounded-md shadow-sm">5 x 8 cm</span>
                             <span class="text-sm font-black text-black uppercase mt-1">Nombres Pers.</span>
                             <span class="text-[11px] font-black text-fosfoPink bg-gray-100 px-2 py-0.5 rounded mt-1">$6.00 c/u</span>
                             <div class="flex items-center mt-3 gap-2 w-full justify-center">
-                                <button type="button" onclick="fosfoAdjustQty('nombrepers', -5)" class="bg-black text-white w-8 h-8 flex items-center justify-center font-black rounded-lg text-xl active:scale-90 shadow-sm">-</button>
+                                <button type="button" onclick="fosfoAdjustQty('nombrepers', -1)" class="bg-black text-white w-8 h-8 flex items-center justify-center font-black rounded-lg text-xl active:scale-90 shadow-sm">-</button>
                                 <input type="number" id="qty-nombrepers" value="0" min="0" onchange="calculateFosfoPrice()" class="w-12 text-center border-2 border-black rounded-lg text-sm font-black py-1">
-                                <button type="button" onclick="fosfoAdjustQty('nombrepers', 5)" class="bg-black text-white w-8 h-8 flex items-center justify-center font-black rounded-lg text-xl active:scale-90 shadow-sm">+</button>
+                                <button type="button" onclick="fosfoAdjustQty('nombrepers', 1)" class="bg-black text-white w-8 h-8 flex items-center justify-center font-black rounded-lg text-xl active:scale-90 shadow-sm">+</button>
                             </div>
                         </div>
 
-                        <!-- 6. ET. MATERIAS (NUEVO) -->
+                        <!-- Etiquetas Materias -->
                         <div class="bg-white border-[3px] border-black p-4 flex flex-col items-center justify-between text-center rounded-2xl shadow-comic-sm">
                             <span class="text-[9px] font-black bg-[#EAB308] text-black px-2 py-1 border-2 border-black mb-2 rounded-md shadow-sm">8 a 10 cm</span>
                             <span class="text-sm font-black text-black uppercase mt-1">Et. Materias</span>
                             <span class="text-[11px] font-black text-fosfoPink bg-gray-100 px-2 py-0.5 rounded mt-1">$12.00 c/u</span>
                             <div class="flex items-center mt-3 gap-2 w-full justify-center">
-                                <button type="button" onclick="fosfoAdjustQty('etmaterias', -5)" class="bg-black text-white w-8 h-8 flex items-center justify-center font-black rounded-lg text-xl active:scale-90 shadow-sm">-</button>
+                                <button type="button" onclick="fosfoAdjustQty('etmaterias', -1)" class="bg-black text-white w-8 h-8 flex items-center justify-center font-black rounded-lg text-xl active:scale-90 shadow-sm">-</button>
                                 <input type="number" id="qty-etmaterias" value="0" min="0" onchange="calculateFosfoPrice()" class="w-12 text-center border-2 border-black rounded-lg text-sm font-black py-1">
-                                <button type="button" onclick="fosfoAdjustQty('etmaterias', 5)" class="bg-black text-white w-8 h-8 flex items-center justify-center font-black rounded-lg text-xl active:scale-90 shadow-sm">+</button>
+                                <button type="button" onclick="fosfoAdjustQty('etmaterias', 1)" class="bg-black text-white w-8 h-8 flex items-center justify-center font-black rounded-lg text-xl active:scale-90 shadow-sm">+</button>
                             </div>
                         </div>
                     </div>
@@ -780,7 +784,7 @@
                     </div>
                 </div>
 
-                <!-- STEP 3: ESPECIFICACIONES (6 CASILLAS INTACTAS) -->
+                <!-- STEP 3 -->
                 <div id="step-content-3" class="step-pane hidden space-y-6">
                     <div class="mb-4">
                         <h2 class="font-comic text-3xl md:text-4xl text-black uppercase tracking-wide">✏️ Paso 3: Especificaciones</h2>
@@ -965,7 +969,7 @@
                         </div>
 
                         <div class="py-3 text-xs font-black text-black font-sans-bold">
-                            <!-- 3. AVISO LEGAL EN TICKET FOSFOKIDS -->
+                            <!-- AVISO LEGAL EN TICKET FOSFOKIDS -->
                             <div class="bg-black text-fosfoYellow p-2 border-[3px] border-black text-center font-black text-[9px] uppercase tracking-wider shadow-comic-sm rounded-xl leading-tight mb-3">
                                 🚨 VERIFICA TU TICKET Y MONTO CON UN VENDEDOR ANTES DE PAGAR.
                             </div>
@@ -1040,45 +1044,45 @@
     </div> <!-- FIN VISTA FOSFO KIDS -->
 
     <!-- ========================================== -->
-    <!-- MODALES GLOBALES                           -->
+    <!-- VISTA 3: CREADOR DE PLANILLAS (INTEGRADO)  -->
     <!-- ========================================== -->
-
-    <!-- MODAL DEL CREADOR DE PLANILLAS (FORMATO 9x13 CON FONDO DE CONTRASTE GRIS) -->
-    <div id="planilla-modal" class="fixed inset-0 bg-baseBlack/95 backdrop-blur-md z-[70] flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
-        <div class="bg-baseWhite border-[4px] border-brandGreen w-full max-w-4xl rounded-3xl p-6 relative flex flex-col shadow-brutal scale-95 transition-transform duration-300 max-h-[90vh] overflow-y-auto">
-            <button onclick="closePlanillaModal()" class="absolute -top-4 -right-4 bg-brandPink text-baseWhite border-2 border-baseBlack w-10 h-10 rounded-full flex items-center justify-center shadow-brutal-sm hover:scale-110 transition-transform z-10">
-                <i class="fa-solid fa-xmark text-xl"></i>
+    <div id="view-planilla" class="hidden bg-gray-100 min-h-screen pb-12 w-full pt-8 font-sans">
+        <main class="max-w-7xl mx-auto px-4">
+            <!-- Botón Volver al inicio -->
+            <button onclick="switchView('sticker')" class="mb-6 bg-baseWhite text-baseBlack border-[3px] border-baseBlack px-6 py-2.5 font-bold text-xs uppercase hover:bg-brandPink hover:text-baseWhite transition-all rounded-xl shadow-brutal-sm flex items-center gap-2">
+                <i class="fa-solid fa-arrow-left"></i> Volver al Inicio
             </button>
-            <div class="text-center mb-3">
-                <h3 class="font-comic text-3xl uppercase text-baseBlack mb-0.5">Creador de Planillas 🎨</h3>
-                <span class="inline-block bg-baseBlack text-brandGreen font-mono font-bold text-[10px] px-3 py-1 uppercase tracking-widest shadow-sm rounded">FORMATO EXCLUSIVO: 9 x 13 CM ($15 c/u)</span>
+
+            <div class="text-center mb-6">
+                <h2 class="font-comic text-4xl md:text-5xl uppercase text-baseBlack mb-1">Creador de Planillas 🎨</h2>
+                <span class="inline-block bg-baseBlack text-brandGreen font-mono font-bold text-[10px] px-4 py-1.5 uppercase tracking-widest shadow-brutal-sm rounded-lg">FORMATO EXCLUSIVO: 9 x 13 CM ($15 c/u)</span>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                 <!-- PANEL DE CARGA Y HERRAMIENTAS -->
-                <div class="lg:col-span-5 flex flex-col gap-4 bg-gray-50 border-[3px] border-baseBlack p-4 rounded-2xl relative">
+                <div class="lg:col-span-5 flex flex-col gap-5 bg-baseWhite border-[3px] border-baseBlack p-5 rounded-2xl relative shadow-brutal">
                     <div>
-                        <label class="text-[11px] font-black uppercase text-baseBlack block mb-1">Añadir Diseños (Máx 8)</label>
+                        <label class="text-xs font-black uppercase text-baseBlack block mb-2">Añadir Diseños (Máx 8)</label>
                         
                         <!-- LEYENDA DISEÑOS CON SILUETAS -->
-                        <div class="w-full bg-brandPink text-white font-bold text-[11px] p-2.5 rounded-xl border border-black shadow-comic-sm mb-3 uppercase tracking-wider leading-tight text-center">
-                            ⚠️ PARA DISEÑOS CON SILUETAS, SUBE TU IMAGEN SIN FONDO EN PNG
+                        <div class="w-full bg-brandPink text-white font-bold text-[10px] md:text-xs p-3 rounded-xl border-2 border-black shadow-brutal-sm mb-4 uppercase tracking-wider leading-tight text-center">
+                            ⚠️ PARA DISEÑOS CON SILUETAS, SUBE TU IMAGEN SIN FONDO EN PNG (STOKE DE 2MM SE APLICARÁ AUTOMÁTICO)
                         </div>
 
-                        <div class="border-2 border-dashed border-gray-300 hover:border-baseBlack bg-gray-50 hover:bg-gray-100 p-4 text-center cursor-pointer transition-all group rounded-xl">
+                        <div class="border-2 border-dashed border-gray-300 hover:border-baseBlack bg-gray-50 hover:bg-gray-100 p-5 text-center cursor-pointer transition-all group rounded-xl">
                             <input type="file" id="planilla-upload-input" accept="image/png, image/jpeg, image/svg+xml" class="hidden" onchange="addStickerToPlanilla(event)">
                             <label for="planilla-upload-input" class="cursor-pointer flex flex-col items-center justify-center">
-                                <i class="fa-solid fa-images text-2xl text-gray-400 group-hover:text-brandPink mb-1.5 transition-colors"></i>
-                                <span class="text-xs font-bold uppercase text-baseBlack">Subir Imagen</span>
+                                <i class="fa-solid fa-images text-3xl text-gray-400 group-hover:text-brandPink mb-2 transition-colors"></i>
+                                <span class="text-xs font-bold uppercase text-baseBlack">Subir Imagen para Planilla</span>
                             </label>
                         </div>
                     </div>
 
                     <div id="planilla-tools" class="flex-col gap-4 hidden">
-                        <div class="bg-baseWhite border-[3px] border-baseBlack p-3.5 rounded-xl shadow-inner space-y-3">
+                        <div class="bg-gray-50 border-[3px] border-baseBlack p-4 rounded-xl shadow-inner space-y-4">
                             <div class="flex items-center justify-between">
-                                <span class="text-[11px] font-black uppercase text-baseBlack">Tamaño del Sticker</span>
-                                <span class="text-[10px] font-mono bg-gray-100 px-2 py-0.5 rounded font-bold text-textMuted" id="planilla-size-label">3.0 cm</span>
+                                <span class="text-xs font-black uppercase text-baseBlack">Tamaño del Sticker</span>
+                                <span class="text-xs font-mono bg-baseWhite border border-black px-2 py-0.5 rounded font-bold text-baseBlack" id="planilla-size-label">3.0 cm</span>
                             </div>
                             <input type="range" id="planilla-slider" min="200" max="600" step="10" class="w-full accent-baseBlack cursor-pointer" oninput="resizeSelectedSticker(this.value)">
                             <p class="text-[9px] text-textMuted leading-none font-medium uppercase mt-0.5">Rango permitido: 2.0 cm a 6.0 cm</p>
@@ -1086,66 +1090,70 @@
                             <div class="border-t border-gray-200 my-2"></div>
 
                             <div class="flex items-center justify-between">
-                                <span class="text-[11px] font-black uppercase text-baseBlack">Grosor de Contorno Blanco</span>
-                                <span class="text-[10px] font-mono bg-gray-100 px-2 py-0.5 rounded font-bold text-textMuted" id="planilla-border-label">20px (2mm)</span>
+                                <span class="text-xs font-black uppercase text-baseBlack">Contorno Blanco (Default 2mm)</span>
+                                <span class="text-xs font-mono bg-baseWhite border border-black px-2 py-0.5 rounded font-bold text-baseBlack" id="planilla-border-label">20px</span>
                             </div>
                             <input type="range" id="planilla-border-slider" min="0" max="40" value="20" class="w-full accent-brandPink cursor-pointer" oninput="changeBorderSticker(this.value)">
 
                             <div class="border-t border-gray-200 my-2"></div>
 
                             <!-- HERRAMIENTA QUITAR FONDO -->
-                            <button onclick="quitarFondoObjeto()" class="w-full bg-[#3b82f6] hover:bg-[#2563eb] text-white border-2 border-baseBlack py-2 px-3 rounded-lg text-xs font-bold flex items-center justify-center gap-1.5 shadow-sm transition-colors uppercase">
-                                <i class="fa-solid fa-wand-magic-sparkles"></i> Borrar Fondo Blanco
+                            <button onclick="quitarFondoObjeto()" class="w-full bg-[#3b82f6] hover:bg-[#2563eb] text-white border-2 border-baseBlack py-2.5 px-3 rounded-lg text-xs font-bold flex items-center justify-center gap-1.5 shadow-sm transition-colors uppercase">
+                                <i class="fa-solid fa-wand-magic-sparkles text-sm"></i> Borrar Fondo Blanco
                             </button>
                         </div>
 
                         <div class="grid grid-cols-2 gap-2">
-                            <button onclick="layerUpSticker()" class="bg-baseWhite border-[3px] border-baseBlack py-2 text-[10px] uppercase font-black rounded-lg hover:bg-gray-100 shadow-sm transition-colors"><i class="fa-solid fa-arrow-up"></i> Frente</button>
-                            <button onclick="layerDownSticker()" class="bg-baseWhite border-[3px] border-baseBlack py-2 text-[10px] uppercase font-black rounded-lg hover:bg-gray-100 shadow-sm transition-colors"><i class="fa-solid fa-arrow-down"></i> Fondo</button>
+                            <button onclick="layerUpSticker()" class="bg-baseWhite border-[3px] border-baseBlack py-2.5 text-xs uppercase font-black rounded-lg hover:bg-gray-100 shadow-sm transition-colors"><i class="fa-solid fa-arrow-up"></i> Frente</button>
+                            <button onclick="layerDownSticker()" class="bg-baseWhite border-[3px] border-baseBlack py-2.5 text-xs uppercase font-black rounded-lg hover:bg-gray-100 shadow-sm transition-colors"><i class="fa-solid fa-arrow-down"></i> Fondo</button>
                         </div>
-                        <button onclick="deleteSelectedSticker()" class="bg-brandPink text-baseWhite border-[3px] border-baseBlack py-2.5 text-xs font-black uppercase rounded-lg hover:bg-brandPink/90 shadow-sm transition-colors"><i class="fa-solid fa-trash"></i> Eliminar</button>
+                        <button onclick="deleteSelectedSticker()" class="bg-brandPink text-baseWhite border-[3px] border-baseBlack py-3 text-xs font-black uppercase rounded-lg hover:bg-brandPink/90 shadow-sm transition-colors"><i class="fa-solid fa-trash"></i> Eliminar Selección</button>
                     </div>
                     
-                    <div id="planilla-empty-msg" class="text-center text-textMuted text-xs font-bold px-2 py-4">
-                        Sube imágenes para comenzar a armar tu planilla personalizada. Toca y arrastra para acomodar.
+                    <div id="planilla-empty-msg" class="text-center text-textMuted text-xs font-bold px-2 py-6">
+                        Sube imágenes para comenzar a armar tu planilla personalizada de 9x13cm. Toca y arrastra para acomodar cada sticker.
                     </div>
 
                     <!-- CONTROL DE VOLUMEN DE PLANILLAS Y BOTÓN AL CARRITO -->
                     <div class="mt-auto pt-4 space-y-2 border-t-[3px] border-dashed border-gray-300">
-                        <div class="bg-brandGreen/20 border-[3px] border-brandGreen p-3 rounded-xl mb-2 flex flex-col gap-2 shadow-sm">
-                            <label class="text-[10px] font-black uppercase text-baseBlack text-center">Cantidad de Planillas ($15 c/u)</label>
-                            <div class="flex items-center gap-2">
-                                <input type="number" id="planilla-qty" min="1" value="1" class="w-16 h-10 border-[3px] border-baseBlack px-2 py-1 text-sm font-black rounded-lg text-center outline-none focus:border-brandPink bg-baseWhite shadow-inner">
-                                <button onclick="addPlanillaToCart()" class="flex-1 h-10 bg-baseBlack text-brandGreen font-black uppercase border-[3px] border-baseBlack shadow-brutal-sm hover:-translate-y-1 transition-transform rounded-xl flex items-center justify-center gap-1 text-[11px] leading-tight">
+                        <div class="bg-brandGreen/20 border-[3px] border-brandGreen p-4 rounded-xl mb-2 flex flex-col gap-2 shadow-sm">
+                            <label class="text-[10px] md:text-xs font-black uppercase text-baseBlack text-center">Cantidad de Planillas ($15 c/u)</label>
+                            <div class="flex items-center gap-3">
+                                <input type="number" id="planilla-qty" min="1" value="1" class="w-20 h-11 border-[3px] border-baseBlack px-2 py-1 text-sm font-black rounded-lg text-center outline-none focus:border-brandPink bg-baseWhite shadow-inner">
+                                <button onclick="addPlanillaToCart()" class="flex-1 h-11 bg-baseBlack text-brandGreen font-black uppercase border-[3px] border-baseBlack shadow-brutal-sm hover:-translate-y-1 transition-transform rounded-xl flex items-center justify-center gap-1.5 text-xs leading-tight">
                                     <i class="fa-solid fa-cart-plus"></i> Al Carrito
                                 </button>
                             </div>
                         </div>
-                        <div class="grid grid-cols-2 gap-2">
-                            <button onclick="limpiarPlanilla()" class="bg-gray-200 text-baseBlack font-bold uppercase py-2.5 border-[3px] border-baseBlack rounded-xl hover:bg-gray-300 transition-colors text-xs">Limpiar</button>
-                            <button onclick="downloadPlanilla()" class="bg-baseWhite text-baseBlack font-black uppercase py-2.5 border-[3px] border-baseBlack shadow-brutal-sm hover:-translate-y-1 transition-transform rounded-xl flex items-center justify-center gap-2 text-xs">
-                                <i class="fa-solid fa-download"></i> PNG
+                        <div class="grid grid-cols-2 gap-3">
+                            <button onclick="limpiarPlanilla()" class="bg-gray-200 text-baseBlack font-bold uppercase py-3 border-[3px] border-baseBlack rounded-xl hover:bg-gray-300 transition-colors text-xs">Limpiar Todo</button>
+                            <button onclick="downloadPlanilla()" class="bg-baseWhite text-baseBlack font-black uppercase py-3 border-[3px] border-baseBlack shadow-brutal-sm hover:-translate-y-1 transition-transform rounded-xl flex items-center justify-center gap-2 text-xs">
+                                <i class="fa-solid fa-download"></i> Descargar PNG
                             </button>
                         </div>
                     </div>
                 </div>
 
                 <!-- LIENZO INTERACTIVO CON DETECCIÓN DE CHOQUE (ALERTA ROJA) -->
-                <div class="lg:col-span-7 flex flex-col items-center justify-center bg-[#2d3748] border-[3px] border-baseBlack rounded-3xl p-4 relative overflow-hidden min-h-[420px]">
-                    <div id="colisiones-alerta" class="absolute top-4 left-4 right-4 bg-brandPink text-white font-black text-[11px] py-1.5 px-3 rounded-lg text-center z-20 shadow-md hidden uppercase">
-                        🚨 ¡ATENCIÓN! HAY DISEÑOS ENCIMADOS (MARCADOS EN ROJO). SEPARALOS PARA CONTINUAR.
+                <div class="lg:col-span-7 flex flex-col items-center justify-center bg-[#2d3748] border-[3px] border-baseBlack rounded-3xl p-6 relative overflow-hidden min-h-[480px] shadow-brutal">
+                    <div id="colisiones-alerta" class="absolute top-4 left-4 right-4 bg-brandPink text-white font-black text-[11px] py-2 px-4 rounded-lg text-center z-20 shadow-md hidden uppercase leading-tight">
+                        🚨 ¡ATENCIÓN! HAY DISEÑOS ENCIMADOS (MARCADOS EN ROJO). SEPARALOS PARA EVITAR QUE SE ENCIENDA LA ALERTA.
                     </div>
                     
                     <!-- Contenedor del Canvas de Planilla de 9x13 -->
-                    <div class="relative max-w-full aspect-[9/13] border-4 border-baseBlack shadow-brutal w-[270px]">
+                    <div class="relative max-w-full aspect-[9/13] border-4 border-baseBlack shadow-brutal w-[320px]">
                         <canvas id="planilla-canvas" class="planilla-grid w-full h-full block cursor-crosshair"></canvas>
                     </div>
                     
-                    <p class="text-[10px] text-gray-300 font-bold mt-4 uppercase">👈 Usa el mouse o tu dedo en celular para arrastrar y escalar cada sticker</p>
+                    <p class="text-[11px] text-gray-300 font-bold mt-4 uppercase">👈 Usa el mouse o tu dedo en celular para arrastrar y escalar cada sticker</p>
                 </div>
             </div>
-        </div>
-    </div>
+        </main>
+    </div> <!-- FIN VISTA PLANILLAS -->
+
+    <!-- ========================================== -->
+    <!-- MODALES GLOBALES                           -->
+    <!-- ========================================== -->
 
     <!-- MODAL DE LIMITACIÓN DE TAMAÑOS (DETECTOR DE 2CM A 45CM) -->
     <div id="size-limit-modal" class="fixed inset-0 bg-baseBlack/90 backdrop-blur-sm z-[80] flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
@@ -1308,17 +1316,31 @@
         window.addEventListener('resize', () => { renderSticker(); });
 
         function switchView(viewName) {
+            document.getElementById('view-sticker').classList.add('hidden');
+            document.getElementById('view-escolares').classList.add('hidden');
+            document.getElementById('view-planilla').classList.add('hidden');
+            
             if (viewName === 'escolares') {
-                document.getElementById('view-sticker').classList.add('hidden');
                 document.getElementById('view-escolares').classList.remove('hidden');
                 document.getElementById('nav-cart-btn').classList.add('hidden');
-                if (typeof lucide !== 'undefined' && lucide.createIcons) { lucide.createIcons(); }
+            } else if (viewName === 'planilla') {
+                document.getElementById('view-planilla').classList.remove('hidden');
+                document.getElementById('nav-cart-btn').classList.remove('hidden');
+                setTimeout(() => { renderPlanilla(); }, 50);
             } else {
                 document.getElementById('view-sticker').classList.remove('hidden');
-                document.getElementById('view-escolares').classList.add('hidden');
                 document.getElementById('nav-cart-btn').classList.remove('hidden');
             }
             window.scrollTo(0, 0);
+            try { if (typeof lucide !== 'undefined' && lucide.createIcons) { lucide.createIcons(); } } catch (e) {}
+        }
+
+        function openPlanillaModal() {
+            switchView('planilla');
+        }
+
+        function closePlanillaModal() {
+            switchView('sticker');
         }
 
         function openSizeLimitModal() {
@@ -1466,7 +1488,6 @@
                 updateRendimientoUI();
             });
 
-            // MODIFICACIÓN: Permitir cantidad desde 1 en Sticker Studio
             qtyInput.addEventListener('input', (e) => {
                 let val = parseInt(e.target.value);
                 if (val >= 1 && val <= 999) {
@@ -2040,9 +2061,9 @@
             const headerHeight = topImg.width ? (width * topImg.height / topImg.width) : 220; 
             const footerHeight = bottomImg.width ? (width * bottomImg.height / bottomImg.width) : 460; 
             
-            // MODIFICACIÓN: Cálculo del alto del Canvas ultra preciso para que NADA salga recortado
-            const middleHeight = (APP_STATE.cart.length * itemHeight) + 160; // 160px para totales y leyendas legales
-            const height = headerHeight + middleHeight + footerHeight + 40; // 40px para márgenes superior e inferior
+            // Ajustamos el alto para que la descarga del ticket se enmarque perfectamente sin colapsar ni recortar nada
+            const middleHeight = (APP_STATE.cart.length * itemHeight) + 160; 
+            const height = headerHeight + middleHeight + footerHeight + 40; 
             
             canvas.width = width;
             canvas.height = height;
@@ -2066,7 +2087,6 @@
             if (topImg.width) {
                  ctx.drawImage(topImg, 0, 0, width, headerHeight);
             } else {
-                 // Fallback clásico de emergencia
                 ctx.fillStyle = "#000000";
                 ctx.fillRect(10, 10, width - 20, 140);
                 ctx.fillStyle = "#ccff00";
@@ -2152,7 +2172,6 @@
             if (bottomImg.width) {
                  ctx.drawImage(bottomImg, 0, currentY, width, footerHeight);
             } else {
-                 // Fallback de cuentas bancarias de seguridad
                 ctx.fillStyle = "#000000";
                 ctx.fillRect(40, currentY, width - 80, 430);
                 ctx.textAlign = "center";
@@ -2241,936 +2260,4 @@
             3: { 1: { id: 31, name: "Bart Simpson" }, 2: { id: 32, name: "Ben 10 Luca" }, 3: { id: 33, name: "Kirby" }, 4: { id: 34, name: "Sonic" }, 5: { id: 35, name: "Miles Morales" }, 6: { id: 36, name: "Godzilla" }, 7: { id: 37, name: "Minecraft Dirt" }, 8: { id: 38, name: "Club Misterio" }, 9: { id: 39, name: "Batman Batwheels" }, 10: { id: 40, name: "Mbappé Madrid" }, 11: { id: 41, name: "Messi Argentina" }, 12: { id: 42, name: "Pumas UNAM" }, 13: { id: 43, name: "Porsche Oscar" }, 14: { id: 44, name: "Lego Jurassic" }, 15: { id: 45, name: "Rayo McQueen" } },
             4: { 1: { id: 46, name: "Venom Black" }, 2: { id: 47, name: "Venom White" }, 3: { id: 48, name: "Sylvanian Families" }, 4: { id: 49, name: "Capibara Dino" }, 5: { id: 50, name: "One Piece" }, 6: { id: 51, name: "Pikachu Leonardo" }, 7: { id: 52, name: "Minnie Mouse" }, 8: { id: 53, name: "Portugal CR7" }, 9: { id: 54, name: "Shark Tiburón" }, 10: { id: 55, name: "Harry Potter" }, 11: { id: 56, name: "Gianna Neon" }, 12: { id: 57, name: "Vegeta" }, 13: { id: 58, name: "Gumball" }, 14: { id: 59, name: "Zombies Disney" }, 15: { id: 60, name: "K/DA Kali" } },
             5: { 1: { id: 61, name: "Jurassic Park" }, 2: { id: 62, name: "Furia Nocturna" }, 3: { id: 63, name: "Capibaras Alan" }, 4: { id: 64, name: "Call of Duty" }, 5: { id: 65, name: "Barbie Renata" }, 6: { id: 66, name: "Demon Slayer" }, 7: { id: 67, name: "Princesas Chibi" }, 8: { id: 68, name: "Plants vs Zombies" }, 9: { id: 69, name: "MrBeast" }, 10: { id: 70, name: "Nina Mares" }, 11: { id: 71, name: "Hello Kitty" }, 12: { id: 72, name: "Ranita Naomi" }, 13: { id: 73, name: "Chimuelo Lucca" }, 14: { id: 74, name: "Beyblade" }, 15: { id: 75, name: "Real Madrid Jorge" } },
-            6: { 1: { id: 76, name: "Mickey Mouse" }, 2: { id: 77, name: "Sanrio Macarons" }, 3: { id: 78, name: "Kuromi Dark" }, 4: { id: 79, name: "Bluey & Bingo" }, 5: { id: 80, name: "Bob Esponja" }, 6: { id: 81, name: "Sirenita" }, 7: { id: 82, name: "Turning Red" }, 8: { id: 83, name: "Mario Tubos" }, 9: { id: 84, name: "Mario & Luigi" }, 10: { id: 85, name: "Leonardo Kinder" }, 11: { id: 86, name: "Minion Bart" }, 12: { id: 87, name: "Inside Out" }, 13: { id: 88, name: "Mafalda" }, 14: { id: 89, name: "Chica Donuts" }, 15: { id: 90, name: "Familia Bluey" } },
-            7: { 1: { id: 91, name: "Sirenita Mar" }, 2: { id: 92, name: "Stitch Escolar" }, 3: { id: 93, name: "Spiderman" }, 4: { id: 94, name: "Hello Kitty Leo" }, 5: { id: 95, name: "Paw Patrol" }, 6: { id: 96, name: "Stitch Rosa" }, 7: { id: 97, name: "Minecraft Sant" }, 8: { id: 98, name: "Gabby Yellow" }, 9: { id: 99, name: "Chicas Superp." }, 10: { id: 100, name: "Cinnamoroll" }, 11: { id: 101, name: "Baloncesto" }, 12: { id: 102, name: "Barbie Glitter" }, 13: { id: 103, name: "Princesa Peach" }, 14: { id: 104, name: "Sirenas Mar" }, 15: { id: 105, name: "Trolls" } },
-            8: { 1: { id: 106, name: "Capibaras Jimena" }, 2: { id: 107, name: "My Little Pony" }, 3: { id: 108, name: "Hello Kitty Red" }, 4: { id: 109, name: "Barbie Blonde" }, 5: { id: 110, name: "Peppa Pig" }, 6: { id: 111, name: "Frozen Elsa" }, 7: { id: 112, name: "Monster High" }, 8: { id: 113, name: "Ladybug" }, 9: { id: 114, name: "Brujita Gema" }, 10: { id: 115, name: "Circo Lucca" }, 11: { id: 116, name: "Garfield" }, 12: { id: 117, name: "Paw Patrol Blue" }, 13: { id: 118, name: "Minecraft Green" }, 14: { id: 119, name: "Bob & Patricio" }, 15: { id: 120, name: "Stitch Paula" } },
-            9: { 1: { id: 121, name: "Comida Kawaii" }, 2: { id: 122, name: "Harry Potter" }, 3: { id: 123, name: "Astronauta" }, 4: { id: 124, name: "Coraline" }, 5: { id: 125, name: "Dino Purple" }, 6: { id: 126, name: "Unicornio Rainbow" }, 7: { id: 127, name: "Unicornio Pink" }, 8: { id: 128, name: "Gatos Pastel" }, 9: { id: 129, name: "Animales Selva" }, 10: { id: 130, name: "Monstruos Gum" }, 11: { id: 131, name: "Snoopy Skate" }, 12: { id: 132, name: "Kuromi Ela" }, 13: { id: 133, name: "Intensamente" }, 14: { id: 134, name: "Hwang In Yeop" }, 15: { id: 135, name: "Godzilla Kong" } }
-        };
-
-        function showExtrasPrompt() {
-            if (fosfoSelectedPackage === 'personalizado') { fosfoGoToStep(2); return; }
-            const modal = document.getElementById('extras-modal');
-            if (modal) { modal.classList.remove('hidden'); modal.classList.add('flex'); }
-        }
-
-        function answerExtras(wantsMore) {
-            const modal = document.getElementById('extras-modal');
-            if (modal) { modal.classList.add('hidden'); modal.classList.remove('flex'); }
-            if (wantsMore) { fosfoGoToStep(2); } else {
-                fosfoSyncQty('lapiz', 0); fosfoSyncQty('circulo', 0); fosfoSyncQty('cuaderno', 0); fosfoSyncQty('libro', 0);
-                fosfoSyncQty('nombrepers', 0); fosfoSyncQty('etmaterias', 0);
-                fosfoGoToStep(3);
-            }
-        }
-
-        function changeCatalogPage(pageNum) {
-            window.activePage = pageNum;
-            window.imgErrorCount = 0;
-            const activeImg = document.getElementById('active-catalog-img');
-            if (activeImg) { activeImg.src = `${pageNum}${window.EXTENSIONS[0]}`; }
-            
-            const buttons = document.querySelectorAll('.page-tab-btn');
-            buttons.forEach(btn => { btn.className = "page-tab-btn px-3 py-1.5 border-[3px] border-black bg-white text-gray-500 font-black text-[11px] uppercase rounded-xl hover:bg-gray-100 transition-colors"; });
-            const activeBtn = document.getElementById(`btn-page-${pageNum}`);
-            if (activeBtn) { activeBtn.className = "page-tab-btn px-3 py-1.5 border-[3px] border-black bg-fosfoPink text-white font-black text-[11px] uppercase rounded-xl shadow-comic-sm transition-colors"; }
-
-            const cells = document.querySelectorAll('.catalog-cell');
-            cells.forEach(cell => { cell.className = "catalog-cell border-[3px] border-transparent hover:border-white/80 rounded relative group cursor-pointer"; });
-
-            const currentPageMapping = catalogMapping[window.activePage];
-            if (currentPageMapping) {
-                Object.keys(currentPageMapping).forEach(cellIndex => {
-                    const designInfo = currentPageMapping[cellIndex];
-                    const labelEl = document.getElementById(`cell-label-${cellIndex}`);
-                    if (labelEl) labelEl.innerText = `#${designInfo.id}`;
-                    if (designInfo.id === fosfoActiveDesignIndex) {
-                        const cellEl = document.getElementById(`cell-${cellIndex}`);
-                        if (cellEl) cellEl.classList.add('selected-grid-cell');
-                    }
-                });
-            }
-        }
-
-        function selectGridDesign(cellIndex, row, col) {
-            const cells = document.querySelectorAll('.catalog-cell');
-            cells.forEach(cell => cell.remove && cell.classList.remove('selected-grid-cell'));
-            const targetCell = document.getElementById(`cell-${cellIndex}`);
-            if (targetCell) targetCell.classList.add('selected-grid-cell');
-
-            const customInput = document.getElementById('input-custom-theme');
-            if (customInput) customInput.value = '';
-
-            const currentPageMapping = catalogMapping[window.activePage];
-            if (currentPageMapping && currentPageMapping[cellIndex]) {
-                fosfoActiveDesignIndex = currentPageMapping[cellIndex].id;
-                const d = currentPageMapping[cellIndex];
-                document.getElementById('live-design-name').innerText = `DISEÑO #${d.id} - ${d.name.toUpperCase()}`;
-            }
-        }
-        
-        function applyCustomTheme() {
-            const input = document.getElementById('input-custom-theme');
-            if (!input || !input.value.trim()) { showFosfoToast("⚠️ Escribe el tema.", "warning"); return; }
-            
-            const cells = document.querySelectorAll('.catalog-cell');
-            cells.forEach(cell => cell.classList.remove('selected-grid-cell'));
-            fosfoActiveDesignIndex = 'custom';
-            document.getElementById('live-design-name').innerText = `TEMA: ${input.value.toUpperCase()}`;
-            showFosfoToast("🎨 Tema aplicado.");
-        }
-
-        function fosfoGoToStep(step) {
-            if (step > fosfoCurrentStep && step > 3) {
-                const clientNameInput = document.getElementById('input-client-name');
-                const labelNameInput = document.getElementById('input-name');
-                if (!clientNameInput || !clientNameInput.value.trim()) { showFosfoToast("⚠️ Falta Nombre del Cliente.", "warning"); return; }
-                if (!labelNameInput || !labelNameInput.value.trim()) { showFosfoToast("⚠️ Falta Nombre a Imprimir.", "warning"); return; }
-            }
-
-            for (let i = 1; i <= 5; i++) {
-                const contentEl = document.getElementById(`step-content-${i}`);
-                if (contentEl) contentEl.classList.add('hidden');
-                const btn = document.getElementById(`btn-step-${i}`);
-                if (btn) { btn.classList.remove('step-btn-active'); btn.classList.add('step-btn-inactive'); }
-            }
-
-            const activeContentEl = document.getElementById(`step-content-${step}`);
-            if (activeContentEl) activeContentEl.classList.remove('hidden');
-            const activeBtn = document.getElementById(`btn-step-${step}`);
-            if (activeBtn) { activeBtn.classList.remove('step-btn-inactive'); activeBtn.classList.add('step-btn-active'); }
-            
-            fosfoCurrentStep = step;
-            window.scrollTo(0, 0); document.documentElement.scrollTop = 0; document.body.scrollTop = 0;
-            if (step === 5) { updateTicketData(); }
-        }
-
-        function showFosfoToast(message, type = "success") {
-            const toast = document.getElementById('fosfo-toast');
-            const text = document.getElementById('fosfo-toast-message');
-            if (text) text.innerText = message;
-            if (toast) {
-                if (type === "warning") toast.firstElementChild.className = "bg-fosfoPink text-white border-[3px] border-black font-black p-3 shadow-comic-black flex items-center gap-3 rounded-2xl";
-                else toast.firstElementChild.className = "bg-fosfoYellow text-black border-[3px] border-black font-black p-3 shadow-comic-black flex items-center gap-3 rounded-2xl";
-                toast.classList.remove('opacity-0'); toast.classList.add('opacity-100');
-                setTimeout(() => { toast.classList.remove('opacity-100'); toast.classList.add('opacity-0'); }, 3000);
-            }
-        }
-
-        function fosfoSyncQty(type, value) {
-            let val = parseInt(value) || 0; if (val < 0) val = 0;
-            const input1 = document.getElementById(`qty-${type}`); if (input1) input1.value = val;
-            calculateFosfoPrice(); updateLiveSummary();
-        }
-
-        function fosfoAdjustQty(type, amount) {
-            const input = document.getElementById(`qty-${type}`);
-            if (input) { let newVal = (parseInt(input.value) || 0) + amount; if (newVal < 0) newVal = 0; fosfoSyncQty(type, newVal); }
-        }
-
-        function selectPackage(pkg, price) {
-            fosfoSelectedPackage = pkg; fosfoBasePrice = price;
-            ['chico', 'grande', 'personalizado'].forEach(p => {
-                const card = document.getElementById(`card-pkg-${p}`); const badge = document.getElementById(`badge-pkg-${p}`);
-                if (card) card.classList.remove('selected-card'); if (badge) badge.classList.add('hidden');
-            });
-            const actCard = document.getElementById(`card-pkg-${pkg}`); const actBadge = document.getElementById(`badge-pkg-${pkg}`);
-            if (actCard) actCard.classList.add('selected-card'); if (actBadge) actBadge.classList.remove('hidden');
-            calculateFosfoPrice(); updateLiveSummary();
-        }
-
-        function selectFosfoMaterial(material, price) {
-            fosfoSelectedMaterial = material; fosfoMaterialPrice = price;
-            ['vinil_blanco_brillante', 'vinil_blanco_mate', 'vinil_holografico'].forEach(mat => {
-                const el = document.getElementById(`fosfo-mat-${mat}`); if (el) el.classList.remove('selected-card');
-            });
-            const activeEl = document.getElementById(`fosfo-mat-${material}`); if (activeEl) activeEl.classList.add('selected-card');
-            
-            if (material === 'vinil_holografico') {
-                if (fosfoSelectedLaminated === 'brillante') { selectLaminated('mate', 30); showFosfoToast("⚠️ Holográfico no acepta Laminado Brillante.", "warning"); }
-                const lamB = document.getElementById('lam-brillante'); if(lamB) { lamB.style.opacity = '0.4'; lamB.style.pointerEvents = 'none'; }
-            } else {
-                const lamB = document.getElementById('lam-brillante'); if(lamB) { lamB.style.opacity = '1'; lamB.style.pointerEvents = 'auto'; }
-            }
-            calculateFosfoPrice();
-        }
-
-        function selectLaminated(laminated, price) {
-            fosfoSelectedLaminated = laminated; fosfoLaminatedPrice = price;
-            ['ninguno', 'brillante', 'mate'].forEach(lam => {
-                const el = document.getElementById(`lam-${lam}`); if (el) el.classList.remove('selected-card');
-            });
-            const activeEl = document.getElementById(`lam-${laminated}`); if (activeEl) activeEl.classList.add('selected-card');
-            calculateFosfoPrice();
-        }
-
-        function calculateFosfoPrice() {
-            const qtyL = document.getElementById('qty-lapiz') ? parseInt(document.getElementById('qty-lapiz').value) || 0 : 0;
-            const qtyC = document.getElementById('qty-circulo') ? parseInt(document.getElementById('qty-circulo').value) || 0 : 0;
-            const qtyCu = document.getElementById('qty-cuaderno') ? parseInt(document.getElementById('qty-cuaderno').value) || 0 : 0;
-            const qtyLi = document.getElementById('qty-libro') ? parseInt(document.getElementById('qty-libro').value) || 0 : 0;
-            const qtyNp = document.getElementById('qty-nombrepers') ? parseInt(document.getElementById('qty-nombrepers').value) || 0 : 0;
-            const qtyEm = document.getElementById('qty-etmaterias') ? parseInt(document.getElementById('qty-etmaterias').value) || 0 : 0;
-
-            const baseSueltos = (qtyL * 2) + (qtyC * 4) + (qtyCu * 3) + (qtyLi * 5) + (qtyNp * 6) + (qtyEm * 12);
-
-            if (fosfoSelectedPackage === 'personalizado') { 
-                fosfoBasePrice = baseSueltos; 
-            } else {
-                const pPrice = fosfoSelectedPackage === 'chico' ? 260 : 340;
-                fosfoBasePrice = pPrice + baseSueltos;
-            }
-        }
-
-        function updateLiveSummary() {
-            const liveSumEl = document.getElementById('live-base-sum');
-            if (liveSumEl) liveSumEl.innerText = `$${fosfoBasePrice.toFixed(2)} MXN`;
-        }
-
-        function updateTicketData() {
-            calculateFosfoPrice();
-
-            const cNameInput = document.getElementById('input-client-name');
-            const cPhoneInput = document.getElementById('input-client-phone');
-            const ticketClientNameEl = document.getElementById('ticket-client-name');
-            if (ticketClientNameEl) {
-                const clientVal = cNameInput ? cNameInput.value.trim() : "";
-                const phoneVal = cPhoneInput ? cPhoneInput.value.trim() : "";
-                ticketClientNameEl.innerText = `${clientVal.toUpperCase()} ${phoneVal ? '(WA: ' + phoneVal + ')' : ''}`;
-            }
-
-            const qtyL = document.getElementById('qty-lapiz') ? parseInt(document.getElementById('qty-lapiz').value) || 0 : 0;
-            const qtyC = document.getElementById('qty-circulo') ? parseInt(document.getElementById('qty-circulo').value) || 0 : 0;
-            const qtyCu = document.getElementById('qty-cuaderno') ? parseInt(document.getElementById('qty-cuaderno').value) || 0 : 0;
-            const qtyLi = document.getElementById('qty-libro') ? parseInt(document.getElementById('qty-libro').value) || 0 : 0;
-            const qtyNp = document.getElementById('qty-nombrepers') ? parseInt(document.getElementById('qty-nombrepers').value) || 0 : 0;
-            const qtyEm = document.getElementById('qty-etmaterias') ? parseInt(document.getElementById('qty-etmaterias').value) || 0 : 0;
-            const totalAdicionales = qtyL + qtyC + qtyCu + qtyLi + qtyNp + qtyEm;
-
-            let pkgText = '';
-            if (fosfoSelectedPackage === 'chico') {
-                pkgText = 'PAQUETE CHICO (72 PZAS)';
-                if (totalAdicionales > 0) pkgText += ` + ADICIONALES`;
-            } else if (fosfoSelectedPackage === 'grande') {
-                pkgText = 'PAQUETE GRANDE (120 PZAS)';
-                if (totalAdicionales > 0) pkgText += ` + ADICIONALES`;
-            } else {
-                pkgText = `SET PERSONALIZADO`;
-            }
-            const ticketPackageEl = document.getElementById('ticket-package');
-            if (ticketPackageEl) ticketPackageEl.innerText = pkgText;
-
-            const extrasBlock = document.getElementById('ticket-extras-block');
-            const extrasList = document.getElementById('ticket-extras-list');
-            
-            if (extrasBlock && extrasList) {
-                extrasList.innerHTML = '';
-                if (totalAdicionales > 0) {
-                    if (qtyL > 0) extrasList.innerHTML += `<span class="bg-white border-2 border-black px-2 py-0.5 rounded-lg flex items-center gap-0.5 text-[9px] font-bold shadow-sm"> Lápices x${qtyL}</span>`;
-                    if (qtyC > 0) extrasList.innerHTML += `<span class="bg-white border-2 border-black px-2 py-0.5 rounded-lg flex items-center gap-0.5 text-[9px] font-bold shadow-sm"> Circulares x${qtyC}</span>`;
-                    if (qtyCu > 0) extrasList.innerHTML += `<span class="bg-white border-2 border-black px-2 py-0.5 rounded-lg flex items-center gap-0.5 text-[9px] font-bold shadow-sm"> Cuadernos x${qtyCu}</span>`;
-                    if (qtyLi > 0) extrasList.innerHTML += `<span class="bg-white border-2 border-black px-2 py-0.5 rounded-lg flex items-center gap-0.5 text-[9px] font-bold shadow-sm"> Libros x${qtyLi}</span>`;
-                    if (qtyNp > 0) extrasList.innerHTML += `<span class="bg-white border-2 border-black px-2 py-0.5 rounded-lg flex items-center gap-0.5 text-[9px] font-bold shadow-sm"> Nombres Pers. x${qtyNp}</span>`;
-                    if (qtyEm > 0) extrasList.innerHTML += `<span class="bg-white border-2 border-black px-2 py-0.5 rounded-lg flex items-center gap-0.5 text-[9px] font-bold shadow-sm"> Et. Materias x${qtyEm}</span>`;
-                    
-                    const titleExtra = document.getElementById('ticket-extras-title');
-                    if (titleExtra) {
-                        titleExtra.innerText = fosfoSelectedPackage === 'personalizado' ? '🧩 PIEZAS DEL SET PERSONALIZADO' : '🧩 PIEZAS EXTRAS AÑADIDAS';
-                    }
-                    extrasBlock.classList.remove('hidden');
-                } else {
-                    extrasBlock.classList.add('hidden');
-                }
-            }
-
-            let dName = "Diseño Personalizado";
-            if (fosfoActiveDesignIndex === 'custom') {
-                const ct = document.getElementById('input-custom-theme').value.trim();
-                dName = `PERSONALIZADO: ${ct}`;
-            } else {
-                Object.keys(catalogMapping).forEach(p => {
-                    Object.keys(catalogMapping[p]).forEach(c => {
-                        if (catalogMapping[p][c].id === fosfoActiveDesignIndex) dName = `Pág ${p} - #${fosfoActiveDesignIndex} ${catalogMapping[p][c].name}`;
-                    });
-                });
-            }
-            const ticketDesignEl = document.getElementById('ticket-design');
-            if (ticketDesignEl) ticketDesignEl.innerText = dName.toUpperCase();
-
-            let matText = 'VINIL BLANCO BRILLANTE';
-            if (fosfoSelectedMaterial === 'vinil_blanco_mate') matText = 'VINIL BLANCO MATE';
-            if (fosfoSelectedMaterial === 'vinil_holografico') matText = 'VINIL HOLOGRÁFICO';
-            const ticketMaterialEl = document.getElementById('ticket-material');
-            if (ticketMaterialEl) ticketMaterialEl.innerText = matText;
-
-            let lamText = 'SIN LAMINAR';
-            if (fosfoSelectedLaminated === 'brillante') lamText = 'LAMINADO PROTECTOR BRILLANTE';
-            if (fosfoSelectedLaminated === 'mate') lamText = 'LAMINADO PROTECTOR MATE';
-            const ticketLaminatedEl = document.getElementById('ticket-laminado');
-            if (ticketLaminatedEl) ticketLaminatedEl.innerText = lamText;
-
-            // CAMPOS DE TEXTO CAPTURADOS
-            const nameInput = document.getElementById('input-name');
-            const gradeInput = document.getElementById('input-grade');
-            const schoolInput = document.getElementById('input-school');
-            const extraInput = document.getElementById('input-extra');
-
-            const ticketChildNameEl = document.getElementById('ticket-child-name');
-            if (ticketChildNameEl) ticketChildNameEl.innerText = (nameInput ? nameInput.value.trim() : "- SIN NOMBRE -").toUpperCase() || "- SIN NOMBRE -";
-            
-            const ticketChildGradeEl = document.getElementById('ticket-child-grade');
-            if (ticketChildGradeEl) {
-                const gradeVal = (gradeInput ? gradeInput.value.trim() : "").toUpperCase();
-                const schoolVal = (schoolInput ? schoolInput.value.trim() : "").toUpperCase();
-                let displayVal = "- SIN GRADO/ESCUELA -";
-                if (gradeVal && schoolVal) displayVal = `${gradeVal} | ${schoolVal}`;
-                else if (gradeVal) displayVal = gradeVal;
-                else if (schoolVal) displayVal = schoolVal;
-                ticketChildGradeEl.innerText = displayVal;
-            }
-            
-            const ticketChildExtraEl = document.getElementById('ticket-child-extra');
-            if (ticketChildExtraEl) ticketChildExtraEl.innerText = (extraInput ? extraInput.value.trim() : "- SIN INFO ADICIONAL -").toUpperCase() || "- SIN INFO ADICIONAL -";
-
-            const ticketBaseCostEl = document.getElementById('ticket-base-cost');
-            if (ticketBaseCostEl) ticketBaseCostEl.innerText = `$${fosfoBasePrice.toFixed(2)} MXN`;
-            
-            const ticketMaterialCostEl = document.getElementById('ticket-material-cost');
-            if (ticketMaterialCostEl) ticketMaterialCostEl.innerText = `$${fosfoMaterialPrice.toFixed(2)} MXN`;
-            
-            const ticketLaminatedCostEl = document.getElementById('ticket-laminado-cost');
-            if (ticketLaminatedCostEl) ticketLaminatedCostEl.innerText = `$${fosfoLaminatedPrice.toFixed(2)} MXN`;
-
-            const totalSum = fosfoBasePrice + fosfoMaterialPrice + fosfoLaminatedPrice;
-            const ticketTotalEl = document.getElementById('ticket-total');
-            if (ticketTotalEl) ticketTotalEl.innerText = `$${totalSum.toFixed(2)} MXN`;
-        }
-
-        async function captureOrderCanvas() {
-            showFosfoToast("📸 Generando ticket mágico...", "success");
-            await document.fonts.ready;
-            
-            const canvas = document.createElement('canvas');
-            const width = 800;
-            let height = 910; 
-
-            const qtyL = parseInt(document.getElementById('qty-lapiz').value) || 0;
-            const qtyC = parseInt(document.getElementById('qty-circulo').value) || 0;
-            const qtyCu = parseInt(document.getElementById('qty-cuaderno').value) || 0;
-            const qtyLi = parseInt(document.getElementById('qty-libro').value) || 0;
-            const qtyNp = parseInt(document.getElementById('qty-nombrepers').value) || 0;
-            const qtyEm = parseInt(document.getElementById('qty-etmaterias').value) || 0;
-            const totalAdicionales = qtyL + qtyC + qtyCu + qtyLi + qtyNp + qtyEm;
-
-            if (totalAdicionales > 0) height += 120;
-            canvas.width = width;
-            canvas.height = height;
-            const ctx = canvas.getContext('2d');
-
-            ctx.fillStyle = "#f8fafc";
-            ctx.fillRect(0, 0, width, height);
-            ctx.fillStyle = "#cbd5e1";
-            for (let x = 10; x < width; x += 20) {
-                for (let y = 10; y < height; y += 20) {
-                    ctx.beginPath();
-                    ctx.arc(x, y, 3, 0, Math.PI * 2);
-                    ctx.fill();
-                }
-            }
-
-            ctx.fillStyle = "#ffffff";
-            ctx.fillRect(40, 40, width - 80, height - 80);
-            ctx.strokeStyle = "#000000";
-            ctx.lineWidth = 8;
-            ctx.strokeRect(40, 40, width - 80, height - 80);
-
-            // Escolares usa una cabecera nativa limpia sin banners de Canva
-            ctx.fillStyle = "#ccff00"; 
-            ctx.fillRect(44, 44, width - 88, 160);
-            ctx.beginPath();
-            ctx.moveTo(44, 204);
-            ctx.lineTo(width - 44, 204);
-            ctx.stroke();
-
-            ctx.fillStyle = "#000000";
-            ctx.font = "60px 'Bangers', cursive, sans-serif";
-            ctx.textAlign = "center";
-            ctx.fillText("FOSFO KIDS - ESCOLARES 2026", width / 2, 110);
-            ctx.font = "900 28px 'Plus Jakarta Sans', sans-serif";
-            ctx.fillText("TICKET DE PEDIDO OFICIAL", width / 2, 160);
-
-            ctx.textAlign = "left";
-            let currentY = 250;
-
-            function drawRow(label, value, isHighlight = false) {
-                ctx.fillStyle = "#64748b";
-                ctx.font = "bold 20px 'Plus Jakarta Sans', sans-serif";
-                ctx.fillText(label, 80, currentY);
-
-                ctx.fillStyle = isHighlight ? "#FF2E93" : "#000000";
-                ctx.font = "900 22px 'Plus Jakarta Sans', sans-serif";
-                
-                const maxWidth = width - 250;
-                let finalValue = value;
-                if (ctx.measureText(value).width > maxWidth) {
-                   finalValue = value.substring(0, 35) + "...";
-                }
-                
-                const valWidth = ctx.measureText(finalValue).width;
-                ctx.fillText(finalValue, width - 80 - valWidth, currentY);
-                currentY += 45;
-            }
-
-            const clientName = document.getElementById('ticket-client-name').innerText;
-            const pkgName = document.getElementById('ticket-package').innerText;
-            const designName = document.getElementById('ticket-design').innerText;
-            const materialName = document.getElementById('ticket-material').innerText;
-            const lamName = document.getElementById('ticket-laminado').innerText;
-
-            drawRow("👤 Cliente:", clientName);
-            drawRow("🎒 Paquete:", pkgName);
-            drawRow("🎨 Diseño:", designName, true);
-            drawRow("✨ Vinil:", materialName);
-            drawRow("🛡️ Laminado:", lamName);
-
-            currentY += 20;
-            ctx.fillStyle = "#cffafe"; 
-            ctx.fillRect(80, currentY, width - 160, 180);
-            ctx.strokeRect(80, currentY, width - 160, 180);
-
-            ctx.fillStyle = "#475569";
-            ctx.textAlign = "center";
-            ctx.font = "900 18px 'Plus Jakarta Sans', sans-serif";
-            ctx.fillText("🏷️ DATOS A IMPRIMIR", width / 2, currentY + 40);
-
-            const childName = document.getElementById('ticket-child-name').innerText;
-            ctx.fillStyle = "#000000";
-            ctx.font = "900 32px 'Plus Jakarta Sans', sans-serif";
-            ctx.fillText(childName, width / 2, currentY + 85);
-
-            const childGrade = document.getElementById('ticket-child-grade').innerText;
-            ctx.fillStyle = "#ffffff";
-            const gradeWidth = ctx.measureText(childGrade).width + 30;
-            ctx.fillRect((width/2) - (gradeWidth/2), currentY + 105, gradeWidth, 36);
-            ctx.strokeRect((width/2) - (gradeWidth/2), currentY + 105, gradeWidth, 36);
-
-            ctx.fillStyle = "#FF2E93";
-            ctx.font = "900 20px 'Plus Jakarta Sans', sans-serif";
-            ctx.fillText(childGrade, width / 2, currentY + 130);
-
-            const childExtra = document.getElementById('ticket-child-extra').innerText;
-            ctx.fillStyle = "#334155";
-            ctx.font = "italic 700 16px 'Plus Jakarta Sans', sans-serif";
-            ctx.fillText(childExtra, width / 2, currentY + 165);
-
-            currentY += 210;
-
-            if (totalAdicionales > 0) {
-                ctx.fillStyle = "#f1f5f9";
-                ctx.fillRect(80, currentY, width - 160, 100);
-                ctx.strokeRect(80, currentY, width - 160, 100);
-                
-                ctx.fillStyle = "#64748b";
-                ctx.font = "900 16px 'Plus Jakarta Sans', sans-serif";
-                ctx.fillText("🧩 PIEZAS EXTRAS", width / 2, currentY + 30);
-
-                let extraStr = [];
-                if (qtyL > 0) extraStr.push(`Lápices x${qtyL}`);
-                if (qtyC > 0) extraStr.push(`Circulares x${qtyC}`);
-                if (qtyCu > 0) extraStr.push(`Cuadernos x${qtyCu}`);
-                if (qtyLi > 0) extraStr.push(`Libros x${qtyLi}`);
-                if (qtyNp > 0) extraStr.push(`Nombres Pers. x${qtyNp}`);
-                if (qtyEm > 0) extraStr.push(`Et. Materias x${qtyEm}`);
-
-                ctx.fillStyle = "#000000";
-                ctx.font = "bold 16px 'Plus Jakarta Sans', sans-serif";
-                ctx.fillText(extraStr.join("   |   "), width / 2, currentY + 70);
-                currentY += 130;
-            }
-
-            ctx.beginPath();
-            ctx.moveTo(80, currentY);
-            ctx.lineTo(width - 80, currentY);
-            ctx.stroke();
-            currentY += 40;
-
-            ctx.textAlign = "left";
-            const baseC = document.getElementById('ticket-base-cost').innerText;
-            const matC = document.getElementById('ticket-material-cost').innerText;
-            const lamC = document.getElementById('ticket-laminado-cost').innerText;
-            const totalC = document.getElementById('ticket-total').innerText;
-
-            ctx.fillStyle = "#64748b";
-            ctx.font = "bold 18px 'Plus Jakarta Sans', sans-serif";
-            ctx.fillText("Costo Base:", 80, currentY);
-            ctx.fillStyle = "#000000"; ctx.fillText(baseC, 200, currentY);
-
-            ctx.fillStyle = "#64748b";
-            ctx.fillText("Costo Vinil:", 80, currentY + 30);
-            ctx.fillStyle = "#000000"; ctx.fillText(matC, 200, currentY + 30);
-
-            ctx.fillStyle = "#64748b";
-            ctx.fillText("Costo Lam:", 80, currentY + 60);
-            ctx.fillStyle = "#000000"; ctx.fillText(lamC, 200, currentY + 60);
-
-            ctx.textAlign = "right";
-            ctx.fillStyle = "#000000";
-            ctx.font = "900 24px 'Plus Jakarta Sans', sans-serif";
-            ctx.fillText("TOTAL A PAGAR", width - 80, currentY + 10);
-
-            ctx.fillStyle = "#ccff00"; 
-            ctx.font = "40px 'Bangers', cursive, sans-serif";
-            const tWidth = ctx.measureText(totalC).width + 40;
-            ctx.fillRect(width - 80 - tWidth, currentY + 25, tWidth, 50);
-            ctx.strokeRect(width - 80 - tWidth, currentY + 25, tWidth, 50);
-
-            ctx.fillStyle = "#000000";
-            ctx.fillText(totalC, width - 100, currentY + 62);
-
-            currentY += 100;
-            ctx.textAlign = "center";
-            ctx.fillStyle = "#94a3b8";
-            ctx.font = "bold 16px 'Plus Jakarta Sans', sans-serif";
-            const dateStr = new Date().toLocaleString('es-ES', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }).toUpperCase();
-            ctx.fillText(`FECHA: ${dateStr}`, width / 2, currentY - 20);
-            ctx.fillText("GRISFOSFORESCENTE.COM.MX", width / 2, currentY);
-
-            const link = document.createElement('a');
-            link.download = `ORDEN_FOSFOKIDS_${Date.now()}.png`;
-            link.href = canvas.toDataURL('image/png');
-            link.click();
-
-            showFosfoToast("💾 ¡Ticket descargado con éxito!", "success");
-        }
-
-        // --- CREADOR DE PLANILLAS INTERACTIVO ---
-        let pCanvas, pCtx;
-        let pObjects = []; 
-        let pSelected = -1;
-        let pDragging = false;
-        let pDragOffsetX = 0;
-        let pDragOffsetY = 0;
-
-        function openPlanillaModal() {
-            const modal = document.getElementById('planilla-modal');
-            modal.classList.remove('hidden');
-            setTimeout(() => { modal.classList.remove('opacity-0'); modal.firstElementChild.classList.remove('scale-95'); }, 10);
-            renderPlanilla();
-        }
-
-        function closePlanillaModal() {
-            const modal = document.getElementById('planilla-modal');
-            modal.classList.add('opacity-0');
-            modal.firstElementChild.classList.add('scale-95');
-            setTimeout(() => { modal.classList.add('hidden'); }, 300);
-        }
-
-        function initPlanillaCanvas() {
-            pCanvas = document.getElementById('planilla-canvas');
-            pCtx = pCanvas.getContext('2d');
-            
-            pCanvas.width = 900;
-            pCanvas.height = 1300;
-
-            pCanvas.addEventListener('mousedown', handlePDown);
-            pCanvas.addEventListener('mousemove', handlePMove);
-            window.addEventListener('mouseup', handlePUp);
-
-            pCanvas.addEventListener('touchstart', handlePTouchStart, { passive: false });
-            pCanvas.addEventListener('touchmove', handlePTouchMove, { passive: false });
-            window.addEventListener('touchend', handlePUp);
-        }
-
-        function checkPlanillaCollisions() {
-            let hasCollisions = false;
-            
-            pObjects.forEach(obj => obj.isColliding = false);
-
-            for (let i = 0; i < pObjects.length; i++) {
-                for (let j = i + 1; j < pObjects.length; j++) {
-                    const obj1 = pObjects[i];
-                    const obj2 = pObjects[j];
-
-                    const b1 = obj1.border || 0;
-                    const b2 = obj2.border || 0;
-
-                    const rect1 = {
-                        left: obj1.x - b1,
-                        right: obj1.x + obj1.w + b1,
-                        top: obj1.y - b1,
-                        bottom: obj1.y + obj1.h + b1
-                    };
-
-                    const rect2 = {
-                        left: obj2.x - b2,
-                        right: obj2.x + obj2.w + b2,
-                        top: obj2.y - b2,
-                        bottom: obj2.y + obj2.h + b2
-                    };
-
-                    const overlapX = rect1.left < rect2.right && rect1.right > rect2.left;
-                    const overlapY = rect1.top < rect2.bottom && rect1.bottom > rect2.top;
-
-                    if (overlapX && overlapY) {
-                        obj1.isColliding = true;
-                        obj2.isColliding = true;
-                        hasCollisions = true;
-                    }
-                }
-            }
-
-            const alertBox = document.getElementById('colisiones-alerta');
-            if (alertBox) {
-                if (hasCollisions) {
-                    alertBox.classList.remove('hidden');
-                } else {
-                    alertBox.classList.add('hidden');
-                }
-            }
-            return hasCollisions;
-        }
-
-        function renderPlanilla() {
-            pCtx.clearRect(0, 0, pCanvas.width, pCanvas.height);
-            checkPlanillaCollisions();
-
-            pObjects.forEach((obj, index) => {
-                const b = obj.border || 0;
-                pCtx.save();
-                
-                if (obj.isColliding) {
-                    pCtx.fillStyle = 'rgba(255, 0, 0, 0.45)';
-                    pCtx.fillRect(obj.x - b - 10, obj.y - b - 10, obj.w + (b*2) + 20, obj.h + (b*2) + 20);
-                }
-
-                if (obj.cachedImg) {
-                    pCtx.drawImage(obj.cachedImg, obj.x - b, obj.y - b, obj.w + b * 2, obj.h + b * 2);
-                } else {
-                    pCtx.drawImage(obj.img, obj.x, obj.y, obj.w, obj.h);
-                }
-                
-                if (index === pSelected) {
-                    pCtx.strokeStyle = '#FF2E93';
-                    pCtx.lineWidth = 4;
-                    pCtx.setLineDash([8, 6]);
-                    pCtx.strokeRect(obj.x - b, obj.y - b, obj.w + b * 2, obj.h + b * 2);
-                    pCtx.setLineDash([]);
-                }
-
-                pCtx.restore();
-            });
-
-            const tools = document.getElementById('planilla-tools');
-            const emptyMsg = document.getElementById('planilla-empty-msg');
-            if (pObjects.length > 0) {
-                emptyMsg.classList.add('hidden');
-                if (pSelected !== -1) {
-                    tools.classList.remove('hidden');
-                    tools.classList.add('flex');
-                    document.getElementById('planilla-slider').value = pObjects[pSelected].w;
-                    document.getElementById('planilla-border-slider').value = pObjects[pSelected].border || 0;
-                } else {
-                    tools.classList.add('hidden');
-                    tools.classList.remove('flex');
-                }
-            } else {
-                emptyMsg.classList.remove('hidden');
-                tools.classList.add('hidden');
-                tools.classList.remove('flex');
-            }
-        }
-
-        function getPCoords(e) {
-            const rect = pCanvas.getBoundingClientRect();
-            const scaleX = pCanvas.width / rect.width;
-            const scaleY = pCanvas.height / rect.height;
-            if (e.touches && e.touches.length > 0) {
-                return {
-                    x: (e.touches[0].clientX - rect.left) * scaleX,
-                    y: (e.touches[0].clientY - rect.top) * scaleY
-                };
-            }
-            return {
-                x: (e.clientX - rect.left) * scaleX,
-                y: (e.clientY - rect.top) * scaleY
-            };
-        }
-
-        function handlePDown(e) {
-            const coords = getPCoords(e);
-            pSelected = -1;
-            pDragging = false;
-
-            for (let i = pObjects.length - 1; i >= 0; i--) {
-                const obj = pObjects[i];
-                const b = obj.border || 0;
-                if (coords.x >= obj.x - b && coords.x <= obj.x + obj.w + b &&
-                    coords.y >= obj.y - b && coords.y <= obj.y + obj.h + b) {
-                    pSelected = i;
-                    pDragging = true;
-                    pDragOffsetX = coords.x - obj.x;
-                    pDragOffsetY = coords.y - obj.y;
-                    break;
-                }
-            }
-            renderPlanilla();
-        }
-
-        function handlePMove(e) {
-            if (!pDragging || pSelected === -1) return;
-            const coords = getPCoords(e);
-            const obj = pObjects[pSelected];
-            
-            obj.x = coords.x - pDragOffsetX;
-            obj.y = coords.y - pDragOffsetY;
-            renderPlanilla();
-        }
-
-        function handlePTouchStart(e) { e.preventDefault(); handlePDown(e); }
-        function handlePTouchMove(e) { e.preventDefault(); handlePMove(e); }
-        function handlePUp() { pDragging = false; }
-
-        function quitarFondoObjeto() {
-            if (pSelected === -1) return;
-            const obj = pObjects[pSelected];
-            showToast("Analizando y borrando fondo...", "info");
-            
-            const tempCanvas = document.createElement('canvas');
-            tempCanvas.width = obj.img.naturalWidth || obj.img.width;
-            tempCanvas.height = obj.img.naturalHeight || obj.img.height;
-            const tCtx = tempCanvas.getContext('2d');
-            tCtx.drawImage(obj.img, 0, 0);
-            
-            const imgData = tCtx.getImageData(0, 0, tempCanvas.width, tempCanvas.height);
-            const data = imgData.data;
-            const tolerance = 220; 
-
-            for (let i = 0; i < data.length; i += 4) {
-                const r = data[i];
-                const g = data[i+1];
-                const b = data[i+2];
-                if (r > tolerance && g > tolerance && b > tolerance) {
-                    data[i+3] = 0; 
-                }
-            }
-            tCtx.putImageData(imgData, 0, 0);
-            
-            const newImg = new Image();
-            newImg.onload = () => {
-                obj.img = newImg;
-                if (obj.border > 0) {
-                    generateBorderCache(obj);
-                } else {
-                    renderPlanilla();
-                }
-                showToast("Fondo blanco eliminado!", "success");
-            };
-            newImg.src = tempCanvas.toDataURL();
-        }
-
-        function generateBorderCache(obj) {
-            if (obj.border === 0) {
-                obj.cachedImg = null;
-                return;
-            }
-            const off = document.createElement('canvas');
-            const b = obj.border;
-            off.width = obj.img.width + b * 2;
-            off.height = obj.img.height + b * 2;
-            const oCtx = off.getContext('2d');
-
-            const steps = 32;
-            for (let i = 0; i < steps; i++) {
-                const angle = (i / steps) * Math.PI * 2;
-                const dx = Math.cos(angle) * b;
-                const dy = Math.sin(angle) * b;
-                oCtx.drawImage(obj.img, b + dx, b + dy);
-            }
-            oCtx.globalCompositeOperation = 'source-in';
-            oCtx.fillStyle = '#ffffff'; 
-
-            oCtx.fillRect(0, 0, off.width, off.height);
-            oCtx.globalCompositeOperation = 'source-over';
-            oCtx.drawImage(obj.img, b, b);
-
-            const newImg = new Image();
-            newImg.onload = () => {
-                obj.cachedImg = newImg;
-                renderPlanilla();
-            };
-            newImg.src = off.toDataURL();
-        }
-
-        function changeBorderSticker(val) {
-            if (pSelected === -1) return;
-            const obj = pObjects[pSelected];
-            obj.border = parseInt(val);
-            document.getElementById('planilla-border-label').innerText = `${val}px`;
-            if (obj.border > 0) {
-                generateBorderCache(obj);
-            } else {
-                obj.cachedImg = null;
-                renderPlanilla();
-            }
-        }
-
-        function resizeSelectedSticker(val) {
-            if (pSelected === -1) return;
-            const obj = pObjects[pSelected];
-            obj.w = parseInt(val);
-            obj.h = obj.w * obj.aspect;
-            
-            document.getElementById('planilla-size-label').innerText = `${(obj.w / 100).toFixed(1)} cm`;
-            
-            if (obj.border > 0) {
-                generateBorderCache(obj);
-            } else {
-                renderPlanilla();
-            }
-        }
-
-        function deleteSelectedSticker() {
-            if (pSelected === -1) return;
-            pObjects.splice(pSelected, 1);
-            pSelected = -1;
-            renderPlanilla();
-            showToast('Sticker eliminado de la planilla.');
-        }
-
-        function layerUpSticker() {
-            if (pSelected === -1 || pSelected === pObjects.length - 1) return;
-            const temp = pObjects[pSelected];
-            pObjects[pSelected] = pObjects[pSelected + 1];
-            pObjects[pSelected + 1] = temp;
-            pSelected += 1;
-            renderPlanilla();
-        }
-
-        function layerDownSticker() {
-            if (pSelected === -1 || pSelected === 0) return;
-            const temp = pObjects[pSelected];
-            pObjects[pSelected] = pObjects[pSelected - 1];
-            pObjects[pSelected - 1] = temp;
-            pSelected -= 1;
-            renderPlanilla();
-        }
-
-        function addStickerToPlanilla(event) {
-            if (pObjects.length >= 8) {
-                showToast('Límite máximo de 8 designs por planilla.', 'error');
-                event.target.value = '';
-                return;
-            }
-            const file = event.target.files[0];
-            if (!file) return;
-
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const img = new Image();
-                img.onload = function() {
-                    const aspect = img.height / img.width;
-                    
-                    let initialW = 300; 
-                    let initialH = 300 * aspect;
-
-                    pObjects.push({
-                        img: img,
-                        aspect: aspect,
-                        x: (pCanvas.width / 2) - (initialW / 2) + (Math.random()*40-20),
-                        y: (pCanvas.height / 2) - (initialH / 2) + (Math.random()*40-20),
-                        w: initialW,
-                        h: initialH,
-                        border: 20, // Default contorno 2mm (20px)
-                        cachedImg: null,
-                        isColliding: false
-                    });
-                    pSelected = pObjects.length - 1;
-                    
-                    generateBorderCache(pObjects[pSelected]);
-                    event.target.value = ''; 
-                };
-                img.src = e.target.result;
-            };
-            reader.readAsDataURL(file);
-        }
-
-        function limpiarPlanilla() {
-            pObjects = [];
-            pSelected = -1;
-            renderPlanilla();
-            showToast('Lienzo de planilla limpiado.');
-        }
-
-        function downloadPlanilla() {
-            if (pObjects.length === 0) {
-                showToast('La planilla está vacía.', 'error');
-                return;
-            }
-            if (checkPlanillaCollisions()) {
-                showToast('Hay diseños chocando. Sepáralos antes de descargar.', 'error');
-                return;
-            }
-            pSelected = -1;
-            renderPlanilla();
-            
-            const link = document.createElement('a');
-            link.download = `Planilla_Personalizada_9x13_${Date.now()}.png`;
-            link.href = pCanvas.toDataURL('image/png');
-            link.click();
-            
-            showToast('📸 ¡Planilla descargada con éxito!', 'success');
-        }
-        
-        function addPlanillaToCart() {
-            if (pObjects.length === 0) {
-                showToast("Agrega al menos un diseño a tu planilla.", "error");
-                return;
-            }
-            if (checkPlanillaCollisions()) {
-                showToast("No puedes comprar con diseños encimados. Sepáralos.", "error");
-                return;
-            }
-            const qtyInput = document.getElementById('planilla-qty');
-            const qty = parseInt(qtyInput.value) || 1;
-            
-            pSelected = -1; 
-            renderPlanilla();
-            
-            const thumbnail = pCanvas.toDataURL('image/png');
-            const unitPrice = 15;
-            const totalPrice = unitPrice * qty;
-            
-            const item = {
-                id: Date.now(),
-                thumbnail: thumbnail,
-                fileName: "PLANILLA PERSONALIZADA 9X13",
-                shapeLabel: "Corte de Silueta",
-                size: "9.0",
-                heightCm: "13.0",
-                borderSize: 0,
-                borderColor: "#ffffff",
-                quantity: qty,
-                materialLabel: "Vinil Blanco Brillante",
-                laminado: false,
-                corteFisico: true,
-                unitPrice: unitPrice,
-                totalPrice: totalPrice
-            };
-
-            APP_STATE.cart.push(item);
-            renderCart();
-            
-            const badge = document.getElementById('cart-badge');
-            if (badge) {
-                badge.classList.remove('hidden');
-                badge.classList.remove('animate-bounce');
-                void badge.offsetWidth; 
-                badge.classList.add('animate-bounce');
-            }
-
-            closePlanillaModal();
-            showToast(`¡Planilla agregada! ${qty} pz al carrito.`, "success");
-            toggleCartDrawer();
-        }
-    </script>
-</body>
-</html>
+            6: { 1: { id: 76, name: "Mickey Mouse" }, 2: { id: 77, name: "Sanrio Macarons" }, 3: { id: 78, name: "Kuromi Dark" }, 4: { id: 79, name: "Bluey & Bingo" }, 5: { id: 80, name: "Bob Esponja" }, 6: { id:
