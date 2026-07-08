@@ -88,9 +88,8 @@
             background-position: center;
         }
 
-        /* Cuadrícula especial de alta visibilidad para el creador de planillas */
         .planilla-grid {
-            background-color: #374151; /* Fondo gris oscuro de alto contraste */
+            background-color: #374151; 
             background-image: 
                 linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
@@ -169,7 +168,7 @@
 </head>
 <body class="bg-baseWhite text-baseBlack font-sans min-h-screen overflow-x-hidden antialiased selection:bg-brandGreen selection:text-baseBlack">
 
-    <!-- 1. BANNER LEGAL FIJO GLOBAL -->
+    <!-- BANNER LEGAL FIJO GLOBAL -->
     <div class="w-full bg-brandPink text-white font-black text-[10px] md:text-xs py-2 px-4 text-center border-b-2 border-black sticky top-0 z-[60] shadow-md tracking-wider flex items-center justify-center gap-2 uppercase">
         <span>⚡ ADVERTENCIA:</span>
         <strong>VERIFICA TU TICKET Y MONTO CON UN VENDEDOR ANTES DE PAGAR</strong>
@@ -181,35 +180,26 @@
         <img src="banner.gif" alt="Banner Promocional" class="w-full h-auto block" onerror="this.src='https://placehold.co/1200x120/000000/ccff00?text=BANNER.GIF+AQUI'">
     </div>
 
-    <!-- HEADER NEGRO (Global) -->
+    <!-- HEADER NEGRO (Global - Homogeneizado) -->
     <header class="bg-baseBlack px-6 py-4 sticky top-[32px] z-50 border-b-4 border-baseBlack shadow-md">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="flex items-center gap-6 w-full md:w-auto overflow-x-auto pb-2 md:pb-0 hide-scrollbar">
-                <!-- Enlaces de Navegación -->
                 <nav class="flex items-center gap-4 md:gap-6 text-baseWhite font-bold text-[11px] md:text-sm tracking-wide shrink-0">
-                    <a href="#" onclick="switchView('sticker'); return false;" class="hover:text-brandGreen transition-colors">INICIO</a>
-                    <button onclick="openPromosModal()" class="hover:text-brandPink transition-colors uppercase font-bold">PROMOCIONES</button>
-                    <a href="#" onclick="switchView('escolares'); return false;" class="hover:text-brandGreen transition-colors uppercase text-center">ESCOLARES 2026</a>
-                    <!-- BOTÓN CREADOR PLANILLAS -->
-                    <button onclick="switchView('planilla')" class="hover:text-brandPink transition-colors uppercase flex items-center gap-1 text-brandGreen font-black"><span class="text-xl">🎨</span> <span>CREA TU PLANILLA</span></button>
-                    <a href="https://wa.me/message/LOS67PCNOUMBM1" target="_blank" class="hover:text-brandPink transition-colors flex items-center gap-1.5 font-bold">
-                        <i class="fa-brands fa-whatsapp text-lg"></i>
-                        <span class="hidden md:inline">COTIZA CON UN AGENTE</span>
-                        <span class="md:hidden">AGENTE</span>
-                    </a>
+                    <a href="#" onclick="switchView('sticker'); return false;" class="hover:text-fosfoCyan transition-colors uppercase">Sticker Lab</a>
+                    <button onclick="switchView('planilla')" class="hover:text-brandGreen transition-colors uppercase flex items-center gap-1 font-black">Mini Planillas Lab</button>
+                    <a href="#" onclick="switchView('escolares'); return false;" class="hover:text-brandPink transition-colors uppercase text-center">Escolares Lab</a>
+                    <button onclick="openPromosModal()" class="hover:text-fosfoYellow transition-colors uppercase font-bold text-gray-400">Promociones</button>
                 </nav>
             </div>
             
             <div class="flex items-center gap-4 md:gap-6 shrink-0">
-                <!-- Botón de Carrito -->
                 <button id="nav-cart-btn" onclick="toggleCartDrawer()" class="relative flex items-center gap-2 text-baseWhite hover:text-brandGreen transition-colors font-bold text-sm tracking-wide">
                     <i class="fa-solid fa-cart-shopping text-lg"></i>
                     <span class="hidden md:inline">CARRITO</span>
                     <span id="cart-badge" class="hidden absolute -top-2 -right-3 bg-brandPink text-baseWhite text-[10px] font-black px-1.5 py-0.5 rounded-full shadow-md">0</span>
                 </button>
-
-                <a href="#cotizador" onclick="switchView('sticker');" class="relative bg-baseBlack text-brandGreen border-2 border-brandGreen px-4 md:px-6 py-2 font-bold text-xs md:text-sm hover:bg-brandGreen hover:text-baseBlack transition-colors text-center">
-                    Cotiza On Line
+                <a href="https://wa.me/message/LOS67PCNOUMBM1" target="_blank" class="relative bg-brandGreen text-baseBlack border-2 border-baseBlack px-4 md:px-6 py-2 font-bold text-xs md:text-sm hover:scale-105 transition-transform text-center shadow-brutal-sm">
+                    Contactar Agente
                 </a>
             </div>
         </div>
@@ -238,7 +228,6 @@
                         </a>
                     </div>
                 </div>
-                
                 <div class="absolute top-6 left-6 w-16 h-16 border-t-4 border-l-4 border-baseBlack opacity-20 hidden md:block"></div>
                 <div class="absolute bottom-6 right-6 w-16 h-16 border-b-4 border-r-4 border-baseBlack opacity-20 hidden md:block"></div>
             </section>
@@ -296,7 +285,7 @@
                                 <i class="fa-solid fa-layer-group text-xl"></i>
                             </div>
                             <h3 class="text-xl font-bold uppercase mb-2">Acabados Extra</h3>
-                            <p class="text-sm text-textMuted font-medium mb-4">Añade protección extra con Laminado y cortes precisos pieza por pieza (Corte Completo/Die-cut).</p>
+                            <p class="text-sm text-textMuted font-medium mb-4">Añade protección extra con Laminado y cortes precisos pieza por pieza.</p>
                             <div class="flex flex-col gap-1">
                                 <div class="text-sm font-black">+ $70 <span class="text-xs font-normal">Laminado</span></div>
                                 <div class="text-sm font-black">+ $60 <span class="text-xs font-normal">Corte Completo</span></div>
@@ -316,7 +305,7 @@
                             <i class="fa-solid fa-sliders text-brandPink"></i>
                             Configurador
                         </h2>
-                        <span class="text-[9px] font-mono bg-baseBlack text-brandGreen px-2 py-1 uppercase tracking-widest">Sys_v1.0</span>
+                        <span class="text-[9px] font-mono bg-baseBlack text-brandGreen px-2 py-1 uppercase tracking-widest">Sys_v1.1</span>
                     </div>
                     
                     <div class="space-y-2 pt-4">
@@ -359,24 +348,6 @@
                     <div class="space-y-3 pt-4">
                         <div class="flex items-center gap-2 w-full">
                             <span class="bg-brandGreen text-brandPink font-mono font-black text-[10px] px-2 py-0.5 border border-baseBlack shadow-[1px_1px_0_0_#000]">03</span>
-                            <h3 class="text-xs font-black text-brandPink uppercase tracking-widest drop-shadow-[1px_1px_0_rgba(0,0,0,1)]">Borde (Blanco)</h3>
-                            <div class="flex-1 border-b-2 border-dotted border-gray-300 mt-1"></div>
-                        </div>
-                        <div class="space-y-2">
-                            <div class="flex justify-between text-xs text-baseBlack font-bold">
-                                <span>Grosor del borde</span>
-                                <span id="border-size-label" class="bg-gray-100 px-2 py-0.5 rounded text-textMuted">12px (1.2 mm)</span>
-                            </div>
-                            <div class="flex items-center gap-3 pt-1">
-                                <input type="range" id="border-size-slider" min="0" max="30" value="12" class="w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer">
-                            </div>
-                            <p class="text-[10px] text-textMuted font-mono leading-tight">Un margen blanco garantiza la protección de tu diseño.</p>
-                        </div>
-                    </div>
-
-                    <div class="space-y-3 pt-4">
-                        <div class="flex items-center gap-2 w-full">
-                            <span class="bg-brandGreen text-brandPink font-mono font-black text-[10px] px-2 py-0.5 border border-baseBlack shadow-[1px_1px_0_0_#000]">04</span>
                             <h3 class="text-xs font-black text-brandPink uppercase tracking-widest drop-shadow-[1px_1px_0_rgba(0,0,0,1)]">Ancho del sticker</h3>
                             <div class="flex-1 border-b-2 border-dotted border-gray-300 mt-1"></div>
                         </div>
@@ -424,7 +395,7 @@
 
                     <div class="space-y-3 pt-4">
                         <div class="flex items-center gap-2 w-full">
-                            <span class="bg-brandGreen text-brandPink font-mono font-black text-[10px] px-2 py-0.5 border border-baseBlack shadow-[1px_1px_0_0_#000]">05</span>
+                            <span class="bg-brandGreen text-brandPink font-mono font-black text-[10px] px-2 py-0.5 border border-baseBlack shadow-[1px_1px_0_0_#000]">04</span>
                             <h3 class="text-xs font-black text-brandPink uppercase tracking-widest drop-shadow-[1px_1px_0_rgba(0,0,0,1)]">Sustrato / Material Base</h3>
                             <div class="flex-1 border-b-2 border-dotted border-gray-300 mt-1"></div>
                         </div>
@@ -455,7 +426,7 @@
 
                     <div class="space-y-3 pt-4">
                         <div class="flex items-center gap-2 w-full">
-                            <span class="bg-brandGreen text-brandPink font-mono font-black text-[10px] px-2 py-0.5 border border-baseBlack shadow-[1px_1px_0_0_#000]">06</span>
+                            <span class="bg-brandGreen text-brandPink font-mono font-black text-[10px] px-2 py-0.5 border border-baseBlack shadow-[1px_1px_0_0_#000]">05</span>
                             <h3 class="text-xs font-black text-brandPink uppercase tracking-widest drop-shadow-[1px_1px_0_rgba(0,0,0,1)]">Acabados (Opcional)</h3>
                             <div class="flex-1 border-b-2 border-dotted border-gray-300 mt-1"></div>
                         </div>
@@ -477,17 +448,16 @@
                         </div>
                     </div>
 
-                    <!-- 07. TIRAJE / VOLUMEN - AJUSTADO DESDE 1 PZ -->
                     <div class="space-y-3 pt-4">
                         <div class="flex items-center gap-2 w-full">
-                            <span class="bg-brandGreen text-brandPink font-mono font-black text-[10px] px-2 py-0.5 border border-baseBlack shadow-[1px_1px_0_0_#000]">07</span>
+                            <span class="bg-brandGreen text-brandPink font-mono font-black text-[10px] px-2 py-0.5 border border-baseBlack shadow-[1px_1px_0_0_#000]">06</span>
                             <h3 class="text-xs font-black text-brandPink uppercase tracking-widest drop-shadow-[1px_1px_0_rgba(0,0,0,1)]">Tiraje / Volumen</h3>
                             <div class="flex-1 border-b-2 border-dotted border-gray-300 mt-1"></div>
                         </div>
                         <div class="flex items-center gap-4 bg-gray-50 p-3 rounded-xl border border-gray-200">
-                            <input type="range" id="qty-slider" min="1" max="999" value="10" class="w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-baseBlack">
+                            <input type="range" id="qty-slider" min="1" max="999" value="1" class="w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-baseBlack">
                             <div class="flex items-center gap-1 bg-baseWhite border border-gray-300 px-3 py-1.5 rounded-lg shrink-0 focus-within:border-baseBlack">
-                                <input type="number" id="qty-input" min="1" max="999" value="10" class="bg-transparent text-sm text-baseBlack outline-none w-10 font-bold text-center">
+                                <input type="number" id="qty-input" min="1" max="999" value="1" class="bg-transparent text-sm text-baseBlack outline-none w-10 font-bold text-center">
                                 <span class="text-[10px] text-textMuted font-bold uppercase">PZ</span>
                             </div>
                         </div>
@@ -547,16 +517,15 @@
                         </button>
                     </div>
 
-                    <!-- 2. AVISO LEGAL EN COTIZADOR PRINCIPAL -->
-                    <div class="bg-gray-50 border-2 border-brandPink p-4 rounded-2xl text-center shadow-inner">
-                        <p class="text-xs text-baseBlack font-black leading-relaxed">
-                            <span class="text-brandPink font-black">// AVISO DE COMPRA:</span> VERIFICA TU TICKET Y MONTO CON UN VENDEDOR ANTES DE PAGAR.
+                    <div class="bg-gray-50 border border-gray-200 p-3 rounded-xl text-center">
+                        <p class="text-[10px] text-textMuted font-medium leading-relaxed">
+                            <span class="text-brandPink font-bold">// NOTA DE PREPRENSA:</span> Las dimensiones se calculan a escala real a partir de los vectores detectados. Se ha aplicado un margen de seguridad estándar para cortes.
                         </p>
                     </div>
                 </section>
             </div>
         </div>
-    </div> <!-- FIN VISTA STICKER STUDIO -->
+    </div>
 
     <!-- ========================================== -->
     <!-- VISTA 2: FOSFO KIDS (ESCOLARES 2026)       -->
@@ -590,15 +559,15 @@
             </div>
         </div>
 
-        <header class="w-full bg-fosfoYellow border-b-[5px] border-black py-4 px-4 relative overflow-hidden shadow-sm">
+        <header class="w-full bg-brandPink border-b-[5px] border-black py-4 px-4 relative overflow-hidden shadow-sm">
             <div class="max-w-2xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 relative z-10">
                 <div class="flex items-center gap-4 flex-col sm:flex-row text-center sm:text-left">
                     <img src="fav.png" alt="Logo" class="w-16 h-16 object-contain border-[3px] border-black rounded-2xl bg-white p-1 shadow-comic-sm shrink-0" onerror="this.src='https://placehold.co/100/000000/FFFFFF?text=Fosfo'">
                     <div>
-                        <span class="inline-block bg-fosfoPink text-white font-comic text-4xl md:text-5xl px-5 py-1 border-[4px] border-black shadow-comic-black rotate-[-3deg] uppercase">
-                            Fosfo Kids
+                        <span class="inline-block bg-white text-baseBlack font-comic text-4xl md:text-5xl px-5 py-1 border-[4px] border-black shadow-comic-black rotate-[-3deg] uppercase">
+                            Escolares Lab
                         </span>
-                        <h1 class="text-xs sm:text-sm font-black text-black uppercase tracking-widest mt-2 bg-white inline-block px-2 py-0.5 border-2 border-black rounded-lg shadow-sm">
+                        <h1 class="text-xs sm:text-sm font-black text-black uppercase tracking-widest mt-2 bg-brandGreen inline-block px-2 py-0.5 border-2 border-black rounded-lg shadow-sm">
                             ⚡ CONFIGURADOR DE PEDIDOS ⚡
                         </h1>
                     </div>
@@ -740,7 +709,6 @@
                             </div>
                         </div>
 
-                        <!-- 5. NOMBRES PERS. (NUEVO) -->
                         <div class="bg-white border-[3px] border-black p-4 flex flex-col items-center justify-between text-center rounded-2xl shadow-comic-sm">
                             <span class="text-[9px] font-black bg-[#22C55E] text-white px-2 py-1 border-2 border-black mb-2 rounded-md shadow-sm">5 x 8 cm</span>
                             <span class="text-sm font-black text-black uppercase mt-1">Nombres Pers.</span>
@@ -752,7 +720,6 @@
                             </div>
                         </div>
 
-                        <!-- 6. ET. MATERIAS (NUEVO) -->
                         <div class="bg-white border-[3px] border-black p-4 flex flex-col items-center justify-between text-center rounded-2xl shadow-comic-sm">
                             <span class="text-[9px] font-black bg-[#EAB308] text-black px-2 py-1 border-2 border-black mb-2 rounded-md shadow-sm">8 a 10 cm</span>
                             <span class="text-sm font-black text-black uppercase mt-1">Et. Materias</span>
@@ -818,7 +785,6 @@
                             </div>
                         </div>
 
-                        <!-- MATERIALES Y LAMINADOS -->
                         <div class="border-[4px] border-black p-5 bg-slate-50 space-y-4 rounded-3xl shadow-sm">
                             <h3 class="text-sm font-black text-black uppercase border-b-[3px] border-black pb-2 flex items-center gap-2">
                                 <i data-lucide="layers" class="w-5 h-5"></i> Tipo de Vinil Base
@@ -884,7 +850,6 @@
 
                     <div class="bg-white p-3 border-[4px] border-black mb-6 shadow-comic-black rounded-3xl">
                         <div class="flex flex-wrap justify-center gap-2 pb-1">
-                            <!-- Paginación -->
                             <button onclick="changeCatalogPage(1)" id="btn-page-1" class="page-tab-btn px-3 py-1.5 border-[3px] border-black bg-fosfoPink text-white font-black text-[11px] uppercase rounded-xl shadow-comic-sm transition-colors">Pág 1</button>
                             <button onclick="changeCatalogPage(2)" id="btn-page-2" class="page-tab-btn px-3 py-1.5 border-[3px] border-black bg-white text-gray-500 font-black text-[11px] uppercase rounded-xl hover:bg-gray-100 transition-colors">Pág 2</button>
                             <button onclick="changeCatalogPage(3)" id="btn-page-3" class="page-tab-btn px-3 py-1.5 border-[3px] border-black bg-white text-gray-500 font-black text-[11px] uppercase rounded-xl hover:bg-gray-100 transition-colors">Pág 3</button>
@@ -901,7 +866,6 @@
                         <div class="absolute -top-4 -right-4 text-4xl animate-bounce">✨</div>
                         <div class="relative border-[4px] border-black bg-white overflow-hidden w-full aspect-[3/4] rounded-2xl shadow-inner">
                             <img id="active-catalog-img" src="1.png" class="w-full h-full block object-fill" alt="Catálogo Fosfo Kids" onerror="handleImageError(this)">
-                            <!-- Celdas de Selección -->
                             <div class="absolute top-[17%] bottom-[8%] left-[9%] right-[9%] grid grid-cols-3 grid-rows-5 gap-[1.5%]">
                                 <button onclick="selectGridDesign(1, 1, 1)" id="cell-1" class="catalog-cell border-[3px] border-transparent hover:border-white/80 rounded relative group cursor-pointer"><span class="absolute top-0.5 left-1 bg-black/90 text-white text-[9px] font-black px-1.5 py-0.5 rounded" id="cell-label-1">#1</span><div class="hidden check-overlay absolute inset-0 items-center justify-center bg-black/30 backdrop-blur-[2px] rounded-md z-10"><div class="bg-fosfoCyan border-2 border-black rounded-full p-1"><i data-lucide="check" class="w-4 h-4 text-black stroke-[3]"></i></div></div></button>
                                 <button onclick="selectGridDesign(2, 1, 2)" id="cell-2" class="catalog-cell border-[3px] border-transparent hover:border-white/80 rounded relative group cursor-pointer"><span class="absolute top-0.5 left-1 bg-black/90 text-white text-[9px] font-black px-1.5 py-0.5 rounded" id="cell-label-2">#2</span><div class="hidden check-overlay absolute inset-0 items-center justify-center bg-black/30 backdrop-blur-[2px] rounded-md z-10"><div class="bg-fosfoCyan border-2 border-black rounded-full p-1"><i data-lucide="check" class="w-4 h-4 text-black stroke-[3]"></i></div></div></button>
@@ -965,7 +929,7 @@
                         </div>
 
                         <div class="py-3 text-xs font-black text-black font-sans-bold">
-                            <!-- 3. AVISO LEGAL EN TICKET FOSFOKIDS -->
+                            <!-- AVISO LEGAL EN TICKET FOSFOKIDS -->
                             <div class="bg-black text-fosfoYellow p-2 border-[3px] border-black text-center font-black text-[9px] uppercase tracking-wider shadow-comic-sm rounded-xl leading-tight mb-3">
                                 🚨 VERIFICA TU TICKET Y MONTO CON UN VENDEDOR ANTES DE PAGAR.
                             </div>
@@ -1073,7 +1037,7 @@
                             
                             <!-- LEYENDA DISEÑOS CON SILUETAS -->
                             <div class="w-full bg-brandPink text-white font-bold text-[11px] p-2.5 rounded-xl border border-black shadow-comic-sm mb-3 uppercase tracking-wider leading-tight text-center">
-                                ⚠️ PARA DISEÑOS CON SILUETAS, SUBE TU IMAGEN SIN FONDO EN PNG
+                                ⚠️ SE APLICARÁ UN CONTORNO DE CORTE AUTOMÁTICO A TODAS TUS IMÁGENES
                             </div>
 
                             <div class="border-2 border-dashed border-gray-300 hover:border-baseBlack bg-gray-50 hover:bg-gray-100 p-5 text-center cursor-pointer transition-all group rounded-xl">
@@ -1093,14 +1057,6 @@
                                 </div>
                                 <input type="range" id="planilla-slider" min="200" max="600" step="10" class="w-full accent-baseBlack cursor-pointer" oninput="resizeSelectedSticker(this.value)">
                                 <p class="text-[9px] text-textMuted leading-none font-medium uppercase mt-0.5">Rango permitido: 2.0 cm a 6.0 cm</p>
-
-                                <div class="border-t border-gray-200 my-2"></div>
-
-                                <div class="flex items-center justify-between">
-                                    <span class="text-[11px] font-black uppercase text-baseBlack">Grosor de Contorno Blanco</span>
-                                    <span class="text-[10px] font-mono bg-gray-100 px-2 py-0.5 rounded font-bold text-textMuted" id="planilla-border-label">20px (2mm)</span>
-                                </div>
-                                <input type="range" id="planilla-border-slider" min="0" max="40" value="20" class="w-full accent-brandPink cursor-pointer" oninput="changeBorderSticker(this.value)">
 
                                 <div class="border-t border-gray-200 my-2"></div>
 
@@ -1159,10 +1115,6 @@
             </div>
         </main>
     </div> <!-- FIN VISTA PLANILLA -->
-
-    <!-- ========================================== -->
-    <!-- MODALES GLOBALES                           -->
-    <!-- ========================================== -->
 
     <!-- MODAL DE LIMITACIÓN DE TAMAÑOS (DETECTOR DE 2CM A 45CM) -->
     <div id="size-limit-modal" class="fixed inset-0 bg-baseBlack/90 backdrop-blur-sm z-[80] flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
@@ -1268,17 +1220,18 @@
     <!-- LÓGICA DE LA APLICACIÓN (JAVASCRIPT)       -->
     <!-- ========================================== -->
     <script>
+        // Variables de estado inicial 
         const APP_STATE = {
             image: null,           
             imageLoaded: false,    
             fileName: 'aliens_pattern.png', 
             shape: 'personalized', 
-            borderSize: 12,        
+            borderSize: 20, // HARDCODED a 2mm (20px) para todo el sistema
             borderColor: '#ffffff',
             selectedSize: 5,
             customMode: 'auto', 
             selectedHeight: null, 
-            quantity: 10,  
+            quantity: 1,  
             material: 'brillante',
             laminado: false,
             corteFisico: false,
@@ -1293,8 +1246,6 @@
         const stickerCanvas = document.getElementById('sticker-canvas');
         const ctx = stickerCanvas.getContext('2d');
         const fileInput = document.getElementById('file-input');
-        const borderSizeSlider = document.getElementById('border-size-slider');
-        const borderSizeLabel = document.getElementById('border-size-label');
         const finalDimensionsLabel = document.getElementById('sticker-final-dimensions-label');
 
         const SAMPLES = {
@@ -1473,13 +1424,6 @@
         }
 
         function setupInputs() {
-            borderSizeSlider.addEventListener('input', (e) => {
-                APP_STATE.borderSize = parseInt(e.target.value);
-                const mmEquivalent = (APP_STATE.borderSize * 0.1).toFixed(1);
-                borderSizeLabel.textContent = `${APP_STATE.borderSize}px (${mmEquivalent} mm)`;
-                renderSticker();
-            });
-
             document.getElementById('custom-auto-input').addEventListener('keyup', (e) => { if (e.key === 'Enter') applyCustomSize(); });
             document.getElementById('custom-w-input').addEventListener('keyup', (e) => { if (e.key === 'Enter') applyFreeSize(); });
             document.getElementById('custom-h-input').addEventListener('keyup', (e) => { if (e.key === 'Enter') applyFreeSize(); });
@@ -1494,7 +1438,6 @@
                 updateRendimientoUI();
             });
 
-            // MODIFICACIÓN: Permitir cantidad desde 1 en Sticker Studio
             qtyInput.addEventListener('input', (e) => {
                 let val = parseInt(e.target.value);
                 if (val >= 1 && val <= 999) {
@@ -1702,22 +1645,30 @@
 
         function submitSecretCode() {
             const input = document.getElementById('secret-code-input');
-            const code = input.value;
+            const code = input.value.trim().toLowerCase();
             if (!code) {
                 showToast('Introduce un código válido', 'error');
                 return;
             }
             
-            const match = code.trim().toLowerCase().match(/^kalua(\d+)$/);
-            if (match) {
+            let newPrice = null;
+            const kaluaMatch = code.match(/^kalua(\d+)$/);
+            
+            if (kaluaMatch) {
+                newPrice = parseInt(kaluaMatch[1], 10);
+            } else if (code === 'pilusmx105' || code === 'jon105') {
+                newPrice = 105;
+            }
+
+            if (newPrice !== null) {
                 APP_STATE.hasSecretCode = true;
-                APP_STATE.customMaterialPrice = parseInt(match[1], 10);
+                APP_STATE.customMaterialPrice = newPrice;
                 
                 const codeBtn = document.getElementById('btn-custom-code');
                 const codeLabel = document.getElementById('custom-code-label');
                 if (codeBtn && codeLabel) {
                     codeBtn.className = "w-full py-2 px-3 text-[11px] font-bold rounded-lg border-2 border-baseBlack bg-brandGreen text-baseBlack transition-all flex items-center justify-center gap-2 shadow-sm";
-                    codeLabel.innerText = `Código Aplicado: Descuento base $${APP_STATE.customMaterialPrice}`;
+                    codeLabel.innerText = `Código Aplicado: Costo base $${APP_STATE.customMaterialPrice}`;
                 }
 
                 updateRendimientoUI();
@@ -2118,7 +2069,6 @@
             if (APP_STATE.cart.length === 0) { showToast("No hay elementos para procesar.", "error"); return; }
             showToast("Generando ticket de orden...", "info");
             
-            // Cargamos las imágenes locales de forma asíncrona
             const topImg = new Image();
             const bottomImg = new Image();
             
@@ -2134,55 +2084,46 @@
                 bottomImg.src = 'ticket-bottom.png';
             });
 
-            const canvas = document.createElement('canvas');
             const width = 800;
             const itemHeight = 160;
             
-            // Calculamos dimensiones basándonos en la escala real de los banners de Canva subidos
-            const headerHeight = topImg.width ? (width * topImg.height / topImg.width) : 220; 
-            const footerHeight = bottomImg.width ? (width * bottomImg.height / bottomImg.width) : 460; 
+            const headerHeight = topImg.naturalWidth ? (width * topImg.naturalHeight / topImg.naturalWidth) : 220; 
+            const footerHeight = bottomImg.naturalWidth ? (width * bottomImg.naturalHeight / bottomImg.naturalWidth) : 460; 
             
-            // Cálculo del alto del Canvas ultra preciso para que NADA salga recortado
-            const middleHeight = (APP_STATE.cart.length * itemHeight) + 160; // 160px para totales y leyendas legales
-            const height = headerHeight + middleHeight + footerHeight + 40; // 40px para márgenes superior e inferior
+            let currentYCalc = headerHeight + 20; 
+            for (let i = 0; i < APP_STATE.cart.length; i++) { currentYCalc += itemHeight; }
+            currentYCalc += 140; 
             
+            const calculatedTotalHeight = currentYCalc + footerHeight + 40; 
+
+            const canvas = document.createElement('canvas');
             canvas.width = width;
-            canvas.height = height;
+            canvas.height = calculatedTotalHeight;
             const ctx = canvas.getContext('2d');
             
             ctx.fillStyle = "#ffffff";
-            ctx.fillRect(0, 0, width, height);
+            ctx.fillRect(0, 0, width, calculatedTotalHeight);
             
-            // Cuadrícula técnica de fondo
             ctx.strokeStyle = "rgba(0, 0, 0, 0.05)";
             ctx.lineWidth = 1;
-            for (let x = 0; x < width; x += 20) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, height); ctx.stroke(); }
-            for (let y = 0; y < height; y += 20) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(width, y); ctx.stroke(); }
+            for (let x = 0; x < width; x += 20) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, calculatedTotalHeight); ctx.stroke(); }
+            for (let y = 0; y < calculatedTotalHeight; y += 20) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(width, y); ctx.stroke(); }
             
-            // Borde grueso brutalista
             ctx.strokeStyle = "#000000";
             ctx.lineWidth = 6;
-            ctx.strokeRect(10, 10, width - 20, height - 20);
+            ctx.strokeRect(10, 10, width - 20, calculatedTotalHeight - 20);
             
-            // --- HEADER (ticket-top.png) ---
-            if (topImg.width) {
+            if (topImg.naturalWidth) {
                  ctx.drawImage(topImg, 0, 0, width, headerHeight);
             } else {
-                 // Fallback clásico de emergencia
-                ctx.fillStyle = "#000000";
-                ctx.fillRect(10, 10, width - 20, 140);
-                ctx.fillStyle = "#ccff00";
-                ctx.font = "bold 40px monospace";
-                ctx.fillText("COTIZACIÓN // 2026", 40, 65);
-                ctx.fillStyle = "#ffffff";
-                ctx.font = "18px monospace";
-                ctx.fillText("GRISFOSFORESCENTE.COM.MX", 40, 105);
+                ctx.fillStyle = "#000000"; ctx.fillRect(10, 10, width - 20, 140);
+                ctx.fillStyle = "#ccff00"; ctx.font = "bold 40px monospace"; ctx.fillText("COTIZACIÓN // 2026", 40, 65);
+                ctx.fillStyle = "#ffffff"; ctx.font = "18px monospace"; ctx.fillText("GRISFOSFORESCENTE.COM.MX", 40, 105);
             }
 
             let currentY = headerHeight + 20;
             let totalCost = 0;
             
-            // --- LISTA DE ITEMS ---
             for (let index = 0; index < APP_STATE.cart.length; index++) {
                 const item = APP_STATE.cart[index];
                 totalCost += item.totalPrice;
@@ -2231,7 +2172,6 @@
                 currentY += itemHeight;
             }
             
-            // --- TOTAL Y ADVERTENCIA LEGAL DE LA IA ---
             ctx.strokeStyle = "#000000";
             ctx.beginPath(); ctx.moveTo(40, currentY + 10); ctx.lineTo(width - 40, currentY + 10); ctx.stroke();
             
@@ -2250,31 +2190,17 @@
 
             currentY += 140;
 
-            // --- FOOTER (ticket-bottom.png) ---
-            if (bottomImg.width) {
+            if (bottomImg.naturalWidth) {
                  ctx.drawImage(bottomImg, 0, currentY, width, footerHeight);
             } else {
-                 // Fallback de cuentas bancarias de seguridad
-                ctx.fillStyle = "#000000";
-                ctx.fillRect(40, currentY, width - 80, 430);
-                ctx.textAlign = "center";
-                ctx.font = "bold 24px monospace";
-                ctx.fillStyle = "#ffffff";
+                ctx.fillStyle = "#000000"; ctx.fillRect(40, currentY, width - 80, 430);
+                ctx.textAlign = "center"; ctx.font = "bold 24px monospace"; ctx.fillStyle = "#ffffff";
                 ctx.fillText("PARA PROCESAR TU PEDIDO COMPARTE EL", width / 2, currentY + 45);
-                ctx.fillStyle = "#ccff00"; 
-                ctx.fillText("COMPROBANTE DE PAGO CON TU VENDEDORA", width / 2, currentY + 75);
-                
-                ctx.strokeStyle = "#333333";
-                ctx.lineWidth = 2;
-                ctx.beginPath(); ctx.moveTo(80, currentY + 115); ctx.lineTo(width - 80, currentY + 115); ctx.stroke();
-                
-                ctx.fillStyle = "#ffffff"; ctx.font = "bold 16px monospace";
-                ctx.fillText("BANCO AZTECA", width / 2, currentY + 150);
-                ctx.font = "18px monospace";
-                ctx.fillText("Ivan Alberto Menjivar Palma", width / 2, currentY + 175);
-                ctx.fillStyle = "#ccff00"; 
-                ctx.font = "bold 32px monospace";
-                ctx.fillText("1271 8001 3026 091621", width / 2, currentY + 215);
+                ctx.fillStyle = "#ccff00"; ctx.fillText("COMPROBANTE DE PAGO CON TU VENDEDORA", width / 2, currentY + 75);
+                ctx.strokeStyle = "#333333"; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(80, currentY + 115); ctx.lineTo(width - 80, currentY + 115); ctx.stroke();
+                ctx.fillStyle = "#ffffff"; ctx.font = "bold 16px monospace"; ctx.fillText("BANCO AZTECA", width / 2, currentY + 150);
+                ctx.font = "18px monospace"; ctx.fillText("Ivan Alberto Menjivar Palma", width / 2, currentY + 175);
+                ctx.fillStyle = "#ccff00"; ctx.font = "bold 32px monospace"; ctx.fillText("1271 8001 3026 091621", width / 2, currentY + 215);
             }
             
             const link = document.createElement('a');
@@ -2679,7 +2605,6 @@
             ctx.lineWidth = 8;
             ctx.strokeRect(40, 40, width - 80, height - 80);
 
-            // Escolares usa una cabecera nativa limpia sin banners de Canva
             ctx.fillStyle = "#ccff00"; 
             ctx.fillRect(44, 44, width - 88, 160);
             ctx.beginPath();
@@ -2838,9 +2763,9 @@
             showFosfoToast("💾 ¡Ticket descargado con éxito!", "success");
         }
 
-        // ==========================================
+        // ==========================================================
         // --- CREADOR DE PLANILLAS INTERACTIVO ---
-        // ==========================================
+        // ==========================================================
         let pCanvas, pCtx;
         let pObjects = []; 
         let pSelected = -1;
@@ -2953,7 +2878,6 @@
                     tools.classList.remove('hidden');
                     tools.classList.add('flex');
                     document.getElementById('planilla-slider').value = pObjects[pSelected].w;
-                    document.getElementById('planilla-border-slider').value = pObjects[pSelected].border || 0;
                 } else {
                     tools.classList.add('hidden');
                     tools.classList.remove('flex');
@@ -3086,19 +3010,6 @@
             newImg.src = off.toDataURL();
         }
 
-        function changeBorderSticker(val) {
-            if (pSelected === -1) return;
-            const obj = pObjects[pSelected];
-            obj.border = parseInt(val);
-            document.getElementById('planilla-border-label').innerText = `${val}px`;
-            if (obj.border > 0) {
-                generateBorderCache(obj);
-            } else {
-                obj.cachedImg = null;
-                renderPlanilla();
-            }
-        }
-
         function resizeSelectedSticker(val) {
             if (pSelected === -1) return;
             const obj = pObjects[pSelected];
@@ -3165,7 +3076,7 @@
                         y: (pCanvas.height / 2) - (initialH / 2) + (Math.random()*40-20),
                         w: initialW,
                         h: initialH,
-                        border: 20, // Default contorno 2mm (20px)
+                        border: 20, // Borde de 2mm (20px) INAMOVIBLE
                         cachedImg: null,
                         isColliding: false
                     });
@@ -3232,7 +3143,7 @@
                 shapeLabel: "Corte de Silueta",
                 size: "9.0",
                 heightCm: "13.0",
-                borderSize: 0,
+                borderSize: 20, // Reportado en el ticket como 20px inamovible
                 borderColor: "#ffffff",
                 quantity: qty,
                 materialLabel: "Vinil Blanco Brillante",
