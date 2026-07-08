@@ -278,7 +278,7 @@
                             </div>
                             <h3 class="text-xl font-bold uppercase mb-2">Holográfico</h3>
                             <p class="text-sm text-textMuted font-medium mb-4">Efecto arcoíris premium que cambia con la luz. Ideal para dar un toque exclusivo a tu marca.</p>
-                            <div class="text-xl font-black text-brandPink">$240 <span class="text-xs text-baseBlack">/ planilla base</span></div>
+                            <div class="text-xl font-black text-brandPink">$260 <span class="text-xs text-baseBlack">/ planilla base</span></div>
                         </div>
                         <div class="bg-baseWhite border-[3px] border-baseBlack p-6 shadow-brutal transition-transform hover:-translate-y-1">
                             <div class="w-12 h-12 bg-brandPink text-baseWhite border-2 border-baseBlack flex items-center justify-center mb-4 rounded-full">
@@ -305,7 +305,7 @@
                             <i class="fa-solid fa-sliders text-brandPink"></i>
                             Configurador
                         </h2>
-                        <span class="text-[9px] font-mono bg-baseBlack text-brandGreen px-2 py-1 uppercase tracking-widest">Sys_v1.1</span>
+                        <span class="text-[9px] font-mono bg-baseBlack text-brandGreen px-2 py-1 uppercase tracking-widest">Sys_v1.2</span>
                     </div>
                     
                     <div class="space-y-2 pt-4">
@@ -412,9 +412,10 @@
                                 <span>Transparente</span>
                                 <span class="text-[9px] font-normal">Base $160/pl</span>
                             </button>
-                            <button id="mat-holo" onclick="setMaterial('holo')" class="py-2.5 px-1 text-[11px] font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all flex flex-col items-center justify-center gap-0.5 text-center">
-                                <span>Holográfico</span>
-                                <span class="text-[9px] font-normal">Base $240/pl</span>
+                            <button id="mat-holo" onclick="setMaterial('holo')" class="py-2.5 px-1 text-[11px] font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all flex flex-col items-center justify-center gap-0.5 text-center relative overflow-hidden group">
+                                <div class="absolute inset-0 bg-gradient-to-tr from-pink-300/30 via-cyan-300/30 to-yellow-300/30 hidden group-hover:block pointer-events-none"></div>
+                                <span class="relative z-10">Holográfico</span>
+                                <span class="text-[9px] font-normal relative z-10">Base $260/pl</span>
                             </button>
                         </div>
                         <div class="pt-1.5 w-full">
@@ -517,15 +518,15 @@
                         </button>
                     </div>
 
-                    <div class="bg-gray-50 border border-gray-200 p-3 rounded-xl text-center">
-                        <p class="text-[10px] text-textMuted font-medium leading-relaxed">
-                            <span class="text-brandPink font-bold">// NOTA DE PREPRENSA:</span> Las dimensiones se calculan a escala real a partir de los vectores detectados. Se ha aplicado un margen de seguridad estándar para cortes.
+                    <div class="bg-gray-50 border-2 border-brandPink p-4 rounded-2xl text-center shadow-inner">
+                        <p class="text-xs text-baseBlack font-black leading-relaxed">
+                            <span class="text-brandPink font-black">// AVISO DE COMPRA:</span> VERIFICA TU TICKET Y MONTO CON UN VENDEDOR ANTES DE PAGAR.
                         </p>
                     </div>
                 </section>
             </div>
         </div>
-    </div>
+    </div> <!-- FIN VISTA STICKER STUDIO -->
 
     <!-- ========================================== -->
     <!-- VISTA 2: FOSFO KIDS (ESCOLARES 2026)       -->
@@ -785,6 +786,7 @@
                             </div>
                         </div>
 
+                        <!-- MATERIALES Y LAMINADOS -->
                         <div class="border-[4px] border-black p-5 bg-slate-50 space-y-4 rounded-3xl shadow-sm">
                             <h3 class="text-sm font-black text-black uppercase border-b-[3px] border-black pb-2 flex items-center gap-2">
                                 <i data-lucide="layers" class="w-5 h-5"></i> Tipo de Vinil Base
@@ -800,7 +802,8 @@
                                     <h4 class="font-black text-xs text-black uppercase">Vinil Blanco Mate</h4>
                                     <p class="text-[9px] text-[#39FF14] bg-black border border-black px-2 py-1 inline-block uppercase mt-2 shadow-comic-sm font-black tracking-widest rounded-md">Sin costo</p>
                                 </div>
-                                <div onclick="selectFosfoMaterial('vinil_holografico', 75)" id="fosfo-mat-vinil_holografico" class="border-[3px] border-black p-3 bg-white cursor-pointer select-none relative overflow-hidden rounded-2xl hover:bg-gray-50 transition-colors">
+                                <div onclick="selectFosfoMaterial('vinil_holografico', 75)" id="fosfo-mat-vinil_holografico" class="border-[3px] border-black p-3 bg-white cursor-pointer select-none relative overflow-hidden rounded-2xl hover:bg-gray-50 transition-colors group">
+                                    <div class="absolute inset-0 bg-gradient-to-tr from-pink-300/30 via-cyan-300/30 to-yellow-300/30 hidden group-hover:block pointer-events-none"></div>
                                     <div class="absolute -top-3 -right-2 bg-fosfoCyan text-black border-2 border-black font-black px-2 py-0.5 text-[9px] uppercase hidden check-indicator shadow-comic-sm rotate-3 z-20 rounded-md">✓ ELEGIDO</div>
                                     <h4 class="font-black text-xs text-black uppercase relative z-10">Vinil Holográfico</h4>
                                     <p class="text-[11px] text-fosfoPink font-black mt-1.5 relative z-10 bg-pink-50 inline-block px-1.5 py-0.5 rounded border border-pink-200">+$75.00 MXN</p>
@@ -957,7 +960,7 @@
                                 </div>
                             </div>
 
-                            <!-- DATOS A IMPRIMIR (6 CAMPOS INTEGRADOS) -->
+                            <!-- DATOS A IMPRIMIR -->
                             <div class="bg-cyan-100 p-3 border-[3px] border-black shadow-comic-sm rounded-xl text-center mb-3">
                                 <div class="text-[9px] font-black uppercase text-gray-600 tracking-widest mb-2">🏷️ DATOS A IMPRIMIR</div>
                                 <div class="text-base font-black text-black uppercase leading-tight break-words" id="ticket-child-name">- SIN NOMBRE -</div>
@@ -1680,7 +1683,7 @@
                     }
                 }
 
-                setMaterial(APP_STATE.material); // Refresca los precios en los botones
+                setMaterial(APP_STATE.material); 
                 showToast(`Código especial aplicado.`, 'success');
                 closeSecretCodeModal();
             } else {
@@ -1700,7 +1703,7 @@
                 codeLabel.innerText = "Introducir Código de Agente o Promoción";
             }
             
-            setMaterial(APP_STATE.material); // Restaura los precios originales
+            setMaterial(APP_STATE.material); 
             showToast("Promo desactivada correctamente.", "info");
             closeSecretCodeModal();
         }
@@ -1712,10 +1715,9 @@
                 'brillante': { title: 'Blanco Brillante', price: 'Base $140/pl' },
                 'mate': { title: 'Blanco Mate', price: 'Base $140/pl' },
                 'transparente': { title: 'Transparente', price: 'Base $160/pl' },
-                'holo': { title: 'Holográfico', price: 'Base $240/pl' }
+                'holo': { title: 'Holográfico', price: 'Base $260/pl' }
             };
 
-            // MODIFICACIÓN DE ETIQUETAS BASADA EN EL TIPO DE CÓDIGO
             if (APP_STATE.hasSecretCode) {
                 if (APP_STATE.secretCodeType === 'kalua') {
                     labels['brillante'].price = `Base $${APP_STATE.customMaterialPrice}/pl`;
@@ -1726,7 +1728,7 @@
                     labels['brillante'].price = `Base $105/pl`;
                     labels['mate'].price = `Base $105/pl`;
                     labels['transparente'].price = `Base $105/pl`;
-                    labels['holo'].price = `Base $220/pl`; // Solo baja a 220
+                    labels['holo'].price = `Base $220/pl`; 
                 }
             }
 
@@ -1756,7 +1758,7 @@
                 }
             });
             updateRendimientoUI();
-            renderSticker(); // Actualiza el lienzo visual (aplica o quita efecto holográfico)
+            renderSticker(); 
         }
 
         function toggleLaminado(val) { APP_STATE.laminado = val; updateRendimientoUI(); }
@@ -1777,15 +1779,14 @@
             const pzPorPlanilla = calcularRendimiento(size, heightCm);
             let costoPorPlanilla = 140; 
             if (material === 'transparente') costoPorPlanilla = 160;
-            if (material === 'holo') costoPorPlanilla = 240;
+            if (material === 'holo') costoPorPlanilla = 260;
             
-            // LÓGICA DE PRECIOS POR CÓDIGO
             if (APP_STATE.hasSecretCode) {
                 if (APP_STATE.secretCodeType === 'kalua') {
                     costoPorPlanilla = APP_STATE.customMaterialPrice;
                 } else if (APP_STATE.secretCodeType === 'static105') {
                     if (material === 'holo') {
-                        costoPorPlanilla = 220; // Restricción para holográfico
+                        costoPorPlanilla = 220; 
                     } else {
                         costoPorPlanilla = 105;
                     }
@@ -1843,7 +1844,7 @@
             ctx.closePath();
         }
 
-        function renderSticker(customCanvas = stickerCanvas, scaleFactor = 1) {
+        function renderSticker(customCanvas = stickerCanvas, scaleFactor = 1, isExport = false) {
             if (!APP_STATE.imageLoaded) return;
             const canvas = customCanvas;
             const targetCtx = canvas.getContext('2d');
@@ -1960,7 +1961,36 @@
                 targetCtx.restore();
                 targetCtx.drawImage(img, imgX, imgY, imgW, imgH);
             }
-            updateDimensionsLabel();
+
+            if (!isExport && APP_STATE.material === 'holo') {
+                targetCtx.save();
+                targetCtx.globalCompositeOperation = 'source-atop';
+                const grad = targetCtx.createLinearGradient(0, 0, baseSize, baseSize);
+                grad.addColorStop(0, "rgba(255, 105, 180, 0.4)"); 
+                grad.addColorStop(0.25, "rgba(100, 200, 255, 0.4)"); 
+                grad.addColorStop(0.5, "rgba(150, 255, 150, 0.4)"); 
+                grad.addColorStop(0.75, "rgba(255, 255, 100, 0.4)"); 
+                grad.addColorStop(1, "rgba(200, 100, 255, 0.4)"); 
+                targetCtx.fillStyle = grad;
+                targetCtx.fillRect(0, 0, baseSize, baseSize);
+                const shine = targetCtx.createLinearGradient(0, baseSize, baseSize, 0);
+                shine.addColorStop(0.4, "rgba(255,255,255,0)");
+                shine.addColorStop(0.5, "rgba(255,255,255,0.7)");
+                shine.addColorStop(0.6, "rgba(255,255,255,0)");
+                targetCtx.fillStyle = shine;
+                targetCtx.fillRect(0, 0, baseSize, baseSize);
+                targetCtx.restore();
+            }
+
+            if (!isExport) {
+                updateDimensionsLabel();
+            }
+        }
+
+        function getExportDataURL() {
+            const offscreen = document.createElement('canvas');
+            renderSticker(offscreen, 1, true); 
+            return offscreen.toDataURL('image/png');
         }
 
         function toggleCartDrawer() {
@@ -1981,7 +2011,7 @@
 
         function descargarDisenoPNG() {
             if (!APP_STATE.imageLoaded) { showToast("Debes cargar una imagen antes de descargar.", "error"); return; }
-            const dataUrl = stickerCanvas.toDataURL('image/png');
+            const dataUrl = getExportDataURL();
             const link = document.createElement('a');
             link.download = `sticker_sin_fondo_${Date.now()}.png`;
             link.href = dataUrl;
@@ -1991,7 +2021,7 @@
 
         function agregarAlCarrito() {
             if (!APP_STATE.imageLoaded) { showToast("Debes cargar una imagen antes de agregar a la orden.", "error"); return; }
-            const thumbnail = stickerCanvas.toDataURL('image/png');
+            const thumbnail = getExportDataURL();
             const heightCm = getHeightCm();
             const prices = calcularPrecio(APP_STATE.selectedSize, heightCm, APP_STATE.quantity, APP_STATE.material, APP_STATE.laminado, APP_STATE.corteFisico);
             
@@ -2142,9 +2172,9 @@
             
             let currentYCalc = headerHeight + 20; 
             for (let i = 0; i < APP_STATE.cart.length; i++) { currentYCalc += itemHeight; }
-            currentYCalc += 140; 
+            currentYCalc += 140;
             
-            const calculatedTotalHeight = currentYCalc + footerHeight + 40; 
+            const calculatedTotalHeight = currentYCalc + footerHeight + 40;
 
             const canvas = document.createElement('canvas');
             canvas.width = width;
@@ -2580,7 +2610,6 @@
             const ticketLaminatedEl = document.getElementById('ticket-laminado');
             if (ticketLaminatedEl) ticketLaminatedEl.innerText = lamText;
 
-            // CAMPOS DE TEXTO CAPTURADOS
             const nameInput = document.getElementById('input-name');
             const gradeInput = document.getElementById('input-grade');
             const schoolInput = document.getElementById('input-school');
@@ -3126,7 +3155,7 @@
                         y: (pCanvas.height / 2) - (initialH / 2) + (Math.random()*40-20),
                         w: initialW,
                         h: initialH,
-                        border: 20, // Borde de 2mm (20px) INAMOVIBLE
+                        border: 20, 
                         cachedImg: null,
                         isColliding: false
                     });
@@ -3193,7 +3222,7 @@
                 shapeLabel: "Corte de Silueta",
                 size: "9.0",
                 heightCm: "13.0",
-                borderSize: 20, // Reportado en el ticket como 20px inamovible
+                borderSize: 0,
                 borderColor: "#ffffff",
                 quantity: qty,
                 materialLabel: "Vinil Blanco Brillante",
