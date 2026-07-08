@@ -166,7 +166,7 @@
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
-<body class="bg-baseWhite text-baseBlack font-sans min-h-screen overflow-x-hidden antialiased selection:bg-brandGreen selection:text-baseBlack">
+<body class="bg-baseWhite text-baseBlack font-sans min-h-screen overflow-x-hidden antialiased selection:bg-brandGreen selection:text-baseBlack flex flex-col">
 
     <!-- BANNER LEGAL FIJO GLOBAL -->
     <div class="w-full bg-brandPink text-white font-black text-[10px] md:text-xs py-2 px-4 text-center border-b-2 border-black sticky top-0 z-[60] shadow-md tracking-wider flex items-center justify-center gap-2 uppercase">
@@ -305,7 +305,7 @@
                             <i class="fa-solid fa-sliders text-brandPink"></i>
                             Configurador
                         </h2>
-                        <span class="text-[9px] font-mono bg-baseBlack text-brandGreen px-2 py-1 uppercase tracking-widest">Sys_v1.2</span>
+                        <span class="text-[9px] font-mono bg-baseBlack text-brandGreen px-2 py-1 uppercase tracking-widest">Sys_v1.1</span>
                     </div>
                     
                     <div class="space-y-2 pt-4">
@@ -518,9 +518,9 @@
                         </button>
                     </div>
 
-                    <div class="bg-gray-50 border-2 border-brandPink p-4 rounded-2xl text-center shadow-inner">
-                        <p class="text-xs text-baseBlack font-black leading-relaxed">
-                            <span class="text-brandPink font-black">// AVISO DE COMPRA:</span> VERIFICA TU TICKET Y MONTO CON UN VENDEDOR ANTES DE PAGAR.
+                    <div class="bg-gray-50 border border-gray-200 p-3 rounded-xl text-center">
+                        <p class="text-[10px] text-textMuted font-medium leading-relaxed">
+                            <span class="text-brandPink font-bold">// NOTA DE PREPRENSA:</span> Las dimensiones se calculan a escala real a partir de los vectores detectados. Se ha aplicado un margen de seguridad estándar para cortes.
                         </p>
                     </div>
                 </section>
@@ -710,6 +710,7 @@
                             </div>
                         </div>
 
+                        <!-- 5. NOMBRES PERS. -->
                         <div class="bg-white border-[3px] border-black p-4 flex flex-col items-center justify-between text-center rounded-2xl shadow-comic-sm">
                             <span class="text-[9px] font-black bg-[#22C55E] text-white px-2 py-1 border-2 border-black mb-2 rounded-md shadow-sm">5 x 8 cm</span>
                             <span class="text-sm font-black text-black uppercase mt-1">Nombres Pers.</span>
@@ -721,6 +722,7 @@
                             </div>
                         </div>
 
+                        <!-- 6. ET. MATERIAS -->
                         <div class="bg-white border-[3px] border-black p-4 flex flex-col items-center justify-between text-center rounded-2xl shadow-comic-sm">
                             <span class="text-[9px] font-black bg-[#EAB308] text-black px-2 py-1 border-2 border-black mb-2 rounded-md shadow-sm">8 a 10 cm</span>
                             <span class="text-sm font-black text-black uppercase mt-1">Et. Materias</span>
@@ -960,7 +962,7 @@
                                 </div>
                             </div>
 
-                            <!-- DATOS A IMPRIMIR -->
+                            <!-- DATOS A IMPRIMIR (6 CAMPOS INTEGRADOS) -->
                             <div class="bg-cyan-100 p-3 border-[3px] border-black shadow-comic-sm rounded-xl text-center mb-3">
                                 <div class="text-[9px] font-black uppercase text-gray-600 tracking-widest mb-2">🏷️ DATOS A IMPRIMIR</div>
                                 <div class="text-base font-black text-black uppercase leading-tight break-words" id="ticket-child-name">- SIN NOMBRE -</div>
@@ -1118,6 +1120,37 @@
             </div>
         </main>
     </div> <!-- FIN VISTA PLANILLA -->
+
+    <!-- ========================================== -->
+    <!-- FOOTER GLOBAL                              -->
+    <!-- ========================================== -->
+    <footer class="w-full bg-baseBlack border-t-[6px] border-brandPink pt-10 pb-8 px-6 relative z-10 mt-auto">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center md:items-start gap-8">
+            <div class="max-w-xl text-center md:text-left">
+                <h3 class="font-black text-brandGreen uppercase text-xl mb-3 flex items-center justify-center md:justify-start gap-2">
+                    <i class="fa-solid fa-triangle-exclamation"></i> Términos y Aviso Legal
+                </h3>
+                <p class="text-xs md:text-sm font-bold text-gray-300 leading-relaxed mb-4">
+                    Nuestro sistema de cotización inteligente te ayuda a pre-visualizar tus proyectos en tiempo real. Sin embargo, <strong class="text-brandPink">la IA puede cometer errores</strong> en cálculos de volumen, dimensiones o interpretación de cortes complejos. Es mejor siempre hablar con un agente si tienes dudas antes de realizar tu pago.
+                </p>
+                <div class="flex items-center justify-center md:justify-start gap-4 text-[10px] md:text-xs font-bold text-gray-500 uppercase tracking-widest">
+                    <span>© 2026 grisfosforescente.com.mx</span>
+                    <span class="text-gray-600">|</span>
+                    <span>Taller de Impresión</span>
+                </div>
+            </div>
+            
+            <div class="shrink-0 flex flex-col items-center md:items-end gap-3 w-full md:w-auto">
+                <a href="https://wa.me/message/LOS67PCNOUMBM1" target="_blank" class="w-full md:w-auto bg-brandGreen text-baseBlack border-[3px] border-baseBlack px-6 py-3 font-black text-sm uppercase hover:bg-brandPink hover:text-white transition-all shadow-brutal-sm flex items-center justify-center gap-2 rounded-xl active:scale-95">
+                    <i class="fa-brands fa-whatsapp text-lg"></i> Consultar Agente
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========================================== -->
+    <!-- MODALES GLOBALES                           -->
+    <!-- ========================================== -->
 
     <!-- MODAL DE LIMITACIÓN DE TAMAÑOS (DETECTOR DE 2CM A 45CM) -->
     <div id="size-limit-modal" class="fixed inset-0 bg-baseBlack/90 backdrop-blur-sm z-[80] flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
@@ -1538,11 +1571,7 @@
         function applyCustomSize() {
             const input = document.getElementById('custom-auto-input');
             const val = parseFloat(input.value);
-            if (val && !isNaN(val)) {
-                if (val < 2 || val > 45) {
-                    openSizeLimitModal();
-                    return;
-                }
+            if (val && !isNaN(val) && val > 0 && val <= 100) {
                 APP_STATE.selectedSize = val;
                 APP_STATE.customMode = 'auto';
                 document.getElementById('custom-auto-text').innerText = `✏️ ${val} cm`;
@@ -1553,7 +1582,7 @@
                 document.getElementById('custom-auto-input-container').classList.add('hidden');
                 showToast(`Ancho calibrado a ${val} cm`);
             } else {
-                showToast('Medida inválida', 'error');
+                showToast('Medida fuera de rango (Max: 100cm)', 'error');
             }
         }
 
@@ -1562,11 +1591,7 @@
             const hInput = document.getElementById('custom-h-input');
             const wVal = parseFloat(wInput.value);
             const hVal = parseFloat(hInput.value);
-            if (wVal && hVal && !isNaN(wVal) && !isNaN(hVal)) {
-                if (wVal < 2 || wVal > 45 || hVal < 2 || hVal > 45) {
-                    openSizeLimitModal();
-                    return;
-                }
+            if (wVal && hVal && !isNaN(wVal) && !isNaN(hVal) && wVal > 0 && hVal > 0 && wVal <= 100 && hVal <= 100) {
                 APP_STATE.selectedSize = wVal;
                 APP_STATE.selectedHeight = hVal;
                 APP_STATE.customMode = 'free';
@@ -1578,7 +1603,7 @@
                 document.getElementById('custom-free-input-container').classList.add('hidden');
                 showToast(`Dimensiones libres fijadas: ${wVal}x${hVal} cm`);
             } else {
-                showToast('Medidas inválidas', 'error');
+                showToast('Medidas inválidas (Max: 100cm)', 'error');
             }
         }
 
@@ -1965,20 +1990,24 @@
             if (!isExport && APP_STATE.material === 'holo') {
                 targetCtx.save();
                 targetCtx.globalCompositeOperation = 'source-atop';
+                
                 const grad = targetCtx.createLinearGradient(0, 0, baseSize, baseSize);
                 grad.addColorStop(0, "rgba(255, 105, 180, 0.4)"); 
                 grad.addColorStop(0.25, "rgba(100, 200, 255, 0.4)"); 
                 grad.addColorStop(0.5, "rgba(150, 255, 150, 0.4)"); 
                 grad.addColorStop(0.75, "rgba(255, 255, 100, 0.4)"); 
                 grad.addColorStop(1, "rgba(200, 100, 255, 0.4)"); 
+                
                 targetCtx.fillStyle = grad;
                 targetCtx.fillRect(0, 0, baseSize, baseSize);
+                
                 const shine = targetCtx.createLinearGradient(0, baseSize, baseSize, 0);
                 shine.addColorStop(0.4, "rgba(255,255,255,0)");
                 shine.addColorStop(0.5, "rgba(255,255,255,0.7)");
                 shine.addColorStop(0.6, "rgba(255,255,255,0)");
                 targetCtx.fillStyle = shine;
                 targetCtx.fillRect(0, 0, baseSize, baseSize);
+                
                 targetCtx.restore();
             }
 
@@ -2011,6 +2040,7 @@
 
         function descargarDisenoPNG() {
             if (!APP_STATE.imageLoaded) { showToast("Debes cargar una imagen antes de descargar.", "error"); return; }
+            
             const dataUrl = getExportDataURL();
             const link = document.createElement('a');
             link.download = `sticker_sin_fondo_${Date.now()}.png`;
@@ -2021,6 +2051,7 @@
 
         function agregarAlCarrito() {
             if (!APP_STATE.imageLoaded) { showToast("Debes cargar una imagen antes de agregar a la orden.", "error"); return; }
+            
             const thumbnail = getExportDataURL();
             const heightCm = getHeightCm();
             const prices = calcularPrecio(APP_STATE.selectedSize, heightCm, APP_STATE.quantity, APP_STATE.material, APP_STATE.laminado, APP_STATE.corteFisico);
@@ -2610,6 +2641,7 @@
             const ticketLaminatedEl = document.getElementById('ticket-laminado');
             if (ticketLaminatedEl) ticketLaminatedEl.innerText = lamText;
 
+            // CAMPOS DE TEXTO CAPTURADOS
             const nameInput = document.getElementById('input-name');
             const gradeInput = document.getElementById('input-grade');
             const schoolInput = document.getElementById('input-school');
