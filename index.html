@@ -1240,6 +1240,7 @@
             imageOffsetY: 0,
             hasSecretCode: false,
             customMaterialPrice: 0,
+            secretCodeType: null, // Nuevo controlador para diferenciar promos
             cart: []                
         };
 
@@ -1652,26 +1653,34 @@
             }
             
             let newPrice = null;
+            let codeType = null;
             const kaluaMatch = code.match(/^kalua(\d+)$/);
             
             if (kaluaMatch) {
                 newPrice = parseInt(kaluaMatch[1], 10);
+                codeType = 'kalua';
             } else if (code === 'pilusmx105' || code === 'jon105') {
                 newPrice = 105;
+                codeType = 'static105';
             }
 
             if (newPrice !== null) {
                 APP_STATE.hasSecretCode = true;
                 APP_STATE.customMaterialPrice = newPrice;
+                APP_STATE.secretCodeType = codeType;
                 
                 const codeBtn = document.getElementById('btn-custom-code');
                 const codeLabel = document.getElementById('custom-code-label');
                 if (codeBtn && codeLabel) {
                     codeBtn.className = "w-full py-2 px-3 text-[11px] font-bold rounded-lg border-2 border-baseBlack bg-brandGreen text-baseBlack transition-all flex items-center justify-center gap-2 shadow-sm";
-                    codeLabel.innerText = `Código Aplicado: Costo base $${APP_STATE.customMaterialPrice}`;
+                    if (codeType === 'kalua') {
+                        codeLabel.innerText = `Código Aplicado: Costo base $${APP_STATE.customMaterialPrice}`;
+                    } else {
+                        codeLabel.innerText = `Código Aplicado: Base $105 (Holo $220)`;
+                    }
                 }
 
-                updateRendimientoUI();
+                setMaterial(APP_STATE.material); // Refresca los precios en los botones
                 showToast(`Código especial aplicado.`, 'success');
                 closeSecretCodeModal();
             } else {
@@ -1682,6 +1691,7 @@
         function removeSecretCode() {
             APP_STATE.hasSecretCode = false;
             APP_STATE.customMaterialPrice = 0;
+            APP_STATE.secretCodeType = null;
             
             const codeBtn = document.getElementById('btn-custom-code');
             const codeLabel = document.getElementById('custom-code-label');
@@ -1690,7 +1700,7 @@
                 codeLabel.innerText = "Introducir Código de Agente o Promoción";
             }
             
-            updateRendimientoUI();
+            setMaterial(APP_STATE.material); // Restaura los precios originales
             showToast("Promo desactivada correctamente.", "info");
             closeSecretCodeModal();
         }
@@ -1704,18 +1714,49 @@
                 'transparente': { title: 'Transparente', price: 'Base $160/pl' },
                 'holo': { title: 'Holográfico', price: 'Base $240/pl' }
             };
+
+            // MODIFICACIÓN DE ETIQUETAS BASADA EN EL TIPO DE CÓDIGO
+            if (APP_STATE.hasSecretCode) {
+                if (APP_STATE.secretCodeType === 'kalua') {
+                    labels['brillante'].price = `Base $${APP_STATE.customMaterialPrice}/pl`;
+                    labels['mate'].price = `Base $${APP_STATE.customMaterialPrice}/pl`;
+                    labels['transparente'].price = `Base $${APP_STATE.customMaterialPrice}/pl`;
+                    labels['holo'].price = `Base $${APP_STATE.customMaterialPrice}/pl`;
+                } else if (APP_STATE.secretCodeType === 'static105') {
+                    labels['brillante'].price = `Base $105/pl`;
+                    labels['mate'].price = `Base $105/pl`;
+                    labels['transparente'].price = `Base $105/pl`;
+                    labels['holo'].price = `Base $220/pl`; // Solo baja a 220
+                }
+            }
+
             mats.forEach(m => {
                 const btn = document.getElementById(`mat-${m}`);
                 if (!btn) return;
                 if(m === mat) {
-                    btn.className = "py-2.5 px-1 text-[11px] font-bold rounded-lg border-2 border-baseBlack bg-baseBlack text-baseWhite transition-all flex flex-col items-center justify-center gap-0.5 text-center";
-                    btn.innerHTML = `<span>${labels[m].title}</span><span class="text-[9px] text-gray-400 font-normal">${labels[m].price}</span>`;
+                    btn.className = "py-2.5 px-1 text-[11px] font-bold rounded-lg border-2 border-baseBlack bg-baseBlack text-baseWhite transition-all flex flex-col items-center justify-center gap-0.5 text-center relative overflow-hidden group";
+                    if (m === 'holo') {
+                        btn.innerHTML = `
+                            <div class="absolute inset-0 bg-gradient-to-tr from-pink-300/30 via-cyan-300/30 to-yellow-300/30 hidden group-hover:block pointer-events-none"></div>
+                            <span class="relative z-10">${labels[m].title}</span>
+                            <span class="text-[9px] text-gray-400 font-normal relative z-10">${labels[m].price}</span>`;
+                    } else {
+                        btn.innerHTML = `<span>${labels[m].title}</span><span class="text-[9px] text-gray-400 font-normal">${labels[m].price}</span>`;
+                    }
                 } else {
-                    btn.className = "py-2.5 px-1 text-[11px] font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all flex flex-col items-center justify-center gap-0.5 text-center";
-                    btn.innerHTML = `<span>${labels[m].title}</span><span class="text-[9px] font-normal">${labels[m].price}</span>`;
+                    btn.className = "py-2.5 px-1 text-[11px] font-bold rounded-lg border border-gray-200 bg-baseWhite hover:border-baseBlack text-textMuted hover:text-baseBlack transition-all flex flex-col items-center justify-center gap-0.5 text-center relative overflow-hidden group";
+                    if (m === 'holo') {
+                        btn.innerHTML = `
+                            <div class="absolute inset-0 bg-gradient-to-tr from-pink-300/30 via-cyan-300/30 to-yellow-300/30 hidden group-hover:block pointer-events-none"></div>
+                            <span class="relative z-10">${labels[m].title}</span>
+                            <span class="text-[9px] font-normal relative z-10">${labels[m].price}</span>`;
+                    } else {
+                        btn.innerHTML = `<span>${labels[m].title}</span><span class="text-[9px] font-normal">${labels[m].price}</span>`;
+                    }
                 }
             });
             updateRendimientoUI();
+            renderSticker(); // Actualiza el lienzo visual (aplica o quita efecto holográfico)
         }
 
         function toggleLaminado(val) { APP_STATE.laminado = val; updateRendimientoUI(); }
@@ -1738,8 +1779,17 @@
             if (material === 'transparente') costoPorPlanilla = 160;
             if (material === 'holo') costoPorPlanilla = 240;
             
+            // LÓGICA DE PRECIOS POR CÓDIGO
             if (APP_STATE.hasSecretCode) {
-                costoPorPlanilla = APP_STATE.customMaterialPrice;
+                if (APP_STATE.secretCodeType === 'kalua') {
+                    costoPorPlanilla = APP_STATE.customMaterialPrice;
+                } else if (APP_STATE.secretCodeType === 'static105') {
+                    if (material === 'holo') {
+                        costoPorPlanilla = 220; // Restricción para holográfico
+                    } else {
+                        costoPorPlanilla = 105;
+                    }
+                }
             }
 
             let costoDensidadExtra = 0;
